@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#070d13"><title>Orbit Atlas · Planet Lab</title></head>
+<body>
+<div class="app">
+<header class="masthead"><a class="brand" href="#" aria-label="Orbit Atlas home"><span class="brand-mark">◉</span> ORBIT ATLAS <span class="edition">PLANET LAB / 01</span></a><div class="header-note"><span class="live-dot"></span> A SMALL WINDOW INTO SPACE</div></header>
+<main>
+<section class="stage" aria-label="Interactive planetary system">
+<div id="universe" role="img" aria-label="Animated stylized solar system. Drag to orbit the camera, scroll or pinch to zoom. Choose planets using the buttons below."></div>
+<div class="scene-intro"><div class="eyebrow">THE SOLAR NEIGHBORHOOD</div><h1>Find your<br>perspective.</h1><p>Eight worlds. One little star.<br>A system in perpetual motion.</p></div>
+<div class="scene-tag"><span class="live-dot"></span><span id="motion-label">SYSTEM IN MOTION</span></div>
+<div class="scene-instructions">DRAG TO ORBIT <span>·</span> SCROLL TO ZOOM</div>
+<div class="camera-tools" aria-label="Camera controls"><button id="zoom-in" aria-label="Zoom in" title="Zoom in">+</button><button id="zoom-out" aria-label="Zoom out" title="Zoom out">−</button><button id="home" aria-label="Reset camera view" title="Reset camera view">⌂</button></div>
+<aside class="planet-card" aria-labelledby="planet-name">
+<div class="card-top"><span class="eyebrow">WORLD IN FOCUS</span><span id="planet-number">03 / 08</span></div>
+<div class="planet-heading"><span class="planet-dot" id="info-dot"></span><h2 id="planet-name">Earth</h2><span id="planet-class">TERRESTRIAL</span></div>
+<p id="planet-description"></p>
+<div class="facts"><div><span>ORBITAL PERIOD</span><strong id="period"></strong></div><div><span>MEAN DIAMETER</span><strong id="diameter"></strong></div><div><span>FROM THE SUN</span><strong id="distance"></strong></div></div>
+<div class="card-footer"><span id="planet-fact"></span><span class="arrow">↗</span></div>
+</aside>
+<div id="fallback" hidden><span class="eyebrow">3D VIEW UNAVAILABLE</span><h2>Your browser can’t open this window into space.</h2><p>WebGL is unavailable or could not start. You can still explore the planet information below. Try a browser or device with WebGL enabled for the animated scene.</p></div>
+</section>
+<section class="control-deck" aria-label="Explore and control the system">
+<div class="deck-heading"><span class="eyebrow">CHOOSE A WORLD</span><span>01 — 08 / OUR SOLAR SYSTEM</span></div><div id="planet-list" class="planet-list" aria-label="Select a planet"></div>
+<div class="transport"><div class="play-group"><button id="play" aria-pressed="false"><span id="play-symbol">Ⅱ</span><span id="play-text">Pause motion</span></button><button id="reset" class="reset">↺ <span>Reset system</span></button></div><div class="speed-group"><label for="speed">Simulation speed</label><input id="speed" type="range" min="0.25" max="3" step="0.25" value="1"><output id="speed-value" for="speed">1×</output></div><p class="scale-note">A playful model, not a scientific simulation.<br>Sizes, distances & motion are stylized.</p></div>
+</section>
+</main><footer><span>EXPLORATION STARTS WITH CURIOSITY</span><span>Made for a moment of wonder <span class="footer-star">✦</span></span></footer>
+</div>
+<script type="module" src="./main.js"></script>
+</body></html>
