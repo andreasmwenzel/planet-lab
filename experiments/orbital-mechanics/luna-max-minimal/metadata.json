@@ -1,0 +1,209 @@
+{
+  "id": "luna-max-minimal",
+  "experimentId": "orbital-mechanics",
+  "title": "Luna · max · minimal",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/orbital-mechanics/luna-max-minimal/index.html",
+  "axes": {
+    "model": "Luna",
+    "effort": "max",
+    "promptApproach": "minimal"
+  },
+  "summary": "A self-contained Earth-to-Moon transfer planner. Users adjust parking and capture altitudes, inspect an animated top-down Hohmann coast with arrival phasing, scrub mission time, and compare trans-lunar injection, lunar capture, flight time, arrival v-infinity, and transfer eccentricity.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation in a fresh native task, with the displayed model and effort explicitly configured. Four frozen creative prompts share the same separately recorded runtime and numerical-testing scaffold. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6-luna",
+    "effort": "max",
+    "runId": "luna-max-minimal",
+    "launchIndex": 5,
+    "startedAt": "2026-10-02T08:13:07Z",
+    "completedAt": "2026-10-02T08:35:11.950Z",
+    "durationSeconds": 1325,
+    "durationScope": "Observed wall-clock time from task launch to independently verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "tokenUsageReason": "This runtime/task interface did not expose measured input, cached-input, output, reasoning, or total token counters. No counts were estimated.",
+    "tokenUsageSource": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1 (optional)",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; deployed browser review is separate. Available cloud browser does not support WebGL2."
+    },
+    "sourceHashes": {
+      "index.html": "c1a989bf98bd237d2b35fabd820b5a0ee487c68576daf71602c19239c2861c98",
+      "main.js": "54b3c2620977bd9c7c9678ef2d3b1df5bcb2fcf94dffd42b6a99e9c41fad5d13",
+      "physics.js": "9443babb0c018a30f47c9a6b8d0936891f62bc4b7e6990afbe6a102a7a22af2b",
+      "prompt.txt": "e4cbb6b12e024eb757b65e62bbc4cc22c80aed8a6a42b74bee9bfd98d8f67be0",
+      "style.css": "9f637f9cccb6f06bdad203225af99815aed4bb46526b1d42e2f35257461f2484",
+      "test-physics.mjs": "81a7bfef90f73570b19eee28dbbdcce4a34584dc957896dc24e39dadf3d8c135",
+      "worker-report.json": "c38895d83bc56098931764df61bd2adc1845f97793d36b5f7e18ca78c642d85b"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an in-browser orbital mechanics simulator\n\nDeliver a finished, usable product, not a demo page or marketing landing page. Choose the product concept, architecture, interactions, and visual direction yourself. Use actual orbital mechanics and state the model’s assumptions and limitations.\n\nMake the product you think is most useful."
+      },
+      {
+        "role": "user",
+        "content": "Runtime packaging and verification scaffold (separate from creative direction):\n- Implement from scratch. Do not inspect the prior experiment, other runs, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only in the supplied run directory. Create index.html with optional main.js and local CSS/JavaScript modules. If using main.js, HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. CSS can be imported from main.js. A single fully inline HTML file is also allowed.\n- Available environment: vanilla JavaScript, optional installed Three.js 0.186.1, Vite 7.3.6, Node 24. No additional dependencies, runtime network calls, remote assets/fonts, backend, accounts, analytics, or live orbital/celestial data. Do not modify package files or shared app files. Canvas, SVG, DOM, and 3D are all allowed; Three.js is not mandatory. If using WebGL, handle unsupported graphics gracefully.\n- The common harness bundles JavaScript and CSS into one inline HTML document. Its viewer is an iframe sandbox with allow-scripts and an opaque origin. Do not access parent/top, communicate across frames, or rely on persistent storage, cookies, or origin-specific APIs.\n- Make one bounded implementation and its self-test/repair phase. Validate JavaScript syntax and perform an isolated Vite build with write:false. Run quantitative numerical tests applicable to your chosen mechanics, independently of the interface, and preserve a directly rerunnable test script in the run directory. Test the actual implementation's physics functions, not a separately copied formula. Record exact commands, results, tolerances, and repairs. Repair your own implementation as needed for these checks. Do not impose a tiny arbitrary token cutoff or clone existing code.\n- Browser localhost access is unavailable; do not claim browser checks or bypass that restriction. Actual browser appearance, interactions, and performance remain unverified until separately reviewed.\n- Include worker-report.json with product title, description, implementation start/end UTC timestamps, exact tests and outcomes, numerical assumptions and limitations, repairs, and unknowns. Set tokenUsage and cost to null unless the runtime supplies measured values. Do not invent token counts, costs, or quality scores.\n"
+      },
+      {
+        "role": "user",
+        "content": "Reporting-only amendment (added after the first three launches; creative prompts and runtime constraints are unchanged):\nAt the end of your run, include actual runtime-provided token counters if accessible: input, cached input, output, reasoning, and total. Preserve the provider's field semantics and avoid double counting. Identify the counter source and whether counts include tools or agent overhead. Do not estimate from source length or the context budget, inspect restricted session-history paths, or inspect credentials. If actual counters are inaccessible, set tokenUsage to null and give the reason. Set cost to null unless measured cost is supplied by the runtime. Do not create another inference run solely to obtain counters.\n"
+      }
+    ],
+    "reportingAmendment": {
+      "kind": "reporting-only",
+      "timing": "before-launch"
+    },
+    "note": "The complete public creative prompt and identical public runtime/testing scaffold are recorded separately. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax, isolated bundle, and the recorded quantitative physics tests passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "Rendered appearance, interactions, and performance have not yet been independently checked in a browser."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 37550,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 1325,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated.",
+      "Numerical test success applies only to the preserved cases and tolerances, not unrestricted physical accuracy."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 11961,
+    "cssBytes": 15902,
+    "numerical": "passed",
+    "independentVerification": {
+      "numerical": "passed",
+      "command": "node experiments/orbital-mechanics/luna-max-minimal/test-physics.mjs",
+      "exitCode": 0,
+      "stdout": "✔ 200 km / 100 km reference mission matches locked numeric baselines (1.469212ms)\n✔ Kepler solver satisfies the elliptic equation at low and high eccentricity (0.569124ms)\n✔ transfer state conserves specific energy and angular momentum along the coast (0.461749ms)\n✔ transfer coast starts at the parking radius and reaches lunar distance at apogee (0.218886ms)\n✔ Moon phase is aligned with transfer apogee at the computed arrival time (0.175575ms)\n✔ patched-conic capture Δv closes the hyperbolic and circular speed difference (0.197568ms)\n✔ vis-viva reduces to circular speed and transfer endpoints use the same function (0.126266ms)\n✔ supported altitude extremes stay finite; invalid physics inputs reject (0.566293ms)\nℹ tests 8\nℹ suites 0\nℹ pass 8\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 16.233991\n",
+      "stderr": "",
+      "verifiedAt": "2026-10-02T08:35:10.720408+00:00",
+      "scope": "Independent rerun of preserved quantitative tests against the actual implementation physics; not browser QA or unrestricted numerical certification."
+    },
+    "checkedAt": "2026-10-02T08:35:11.950Z",
+    "runtimeBytes": 37550
+  },
+  "generationReport": {
+    "productTitle": "Luna — Mission Designer",
+    "description": "A self-contained Earth-to-Moon transfer planner. Users adjust parking and capture altitudes, inspect an animated top-down Hohmann coast with arrival phasing, scrub mission time, and compare trans-lunar injection, lunar capture, flight time, arrival v-infinity, and transfer eccentricity.",
+    "implementationStartUtc": "2026-10-02T08:17:45Z",
+    "implementationEndUtc": "2026-10-02T08:33:37Z",
+    "sourceFiles": [
+      "index.html",
+      "main.js",
+      "physics.js",
+      "style.css",
+      "test-physics.mjs"
+    ],
+    "tests": [
+      {
+        "name": "JavaScript syntax checks",
+        "commands": [
+          "node --check experiments/orbital-mechanics/luna-max-minimal/main.js",
+          "node --check experiments/orbital-mechanics/luna-max-minimal/physics.js",
+          "node --check experiments/orbital-mechanics/luna-max-minimal/test-physics.mjs"
+        ],
+        "result": "PASS"
+      },
+      {
+        "name": "Physics self-tests against the implementation module",
+        "command": "node --test experiments/orbital-mechanics/luna-max-minimal/test-physics.mjs",
+        "result": "PASS: 8 tests passed, 0 failed",
+        "coverageAndTolerances": [
+          "200 km parking / 100 km capture baseline: departure Δv 3.13134501371772 km/s, capture Δv 0.82170994681712 km/s, total Δv 3.95305496053484 km/s (each within 1e-11 km/s); transfer duration 430095.303923992 s (within 1e-6 s); arrival v-infinity 0.831507477438 km/s (within 1e-12 km/s)",
+          "Kepler equation residual at 7 samples, eccentricities 0 to 0.999: at most 3e-13 rad",
+          "Specific orbital energy conservation at 7 coast-time samples: absolute tolerance 2e-11 km²/s²; specific angular momentum: absolute tolerance 2e-8 km²/s",
+          "Departure/apogee radii and endpoint coordinates: radial absolute tolerance 2e-8 km; departure cross-track 1e-10 km; arrival cross-track 1e-8 km",
+          "Moon arrival phase: sine and cosine checks each within 1e-14",
+          "Patched-conic perilune speed and capture-burn closure: absolute tolerance 1e-13 km/s",
+          "Vis-viva circular-speed identity and transfer departure-speed identity: absolute tolerance 1e-14 km/s",
+          "Supported altitude endpoints (160/50 km and 1200/500 km): positive finite outputs; invalid altitude, eccentricity, and nonphysical vis-viva inputs reject"
+        ]
+      },
+      {
+        "name": "Isolated Vite build with filesystem writes disabled",
+        "command": "node --input-type=module - <<'NODE'\nimport { resolve } from 'node:path';\nimport { build } from 'vite';\nconst root = resolve('experiments/orbital-mechanics/luna-max-minimal');\nconst result = await build({ root, configFile: false, logLevel: 'warn', build: { write: false, emptyOutDir: false } });\nconst builds = Array.isArray(result) ? result : [result];\nfor (const output of builds) console.log(`Vite isolated build: ${output.output?.length ?? 0} output entries; write:false; root=${root}`);\nNODE",
+        "result": "PASS: 3 output entries generated in memory; write:false"
+      },
+      {
+        "name": "Required HTML module entry check",
+        "command": "grep -o '<script type=\"module\" src=\"./main.js\"></script>' experiments/orbital-mechanics/luna-max-minimal/index.html",
+        "result": "PASS: exactly <script type=\"module\" src=\"./main.js\"></script>"
+      },
+      {
+        "name": "Browser appearance, interaction, and performance review",
+        "result": "NOT RUN: the prompt explicitly states localhost browser access is unavailable and prohibits bypasses; appearance, interactions, and performance remain unverified"
+      }
+    ],
+    "numericalAssumptions": [
+      "Earth mu = 398600.4418 km³/s² and mean radius = 6378.137 km; Moon mu = 4902.800066 km³/s² and mean radius = 1737.4 km",
+      "The Moon follows a circular, coplanar orbit at 384400 km from Earth with a 27.321661-day period; its initial phase is chosen so it reaches transfer apogee at arrival",
+      "The Earth-centered spacecraft coast is an ideal two-body Hohmann half-ellipse with instantaneous departure; Kepler's equation gives position and velocity at the scrubbed time",
+      "Arrival v-infinity is the magnitude of the difference between the Hohmann apogee speed and the Moon's assumed circular Earth-centered speed",
+      "Lunar capture Δv uses that arrival v-infinity to estimate hyperbolic speed at the selected lunar periapsis, then subtracts target circular speed; the model assumes ideal coplanar tangent geometry"
+    ],
+    "limitations": [
+      "Not a high-fidelity mission design or ephemeris tool: lunar eccentricity, inclination, third-body perturbations, Earth oblateness, finite-thrust burns, plane changes, correction maneuvers, uncertainty, and performance margins are omitted",
+      "No fuel mass, spacecraft dry mass, launch-window search, arrival targeting, or operational navigation is modeled",
+      "Rendered planetary disks are enlarged for legibility; orbital distances use a common plotted scale",
+      "No actual browser rendering or performance measurement was available"
+    ],
+    "repairs": [
+      {
+        "issue": "The first numerical test run expected a vis-viva exception for radius 100 km and semimajor axis 1000 km, but the vis-viva speed-squared term is positive for that input.",
+        "change": "Corrected the invalid-input test fixture to use a 10 km semimajor axis at 100 km radius, which makes the speed-squared term negative; implementation was unchanged.",
+        "verification": "The final 8-test suite passed."
+      },
+      {
+        "issue": "The first plotted elapsed trail used eccentric anomaly linearly with elapsed time, which does not follow Kepler's equation for an eccentric orbit.",
+        "change": "The trail now samples mean anomaly uniformly in time and calls the implementation's solveKepler function for each plotted point, matching the spacecraft state marker.",
+        "verification": "Final syntax checks and isolated Vite build passed; orbital state conservation tests passed. Browser rendering remains unverified."
+      }
+    ],
+    "unknowns": [
+      "Actual browser appearance, responsive layout, button/scrubber interactions, and runtime performance have not been independently reviewed.",
+      "The locked baseline values are numerical regression fixtures, not a comparison against a mission-design package or live lunar ephemeris."
+    ],
+    "tokenUsage": null,
+    "tokenUsageCounterSource": null,
+    "tokenUsageIncludesToolsOrAgentOverhead": null,
+    "tokenUsageUnavailableReason": "This runtime/task interface did not expose measured input, cached-input, output, reasoning, or total token counters. No counts were estimated.",
+    "cost": null,
+    "costUnavailableReason": "No measured runtime cost was supplied."
+  }
+}

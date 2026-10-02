@@ -1,0 +1,56 @@
+{
+  "productTitle": "Periapsis Clinic",
+  "description": "An orbital triage console for changing a survey satellite's orbital clearance with a single instantaneous impulse. The user chooses true-anomaly burn location and radial/tangential delta-v, then compares current and post-burn osculating paths, closest/farthest approach, speed, and impulse cost against a 10,000 km periapsis target.",
+  "implementationStartUtc": "2026-10-02T08:07:45Z",
+  "implementationEndUtc": "2026-10-02T08:15:30Z",
+  "tests": [
+    {
+      "command": "node --check experiments/orbital-mechanics/luna-medium-bold/main.js && node --check experiments/orbital-mechanics/luna-medium-bold/physics.js",
+      "result": "PASS; both JavaScript modules parse"
+    },
+    {
+      "command": "node --test experiments/orbital-mechanics/luna-medium-bold/physics.test.js",
+      "result": "PASS; 6 tests, 6 passed, 0 failed. Tests import and execute the production physics.js module"
+    },
+    {
+      "command": "node --input-type=module -e \"import { build } from 'vite'; await build({ root: 'experiments/orbital-mechanics/luna-medium-bold', configFile: false, build: { write: false, emptyOutDir: false } }); console.log('Vite build:write:false passed');\"",
+      "result": "PASS; Vite 7.3.6 transformed 5 modules and built successfully with write:false; no output bundle was written"
+    },
+    {
+      "command": "grep -o '<script[^>]*></script>' experiments/orbital-mechanics/luna-medium-bold/index.html",
+      "result": "PASS; exactly <script type=\"module\" src=\"./main.js\"></script>"
+    }
+  ],
+  "quantitativeTestCoverage": [
+    "Kepler equation residual <= 2e-11 across eccentricities 0, 0.35, 0.8, 0.95, 0.999 and several positive/negative mean anomalies",
+    "Circular radius/semimajor-axis tolerance 1e-8 km; circular speed tolerance 1e-12 km/s; eccentricity tolerance 1e-12",
+    "Across 81 samples over one 12,500 km, e=0.35 period: specific-energy drift <= 5e-12 km^2/s^2 and angular-momentum drift <= 2e-10 km^2/s; period-return position tolerances <= 2e-8 km and velocity <= 2e-11 km/s",
+    "True anomaly 0/pi radii agree with a(1-e)/a(1+e) within 1e-8 km; prograde apoapsis impulse increases periapsis; impulse magnitude agrees within 1e-15 km/s",
+    "Default 0.28 km/s prograde apoapsis impulse remains bound and reaches >=10,000 km periapsis",
+    "3.1 km/s prograde apoapsis injection is detected as unbound and has infinite apoapsis"
+  ],
+  "modelAssumptions": [
+    "Earth is a spherical point mass with fixed gravitational parameter mu=398600.4418 km^3/s^2.",
+    "Motion is planar and two-body; all displayed radii are measured from Earth's center.",
+    "Maneuvers are instantaneous impulses resolved into local radial and tangential components.",
+    "Bound trajectories are propagated analytically by solving Kepler's equation; post-burn osculating elements derive from specific energy and angular momentum.",
+    "Initial case is a=12,500 km, e=0.35, with target periapsis radius 10,000 km. Default impulse is 0.28 km/s prograde at apoapsis."
+  ],
+  "limitations": [
+    "No atmospheric drag, oblateness, third-body perturbations, finite-duration thrust, spacecraft mass, propulsion constraints, or real debris data.",
+    "It is an educational maneuver sandbox, not flight guidance.",
+    "Unbound paths are visualized as schematic rays rather than propagated hyperbolae; the osculating classification and energy remain numerically reported."
+  ],
+  "repairs": [
+    "Corrected the burn-location slider to convert its labelled true anomaly to eccentric/mean anomaly before evaluating the state; this ensures intermediate slider settings represent the requested true anomaly rather than mean anomaly.",
+    "Adjusted the default apoapsis prograde prescription from 0.16 to 0.28 km/s so the initial case demonstrates a successful clearance, and added a quantitative regression test for the 10,000 km threshold.",
+    "Revised an initial escape test case: a large retrograde burn at apoapsis reversed the velocity but remained bound; the test now uses a prograde escape injection and checks the hyperbolic classification and infinite apoapsis."
+  ],
+  "unknowns": [
+    "Browser appearance, actual interactions, mobile layout, and runtime performance were not inspected because browser localhost access is unavailable.",
+    "UI behavior is not automated; quantitative tests target the actual production physics functions directly.",
+    "Runtime-provided token counters are inaccessible in this environment, so tokenUsage is null; no token counts were estimated."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}

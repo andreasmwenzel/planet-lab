@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a111a" />
+  <title>Periapsis Clinic — orbital maneuver lab</title>
+  <meta name="description" content="A hands-on orbital clearance simulator. Diagnose a low-periapsis orbit and test a burn." />
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Periapsis Clinic home"><span class="brandmark">◒</span><span>PERIAPSIS <b>CLINIC</b></span></a>
+      <div class="case-ref"><span class="live-dot"></span> CASE 04 / EARTH ORBIT <span class="divider">/</span> LIVE MODEL</div>
+      <button id="vectors" class="ghost" aria-pressed="true">Vectors on</button>
+    </header>
+    <section class="intro">
+      <div class="eyebrow">ORBITAL TRIAGE · DEBRIS CLEARANCE</div>
+      <h1>One burn. <em>More breathing room.</em></h1>
+      <p>Raise the vehicle’s low point above a crowded altitude band. You’re the flight surgeon: choose where to burn and shape the impulse, then inspect the orbit you leave behind.</p>
+    </section>
+    <section class="workspace">
+      <div class="chart-panel panel">
+        <div class="panel-head"><div><span class="eyebrow">PATIENT TRAJECTORY</span><h2>Earth-centered view</h2></div><div class="legend"><span><i class="key pre"></i>Current</span><span><i class="key post"></i>After burn</span><span><i class="key goal"></i>10,000 km clearance</span></div></div>
+        <div class="plot-wrap"><canvas id="orbit" aria-label="Planar orbit plot showing Earth, current trajectory, post-burn trajectory and clearance ring"></canvas><div class="plot-axis axis-x">+X · inertial frame</div><div class="plot-axis axis-y">DISTANCE FROM CENTER · NOT TO SCALE</div><div class="plot-badge">EARTH · μ 398,600 km³/s²</div></div>
+        <div class="plot-foot"><span id="burnLabel">180° true anomaly</span><span>Burn point <b>●</b> &nbsp; impulse direction <i class="vector-key"></i></span></div>
+      </div>
+      <aside class="controls panel">
+        <div class="panel-head compact"><div><span class="eyebrow">MANEUVER BAY</span><h2>Set the impulse</h2></div><button id="reset" class="reset">Reset ↺</button></div>
+        <label class="control-label" for="phase"><span>Burn location</span><b id="phaseRead">180°</b></label>
+        <input id="phase" type="range" min="0" max="360" value="180" step="1" />
+        <div class="range-ends"><span>Periapsis 0°</span><span>Apoapsis 180°</span></div>
+        <div class="control-row"><label class="control-label" for="tangent"><span>Tangential Δv</span><b id="tangentRead">+0.280 km/s</b></label><span class="axis-chip">ALONG TRACK</span></div>
+        <input id="tangent" type="range" min="-0.35" max="0.55" value="0.28" step="0.001" />
+        <div class="range-ends"><span>Retrograde −350 m/s</span><span>Prograde +550 m/s</span></div>
+        <div class="control-row"><label class="control-label" for="radial"><span>Radial Δv</span><b id="radialRead">+0.000 km/s</b></label><span class="axis-chip">OUTWARD +</span></div>
+        <input id="radial" type="range" min="-0.20" max="0.20" value="0" step="0.001" />
+        <div class="range-ends"><span>Inward −200 m/s</span><span>Outward +200 m/s</span></div>
+        <div class="rule"></div>
+        <div class="result-head"><div><span class="eyebrow">POST-BURN DIAGNOSIS</span><div id="resultTag" class="status warn">CLEARANCE PENDING</div></div><div class="delta"><span>Impulse cost</span><strong id="delta">280 m/s</strong></div></div>
+        <div class="progress-track"><span id="progress"></span></div><div class="progress-label" id="progressLabel">— / 10,000 km minimum</div>
+        <div class="readouts">
+          <div><span>Closest approach</span><b id="peri">—</b></div><div><span>Farthest point</span><b id="apo">—</b></div>
+          <div><span>Speed at burn</span><b id="speedHere">—</b></div><div><span>Initial orbit</span><b id="preRead">—</b></div>
+        </div>
+        <div class="energy-line"><span class="energy-mark">⌁</span><span id="energy">BOUND ORBIT</span></div>
+      </aside>
+    </section>
+    <section class="lower-grid">
+      <article class="note-card panel"><div class="eyebrow">CASE NOTES · 01</div><h3>Clear the lower shell</h3><p>A survey satellite is on a 12,500 km semi-major axis orbit with eccentricity 0.35. Its periapsis at 8,125 km brushes a dense debris band. Target a periapsis of at least <b>10,000 km</b> while keeping the trajectory bound.</p><div class="note-meta"><span>INITIAL PERIOD</span><b id="period">—</b><span class="note-dot">·</span><span>MODEL REV 1.2</span></div></article>
+      <article class="guide-card panel"><div class="eyebrow">READ THE INSTRUMENTS</div><h3>What the lines mean</h3><ul><li><i class="sample pre"></i><span>Slate is the current ellipse; mint or amber is your resulting osculating orbit</span></li><li><i class="sample ring"></i><span>The dashed ring marks the desired periapsis radius from Earth’s center</span></li><li><i class="sample vector"></i><span>At apoapsis, a prograde impulse tends to lift periapsis on the opposite side</span></li></ul></article>
+      <article class="model-card panel"><div class="eyebrow">MODEL CARD</div><h3>Useful physics, honest edges</h3><p>Planar two-body point-mass Earth; instantaneous impulse resolved into local radial and tangential axes. Post-burn osculating conic comes from specific energy and angular momentum. Time propagation solves Kepler’s equation.</p><p class="limitations">No atmosphere, oblateness, Moon/Sun, thrust duration, finite burns, or debris catalog. This is a geometry and Δv sandbox, not flight guidance. Displayed paths are analytic conics.</p></article>
+    </section>
+    <footer><span>PERIAPSIS CLINIC <span class="footer-mark">✳</span> SIMULATED IN A PLANAR TWO-BODY MODEL</span><span>ALL DISTANCES FROM EARTH’S CENTER</span></footer>
+  </main>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

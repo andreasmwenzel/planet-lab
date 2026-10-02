@@ -1,0 +1,39 @@
+{
+  "productTitle": "Orbit Desk — Orbital Mechanics",
+  "description": "A responsive in-browser planar two-body orbit planner. Users select Earth, Moon, or Mars, choose altitude and a tangential-speed factor, apply quick-start presets, animate a spacecraft, and inspect period, periapsis, apoapsis, eccentricity, and a live state readout. The display distinguishes bound ellipses from escape trajectories.",
+  "implementationStartUtc": "2026-10-02T08:07:54Z",
+  "implementationEndUtc": "2026-10-02T08:12:50Z",
+  "tests": [
+    {
+      "command": "node --test experiments/orbital-mechanics/luna-medium-detailed/physics.test.mjs",
+      "result": "PASS: 4 tests, 4 passed, 0 failed. Checks circular orbit inverse elements/period/energy; eccentric state round-trip and period closure; specific-energy and angular-momentum invariance across 101 propagated samples; and rejection of open orbits by the ellipse propagator. Tolerances are encoded in the rerunnable test file (including position 1e-7 km and velocity 1e-9 km/s after one period)."
+    },
+    {
+      "command": "node --check experiments/orbital-mechanics/luna-medium-detailed/main.js",
+      "result": "PASS: JavaScript syntax check."
+    },
+    {
+      "command": "node --input-type=module -e \"import {build} from 'vite'; await build({configFile:false,root:process.cwd()+'/experiments/orbital-mechanics/luna-medium-detailed',build:{write:false,rollupOptions:{input:process.cwd()+'/experiments/orbital-mechanics/luna-medium-detailed/index.html'}}}); console.log('Vite build write:false passed')\"",
+      "result": "PASS: Vite 7.3.6 transformed 4 modules and built successfully with write:false."
+    }
+  ],
+  "physicsAssumptions": [
+    "Two-dimensional inertial frame with a point-mass central body and constant standard gravitational parameter; units are km, s, and km/s.",
+    "State-to-elements conversion uses specific mechanical energy, specific angular momentum, and the eccentricity vector.",
+    "Closed-orbit propagation solves elliptic Kepler's equation iteratively; ellipse propagation requires a > 0 and 0 <= e < 1.",
+    "Animation advances simulated time at 60 seconds per wall-clock second.",
+    "No atmosphere, thrust, perturbations, inclination, body rotation, finite body shape, or live ephemerides. Escape paths are flagged and not integrated/drawn as conic trajectories."
+  ],
+  "repairs": [
+    "Moved the CSS reference to a stylesheet link so the exported physics functions can be imported by Node tests without a CSS loader.",
+    "Guarded DOM startup so importing the actual implementation in Node does not require document.",
+    "The eccentric round-trip test exposed a reversed cross-product sign in true-anomaly reconstruction; corrected the eccentricity-vector/radius-vector cross-product and reran all tests successfully."
+  ],
+  "unknowns": [
+    "Browser appearance, interaction, canvas rendering, and runtime performance were not checked because browser localhost access is unavailable.",
+    "Very long-duration animation and extreme slider-bound visuals were not manually evaluated."
+  ],
+  "tokenUsage": null,
+  "tokenUsageReason": "No runtime-provided token counter source was available to this worker; no values were estimated.",
+  "cost": null
+}

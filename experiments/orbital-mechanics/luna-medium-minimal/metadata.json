@@ -1,0 +1,161 @@
+{
+  "id": "luna-medium-minimal",
+  "experimentId": "orbital-mechanics",
+  "title": "Luna · medium · minimal",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/orbital-mechanics/luna-medium-minimal/index.html",
+  "axes": {
+    "model": "Luna",
+    "effort": "medium",
+    "promptApproach": "minimal"
+  },
+  "summary": "A self-contained Earth-centered orbital mechanics console with three reference profiles, editable periapsis altitude/eccentricity/mean anomaly, animated propagation, and live state readouts. Uses analytic elliptic Keplerian propagation and a canvas trajectory display.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation in a fresh native task, with the displayed model and effort explicitly configured. Four frozen creative prompts share the same separately recorded runtime and numerical-testing scaffold. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6-luna",
+    "effort": "medium",
+    "runId": "luna-medium-minimal",
+    "launchIndex": 1,
+    "startedAt": "2026-10-02T08:06:53Z",
+    "completedAt": "2026-10-02T08:12:25.352Z",
+    "durationSeconds": 332,
+    "durationScope": "Observed wall-clock time from task launch to independently verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "tokenUsageReason": "No runtime-provided input, cached-input, output, reasoning, or total token counters were accessible in this worker context. No estimates were made.",
+    "tokenUsageSource": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1 (optional)",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; deployed browser review is separate. Available cloud browser does not support WebGL2."
+    },
+    "sourceHashes": {
+      "index.html": "bb9e5abc2507b38b193847a978438b331d60922e24b4a6cebb0bea18c5dd7db6",
+      "main.js": "21b655671cd03e9ac17eff7ce61124a2512e7c04a18682797832c1ca4356f53b",
+      "physics.test.mjs": "7f1130709d671267461fc45e3cdc283539e9369db77ec0d1f7f01a1fc7ea8cc3",
+      "prompt.txt": "e4cbb6b12e024eb757b65e62bbc4cc22c80aed8a6a42b74bee9bfd98d8f67be0",
+      "worker-report.json": "760ec8273a3ea69c80f5e562327a839f2f529d1e7378c343e144fe34798196f4"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an in-browser orbital mechanics simulator\n\nDeliver a finished, usable product, not a demo page or marketing landing page. Choose the product concept, architecture, interactions, and visual direction yourself. Use actual orbital mechanics and state the model’s assumptions and limitations.\n\nMake the product you think is most useful."
+      },
+      {
+        "role": "user",
+        "content": "Runtime packaging and verification scaffold (separate from creative direction):\n- Implement from scratch. Do not inspect the prior experiment, other runs, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only in the supplied run directory. Create index.html with optional main.js and local CSS/JavaScript modules. If using main.js, HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. CSS can be imported from main.js. A single fully inline HTML file is also allowed.\n- Available environment: vanilla JavaScript, optional installed Three.js 0.186.1, Vite 7.3.6, Node 24. No additional dependencies, runtime network calls, remote assets/fonts, backend, accounts, analytics, or live orbital/celestial data. Do not modify package files or shared app files. Canvas, SVG, DOM, and 3D are all allowed; Three.js is not mandatory. If using WebGL, handle unsupported graphics gracefully.\n- The common harness bundles JavaScript and CSS into one inline HTML document. Its viewer is an iframe sandbox with allow-scripts and an opaque origin. Do not access parent/top, communicate across frames, or rely on persistent storage, cookies, or origin-specific APIs.\n- Make one bounded implementation and its self-test/repair phase. Validate JavaScript syntax and perform an isolated Vite build with write:false. Run quantitative numerical tests applicable to your chosen mechanics, independently of the interface, and preserve a directly rerunnable test script in the run directory. Test the actual implementation's physics functions, not a separately copied formula. Record exact commands, results, tolerances, and repairs. Repair your own implementation as needed for these checks. Do not impose a tiny arbitrary token cutoff or clone existing code.\n- Browser localhost access is unavailable; do not claim browser checks or bypass that restriction. Actual browser appearance, interactions, and performance remain unverified until separately reviewed.\n- Include worker-report.json with product title, description, implementation start/end UTC timestamps, exact tests and outcomes, numerical assumptions and limitations, repairs, and unknowns. Set tokenUsage and cost to null unless the runtime supplies measured values. Do not invent token counts, costs, or quality scores.\n"
+      },
+      {
+        "role": "user",
+        "content": "Reporting-only amendment (added after the first three launches; creative prompts and runtime constraints are unchanged):\nAt the end of your run, include actual runtime-provided token counters if accessible: input, cached input, output, reasoning, and total. Preserve the provider's field semantics and avoid double counting. Identify the counter source and whether counts include tools or agent overhead. Do not estimate from source length or the context budget, inspect restricted session-history paths, or inspect credentials. If actual counters are inaccessible, set tokenUsage to null and give the reason. Set cost to null unless measured cost is supplied by the runtime. Do not create another inference run solely to obtain counters.\n"
+      }
+    ],
+    "reportingAmendment": {
+      "kind": "reporting-only",
+      "timing": "after-launch"
+    },
+    "note": "The complete public creative prompt and identical public runtime/testing scaffold are recorded separately. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax, isolated bundle, and the recorded quantitative physics tests passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "Rendered appearance, interactions, and performance have not yet been independently checked in a browser."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 13698,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 332,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated.",
+      "Numerical test success applies only to the preserved cases and tolerances, not unrestricted physical accuracy."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 4437,
+    "cssBytes": 0,
+    "numerical": "passed",
+    "independentVerification": {
+      "numerical": "passed",
+      "command": "node experiments/orbital-mechanics/luna-medium-minimal/physics.test.mjs",
+      "exitCode": 0,
+      "stdout": "✔ Kepler solution satisfies equation across eccentricities and wrapped phases (1.606909ms)\n✔ circular orbit has constant radius, circular speed, and expected period (0.453496ms)\n✔ elliptic apsides match vis-viva and conserve energy/angular momentum (0.281741ms)\n✔ periodic state returns to initial position and velocity after one period (0.146497ms)\n✔ invalid hyperbolic inputs are rejected (0.605135ms)\nℹ tests 5\nℹ suites 0\nℹ pass 5\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 10.713694\n",
+      "stderr": "",
+      "verifiedAt": "2026-10-02T08:12:24.256113+00:00",
+      "scope": "Independent rerun of preserved quantitative tests against the actual implementation physics; not browser QA or unrestricted numerical certification."
+    },
+    "checkedAt": "2026-10-02T08:12:25.352Z",
+    "runtimeBytes": 13698
+  },
+  "generationReport": {
+    "productTitle": "Orbit / Field Notes",
+    "description": "A self-contained Earth-centered orbital mechanics console with three reference profiles, editable periapsis altitude/eccentricity/mean anomaly, animated propagation, and live state readouts. Uses analytic elliptic Keplerian propagation and a canvas trajectory display.",
+    "implementationStartUtc": "2026-10-02T08:07:09Z",
+    "implementationEndUtc": "2026-10-02T08:10:37Z",
+    "tests": [
+      {
+        "command": "node --check experiments/orbital-mechanics/luna-medium-minimal/main.js",
+        "result": "PASS"
+      },
+      {
+        "command": "node --test experiments/orbital-mechanics/luna-medium-minimal/physics.test.mjs",
+        "result": "PASS: 5 tests, 5 passed, 0 failed. Quantitative checks use the actual exported solveKepler and orbitalState functions in main.js. Kepler equation residual tolerance 2e-12 rad; circular radius 1e-8 km, speed 1e-12 km/s, energy 1e-11 km²/s², period 1e-8 s; apsides 1e-9 km; vis-viva 1e-12 km/s; energy 1e-11 km²/s²; angular momentum 1e-8 km²/s; one-period state return 2e-8 km position and 2e-11 km/s velocity. Invalid input rejection also tested."
+      },
+      {
+        "command": "node --input-type=module -e \"import {build} from 'vite'; await build({configFile:false,root:process.cwd()+'/experiments/orbital-mechanics/luna-medium-minimal',base:'./',build:{write:false,emptyOutDir:false,rollupOptions:{input:process.cwd()+'/experiments/orbital-mechanics/luna-medium-minimal/index.html'}}}); console.log('Vite build write:false: PASS')\"",
+        "result": "PASS: Vite 7.3.6 transformed 4 modules and completed a write:false build."
+      }
+    ],
+    "modelAssumptions": [
+      "Two-body point-mass propagation about spherical Earth using μ = 398600.4418 km³/s² and reference radius R = 6371 km.",
+      "Bound elliptic orbits only (0 ≤ eccentricity < 1); state derived from semi-major axis, eccentricity, and mean anomaly using Newton iteration on Kepler's equation.",
+      "Time, length, speed and angles use seconds, kilometers, kilometers per second, and radians internally; display converts selected values to hours/degrees."
+    ],
+    "limitations": [
+      "No atmospheric drag, Earth oblateness/precession, third-body perturbations, Earth rotation, thrust, maneuvers, or live ephemerides.",
+      "Visualization is a 2D schematic in the orbital plane; not for mission design.",
+      "Browser rendering, actual appearance/interactions, and performance were not verified because localhost browser access is unavailable."
+    ],
+    "repairs": [
+      "Removed an empty CSS @import after the first isolated Vite build surfaced an unresolved-URI warning; the final build completes without warnings."
+    ],
+    "unknowns": [
+      "Actual browser appearance and interaction behavior remain unverified pending separate browser review.",
+      "Runtime did not expose measured per-run token counters to this worker; no token count was inferred."
+    ],
+    "tokenUsage": null,
+    "tokenUsageReason": "No runtime-provided input, cached-input, output, reasoning, or total token counters were accessible in this worker context. No estimates were made.",
+    "tokenCounterSource": null,
+    "tokenCountsIncludeToolsOrAgentOverhead": null,
+    "cost": null
+  }
+}

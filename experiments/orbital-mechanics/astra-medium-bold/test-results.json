@@ -1,0 +1,118 @@
+{
+  "passed": 19,
+  "results": [
+    {
+      "name": "Circular orbit: relative energy drift over 10 periods",
+      "value": 3.260602333358141e-10,
+      "tolerance": 1e-8,
+      "passed": true
+    },
+    {
+      "name": "Circular orbit: relative angular momentum drift over 10 periods",
+      "value": 1.6303003437152113e-10,
+      "tolerance": 1e-8,
+      "passed": true
+    },
+    {
+      "name": "Circular orbit: 10-period closure in km",
+      "value": 0.00026479432318758097,
+      "tolerance": 0.01,
+      "passed": true
+    },
+    {
+      "name": "Hohmann 400→1200: rendezvous separation km",
+      "value": 0.000009476691030035035,
+      "tolerance": 0.001,
+      "passed": true
+    },
+    {
+      "name": "Hohmann 400→1200: relative speed m/s",
+      "value": 0.00000860753676372552,
+      "tolerance": 0.001,
+      "passed": true
+    },
+    {
+      "name": "Hohmann 400→1200: final eccentricity",
+      "value": 0,
+      "tolerance": 0.000001,
+      "passed": true
+    },
+    {
+      "name": "Hohmann 400→1200: second burn timing seconds",
+      "value": 0,
+      "tolerance": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "Hohmann 1800→500: rendezvous separation km",
+      "value": 0.0000034262112533770647,
+      "tolerance": 0.001,
+      "passed": true
+    },
+    {
+      "name": "Hohmann 1800→500: relative speed m/s",
+      "value": 0.000004623443634730081,
+      "tolerance": 0.001,
+      "passed": true
+    },
+    {
+      "name": "Hohmann 1800→500: final eccentricity",
+      "value": 1.4901161193847656e-8,
+      "tolerance": 0.000001,
+      "passed": true
+    },
+    {
+      "name": "Hohmann 1800→500: second burn timing seconds",
+      "value": 0,
+      "tolerance": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "Hohmann 400→5000: rendezvous separation km",
+      "value": 0.000013222987020042907,
+      "tolerance": 0.001,
+      "passed": true
+    },
+    {
+      "name": "Hohmann 400→5000: relative speed m/s",
+      "value": 0.000006852280023260791,
+      "tolerance": 0.001,
+      "passed": true
+    },
+    {
+      "name": "Hohmann 400→5000: final eccentricity",
+      "value": 1.4901161193847656e-8,
+      "tolerance": 0.000001,
+      "passed": true
+    },
+    {
+      "name": "Hohmann 400→5000: second burn timing seconds",
+      "value": 0,
+      "tolerance": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "Tangential/radial impulse vector error km/s",
+      "value": 0,
+      "tolerance": 1e-12,
+      "passed": true
+    },
+    {
+      "name": "Earth-contact termination",
+      "passed": true,
+      "time": 520
+    },
+    {
+      "name": "Non-grid event placement seconds",
+      "value": 0,
+      "tolerance": 1e-12,
+      "passed": true
+    },
+    {
+      "name": "stateAt preserves post-burn state",
+      "value": 0,
+      "tolerance": 1e-12,
+      "passed": true
+    }
+  ]
+}

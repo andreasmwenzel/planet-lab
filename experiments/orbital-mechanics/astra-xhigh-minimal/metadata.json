@@ -1,0 +1,331 @@
+{
+  "id": "astra-xhigh-minimal",
+  "experimentId": "orbital-mechanics",
+  "title": "Astra · xhigh · minimal",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/orbital-mechanics/astra-xhigh-minimal/index.html",
+  "axes": {
+    "model": "Astra",
+    "effort": "xhigh",
+    "promptApproach": "minimal"
+  },
+  "summary": "A finished local planar orbital-mechanics workbench for inspecting Earth, Moon, and Mars trajectories, applying radial/transverse impulse maneuvers, scrubbing a mission history, and previewing or flying automatic two-burn Hohmann transfers. Includes Canvas trajectory visualization, mean-surface collision stopping, live orbital elements, flight events, a selectable CSV export, responsive controls, and an in-product model guide.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation in a fresh native task, with the displayed model and effort explicitly configured. Four frozen creative prompts share the same separately recorded runtime and numerical-testing scaffold. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6-astra",
+    "effort": "xhigh",
+    "runId": "astra-xhigh-minimal",
+    "launchIndex": 21,
+    "startedAt": "2026-10-02T09:39:50Z",
+    "completedAt": "2026-10-02T10:00:07.931Z",
+    "durationSeconds": 1218,
+    "durationScope": "Observed wall-clock time from task launch to independently verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "tokenUsageReason": "Actual provider counters for input, cached input, output, reasoning, and total were not available in the runtime messages or accessible tool metadata. No estimates were made.",
+    "tokenUsageSource": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1 (optional)",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; deployed browser review is separate. Available cloud browser does not support WebGL2."
+    },
+    "sourceHashes": {
+      "README.md": "bcf21eb9179a09f48d40e6af31f9538740f1a882c582632d85a2d9d30400edfd",
+      "index.html": "17b0553ab64ca1ba1fcb57a4f9689e04e2486ee233e41f9f7f5aaf8302f57f16",
+      "main.js": "af7edd37759d2333dabd9e73a4f6af746013986179eebb6fccedfe5abf581967",
+      "numerical-results.json": "42432bc31de9dccefcfcac9c5adc8a51c24237094f1da5a79080a76b962231af",
+      "physics.js": "93747bf116d10abd5753fee7f33b5d0ee2f0baed88a4c9ad2640183b6038b964",
+      "prompt.txt": "e4cbb6b12e024eb757b65e62bbc4cc22c80aed8a6a42b74bee9bfd98d8f67be0",
+      "style.css": "942eb5ae81094d2af8c429568115b874bfa90bc66c186543b57f36aa26f9e7e3",
+      "test-physics.mjs": "c593ea08976d5e5b662e6f81f1c8ab1a66f39f423b84d34738ed2b5af6ae7b12",
+      "verify-build.mjs": "4122075f0e77d474e70ffb7a7d4ee47f4b510295ef893de98098656cc0fb1da7",
+      "worker-report.json": "c65e3220820a3f2d8950e5ab4b2c3a91be982673ca97270a2144fdbc74f899fa"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an in-browser orbital mechanics simulator\n\nDeliver a finished, usable product, not a demo page or marketing landing page. Choose the product concept, architecture, interactions, and visual direction yourself. Use actual orbital mechanics and state the model’s assumptions and limitations.\n\nMake the product you think is most useful."
+      },
+      {
+        "role": "user",
+        "content": "Runtime packaging and verification scaffold (separate from creative direction):\n- Implement from scratch. Do not inspect the prior experiment, other runs, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only in the supplied run directory. Create index.html with optional main.js and local CSS/JavaScript modules. If using main.js, HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. CSS can be imported from main.js. A single fully inline HTML file is also allowed.\n- Available environment: vanilla JavaScript, optional installed Three.js 0.186.1, Vite 7.3.6, Node 24. No additional dependencies, runtime network calls, remote assets/fonts, backend, accounts, analytics, or live orbital/celestial data. Do not modify package files or shared app files. Canvas, SVG, DOM, and 3D are all allowed; Three.js is not mandatory. If using WebGL, handle unsupported graphics gracefully.\n- The common harness bundles JavaScript and CSS into one inline HTML document. Its viewer is an iframe sandbox with allow-scripts and an opaque origin. Do not access parent/top, communicate across frames, or rely on persistent storage, cookies, or origin-specific APIs.\n- Make one bounded implementation and its self-test/repair phase. Validate JavaScript syntax and perform an isolated Vite build with write:false. Run quantitative numerical tests applicable to your chosen mechanics, independently of the interface, and preserve a directly rerunnable test script in the run directory. Test the actual implementation's physics functions, not a separately copied formula. Record exact commands, results, tolerances, and repairs. Repair your own implementation as needed for these checks. Do not impose a tiny arbitrary token cutoff or clone existing code.\n- Browser localhost access is unavailable; do not claim browser checks or bypass that restriction. Actual browser appearance, interactions, and performance remain unverified until separately reviewed.\n- Include worker-report.json with product title, description, implementation start/end UTC timestamps, exact tests and outcomes, numerical assumptions and limitations, repairs, and unknowns. Set tokenUsage and cost to null unless the runtime supplies measured values. Do not invent token counts, costs, or quality scores.\n"
+      },
+      {
+        "role": "user",
+        "content": "Reporting-only amendment (added after the first three launches; creative prompts and runtime constraints are unchanged):\nAt the end of your run, include actual runtime-provided token counters if accessible: input, cached input, output, reasoning, and total. Preserve the provider's field semantics and avoid double counting. Identify the counter source and whether counts include tools or agent overhead. Do not estimate from source length or the context budget, inspect restricted session-history paths, or inspect credentials. If actual counters are inaccessible, set tokenUsage to null and give the reason. Set cost to null unless measured cost is supplied by the runtime. Do not create another inference run solely to obtain counters.\n"
+      }
+    ],
+    "reportingAmendment": {
+      "kind": "reporting-only",
+      "timing": "before-launch"
+    },
+    "note": "The complete public creative prompt and identical public runtime/testing scaffold are recorded separately. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax, isolated bundle, and the recorded quantitative physics tests passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "Rendered appearance, interactions, and performance have not yet been independently checked in a browser."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 47521,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 1218,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated.",
+      "Numerical test success applies only to the preserved cases and tolerances, not unrestricted physical accuracy."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 33719,
+    "cssBytes": 13219,
+    "numerical": "passed",
+    "independentVerification": {
+      "numerical": "passed",
+      "command": "node experiments/orbital-mechanics/astra-xhigh-minimal/test-physics.mjs",
+      "exitCode": 0,
+      "stdout": "PASS Circular analytic quarter-orbit and period closure: {\"positionErrorKm\":5.230909593113388e-12,\"closureErrorKm\":1.39563756390726e-11,\"toleranceKm\":0.00002}\nPASS Elliptical apoapsis and vis-viva: {\"positionErrorKm\":3.3456026737432933e-10,\"speedErrorKmS\":8.43769498715119e-15,\"toleranceKm\":0.0002,\"toleranceKmS\":2e-8}\nPASS Energy and angular momentum across 1,500 varied conic states: {\"states\":1500,\"maxEnergyRelative\":3.508125854213381e-9,\"maxAngularMomentumRelative\":7.06362462131136e-10,\"energyTolerance\":3e-7,\"angularMomentumTolerance\":3e-8}\nPASS Propagation reversal for elliptic, parabolic, hyperbolic, and retrograde states: {\"cases\":25,\"maxPositionErrorKm\":0.000006166773361454341,\"maxVelocityErrorKmS\":6.897319295339358e-9,\"toleranceKm\":0.03,\"toleranceKmS\":0.00002}\nPASS Hohmann transfer energy, arrival radius and circularization across all bodies: {\"cases\":9,\"maxRadiusErrorKm\":1.0913936421275139e-11,\"maxEccentricity\":1.2544121972175713e-11,\"maxEnergyError\":2.842170943040401e-14,\"radiusToleranceKm\":0.0001,\"eccentricityTolerance\":1e-8,\"energyTolerance\":1e-7}\nPASS LEO-to-GEO reference Hohmann budget: {\"burn1KmS\":2.42576902830686,\"burn2KmS\":1.4668387152844526,\"totalKmS\":3.8926077435913125,\"coastSeconds\":18990.05183848129,\"burnToleranceKmS\":0.00003,\"coastToleranceSeconds\":10}\nPASS Impulses use radial and local prograde transverse axes, including retrograde: {\"maxComponentErrorKmS\":3.608224830031759e-16,\"toleranceKmS\":1e-12}\nPASS First surface contact, including inbound/outbound escape and parabolic paths: {\"cases\":3,\"maxSurfaceErrorKm\":5.9753801906481385e-9,\"toleranceKm\":0.002}\nPASS Conic samples satisfy focus equation and sampled state invariants: {\"maxEquationErrorKm\":2.6193447411060333e-10,\"toleranceKm\":0.000001}\nPASS Repeated small-step propagation over ten circular periods: {\"steps\":10000,\"positionErrorKm\":9.472239385553613e-8,\"relativeEnergyError\":2.0458554454604291e-13,\"positionToleranceKm\":0.05,\"energyTolerance\":1e-7}\n\n10 numerical tests passed.\n",
+      "stderr": "",
+      "verifiedAt": "2026-10-02T10:00:06.039315+00:00",
+      "scope": "Independent rerun of preserved quantitative tests against the actual implementation physics; not browser QA or unrestricted numerical certification."
+    },
+    "checkedAt": "2026-10-02T10:00:07.931Z",
+    "runtimeBytes": 47521
+  },
+  "generationReport": {
+    "productTitle": "Apogee · Orbital flight workbench",
+    "description": "A finished local planar orbital-mechanics workbench for inspecting Earth, Moon, and Mars trajectories, applying radial/transverse impulse maneuvers, scrubbing a mission history, and previewing or flying automatic two-burn Hohmann transfers. Includes Canvas trajectory visualization, mean-surface collision stopping, live orbital elements, flight events, a selectable CSV export, responsive controls, and an in-product model guide.",
+    "runIdentity": "astra-xhigh-minimal",
+    "requestedModel": "gpt-6-astra",
+    "requestedReasoningEffort": "xhigh",
+    "implementationStartUtc": "2026-10-02T09:40:22Z",
+    "implementationEndUtc": "2026-10-02T09:59:44Z",
+    "runtimeScaffold": {
+      "entry": "index.html",
+      "module": "main.js",
+      "physicsModule": "physics.js",
+      "styles": "style.css",
+      "framework": "Vanilla JavaScript with Canvas 2D",
+      "dependenciesAdded": false,
+      "runtimeNetworkCalls": false,
+      "persistence": false,
+      "browserChecksPerformed": false,
+      "published": false,
+      "gitOperations": false,
+      "otherImplementationsRead": false
+    },
+    "tests": [
+      {
+        "name": "JavaScript syntax validation",
+        "command": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-minimal && node --check main.js && node --check physics.js && node --check test-physics.mjs && node --check verify-build.mjs",
+        "result": "pass",
+        "exitCode": 0
+      },
+      {
+        "name": "Numerical implementation tests",
+        "command": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-minimal && node test-physics.mjs --json",
+        "result": "pass",
+        "exitCode": 0,
+        "detailsFile": "numerical-results.json",
+        "tests": [
+          {
+            "name": "Circular analytic quarter-orbit and period closure",
+            "status": "pass",
+            "positionErrorKm": 5.230909593113388e-12,
+            "closureErrorKm": 1.39563756390726e-11,
+            "toleranceKm": 0.00002
+          },
+          {
+            "name": "Elliptical apoapsis and vis-viva",
+            "status": "pass",
+            "positionErrorKm": 3.3456026737432933e-10,
+            "speedErrorKmS": 8.43769498715119e-15,
+            "toleranceKm": 0.0002,
+            "toleranceKmS": 2e-8
+          },
+          {
+            "name": "Energy and angular momentum across 1,500 varied conic states",
+            "status": "pass",
+            "states": 1500,
+            "maxEnergyRelative": 3.508125854213381e-9,
+            "maxAngularMomentumRelative": 7.06362462131136e-10,
+            "energyTolerance": 3e-7,
+            "angularMomentumTolerance": 3e-8
+          },
+          {
+            "name": "Propagation reversal for elliptic, parabolic, hyperbolic, and retrograde states",
+            "status": "pass",
+            "cases": 25,
+            "maxPositionErrorKm": 0.000006166773361454341,
+            "maxVelocityErrorKmS": 6.897319295339358e-9,
+            "toleranceKm": 0.03,
+            "toleranceKmS": 0.00002
+          },
+          {
+            "name": "Hohmann transfer energy, arrival radius and circularization across all bodies",
+            "status": "pass",
+            "cases": 9,
+            "maxRadiusErrorKm": 1.0913936421275139e-11,
+            "maxEccentricity": 1.2544121972175713e-11,
+            "maxEnergyError": 2.842170943040401e-14,
+            "radiusToleranceKm": 0.0001,
+            "eccentricityTolerance": 1e-8,
+            "energyTolerance": 1e-7
+          },
+          {
+            "name": "LEO-to-GEO reference Hohmann budget",
+            "status": "pass",
+            "burn1KmS": 2.42576902830686,
+            "burn2KmS": 1.4668387152844526,
+            "totalKmS": 3.8926077435913125,
+            "coastSeconds": 18990.05183848129,
+            "burnToleranceKmS": 0.00003,
+            "coastToleranceSeconds": 10
+          },
+          {
+            "name": "Impulses use radial and local prograde transverse axes, including retrograde",
+            "status": "pass",
+            "maxComponentErrorKmS": 3.608224830031759e-16,
+            "toleranceKmS": 1e-12
+          },
+          {
+            "name": "First surface contact, including inbound/outbound escape and parabolic paths",
+            "status": "pass",
+            "cases": 3,
+            "maxSurfaceErrorKm": 5.9753801906481385e-9,
+            "toleranceKm": 0.002
+          },
+          {
+            "name": "Conic samples satisfy focus equation and sampled state invariants",
+            "status": "pass",
+            "maxEquationErrorKm": 2.6193447411060333e-10,
+            "toleranceKm": 0.000001
+          },
+          {
+            "name": "Repeated small-step propagation over ten circular periods",
+            "status": "pass",
+            "steps": 10000,
+            "positionErrorKm": 9.472239385553613e-8,
+            "relativeEnergyError": 2.0458554454604291e-13,
+            "positionToleranceKm": 0.05,
+            "energyTolerance": 1e-7
+          }
+        ]
+      },
+      {
+        "name": "Isolated Vite build",
+        "command": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-minimal && node verify-build.mjs",
+        "result": "pass",
+        "exitCode": 0,
+        "configuration": {
+          "configFile": false,
+          "publicDir": false,
+          "write": false,
+          "emptyOutDir": false,
+          "minify": true,
+          "cssCodeSplit": false
+        },
+        "outputs": [
+          {
+            "fileName": "assets/index-CvZ-d3JU.js",
+            "bytes": 34400
+          },
+          {
+            "fileName": "assets/style-POQR9YLO.css",
+            "bytes": 13219
+          },
+          {
+            "fileName": "index.html",
+            "bytes": 422
+          }
+        ]
+      },
+      {
+        "name": "Packaging and sandbox source check",
+        "result": "pass",
+        "details": "Verified exact single main.js module script tag. Source contains no fetch, storage, clipboard API, parent/top access, or Blob download reliance."
+      }
+    ],
+    "exactRerunCommand": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-minimal && node --check main.js && node --check physics.js && node --check test-physics.mjs && node --check verify-build.mjs && node test-physics.mjs --json && node verify-build.mjs",
+    "numericalAssumptions": [
+      "Massless spacecraft under fixed, spherical single-body gravity in one inertial orbital plane; state units are km, s, and km/s.",
+      "Earth mu 398600.4418 km^3/s^2 and mean radius 6371 km; Moon mu 4902.800066 and radius 1737.4 km; Mars mu 42828.375214 and radius 3389.5 km. Static approximate model constants, not live data.",
+      "Universal-variable Kepler propagation with Stumpff functions, safeguarded Newton/bisection iteration, and periodic time reduction for bound states.",
+      "Energy magnitudes at or below 1e-12 km^2/s^2 are treated as numerically parabolic for orbital classification. Barker timing is used when eccentricity is within 1e-8 of one.",
+      "Burns are instantaneous radial and local prograde-transverse velocity changes, with no propellant or finite-thrust model.",
+      "Hohmann planning is available for circular states with eccentricity at most 1e-5 and applies a scheduled second impulse at the opposite apsis.",
+      "The mean-radius surface is a hard impact boundary. First inbound intersection is computed analytically and stops time propagation there.",
+      "Manual impulses are limited to +/-10000 m/s per input component and states with transverse speed below 0.005 km/s are rejected to avoid radial-orbit degeneracy."
+    ],
+    "limitations": [
+      "No atmospheric drag, non-spherical gravity, central-body rotation, inclination changes, third-body gravity, finite sphere of influence, thrust duration, propellant, or spacecraft mass.",
+      "Atmosphere thresholds of 100 km for Earth and 80 km for Mars are warnings only; the code does not model entry physics.",
+      "Body artwork and illumination are illustrative. All orbit geometry is in a single plane with distance-to-scale rendering.",
+      "Escape paths are displayed over a bounded radius and expand as the spacecraft moves outward. Camera framing changes to keep the trajectory in view.",
+      "Applying a maneuver while inspecting the past discards later maneuvers; a reset discards the mission.",
+      "CSV export is a selectable text dialog, using native selection and user copy, to remain usable in a sandbox without download or clipboard privileges."
+    ],
+    "repairs": [
+      {
+        "issue": "First numerical pass failed the surface-contact test for a nominally parabolic inbound trajectory. Tiny negative floating-point energy marked a state bound while its semimajor axis and period were infinite.",
+        "change": "Made the bound-state energy threshold consistent with the existing near-parabolic semimajor-axis threshold.",
+        "verification": "All 10 numerical tests subsequently passed; inbound elliptical, parabolic, and hyperbolic contact radius maximum error was 5.9753801906481385e-9 km."
+      },
+      {
+        "issue": "Static sandbox review identified that a download-only CSV export would be unreliable in an allow-scripts-only iframe.",
+        "change": "Replaced Blob download reliance with a selectable CSV dialog and plain native text selection.",
+        "verification": "Syntax and isolated production build passed. Actual browser selection remains unverified."
+      },
+      {
+        "issue": "Static inspection found escape-path sampling would otherwise remain clipped at its initial radius.",
+        "change": "Refresh escape path samples as the spacecraft approaches the sampled radius; removed unnecessary bound-orbit radius clipping.",
+        "verification": "Syntax and production build passed; conic equation numerical test passed."
+      },
+      {
+        "issue": "Static interaction and responsive review.",
+        "change": "Added Hide preview behavior and a single-column narrow-phone layout to keep form inputs and telemetry readable.",
+        "verification": "Build and syntax checks passed; visual layout remains unverified."
+      }
+    ],
+    "unknowns": [
+      "No browser, localhost, screenshot, visual, real DOM interaction, accessibility-tool, or actual performance testing was performed. These remain for separate review.",
+      "The common inline bundler and final opaque-origin iframe were not available for testing in this run. Source was designed without origin-dependent storage, frame access, network, or download requirements.",
+      "Real runtime-provided model token counters and measured cost were not supplied. Available tool metadata exposed no token-usage or cost-counter action. No restricted session history or credentials were inspected."
+    ],
+    "tokenUsage": null,
+    "tokenUsageReason": "Actual provider counters for input, cached input, output, reasoning, and total were not available in the runtime messages or accessible tool metadata. No estimates were made.",
+    "tokenCounterSource": null,
+    "tokenCounterScope": null,
+    "cost": null,
+    "costReason": "No measured runtime cost was supplied."
+  }
+}

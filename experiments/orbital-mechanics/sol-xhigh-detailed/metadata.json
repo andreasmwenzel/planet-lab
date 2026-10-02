@@ -1,0 +1,494 @@
+{
+  "id": "sol-xhigh-detailed",
+  "experimentId": "orbital-mechanics",
+  "title": "Sol 6.1 · xhigh · detailed",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/orbital-mechanics/sol-xhigh-detailed/index.html",
+  "axes": {
+    "model": "Sol 6.1",
+    "effort": "xhigh",
+    "promptApproach": "detailed"
+  },
+  "summary": "A local-only orbital mechanics learning product for planning and flying a complete two-impulse circular-to-circular Earth transfer, with three useful missions, custom altitude design, timed arrival pauses, manual impulse previews, recoverable state snapshots, true propagated trails, orbit/energy telemetry, impact and escape states, and a selectable flight report.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation in a fresh native task, with the displayed model and effort explicitly configured. Four frozen creative prompts share the same separately recorded runtime and numerical-testing scaffold. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6.1-sol",
+    "effort": "xhigh",
+    "runId": "sol-xhigh-detailed",
+    "launchIndex": 14,
+    "startedAt": "2026-10-02T08:54:19Z",
+    "completedAt": "2026-10-02T09:25:07.007Z",
+    "durationSeconds": 1848,
+    "durationScope": "Observed wall-clock time from task launch to independently verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "tokenUsageReason": "No runtime-provided input, cached-input, output, reasoning, or total token counters were returned in the worker context or tool results. A read-only lookup of available tool metadata found no runtime token-counter tool. No restricted history paths, credentials, estimates, or additional inference runs were used.",
+    "tokenUsageSource": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1 (optional)",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; deployed browser review is separate. Available cloud browser does not support WebGL2."
+    },
+    "sourceHashes": {
+      "README.md": "0d7dbdacfa100484c68ece18142c6d594ae54133776fb163820ab8266f9310b2",
+      "audit-source.mjs": "a941ecf30e617001c8ff1d4e7ce504089d47fc9367a97b499744d7975f15d979",
+      "build-results.json": "f2a947cd1a13175f63383d861c6274e3317a08a803634273c1cdd3f9590bb33e",
+      "index.html": "de52f1df6cbb61e4ca1ab645e925ab0e155ad24873f27ffa7b0a2a6219f0f717",
+      "main.js": "d439f6250859b10ba47d85fde7f5f9f2d1492405fda4cef4aa26ddd712717c47",
+      "physics.mjs": "cb946fa94db6f5160831cda5b75f93a80f274f4d232b3bc8b28636b21c10e162",
+      "prompt.txt": "d8bec2f90b8c19e523dbf9686186138e5c4765ca662eb00f2ba724214fd74429",
+      "run-start.json": "82faafd556a5dcc730b90e337fcaf5b5f1c8324a8a1a5a701989b3273578e861",
+      "session.mjs": "732cf59a2391b8f8d00270c561f904fed024aeab1c7e166813081f27bd57e0ce",
+      "source-audit-output.txt": "045fb7b8ac01dea7c1b5793f107a7a4b0fc09ca809686c46971941f25b272213",
+      "source-audit.json": "045fb7b8ac01dea7c1b5793f107a7a4b0fc09ca809686c46971941f25b272213",
+      "style.css": "b453ecacd0f1d90f9ccf85632c426fdfe6722cd64459734e6ea2aa132c8f0807",
+      "test-physics.mjs": "37f26a81be0c11c31dc0c8c77611339fdd3b76710865c8c133125014435b14a1",
+      "test-results.json": "30719f7dc0e0ed6b6b37a3fb4ee1a46bcbd64e391474bee994b2fd8154a2235f",
+      "verify-build.mjs": "4e01dc479deffa40f9190ae4d44ff90a64b09045c8370b0c5a94fc7d5353d0b4",
+      "worker-report.json": "e5a57318a14a176d26abc3c285d95d3babaa167471ecc3a4c52fa7a82a8a0689"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an in-browser orbital mechanics simulator\n\nDeliver a finished, usable product, not a demo page or marketing landing page. Choose the product concept, architecture, interactions, and visual direction yourself. Use actual orbital mechanics and state the model’s assumptions and limitations.\n\nThink through a real user's purpose, a complete workflow, and the states needed to finish it. Make consequential choices understandable and recoverable. Include useful starting conditions, explain the physics honestly, and test the numerical behavior independently of the interface. Finish the small product well rather than leaving placeholders."
+      },
+      {
+        "role": "user",
+        "content": "Runtime packaging and verification scaffold (separate from creative direction):\n- Implement from scratch. Do not inspect the prior experiment, other runs, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only in the supplied run directory. Create index.html with optional main.js and local CSS/JavaScript modules. If using main.js, HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. CSS can be imported from main.js. A single fully inline HTML file is also allowed.\n- Available environment: vanilla JavaScript, optional installed Three.js 0.186.1, Vite 7.3.6, Node 24. No additional dependencies, runtime network calls, remote assets/fonts, backend, accounts, analytics, or live orbital/celestial data. Do not modify package files or shared app files. Canvas, SVG, DOM, and 3D are all allowed; Three.js is not mandatory. If using WebGL, handle unsupported graphics gracefully.\n- The common harness bundles JavaScript and CSS into one inline HTML document. Its viewer is an iframe sandbox with allow-scripts and an opaque origin. Do not access parent/top, communicate across frames, or rely on persistent storage, cookies, or origin-specific APIs.\n- Make one bounded implementation and its self-test/repair phase. Validate JavaScript syntax and perform an isolated Vite build with write:false. Run quantitative numerical tests applicable to your chosen mechanics, independently of the interface, and preserve a directly rerunnable test script in the run directory. Test the actual implementation's physics functions, not a separately copied formula. Record exact commands, results, tolerances, and repairs. Repair your own implementation as needed for these checks. Do not impose a tiny arbitrary token cutoff or clone existing code.\n- Browser localhost access is unavailable; do not claim browser checks or bypass that restriction. Actual browser appearance, interactions, and performance remain unverified until separately reviewed.\n- Include worker-report.json with product title, description, implementation start/end UTC timestamps, exact tests and outcomes, numerical assumptions and limitations, repairs, and unknowns. Set tokenUsage and cost to null unless the runtime supplies measured values. Do not invent token counts, costs, or quality scores.\n"
+      },
+      {
+        "role": "user",
+        "content": "Reporting-only amendment (added after the first three launches; creative prompts and runtime constraints are unchanged):\nAt the end of your run, include actual runtime-provided token counters if accessible: input, cached input, output, reasoning, and total. Preserve the provider's field semantics and avoid double counting. Identify the counter source and whether counts include tools or agent overhead. Do not estimate from source length or the context budget, inspect restricted session-history paths, or inspect credentials. If actual counters are inaccessible, set tokenUsage to null and give the reason. Set cost to null unless measured cost is supplied by the runtime. Do not create another inference run solely to obtain counters.\n"
+      }
+    ],
+    "reportingAmendment": {
+      "kind": "reporting-only",
+      "timing": "before-launch"
+    },
+    "note": "The complete public creative prompt and identical public runtime/testing scaffold are recorded separately. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax, isolated bundle, and the recorded quantitative physics tests passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "Rendered appearance, interactions, and performance have not yet been independently checked in a browser."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 62035,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 1848,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated.",
+      "Numerical test success applies only to the preserved cases and tolerances, not unrestricted physical accuracy."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 39578,
+    "cssBytes": 21854,
+    "numerical": "passed",
+    "independentVerification": {
+      "numerical": "passed",
+      "command": "node experiments/orbital-mechanics/sol-xhigh-detailed/test-physics.mjs",
+      "exitCode": 0,
+      "stdout": "PASS Circular-state golden reference at 7,000 km radius\n     {\"speedErrorKmPerS\":0,\"speedToleranceKmPerS\":1e-12,\"periodErrorSeconds\":9.094947017729282e-13,\"periodToleranceSeconds\":1e-8,\"eccentricity\":1.247815764543566e-16}\nPASS Ten circular revolutions: conservation and closure\n     {\"revolutions\":10,\"maxRadiusErrorKm\":1.1004885891452432e-9,\"radiusToleranceKm\":0.005,\"maxRelativeEnergyError\":1.9070510937035272e-14,\"maxRelativeAngularMomentumError\":9.523657717701372e-15,\"conservationTolerance\":1e-7,\"closureErrorKm\":2.446787449597073e-7,\"closureToleranceKm\":0.2}\nPASS Eccentric orbit: apsides and one-period closure\n     {\"apoapsisErrorKm\":1.947773853316903e-8,\"apoapsisToleranceKm\":0.03,\"closureErrorKm\":1.9135845807415478e-7,\"closureToleranceKm\":0.1,\"relativeEnergyError\":1.8538977073218725e-14,\"conservationTolerance\":1e-7}\nPASS Ascent: actual guided transfer reaches the target circle\n     {\"startAltitudeKm\":400,\"targetAltitudeKm\":2400,\"signedDepartureDVMetresPerS\":478.73334930462,\"signedArrivalDVMetresPerS\":448.67924276680424,\"coastSeconds\":3408.75939771068,\"initialPeriapsisErrorKm\":9.094947017729282e-13,\"initialApoapsisErrorKm\":5.4569682106375694e-12,\"arrivalRadiusErrorKm\":1.5807017916813493e-9,\"arrivalPositionErrorKm\":3.727241226623426e-9,\"arrivalPositionToleranceKm\":0.02,\"eventTimeErrorSeconds\":0,\"eventTimeToleranceSeconds\":0.000001,\"finalMaximumApsisErrorKm\":1.6207195585593581e-9,\"finalApsisToleranceKm\":0.01,\"finalEccentricity\":1.6078105875413333e-13,\"eccentricityTolerance\":0.000002,\"totalDVMetresPerS\":927.4125920714242}\nPASS Descent: actual guided transfer reaches the target circle\n     {\"startAltitudeKm\":2400,\"targetAltitudeKm\":400,\"signedDepartureDVMetresPerS\":-448.67924276680424,\"signedArrivalDVMetresPerS\":-478.73334930462,\"coastSeconds\":3408.75939771068,\"initialPeriapsisErrorKm\":2.7284841053187847e-12,\"initialApoapsisErrorKm\":1.8189894035458565e-12,\"arrivalRadiusErrorKm\":9.013092494569719e-10,\"arrivalPositionErrorKm\":2.228856127879385e-9,\"arrivalPositionToleranceKm\":0.02,\"eventTimeErrorSeconds\":0,\"eventTimeToleranceSeconds\":0.000001,\"finalMaximumApsisErrorKm\":1.1477823136374354e-9,\"finalApsisToleranceKm\":0.01,\"finalEccentricity\":1.51958474452857e-13,\"eccentricityTolerance\":0.000002,\"totalDVMetresPerS\":927.4125920714242}\nPASS High orbit: actual guided transfer reaches the target circle\n     {\"startAltitudeKm\":400,\"targetAltitudeKm\":35786,\"signedDepartureDVMetresPerS\":2399.3521560036256,\"signedArrivalDVMetresPerS\":1457.2262857596102,\"coastSeconds\":19040.22985583813,\"initialPeriapsisErrorKm\":0,\"initialApoapsisErrorKm\":1.4551915228366852e-10,\"arrivalRadiusErrorKm\":3.4735421650111675e-8,\"arrivalPositionErrorKm\":5.1232324637037474e-8,\"arrivalPositionToleranceKm\":0.02,\"eventTimeErrorSeconds\":0,\"eventTimeToleranceSeconds\":0.000001,\"finalMaximumApsisErrorKm\":1.1648080544546247e-7,\"finalApsisToleranceKm\":0.01,\"finalEccentricity\":1.9810590916681303e-12,\"eccentricityTolerance\":0.000002,\"totalDVMetresPerS\":3856.578441763236}\nPASS Wide ascent: actual guided transfer reaches the target circle\n     {\"startAltitudeKm\":150,\"targetAltitudeKm\":50000,\"signedDepartureDVMetresPerS\":2649.546799660224,\"signedArrivalDVMetresPerS\":1448.2189779159344,\"coastSeconds\":27747.834783898776,\"initialPeriapsisErrorKm\":1.8189894035458565e-12,\"initialApoapsisErrorKm\":7.275957614183426e-11,\"arrivalRadiusErrorKm\":5.8797013480216265e-8,\"arrivalPositionErrorKm\":7.991461099243303e-8,\"arrivalPositionToleranceKm\":0.02,\"eventTimeErrorSeconds\":0,\"eventTimeToleranceSeconds\":0.000001,\"finalMaximumApsisErrorKm\":2.414453774690628e-7,\"finalApsisToleranceKm\":0.01,\"finalEccentricity\":3.147099722030983e-12,\"eccentricityTolerance\":0.000002,\"totalDVMetresPerS\":4097.765777576158}\nPASS Time-rate independence and delayed departure\n     {\"preDepartureCoastSeconds\":173.7,\"watchedChunkSeconds\":6.13,\"finalPositionDifferenceKm\":3.1943889425005e-10,\"toleranceKm\":0.00001,\"eventTime\":3582.4593977106797}\nPASS Impulse changes velocity only; radial impulse preserves angular momentum\n     {\"radialAngularMomentumErrorKmSquaredPerS\":0,\"angularMomentumTolerance\":1e-9,\"radialEnergyChangeErrorKmSquaredPerSSquared\":9.51322354225681e-15,\"energyTolerance\":1e-12}\nPASS Hyperbolic escape: positive energy conserved and conic samples finite\n     {\"elapsedSeconds\":20000,\"finalRadiusKm\":124318.91770348861,\"eccentricity\":1.4199999999998587,\"relativeEnergyError\":3.6973969499392043e-13,\"relativeAngularMomentumError\":8.677420535608152e-15,\"conservationTolerance\":1e-7,\"finiteSampleCount\":421}\nPASS Radial free fall: analytic contact time and exact surface stop\n     {\"referenceImpactSeconds\":256.86671868565014,\"simulatedImpactSeconds\":256.86671868568396,\"timeErrorSeconds\":3.382183422218077e-11,\"timeToleranceSeconds\":0.00001,\"surfaceRadiusErrorKm\":0,\"surfaceToleranceKm\":1e-8}\nPASS Shallow grazing contact is found between above-surface step endpoints\n     {\"penetrationDepthKm\":0.0001,\"impactDetected\":true,\"surfaceRadiusErrorKm\":0,\"surfaceToleranceKm\":1e-8}\nPASS Session recovery primitives, manual cancellation, and invalid mission protection\n     {\"manualGuidanceCanceled\":true,\"snapshotsIndependent\":true,\"repeatedBurnsProtected\":true,\"impactTerminal\":true,\"invalidInputsRejected\":true,\"parabolicSamplesFinite\":true}\nPASS RK4 local time reversal\n     {\"positionErrorKm\":0,\"toleranceKm\":1e-9}\n\n14/14 passed.\n",
+      "stderr": "",
+      "verifiedAt": "2026-10-02T09:25:05.050417+00:00",
+      "scope": "Independent rerun of preserved quantitative tests against the actual implementation physics; not browser QA or unrestricted numerical certification."
+    },
+    "checkedAt": "2026-10-02T09:25:07.007Z",
+    "runtimeBytes": 62035
+  },
+  "generationReport": {
+    "productTitle": "Orbit Workshop — Transfer Lab",
+    "description": "A local-only orbital mechanics learning product for planning and flying a complete two-impulse circular-to-circular Earth transfer, with three useful missions, custom altitude design, timed arrival pauses, manual impulse previews, recoverable state snapshots, true propagated trails, orbit/energy telemetry, impact and escape states, and a selectable flight report.",
+    "model": "gpt-6.1-sol",
+    "reasoningEffort": "xhigh",
+    "implementationStartUTC": "2026-10-02T08:55:09.502Z",
+    "implementationEndUTC": "2026-10-02T09:24:28.021Z",
+    "entryPoint": "index.html",
+    "implementationFiles": [
+      "index.html",
+      "main.js",
+      "style.css",
+      "physics.mjs",
+      "session.mjs"
+    ],
+    "validationFiles": [
+      "test-physics.mjs",
+      "verify-build.mjs",
+      "audit-source.mjs",
+      "test-results.json",
+      "build-results.json",
+      "source-audit.json"
+    ],
+    "constraints": {
+      "implementedFromScratch": true,
+      "generationDelegated": false,
+      "otherRunsRead": false,
+      "priorImplementationsRead": false,
+      "sharedFilesModified": false,
+      "packageFilesModified": false,
+      "published": false,
+      "gitOperations": false,
+      "browserLocalhostChecks": false,
+      "runtimeNetworkCalls": false,
+      "persistentStorage": false,
+      "crossFrameCommunication": false,
+      "remoteAssets": false
+    },
+    "exactRerunCommand": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/sol-xhigh-detailed && node --check main.js && node --check physics.mjs && node --check session.mjs && node --check test-physics.mjs && node --check verify-build.mjs && node --check audit-source.mjs && node test-physics.mjs && node verify-build.mjs && node audit-source.mjs",
+    "tests": [
+      {
+        "name": "JavaScript syntax",
+        "command": "node --check main.js && node --check physics.mjs && node --check session.mjs && node --check test-physics.mjs && node --check verify-build.mjs && node --check audit-source.mjs",
+        "outcome": "Passed; exit code 0."
+      },
+      {
+        "name": "Actual implementation numerical and mission tests",
+        "command": "node test-physics.mjs",
+        "outcome": "14/14 passed; exit code 0.",
+        "results": [
+          {
+            "name": "Circular-state golden reference at 7,000 km radius",
+            "passed": true,
+            "speedErrorKmPerS": 0,
+            "speedToleranceKmPerS": 1e-12,
+            "periodErrorSeconds": 9.094947017729282e-13,
+            "periodToleranceSeconds": 1e-8,
+            "eccentricity": 1.247815764543566e-16,
+            "durationMs": 0.292
+          },
+          {
+            "name": "Ten circular revolutions: conservation and closure",
+            "passed": true,
+            "revolutions": 10,
+            "maxRadiusErrorKm": 1.1004885891452432e-9,
+            "radiusToleranceKm": 0.005,
+            "maxRelativeEnergyError": 1.9070510937035272e-14,
+            "maxRelativeAngularMomentumError": 9.523657717701372e-15,
+            "conservationTolerance": 1e-7,
+            "closureErrorKm": 2.446787449597073e-7,
+            "closureToleranceKm": 0.2,
+            "durationMs": 25.412
+          },
+          {
+            "name": "Eccentric orbit: apsides and one-period closure",
+            "passed": true,
+            "apoapsisErrorKm": 1.947773853316903e-8,
+            "apoapsisToleranceKm": 0.03,
+            "closureErrorKm": 1.9135845807415478e-7,
+            "closureToleranceKm": 0.1,
+            "relativeEnergyError": 1.8538977073218725e-14,
+            "conservationTolerance": 1e-7,
+            "durationMs": 2.344
+          },
+          {
+            "name": "Ascent: actual guided transfer reaches the target circle",
+            "passed": true,
+            "startAltitudeKm": 400,
+            "targetAltitudeKm": 2400,
+            "signedDepartureDVMetresPerS": 478.73334930462,
+            "signedArrivalDVMetresPerS": 448.67924276680424,
+            "coastSeconds": 3408.75939771068,
+            "initialPeriapsisErrorKm": 9.094947017729282e-13,
+            "initialApoapsisErrorKm": 5.4569682106375694e-12,
+            "arrivalRadiusErrorKm": 1.5807017916813493e-9,
+            "arrivalPositionErrorKm": 3.727241226623426e-9,
+            "arrivalPositionToleranceKm": 0.02,
+            "eventTimeErrorSeconds": 0,
+            "eventTimeToleranceSeconds": 0.000001,
+            "finalMaximumApsisErrorKm": 1.6207195585593581e-9,
+            "finalApsisToleranceKm": 0.01,
+            "finalEccentricity": 1.6078105875413333e-13,
+            "eccentricityTolerance": 0.000002,
+            "totalDVMetresPerS": 927.4125920714242,
+            "durationMs": 4.278
+          },
+          {
+            "name": "Descent: actual guided transfer reaches the target circle",
+            "passed": true,
+            "startAltitudeKm": 2400,
+            "targetAltitudeKm": 400,
+            "signedDepartureDVMetresPerS": -448.67924276680424,
+            "signedArrivalDVMetresPerS": -478.73334930462,
+            "coastSeconds": 3408.75939771068,
+            "initialPeriapsisErrorKm": 2.7284841053187847e-12,
+            "initialApoapsisErrorKm": 1.8189894035458565e-12,
+            "arrivalRadiusErrorKm": 9.013092494569719e-10,
+            "arrivalPositionErrorKm": 2.228856127879385e-9,
+            "arrivalPositionToleranceKm": 0.02,
+            "eventTimeErrorSeconds": 0,
+            "eventTimeToleranceSeconds": 0.000001,
+            "finalMaximumApsisErrorKm": 1.1477823136374354e-9,
+            "finalApsisToleranceKm": 0.01,
+            "finalEccentricity": 1.51958474452857e-13,
+            "eccentricityTolerance": 0.000002,
+            "totalDVMetresPerS": 927.4125920714242,
+            "durationMs": 4.678
+          },
+          {
+            "name": "High orbit: actual guided transfer reaches the target circle",
+            "passed": true,
+            "startAltitudeKm": 400,
+            "targetAltitudeKm": 35786,
+            "signedDepartureDVMetresPerS": 2399.3521560036256,
+            "signedArrivalDVMetresPerS": 1457.2262857596102,
+            "coastSeconds": 19040.22985583813,
+            "initialPeriapsisErrorKm": 0,
+            "initialApoapsisErrorKm": 1.4551915228366852e-10,
+            "arrivalRadiusErrorKm": 3.4735421650111675e-8,
+            "arrivalPositionErrorKm": 5.1232324637037474e-8,
+            "arrivalPositionToleranceKm": 0.02,
+            "eventTimeErrorSeconds": 0,
+            "eventTimeToleranceSeconds": 0.000001,
+            "finalMaximumApsisErrorKm": 1.1648080544546247e-7,
+            "finalApsisToleranceKm": 0.01,
+            "finalEccentricity": 1.9810590916681303e-12,
+            "eccentricityTolerance": 0.000002,
+            "totalDVMetresPerS": 3856.578441763236,
+            "durationMs": 4.352
+          },
+          {
+            "name": "Wide ascent: actual guided transfer reaches the target circle",
+            "passed": true,
+            "startAltitudeKm": 150,
+            "targetAltitudeKm": 50000,
+            "signedDepartureDVMetresPerS": 2649.546799660224,
+            "signedArrivalDVMetresPerS": 1448.2189779159344,
+            "coastSeconds": 27747.834783898776,
+            "initialPeriapsisErrorKm": 1.8189894035458565e-12,
+            "initialApoapsisErrorKm": 7.275957614183426e-11,
+            "arrivalRadiusErrorKm": 5.8797013480216265e-8,
+            "arrivalPositionErrorKm": 7.991461099243303e-8,
+            "arrivalPositionToleranceKm": 0.02,
+            "eventTimeErrorSeconds": 0,
+            "eventTimeToleranceSeconds": 0.000001,
+            "finalMaximumApsisErrorKm": 2.414453774690628e-7,
+            "finalApsisToleranceKm": 0.01,
+            "finalEccentricity": 3.147099722030983e-12,
+            "eccentricityTolerance": 0.000002,
+            "totalDVMetresPerS": 4097.765777576158,
+            "durationMs": 3.592
+          },
+          {
+            "name": "Time-rate independence and delayed departure",
+            "passed": true,
+            "preDepartureCoastSeconds": 173.7,
+            "watchedChunkSeconds": 6.13,
+            "finalPositionDifferenceKm": 3.1943889425005e-10,
+            "toleranceKm": 0.00001,
+            "eventTime": 3582.4593977106797,
+            "durationMs": 5.389
+          },
+          {
+            "name": "Impulse changes velocity only; radial impulse preserves angular momentum",
+            "passed": true,
+            "radialAngularMomentumErrorKmSquaredPerS": 0,
+            "angularMomentumTolerance": 1e-9,
+            "radialEnergyChangeErrorKmSquaredPerSSquared": 9.51322354225681e-15,
+            "energyTolerance": 1e-12,
+            "durationMs": 1.077
+          },
+          {
+            "name": "Hyperbolic escape: positive energy conserved and conic samples finite",
+            "passed": true,
+            "elapsedSeconds": 20000,
+            "finalRadiusKm": 124318.91770348861,
+            "eccentricity": 1.4199999999998587,
+            "relativeEnergyError": 3.6973969499392043e-13,
+            "relativeAngularMomentumError": 8.677420535608152e-15,
+            "conservationTolerance": 1e-7,
+            "finiteSampleCount": 421,
+            "durationMs": 4.29
+          },
+          {
+            "name": "Radial free fall: analytic contact time and exact surface stop",
+            "passed": true,
+            "referenceImpactSeconds": 256.86671868565014,
+            "simulatedImpactSeconds": 256.86671868568396,
+            "timeErrorSeconds": 3.382183422218077e-11,
+            "timeToleranceSeconds": 0.00001,
+            "surfaceRadiusErrorKm": 0,
+            "surfaceToleranceKm": 1e-8,
+            "durationMs": 0.522
+          },
+          {
+            "name": "Shallow grazing contact is found between above-surface step endpoints",
+            "passed": true,
+            "penetrationDepthKm": 0.0001,
+            "impactDetected": true,
+            "surfaceRadiusErrorKm": 0,
+            "surfaceToleranceKm": 1e-8,
+            "durationMs": 2.954
+          },
+          {
+            "name": "Session recovery primitives, manual cancellation, and invalid mission protection",
+            "passed": true,
+            "manualGuidanceCanceled": true,
+            "snapshotsIndependent": true,
+            "repeatedBurnsProtected": true,
+            "impactTerminal": true,
+            "invalidInputsRejected": true,
+            "parabolicSamplesFinite": true,
+            "durationMs": 1.751
+          },
+          {
+            "name": "RK4 local time reversal",
+            "passed": true,
+            "positionErrorKm": 0,
+            "toleranceKm": 1e-9,
+            "durationMs": 0.288
+          }
+        ]
+      },
+      {
+        "name": "Isolated Vite build",
+        "command": "node verify-build.mjs",
+        "outcome": "Passed; write:false; no dist files emitted; exit code 0.",
+        "results": {
+          "testedAtUTC": "2026-10-02T09:24:27.866Z",
+          "command": "node verify-build.mjs",
+          "passed": true,
+          "viteVersion": "7.3.6 (runtime scaffold)",
+          "configuration": {
+            "configFile": false,
+            "root": "/workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/sol-xhigh-detailed/",
+            "build": {
+              "modulePreload": false,
+              "write": false,
+              "emptyOutDir": false,
+              "target": "es2022",
+              "assetsInlineLimit": "Infinity"
+            }
+          },
+          "outputs": [
+            {
+              "file": "assets/index-LwF_FY97.js",
+              "type": "chunk",
+              "bytes": 39549
+            },
+            {
+              "file": "assets/index-Ror9eLEC.css",
+              "type": "asset",
+              "bytes": 21820
+            },
+            {
+              "file": "index.html",
+              "type": "asset",
+              "bytes": 437
+            }
+          ],
+          "totalBytes": 61806,
+          "staticGuards": [
+            "Exactly the required local module-script entry",
+            "Bundled HTML, JS and CSS present",
+            "No fetch, WebSocket, localStorage, sessionStorage, or document.cookie in bundled JS"
+          ],
+          "browserChecks": "Not run: localhost browser access unavailable by constraint."
+        }
+      },
+      {
+        "name": "Static DOM references",
+        "command": "node audit-source.mjs",
+        "outcome": "Passed; all 63 unique literal references match one of 70 static element IDs; exit code 0.",
+        "results": {
+          "testedAtUTC": "2026-10-02T09:24:27.944Z",
+          "command": "node audit-source.mjs",
+          "passed": true,
+          "staticElementCount": 70,
+          "uniqueLiteralReferences": 63,
+          "missingReferences": [],
+          "limitations": "Static source audit only; this is not a browser or interaction test."
+        }
+      }
+    ],
+    "initialChecksAndRepairs": [
+      {
+        "command": "node test-physics.mjs; node verify-build.mjs",
+        "outcome": "First numerical pass: 12/13 passed. The eccentric-orbit fixture failed its apoapsis tolerance. Vite completed compilation, then the no-network static guard failed because the default module-preload polyfill contains fetch.",
+        "repair": "Corrected the eccentric fixture velocity from 9.693912009082552 to the analytic a=20,000 km, rp=7,000 km reference 9.693080956243259 km/s. The old fixture actually described a=20,016.18126743102 km, ra=33,032.36253486203 km. Disabled Vite modulePreload in the isolated verification build to remove the unused fetch polyfill. No production physics defect caused this fixture failure."
+      },
+      {
+        "outcome": "Static inspection found that the jump-to-arrival trail connected only its endpoints, leaving a misleading straight chord.",
+        "repair": "The interface now samples actual propagated states during fast coasting and jumps, limiting each visible segment to 60 seconds or 0.04 local dynamical times."
+      },
+      {
+        "outcome": "Static inspection identified ambiguity in Earth-intersection warnings for outbound escape orbits and reliance on a dialog toggle event to pause.",
+        "repair": "Clarified that an outbound escape can have its Earth-intersecting periapsis behind it. Help now explicitly pauses before opening."
+      },
+      {
+        "outcome": "Additional robustness review covered high-velocity steps and shallow grazing impacts.",
+        "repair": "Added a 0.0015 radius-crossing-time step limit. Added in-step radial-minimum bracketing so above-surface step endpoints do not miss shallow contact. Added and passed a 0.0001 km penetration-depth grazing regression test."
+      }
+    ],
+    "quantitativeSummary": {
+      "testsPassed": 14,
+      "tenOrbitMaxRelativeEnergyError": 1.9070510937035272e-14,
+      "tenOrbitClosureErrorKm": 2.446787449597073e-7,
+      "widestTransferMaximumFinalApsisErrorKm": 2.414453774690628e-7,
+      "surfaceContactTimeErrorSeconds": 3.382183422218077e-11,
+      "buildTotalBytes": 61806
+    },
+    "numericalAssumptions": {
+      "units": "Position and radius in km; velocity in km/s; time in seconds; user impulses and Δv in m/s.",
+      "gravityParameterKmCubedPerSSquared": 398600.4418,
+      "earthRadiusKm": 6371,
+      "mechanics": "Planar Newtonian central two-body dynamics around a fixed spherical Earth; massless spacecraft.",
+      "integrator": "Fourth-order Runge–Kutta with dt ≤ min(8 seconds, 0.0015 sqrt(r³/μ), 0.0015 r/|v|). Surface crossings and in-step periapsis contacts refined by bisection.",
+      "planner": "Ideal instantaneous, tangential Hohmann transfer between two coplanar circular orbits; vis-viva speeds and half the Kepler period.",
+      "arrivalBehavior": "Propagation clamps to the planned second-burn time and pauses there; no state snapping to an analytic target is used.",
+      "targetTolerance": "Both osculating apsides within 1 km of the target radius, with eccentricity below 0.0002.",
+      "allowedDesign": "150–50,000 km altitudes; the two circular orbits must differ by at least 50 km.",
+      "manualImpulses": "1–2,500 m/s per impulse; along/against instantaneous velocity or radially out/in."
+    },
+    "limitations": [
+      "No atmospheric drag, Earth oblateness or rotation, third-body gravity, relativity, inclination changes, finite thrust, fuel mass, rocket equation, or live orbital data.",
+      "The familiar 35,786 km high-orbit preset does not model geostationary longitude or Earth rotation.",
+      "Energy conservation and event detection are numerical and retain floating-point error; RK4 is not a symplectic integrator.",
+      "The current trajectory is an osculating conic; escape drawings are truncated to finite plotting extents. Extremely large bound orbits may require zooming and exceed the fit radius cap.",
+      "Earth geometry is to scale; spacecraft and schematic vector arrows are enlarged. The Earth illustration is an abstract static map.",
+      "Trail history is capped at 1,500 sampled points; undo retains twelve snapshots. No flight state persists after page reload.",
+      "Flight reports use selectable local text to avoid assuming clipboard or sandbox download permissions.",
+      "This is an educational simulator, not navigation or operational mission-design software."
+    ],
+    "unknowns": [
+      "Actual browser appearance, interactions, responsive layouts, accessibility behavior, iframe sandbox execution, and browser/device performance remain unverified. No browser checks were run because localhost access is unavailable by constraint.",
+      "Measured provider token counters and measured cost are not exposed in this worker runtime."
+    ],
+    "tokenUsage": null,
+    "tokenUsageUnavailableReason": "No runtime-provided input, cached-input, output, reasoning, or total token counters were returned in the worker context or tool results. A read-only lookup of available tool metadata found no runtime token-counter tool. No restricted history paths, credentials, estimates, or additional inference runs were used.",
+    "tokenCounterSource": null,
+    "tokenCounterIncludesToolsOrAgentOverhead": null,
+    "cost": null,
+    "costUnavailableReason": "The runtime supplied no measured cost."
+  }
+}

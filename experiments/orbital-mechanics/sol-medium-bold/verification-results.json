@@ -1,0 +1,30 @@
+{
+  "command": "node verify.mjs",
+  "node": "v24.19.0",
+  "vite": "7.3.6",
+  "syntax": {
+    "files": 4,
+    "pass": true
+  },
+  "numericalChecks": 18,
+  "build": {
+    "pass": true,
+    "write": false,
+    "configFile": false,
+    "outputs": [
+      {
+        "file": "assets/index-BkuEwlfU.js",
+        "bytes": 16867
+      },
+      {
+        "file": "assets/index-DYitbN-s.css",
+        "bytes": 5469
+      },
+      {
+        "file": "index.html",
+        "bytes": 371
+      }
+    ]
+  },
+  "browserChecks": "Not performed; localhost browser access is unavailable."
+}

@@ -1,0 +1,191 @@
+{
+  "productTitle": "TUG — Night Shift Dispatch",
+  "description": "A planar orbital cargo dispatch desk. Schedule up to six signed tangential/radial burn orders, compare the flight against an unpowered lane, scrub or play the mission, and meet a moving depot with both distance and relative-speed criteria. Three raising/lowering routes include exact Hohmann reference plans and editable target phase.",
+  "implementationStartUTC": "2026-10-02T09:32:11Z",
+  "implementationEndUTC": "2026-10-02T09:39:04.872Z",
+  "model": "gpt-6-astra",
+  "reasoningEffort": "medium",
+  "entryPoint": "index.html",
+  "tests": [
+    {
+      "command": "node --check main.js && node --check physics.mjs && node --check test-physics.mjs && node --check verify-build.mjs",
+      "outcome": "PASS: syntax checks exit 0"
+    },
+    {
+      "command": "node test-physics.mjs",
+      "outcome": {
+        "passed": 19,
+        "results": [
+          {
+            "name": "Circular orbit: relative energy drift over 10 periods",
+            "value": 3.260602333358141e-10,
+            "tolerance": 1e-8,
+            "passed": true
+          },
+          {
+            "name": "Circular orbit: relative angular momentum drift over 10 periods",
+            "value": 1.6303003437152113e-10,
+            "tolerance": 1e-8,
+            "passed": true
+          },
+          {
+            "name": "Circular orbit: 10-period closure in km",
+            "value": 0.00026479432318758097,
+            "tolerance": 0.01,
+            "passed": true
+          },
+          {
+            "name": "Hohmann 400→1200: rendezvous separation km",
+            "value": 0.000009476691030035035,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "Hohmann 400→1200: relative speed m/s",
+            "value": 0.00000860753676372552,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "Hohmann 400→1200: final eccentricity",
+            "value": 0,
+            "tolerance": 0.000001,
+            "passed": true
+          },
+          {
+            "name": "Hohmann 400→1200: second burn timing seconds",
+            "value": 0,
+            "tolerance": 1e-10,
+            "passed": true
+          },
+          {
+            "name": "Hohmann 1800→500: rendezvous separation km",
+            "value": 0.0000034262112533770647,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "Hohmann 1800→500: relative speed m/s",
+            "value": 0.000004623443634730081,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "Hohmann 1800→500: final eccentricity",
+            "value": 1.4901161193847656e-8,
+            "tolerance": 0.000001,
+            "passed": true
+          },
+          {
+            "name": "Hohmann 1800→500: second burn timing seconds",
+            "value": 0,
+            "tolerance": 1e-10,
+            "passed": true
+          },
+          {
+            "name": "Hohmann 400→5000: rendezvous separation km",
+            "value": 0.000013222987020042907,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "Hohmann 400→5000: relative speed m/s",
+            "value": 0.000006852280023260791,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "Hohmann 400→5000: final eccentricity",
+            "value": 1.4901161193847656e-8,
+            "tolerance": 0.000001,
+            "passed": true
+          },
+          {
+            "name": "Hohmann 400→5000: second burn timing seconds",
+            "value": 0,
+            "tolerance": 1e-10,
+            "passed": true
+          },
+          {
+            "name": "Tangential/radial impulse vector error km/s",
+            "value": 0,
+            "tolerance": 1e-12,
+            "passed": true
+          },
+          {
+            "name": "Earth-contact termination",
+            "passed": true,
+            "time": 520
+          },
+          {
+            "name": "Non-grid event placement seconds",
+            "value": 0,
+            "tolerance": 1e-12,
+            "passed": true
+          },
+          {
+            "name": "stateAt preserves post-burn state",
+            "value": 0,
+            "tolerance": 1e-12,
+            "passed": true
+          }
+        ]
+      }
+    },
+    {
+      "command": "node verify-build.mjs",
+      "outcome": {
+        "passed": true,
+        "write": false,
+        "files": [
+          {
+            "name": "assets/index-DgbTYLaE.js",
+            "bytes": 15645
+          },
+          {
+            "name": "assets/index-5UbLwyA1.css",
+            "bytes": 6098
+          },
+          {
+            "name": "index.html",
+            "bytes": 367
+          }
+        ]
+      }
+    }
+  ],
+  "exactRerunCommand": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-medium-bold && node --check main.js && node --check physics.mjs && node --check test-physics.mjs && node --check verify-build.mjs && node test-physics.mjs && node verify-build.mjs",
+  "numericalAssumptions": [
+    "Earth-centred inertial 2D Newtonian point-mass field; mu 398600.4418 km^3/s^2 and Earth radius 6371 km.",
+    "Fourth-order Runge–Kutta at maximum 10-second steps, split at exact impulse times.",
+    "Impulses use local counterclockwise tangential and outward radial bases, in m/s.",
+    "Depot is an analytically propagated circular orbit.",
+    "Rendezvous qualification: sampled separation under 50 km AND relative speed under 50 m/s.",
+    "Initial mission phase supports analytic Hohmann rendezvous; users may change phase."
+  ],
+  "limitations": [
+    "No atmosphere, oblateness, third bodies, finite-duration thrust, fuel mass, or docking/contact dynamics.",
+    "Closest approach and arrival use samples no more than 10 seconds apart; very brief close passes may be missed.",
+    "Earth contact is detected after a propagation step and its time is approximate.",
+    "Preview horizon is finite; arbitrary high-energy trajectories can escape the view before zoom adjustment.",
+    "Tangential direction is counterclockwise rather than velocity-aligned for eccentric or retrograde motion.",
+    "No persistence; reload resets the session."
+  ],
+  "repairs": [
+    "Removed an unused unpowered-orbit numerical propagation; its circular reference is drawn analytically. No numerical failures required repairs."
+  ],
+  "unknowns": [
+    "Actual browser appearance, interactions, accessibility behavior, and performance remain unverified: browser localhost access was unavailable and no browser checks were attempted."
+  ],
+  "tokenUsage": null,
+  "tokenUsageUnavailableReason": "Runtime-provided measured input, cached input, output, reasoning, and total token counters are not exposed to this worker through its available tools. No counts were estimated and no restricted histories were inspected.",
+  "counterSource": null,
+  "cost": null,
+  "costUnavailableReason": "No measured runtime cost supplied.",
+  "scopeCompliance": [
+    "Created from scratch inside the assigned run directory only.",
+    "No prior or sibling run, shared app implementation, package file, credential, or restricted session history inspected.",
+    "No network calls, runtime external assets, backend, storage, browser localhost checks, publishing, or git operations.",
+    "Vite build used configFile:false and build.write:false."
+  ]
+}

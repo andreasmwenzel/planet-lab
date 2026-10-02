@@ -1,0 +1,342 @@
+{
+  "id": "astra-xhigh-refined",
+  "experimentId": "orbital-mechanics",
+  "title": "Astra · xhigh · refined",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/orbital-mechanics/astra-xhigh-refined/index.html",
+  "axes": {
+    "model": "Astra",
+    "effort": "xhigh",
+    "promptApproach": "refined"
+  },
+  "summary": "A finished, self-contained 2D Earth-orbit transfer workbench. Users edit circular departure and arrival altitudes, rehearse a Hohmann transfer, inspect signed burns and live telemetry, and skip insertion to see why a second burn is needed. Restrained paper-and-deep-teal instrument styling, true-scale canvas visualization, timeline controls, presets, pan/zoom, and an in-product model guide.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation in a fresh native task, with the displayed model and effort explicitly configured. Four frozen creative prompts share the same separately recorded runtime and numerical-testing scaffold. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6-astra",
+    "effort": "xhigh",
+    "runId": "astra-xhigh-refined",
+    "launchIndex": 24,
+    "startedAt": "2026-10-02T09:41:00Z",
+    "completedAt": "2026-10-02T10:04:58.914Z",
+    "durationSeconds": 1439,
+    "durationScope": "Observed wall-clock time from task launch to independently verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "tokenUsageReason": "Actual provider input, cached-input, output, reasoning, and total counters are not accessible through the runtime responses supplied to this worker. No source-length estimates, context-budget estimates, restricted session-history inspection, credential inspection, or extra inference run were used.",
+    "tokenUsageSource": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1 (optional)",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; deployed browser review is separate. Available cloud browser does not support WebGL2."
+    },
+    "sourceHashes": {
+      "README.md": "babf7741834103bc0b36c8b1d498231946fa69979aac05139c577e66c7961588",
+      "build-test-results.json": "b66f5fd5d5a983acb1cc905d0ff1ebbcfa7d88c86f316f1b94a52a0485a35f72",
+      "index.html": "c27de166d6912f98ed53198edc5f0e1b8472572d18cea13fc04a5dec43f7d4b6",
+      "interface-test-results.json": "92ae1d188bc526fb903360da3a01f0d00b7d2b2274bbd65c7b2650050d01848d",
+      "main.js": "bc48a677fb71b3ba65a3ae95c173d0a73728a5ad3e82b5455352e21d877fbfaa",
+      "physics-test-results.txt": "833baee0eb6c908155fc2c491d4d36d8d6f2df7d35e9051ac612f464e219c6cd",
+      "physics.mjs": "fd907fad240c6af42e3e74337cebc0a5df75b99feca88b8135ed1ed3de87e057",
+      "prompt.txt": "14377862ce854d7cbce0f6eab05cd1784408bfee2530b90a4e12fc5c3af6a314",
+      "style.css": "50dd486889c7c08d68f61e6fa4bf95064d3835aa4a2c224e0447e9a6a2a69044",
+      "test-build.mjs": "9b247adc16a860a3e69322b59ab8ea170a847b8711b012256a1c9b1d939f5e86",
+      "test-interface.mjs": "8aa5e781ca0aef22c5896cd5cfa4a8eca7f1d09a6223e0ff827f1c96f377b8b3",
+      "test-physics.mjs": "baaeaf8081f1ab964cd56127235ffb15d042a9d7d1756579c0dc6565ca78e563",
+      "verification-output.txt": "e2c0a058dcb92affefbdcc2c619651b1cb8bf37e9446236af898aac40a43d2d0",
+      "verify.mjs": "16425ed87098c31bb4440e3c266335f0eeab62c102d80aa987b0aa6fd30cd210",
+      "worker-report.json": "1188d7148e00034f11f951cc8a8df99495ab97a1fa035594e0f734dadadd8dac"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an in-browser orbital mechanics simulator\n\nDeliver a finished, usable product, not a demo page or marketing landing page. Choose the product concept, architecture, interactions, and visual direction yourself. Use actual orbital mechanics and state the model’s assumptions and limitations.\n\nBuild an elegant, carefully resolved product. Find a specific purpose and remove everything that distracts from it. Make the workflow feel considered, the information clear, and the interactions dependable. Restraint should improve usefulness rather than turn the result into a generic minimalist demo."
+      },
+      {
+        "role": "user",
+        "content": "Runtime packaging and verification scaffold (separate from creative direction):\n- Implement from scratch. Do not inspect the prior experiment, other runs, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only in the supplied run directory. Create index.html with optional main.js and local CSS/JavaScript modules. If using main.js, HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. CSS can be imported from main.js. A single fully inline HTML file is also allowed.\n- Available environment: vanilla JavaScript, optional installed Three.js 0.186.1, Vite 7.3.6, Node 24. No additional dependencies, runtime network calls, remote assets/fonts, backend, accounts, analytics, or live orbital/celestial data. Do not modify package files or shared app files. Canvas, SVG, DOM, and 3D are all allowed; Three.js is not mandatory. If using WebGL, handle unsupported graphics gracefully.\n- The common harness bundles JavaScript and CSS into one inline HTML document. Its viewer is an iframe sandbox with allow-scripts and an opaque origin. Do not access parent/top, communicate across frames, or rely on persistent storage, cookies, or origin-specific APIs.\n- Make one bounded implementation and its self-test/repair phase. Validate JavaScript syntax and perform an isolated Vite build with write:false. Run quantitative numerical tests applicable to your chosen mechanics, independently of the interface, and preserve a directly rerunnable test script in the run directory. Test the actual implementation's physics functions, not a separately copied formula. Record exact commands, results, tolerances, and repairs. Repair your own implementation as needed for these checks. Do not impose a tiny arbitrary token cutoff or clone existing code.\n- Browser localhost access is unavailable; do not claim browser checks or bypass that restriction. Actual browser appearance, interactions, and performance remain unverified until separately reviewed.\n- Include worker-report.json with product title, description, implementation start/end UTC timestamps, exact tests and outcomes, numerical assumptions and limitations, repairs, and unknowns. Set tokenUsage and cost to null unless the runtime supplies measured values. Do not invent token counts, costs, or quality scores.\n"
+      },
+      {
+        "role": "user",
+        "content": "Reporting-only amendment (added after the first three launches; creative prompts and runtime constraints are unchanged):\nAt the end of your run, include actual runtime-provided token counters if accessible: input, cached input, output, reasoning, and total. Preserve the provider's field semantics and avoid double counting. Identify the counter source and whether counts include tools or agent overhead. Do not estimate from source length or the context budget, inspect restricted session-history paths, or inspect credentials. If actual counters are inaccessible, set tokenUsage to null and give the reason. Set cost to null unless measured cost is supplied by the runtime. Do not create another inference run solely to obtain counters.\n"
+      }
+    ],
+    "reportingAmendment": {
+      "kind": "reporting-only",
+      "timing": "before-launch"
+    },
+    "note": "The complete public creative prompt and identical public runtime/testing scaffold are recorded separately. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax, isolated bundle, and the recorded quantitative physics tests passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "Rendered appearance, interactions, and performance have not yet been independently checked in a browser."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 50349,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 1439,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated.",
+      "Numerical test success applies only to the preserved cases and tolerances, not unrestricted physical accuracy."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 16596,
+    "cssBytes": 22069,
+    "numerical": "passed",
+    "independentVerification": {
+      "numerical": "passed",
+      "command": "node experiments/orbital-mechanics/astra-xhigh-refined/test-physics.mjs",
+      "exitCode": 0,
+      "stdout": "PASS Known circular and radius-ratio-two transfer reference {\"firstBurnKmS\":1.167378506618161,\"secondBurnKmS\":0.9791495542672495,\"transferSeconds\":5353.834394869872,\"speedToleranceKmS\":2e-12,\"timeToleranceSeconds\":1e-8}\nPASS Kepler solver residual across 13 eccentricities and 2001 mean anomalies {\"maximumResidualRadians\":1.964650664376677e-14,\"toleranceRadians\":5e-13,\"cases\":26013}\nPASS Position continuity, exact apsides, burn vectors, signed burns, and missed insertion {\"cases\":11,\"maxEndpointErrorKm\":6.904330501894096e-12,\"maxInsertionPositionJumpKm\":1.3808661003788193e-11,\"positionToleranceKm\":1e-7,\"speedToleranceKmS\":1e-11}\nPASS Conserved energy and angular momentum through 11 complete transfer ellipses {\"samples\":22011,\"maxEnergyRelativeError\":1.2196765916586065e-14,\"maxMomentumRelativeError\":6.398421085590277e-16,\"maxVisVivaResidualKm2S2\":1.7053025658242404e-13,\"relativeTolerance\":2e-12,\"visVivaToleranceKm2S2\":2e-10}\nPASS Analytic state agrees with independently integrated central gravity {\"cases\":6,\"integrationStepsPerCase\":30000,\"maximumPositionErrorKm\":1.0504416441200382e-8,\"maximumVelocityErrorKmS\":1.5357321242575129e-12,\"positionToleranceKm\":0.0001,\"velocityToleranceKmS\":1e-7}\nPASS Velocity and acceleration agree with numerical derivatives of actual state {\"maximumVelocityErrorKmS\":2.121258282319957e-9,\"maximumAccelerationErrorKmS2\":2.708517902959622e-12,\"velocityToleranceKmS\":1e-7,\"accelerationToleranceKmS2\":1e-9}\nPASS Domain guardrails and zero-cost equal-altitude case {\"invalidCases\":9,\"validBoundaryCases\":2}\n{\n  \"passed\": true,\n  \"assertions\": 115024,\n  \"tests\": [\n    {\n      \"name\": \"Known circular and radius-ratio-two transfer reference\",\n      \"passed\": true,\n      \"firstBurnKmS\": 1.167378506618161,\n      \"secondBurnKmS\": 0.9791495542672495,\n      \"transferSeconds\": 5353.834394869872,\n      \"speedToleranceKmS\": 2e-12,\n      \"timeToleranceSeconds\": 1e-8\n    },\n    {\n      \"name\": \"Kepler solver residual across 13 eccentricities and 2001 mean anomalies\",\n      \"passed\": true,\n      \"maximumResidualRadians\": 1.964650664376677e-14,\n      \"toleranceRadians\": 5e-13,\n      \"cases\": 26013\n    },\n    {\n      \"name\": \"Position continuity, exact apsides, burn vectors, signed burns, and missed insertion\",\n      \"passed\": true,\n      \"cases\": 11,\n      \"maxEndpointErrorKm\": 6.904330501894096e-12,\n      \"maxInsertionPositionJumpKm\": 1.3808661003788193e-11,\n      \"positionToleranceKm\": 1e-7,\n      \"speedToleranceKmS\": 1e-11\n    },\n    {\n      \"name\": \"Conserved energy and angular momentum through 11 complete transfer ellipses\",\n      \"passed\": true,\n      \"samples\": 22011,\n      \"maxEnergyRelativeError\": 1.2196765916586065e-14,\n      \"maxMomentumRelativeError\": 6.398421085590277e-16,\n      \"maxVisVivaResidualKm2S2\": 1.7053025658242404e-13,\n      \"relativeTolerance\": 2e-12,\n      \"visVivaToleranceKm2S2\": 2e-10\n    },\n    {\n      \"name\": \"Analytic state agrees with independently integrated central gravity\",\n      \"passed\": true,\n      \"cases\": 6,\n      \"integrationStepsPerCase\": 30000,\n      \"maximumPositionErrorKm\": 1.0504416441200382e-8,\n      \"maximumVelocityErrorKmS\": 1.5357321242575129e-12,\n      \"positionToleranceKm\": 0.0001,\n      \"velocityToleranceKmS\": 1e-7\n    },\n    {\n      \"name\": \"Velocity and acceleration agree with numerical derivatives of actual state\",\n      \"passed\": true,\n      \"maximumVelocityErrorKmS\": 2.121258282319957e-9,\n      \"maximumAccelerationErrorKmS2\": 2.708517902959622e-12,\n      \"velocityToleranceKmS\": 1e-7,\n      \"accelerationToleranceKmS2\": 1e-9\n    },\n    {\n      \"name\": \"Domain guardrails and zero-cost equal-altitude case\",\n      \"passed\": true,\n      \"invalidCases\": 9,\n      \"validBoundaryCases\": 2\n    }\n  ]\n}\n",
+      "stderr": "",
+      "verifiedAt": "2026-10-02T10:04:57.955707+00:00",
+      "scope": "Independent rerun of preserved quantitative tests against the actual implementation physics; not browser QA or unrestricted numerical certification."
+    },
+    "checkedAt": "2026-10-02T10:04:58.914Z",
+    "runtimeBytes": 50349
+  },
+  "generationReport": {
+    "productTitle": "Apsis — Earth transfer workbench",
+    "description": "A finished, self-contained 2D Earth-orbit transfer workbench. Users edit circular departure and arrival altitudes, rehearse a Hohmann transfer, inspect signed burns and live telemetry, and skip insertion to see why a second burn is needed. Restrained paper-and-deep-teal instrument styling, true-scale canvas visualization, timeline controls, presets, pan/zoom, and an in-product model guide.",
+    "implementationStartUTC": "2026-10-02T09:41:16Z",
+    "implementationEndUTC": "2026-10-02T10:03:05Z",
+    "requestedModel": "Astra",
+    "requestedReasoningEffort": "xhigh",
+    "generationDelegated": false,
+    "entryPoint": "index.html",
+    "implementationFiles": [
+      "index.html",
+      "main.js",
+      "style.css",
+      "physics.mjs"
+    ],
+    "verificationFiles": [
+      "verify.mjs",
+      "test-physics.mjs",
+      "test-interface.mjs",
+      "test-build.mjs",
+      "physics-test-results.txt",
+      "interface-test-results.json",
+      "build-test-results.json",
+      "verification-output.txt"
+    ],
+    "exactRerunCommand": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-refined && node verify.mjs",
+    "tests": [
+      {
+        "command": "node --check main.js && node --check physics.mjs && node --check test-physics.mjs && node --check test-interface.mjs && node --check test-build.mjs",
+        "outcome": "passed; all exit codes 0"
+      },
+      {
+        "command": "node test-physics.mjs",
+        "outcome": "passed",
+        "actualImplementationModule": "physics.mjs",
+        "passed": true,
+        "assertions": 115024,
+        "tests": [
+          {
+            "name": "Known circular and radius-ratio-two transfer reference",
+            "passed": true,
+            "firstBurnKmS": 1.167378506618161,
+            "secondBurnKmS": 0.9791495542672495,
+            "transferSeconds": 5353.834394869872,
+            "speedToleranceKmS": 2e-12,
+            "timeToleranceSeconds": 1e-8
+          },
+          {
+            "name": "Kepler solver residual across 13 eccentricities and 2001 mean anomalies",
+            "passed": true,
+            "maximumResidualRadians": 1.964650664376677e-14,
+            "toleranceRadians": 5e-13,
+            "cases": 26013
+          },
+          {
+            "name": "Position continuity, exact apsides, burn vectors, signed burns, and missed insertion",
+            "passed": true,
+            "cases": 11,
+            "maxEndpointErrorKm": 6.904330501894096e-12,
+            "maxInsertionPositionJumpKm": 1.3808661003788193e-11,
+            "positionToleranceKm": 1e-7,
+            "speedToleranceKmS": 1e-11
+          },
+          {
+            "name": "Conserved energy and angular momentum through 11 complete transfer ellipses",
+            "passed": true,
+            "samples": 22011,
+            "maxEnergyRelativeError": 1.2196765916586065e-14,
+            "maxMomentumRelativeError": 6.398421085590277e-16,
+            "maxVisVivaResidualKm2S2": 1.7053025658242404e-13,
+            "relativeTolerance": 2e-12,
+            "visVivaToleranceKm2S2": 2e-10
+          },
+          {
+            "name": "Analytic state agrees with independently integrated central gravity",
+            "passed": true,
+            "cases": 6,
+            "integrationStepsPerCase": 30000,
+            "maximumPositionErrorKm": 1.0504416441200382e-8,
+            "maximumVelocityErrorKmS": 1.5357321242575129e-12,
+            "positionToleranceKm": 0.0001,
+            "velocityToleranceKmS": 1e-7
+          },
+          {
+            "name": "Velocity and acceleration agree with numerical derivatives of actual state",
+            "passed": true,
+            "maximumVelocityErrorKmS": 2.121258282319957e-9,
+            "maximumAccelerationErrorKmS2": 2.708517902959622e-12,
+            "velocityToleranceKmS": 1e-7,
+            "accelerationToleranceKmS2": 1e-9
+          },
+          {
+            "name": "Domain guardrails and zero-cost equal-altitude case",
+            "passed": true,
+            "invalidCases": 9,
+            "validBoundaryCases": 2
+          }
+        ]
+      },
+      {
+        "command": "node test-interface.mjs",
+        "outcome": "passed",
+        "passed": true,
+        "assertions": 46,
+        "scope": "Node DOM/canvas stubs executing actual main.js event handlers; verifies control state and numerical readout wiring only. Does not verify browser rendering, real events, layout, accessibility tree, or performance.",
+        "cases": [
+          "normal canvas API path",
+          "unsupported canvas fallback",
+          "presets",
+          "seek to arrival",
+          "skip insertion",
+          "return orbit",
+          "replay",
+          "background pause",
+          "invalid and valid input",
+          "low-altitude warning",
+          "swap",
+          "slider limit",
+          "guide open/close",
+          "velocity toggle",
+          "zoom/fit",
+          "reset",
+          "same-altitude mission"
+        ]
+      },
+      {
+        "command": "node test-build.mjs",
+        "outcome": "passed",
+        "passed": true,
+        "build": "isolated Vite build, write:false, configFile:false",
+        "root": "/workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-refined/",
+        "htmlIds": 59,
+        "files": [
+          {
+            "fileName": "assets/index-qHF8m03a.js",
+            "type": "chunk",
+            "bytes": 17277
+          },
+          {
+            "fileName": "assets/index-DKrejCrN.css",
+            "type": "asset",
+            "bytes": 22069
+          },
+          {
+            "fileName": "index.html",
+            "type": "asset",
+            "bytes": 11518
+          }
+        ]
+      },
+      {
+        "command": "node verify.mjs",
+        "outcome": "passed; all syntax, physics, Node interface-state, and isolated build checks ran on the final implementation; exit code 0"
+      }
+    ],
+    "numericalAssumptions": [
+      "Earth gravitational parameter μ = 398600.4418 km³/s² and equatorial radius = 6378.137 km.",
+      "Massless spacecraft under point-mass Earth gravity; all trajectories are planar and prograde.",
+      "Circular departure and arrival orbits; instantaneous tangential impulses; a single Hohmann half-ellipse joins the two radii.",
+      "Analytic ellipse propagation solves Kepler's equation. Units are kilometers, seconds, and kilometers per second.",
+      "Elliptic Kepler solver uses normalized mean anomaly, Newton iteration with a bracketed bisection fallback, and a nominal residual threshold 2e-14 radians.",
+      "Altitude input domain is 160–50000 km. All Earth and orbit distances share one scale; spacecraft, maneuver markers, and velocity-vector length are illustrative.",
+      "Elapsed time zero is just after burn 1. At the exact arrival time the enabled burn 2 has already been applied. Omitting burn 2 leaves the spacecraft on the transfer ellipse.",
+      "Normal rehearsal horizon is transfer time plus one quarter arrival orbital period. With insertion disabled, the horizon is a full transfer orbital period.",
+      "Playback clamps a frame gap to 0.1 wall-clock seconds and pauses when hidden, avoiding large jumps when inactive."
+    ],
+    "limitations": [
+      "No atmosphere, drag, Earth oblateness, finite-duration thrust, plane changes, perturbing bodies, collision avoidance, navigation errors, or rendezvous targeting.",
+      "GEO preset means a circular orbit at the approximate altitude 35786 km, without longitude or inclination modeling.",
+      "Hohmann transfers are not globally minimum-Δv for all large radius ratios; bi-elliptic transfers are outside scope.",
+      "Abstract Earth markings are not a geographic map.",
+      "Educational workbench, not flight operations software."
+    ],
+    "repairs": [
+      {
+        "reason": "Source review found that an equal-altitude explanation described a fixed rehearsal horizon even when insertion was skipped.",
+        "change": "Changed explanation to the invariant statement that no velocity change is needed and the spacecraft coasts on the same circle.",
+        "verification": "Same-altitude interface-state case and full final verification passed."
+      },
+      {
+        "reason": "Source review found that toggling insertion could leave a stale play/replay label after changing the rehearsal duration.",
+        "change": "Recomputed playback button state after clamping time to the new duration.",
+        "verification": "Skip-insertion, replay, and final interface-state checks passed."
+      },
+      {
+        "reason": "Source review found that the post-insertion trail could imply circular travel before the insertion instant.",
+        "change": "Capped the drawn circular trail to angular distance actually traveled since insertion.",
+        "verification": "Drawing code executes through the Node canvas stub; final syntax/build passed. Pixel appearance remains unverified."
+      }
+    ],
+    "unknowns": [
+      "No browser localhost check was attempted. Actual browser appearance, native interactions, accessibility-tree behavior, responsiveness, and performance remain unverified.",
+      "The Node interface harness uses DOM/canvas stubs. Its passing results are limited to JavaScript control-state and numerical readout wiring, not browser correctness.",
+      "No measured runtime token counters or cost were provided by the agent/tool interface."
+    ],
+    "tokenUsage": null,
+    "tokenUsageReason": "Actual provider input, cached-input, output, reasoning, and total counters are not accessible through the runtime responses supplied to this worker. No source-length estimates, context-budget estimates, restricted session-history inspection, credential inspection, or extra inference run were used.",
+    "tokenCounterSource": null,
+    "tokenCounterToolOrAgentOverheadCoverage": "Unknown; no provider counters available.",
+    "cost": null,
+    "costReason": "No measured cost was supplied by the runtime.",
+    "constraints": {
+      "implementedFromScratch": true,
+      "readOtherRuns": false,
+      "modifiedSharedFiles": false,
+      "runtimeNetworkCalls": false,
+      "persistentStorage": false,
+      "browserLocalhostChecks": false,
+      "publishing": false,
+      "gitOperations": false,
+      "viteBuildWrite": false
+    }
+  }
+}

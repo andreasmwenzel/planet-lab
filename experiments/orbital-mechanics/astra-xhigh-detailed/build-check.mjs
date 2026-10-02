@@ -1,0 +1,10 @@
+import { build } from 'vite';
+import { writeFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+const root=fileURLToPath(new URL('.',import.meta.url));
+const output=await build({configFile:false,envFile:false,root,cacheDir:root+'.vite-isolated',logLevel:'warn',base:'./',build:{write:false,emptyOutDir:false,minify:true,assetsInlineLimit:1000000,rollupOptions:{input:root+'index.html'}}});
+const chunks=(Array.isArray(output)?output:[output]).flatMap(result=>result.output.map(item=>({fileName:item.fileName,type:item.type,bytes:Buffer.byteLength(item.type==='chunk'?item.code:item.source)})));
+const report={executedAt:new Date().toISOString(),command:'node build-check.mjs',configFile:false,envFile:false,write:false,passed:chunks.some(c=>c.fileName==='index.html'),chunks};
+if(!report.passed)throw new Error('Build did not produce an in-memory index.html.');
+await writeFile(new URL('./build-results.json',import.meta.url),JSON.stringify(report,null,2)+'\n');
+console.log(JSON.stringify(report,null,2));

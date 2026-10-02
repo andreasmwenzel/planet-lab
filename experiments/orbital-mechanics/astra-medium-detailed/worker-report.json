@@ -1,0 +1,152 @@
+{
+  "productTitle": "Orbit Works · Maneuver desk",
+  "description": "A session-only planar Earth orbit workbench for learning and executing a two-impulse transfer: choose a starting orbit, preview local tangential/radial burns, coast to apsides, and circularize against an adjustable target. Includes live orbit plotting, current/proposed orbit comparison, mission telemetry, time acceleration, flight log, recoverable burns/coasts/resets, collision handling, and in-product physics help.",
+  "implementationStartUTC": "2026-10-02T09:31:53Z",
+  "implementationEndUTC": "2026-10-02T09:39:16.627Z",
+  "implementationFiles": [
+    "index.html",
+    "main.js",
+    "style.css",
+    "physics.mjs"
+  ],
+  "tests": [
+    {
+      "command": "node --check main.js && node --check physics.mjs && node --check test-physics.mjs && node --check test-build.mjs",
+      "outcome": "Passed; exit code 0"
+    },
+    {
+      "command": "node test-physics.mjs",
+      "outcome": "Passed all 14 numerical and classification checks; imports actual production physics.mjs",
+      "results": [
+        {
+          "name": "Circular eccentricity",
+          "value": 1.1891684236100184e-16,
+          "tolerance": 1e-12,
+          "pass": true
+        },
+        {
+          "name": "Ten-orbit relative energy drift",
+          "value": 1.7453329819850352e-10,
+          "tolerance": 1e-8,
+          "pass": true
+        },
+        {
+          "name": "Ten-orbit relative angular momentum drift",
+          "value": 8.726657906007388e-11,
+          "tolerance": 1e-8,
+          "pass": true
+        },
+        {
+          "name": "Ten-orbit position closure (km)",
+          "value": 0.0001509226754315608,
+          "tolerance": 0.01,
+          "pass": true
+        },
+        {
+          "name": "Transfer half-period apsis timing (s)",
+          "value": 0,
+          "tolerance": 1e-7,
+          "pass": true
+        },
+        {
+          "name": "Transfer apogee altitude error (km)",
+          "value": 0.0000026751549739856273,
+          "tolerance": 0.001,
+          "pass": true
+        },
+        {
+          "name": "Circularization eccentricity",
+          "value": 0,
+          "tolerance": 1e-12,
+          "pass": true
+        },
+        {
+          "name": "Circularization target apsides error (km)",
+          "value": 0.0000026751549739856273,
+          "tolerance": 0.001,
+          "pass": true
+        },
+        {
+          "name": "Hohmann first burn apoapsis error (km)",
+          "value": 5.4569682106375694e-12,
+          "tolerance": 1e-7,
+          "pass": true
+        },
+        {
+          "name": "Radial burn projection (km/s)",
+          "value": 0,
+          "tolerance": 1e-12,
+          "pass": true
+        },
+        {
+          "name": "Escape classified and propagates outward",
+          "pass": true
+        },
+        {
+          "name": "Earth-intersecting orbit stops at collision",
+          "pass": true,
+          "time": 531.4432672580648
+        },
+        {
+          "name": "Retrograde circulation burn remains prograde to motion",
+          "value": 0,
+          "tolerance": 1e-12,
+          "pass": true
+        },
+        {
+          "name": "Orbit display points finite for circular, elliptic, radial and escape cases",
+          "pass": true
+        }
+      ],
+      "hohmannFirstBurnMetersPerSecond": 425.11432646153224
+    },
+    {
+      "command": "node test-build.mjs",
+      "outcome": "Passed isolated Vite build with configFile:false, write:false, emptyOutDir:false. No shared configuration or outputs modified.",
+      "pass": true,
+      "write": false,
+      "assets": [
+        {
+          "name": "assets/index-CzsmN0KO.js",
+          "bytes": 15732
+        },
+        {
+          "name": "assets/index-DFJCMD6B.css",
+          "bytes": 8016
+        },
+        {
+          "name": "index.html",
+          "bytes": 411
+        }
+      ]
+    }
+  ],
+  "exactRerunCommand": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-medium-detailed && node --check main.js && node --check physics.mjs && node --check test-physics.mjs && node --check test-build.mjs && node test-physics.mjs && node test-build.mjs",
+  "numericalAssumptions": [
+    "Earth-centered, inertial, planar Newtonian two-body motion with Earth gravitational parameter 398600.4418 km^3/s^2 and spherical radius 6371 km.",
+    "Massless spacecraft; no backreaction. RK4 propagation with dt <= 10 seconds and dt <= local gravitational timescale / 100.",
+    "Burns are instantaneous in the local radial/tangential frame. Tangential positive follows orbital angular momentum sign, rather than velocity direction for eccentric motion.",
+    "Apsis coasting times use elliptic Kepler elements, then propagate the actual state using RK4.",
+    "Orbit lines use osculating conics; target completion is both apsides within 25 km and eccentricity below 0.01."
+  ],
+  "limitations": [
+    "No atmosphere, drag, oblateness, perturbing bodies, inclination, fuel use, finite burn duration, or uncertainty. Not suitable for navigation.",
+    "Collision detection is performed at integration step endpoints and can stop up to one step after surface crossing.",
+    "Apsis coast action is bounded to seven days and unavailable for circular or unbound orbits; continuous propagation remains available.",
+    "Escape conics and very large orbits are clipped to a bounded view. Earth-close-up may place spacecraft outside view.",
+    "Flight state is session-only. Undo restores only the state before the most recent burn, coast, or reset; it is not a full timeline rewind.",
+    "Animation clamps wall-time elapsed per frame to 0.1 seconds, so background tabs do not catch up to elapsed real time."
+  ],
+  "repairs": [
+    "Corrected the help walkthrough first-burn suggestion from approximately 423 m/s to 425 m/s after production-physics test measured 425.11432646153224 m/s.",
+    "Removed a redundant data-URL CSS import. No numerical test repairs were needed; all tests passed on their first execution."
+  ],
+  "unknowns": [
+    "No browser checks performed: localhost browser access was unavailable and not bypassed. Actual browser rendering, interaction behavior, accessibility, responsiveness, and performance remain unverified until separate review.",
+    "No runtime token counters or measured cost were exposed to this worker."
+  ],
+  "tokenUsage": null,
+  "tokenUsageReason": "Actual runtime-provided input, cached input, output, reasoning, and total counters were not accessible in the supplied tools or task results. No estimates or restricted session-history inspection were used.",
+  "cost": null,
+  "costReason": "No measured cost supplied by runtime."
+}

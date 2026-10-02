@@ -1,0 +1,207 @@
+{
+  "productTitle": "Apogee \u00b7 Orbital flight workbench",
+  "description": "A finished local planar orbital-mechanics workbench for inspecting Earth, Moon, and Mars trajectories, applying radial/transverse impulse maneuvers, scrubbing a mission history, and previewing or flying automatic two-burn Hohmann transfers. Includes Canvas trajectory visualization, mean-surface collision stopping, live orbital elements, flight events, a selectable CSV export, responsive controls, and an in-product model guide.",
+  "runIdentity": "astra-xhigh-minimal",
+  "requestedModel": "gpt-6-astra",
+  "requestedReasoningEffort": "xhigh",
+  "implementationStartUtc": "2026-10-02T09:40:22Z",
+  "implementationEndUtc": "2026-10-02T09:59:44Z",
+  "runtimeScaffold": {
+    "entry": "index.html",
+    "module": "main.js",
+    "physicsModule": "physics.js",
+    "styles": "style.css",
+    "framework": "Vanilla JavaScript with Canvas 2D",
+    "dependenciesAdded": false,
+    "runtimeNetworkCalls": false,
+    "persistence": false,
+    "browserChecksPerformed": false,
+    "published": false,
+    "gitOperations": false,
+    "otherImplementationsRead": false
+  },
+  "tests": [
+    {
+      "name": "JavaScript syntax validation",
+      "command": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-minimal && node --check main.js && node --check physics.js && node --check test-physics.mjs && node --check verify-build.mjs",
+      "result": "pass",
+      "exitCode": 0
+    },
+    {
+      "name": "Numerical implementation tests",
+      "command": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-minimal && node test-physics.mjs --json",
+      "result": "pass",
+      "exitCode": 0,
+      "detailsFile": "numerical-results.json",
+      "tests": [
+        {
+          "name": "Circular analytic quarter-orbit and period closure",
+          "status": "pass",
+          "positionErrorKm": 5.230909593113388e-12,
+          "closureErrorKm": 1.39563756390726e-11,
+          "toleranceKm": 2e-05
+        },
+        {
+          "name": "Elliptical apoapsis and vis-viva",
+          "status": "pass",
+          "positionErrorKm": 3.3456026737432933e-10,
+          "speedErrorKmS": 8.43769498715119e-15,
+          "toleranceKm": 0.0002,
+          "toleranceKmS": 2e-08
+        },
+        {
+          "name": "Energy and angular momentum across 1,500 varied conic states",
+          "status": "pass",
+          "states": 1500,
+          "maxEnergyRelative": 3.508125854213381e-09,
+          "maxAngularMomentumRelative": 7.06362462131136e-10,
+          "energyTolerance": 3e-07,
+          "angularMomentumTolerance": 3e-08
+        },
+        {
+          "name": "Propagation reversal for elliptic, parabolic, hyperbolic, and retrograde states",
+          "status": "pass",
+          "cases": 25,
+          "maxPositionErrorKm": 6.166773361454341e-06,
+          "maxVelocityErrorKmS": 6.897319295339358e-09,
+          "toleranceKm": 0.03,
+          "toleranceKmS": 2e-05
+        },
+        {
+          "name": "Hohmann transfer energy, arrival radius and circularization across all bodies",
+          "status": "pass",
+          "cases": 9,
+          "maxRadiusErrorKm": 1.0913936421275139e-11,
+          "maxEccentricity": 1.2544121972175713e-11,
+          "maxEnergyError": 2.842170943040401e-14,
+          "radiusToleranceKm": 0.0001,
+          "eccentricityTolerance": 1e-08,
+          "energyTolerance": 1e-07
+        },
+        {
+          "name": "LEO-to-GEO reference Hohmann budget",
+          "status": "pass",
+          "burn1KmS": 2.42576902830686,
+          "burn2KmS": 1.4668387152844526,
+          "totalKmS": 3.8926077435913125,
+          "coastSeconds": 18990.05183848129,
+          "burnToleranceKmS": 3e-05,
+          "coastToleranceSeconds": 10
+        },
+        {
+          "name": "Impulses use radial and local prograde transverse axes, including retrograde",
+          "status": "pass",
+          "maxComponentErrorKmS": 3.608224830031759e-16,
+          "toleranceKmS": 1e-12
+        },
+        {
+          "name": "First surface contact, including inbound/outbound escape and parabolic paths",
+          "status": "pass",
+          "cases": 3,
+          "maxSurfaceErrorKm": 5.9753801906481385e-09,
+          "toleranceKm": 0.002
+        },
+        {
+          "name": "Conic samples satisfy focus equation and sampled state invariants",
+          "status": "pass",
+          "maxEquationErrorKm": 2.6193447411060333e-10,
+          "toleranceKm": 1e-06
+        },
+        {
+          "name": "Repeated small-step propagation over ten circular periods",
+          "status": "pass",
+          "steps": 10000,
+          "positionErrorKm": 9.472239385553613e-08,
+          "relativeEnergyError": 2.0458554454604291e-13,
+          "positionToleranceKm": 0.05,
+          "energyTolerance": 1e-07
+        }
+      ]
+    },
+    {
+      "name": "Isolated Vite build",
+      "command": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-minimal && node verify-build.mjs",
+      "result": "pass",
+      "exitCode": 0,
+      "configuration": {
+        "configFile": false,
+        "publicDir": false,
+        "write": false,
+        "emptyOutDir": false,
+        "minify": true,
+        "cssCodeSplit": false
+      },
+      "outputs": [
+        {
+          "fileName": "assets/index-CvZ-d3JU.js",
+          "bytes": 34400
+        },
+        {
+          "fileName": "assets/style-POQR9YLO.css",
+          "bytes": 13219
+        },
+        {
+          "fileName": "index.html",
+          "bytes": 422
+        }
+      ]
+    },
+    {
+      "name": "Packaging and sandbox source check",
+      "result": "pass",
+      "details": "Verified exact single main.js module script tag. Source contains no fetch, storage, clipboard API, parent/top access, or Blob download reliance."
+    }
+  ],
+  "exactRerunCommand": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-minimal && node --check main.js && node --check physics.js && node --check test-physics.mjs && node --check verify-build.mjs && node test-physics.mjs --json && node verify-build.mjs",
+  "numericalAssumptions": [
+    "Massless spacecraft under fixed, spherical single-body gravity in one inertial orbital plane; state units are km, s, and km/s.",
+    "Earth mu 398600.4418 km^3/s^2 and mean radius 6371 km; Moon mu 4902.800066 and radius 1737.4 km; Mars mu 42828.375214 and radius 3389.5 km. Static approximate model constants, not live data.",
+    "Universal-variable Kepler propagation with Stumpff functions, safeguarded Newton/bisection iteration, and periodic time reduction for bound states.",
+    "Energy magnitudes at or below 1e-12 km^2/s^2 are treated as numerically parabolic for orbital classification. Barker timing is used when eccentricity is within 1e-8 of one.",
+    "Burns are instantaneous radial and local prograde-transverse velocity changes, with no propellant or finite-thrust model.",
+    "Hohmann planning is available for circular states with eccentricity at most 1e-5 and applies a scheduled second impulse at the opposite apsis.",
+    "The mean-radius surface is a hard impact boundary. First inbound intersection is computed analytically and stops time propagation there.",
+    "Manual impulses are limited to +/-10000 m/s per input component and states with transverse speed below 0.005 km/s are rejected to avoid radial-orbit degeneracy."
+  ],
+  "limitations": [
+    "No atmospheric drag, non-spherical gravity, central-body rotation, inclination changes, third-body gravity, finite sphere of influence, thrust duration, propellant, or spacecraft mass.",
+    "Atmosphere thresholds of 100 km for Earth and 80 km for Mars are warnings only; the code does not model entry physics.",
+    "Body artwork and illumination are illustrative. All orbit geometry is in a single plane with distance-to-scale rendering.",
+    "Escape paths are displayed over a bounded radius and expand as the spacecraft moves outward. Camera framing changes to keep the trajectory in view.",
+    "Applying a maneuver while inspecting the past discards later maneuvers; a reset discards the mission.",
+    "CSV export is a selectable text dialog, using native selection and user copy, to remain usable in a sandbox without download or clipboard privileges."
+  ],
+  "repairs": [
+    {
+      "issue": "First numerical pass failed the surface-contact test for a nominally parabolic inbound trajectory. Tiny negative floating-point energy marked a state bound while its semimajor axis and period were infinite.",
+      "change": "Made the bound-state energy threshold consistent with the existing near-parabolic semimajor-axis threshold.",
+      "verification": "All 10 numerical tests subsequently passed; inbound elliptical, parabolic, and hyperbolic contact radius maximum error was 5.9753801906481385e-9 km."
+    },
+    {
+      "issue": "Static sandbox review identified that a download-only CSV export would be unreliable in an allow-scripts-only iframe.",
+      "change": "Replaced Blob download reliance with a selectable CSV dialog and plain native text selection.",
+      "verification": "Syntax and isolated production build passed. Actual browser selection remains unverified."
+    },
+    {
+      "issue": "Static inspection found escape-path sampling would otherwise remain clipped at its initial radius.",
+      "change": "Refresh escape path samples as the spacecraft approaches the sampled radius; removed unnecessary bound-orbit radius clipping.",
+      "verification": "Syntax and production build passed; conic equation numerical test passed."
+    },
+    {
+      "issue": "Static interaction and responsive review.",
+      "change": "Added Hide preview behavior and a single-column narrow-phone layout to keep form inputs and telemetry readable.",
+      "verification": "Build and syntax checks passed; visual layout remains unverified."
+    }
+  ],
+  "unknowns": [
+    "No browser, localhost, screenshot, visual, real DOM interaction, accessibility-tool, or actual performance testing was performed. These remain for separate review.",
+    "The common inline bundler and final opaque-origin iframe were not available for testing in this run. Source was designed without origin-dependent storage, frame access, network, or download requirements.",
+    "Real runtime-provided model token counters and measured cost were not supplied. Available tool metadata exposed no token-usage or cost-counter action. No restricted session history or credentials were inspected."
+  ],
+  "tokenUsage": null,
+  "tokenUsageReason": "Actual provider counters for input, cached input, output, reasoning, and total were not available in the runtime messages or accessible tool metadata. No estimates were made.",
+  "tokenCounterSource": null,
+  "tokenCounterScope": null,
+  "cost": null,
+  "costReason": "No measured runtime cost was supplied."
+}

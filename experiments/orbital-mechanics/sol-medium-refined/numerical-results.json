@@ -1,0 +1,51 @@
+{
+  "status": "passed",
+  "outcomes": [
+    {
+      "name": "Kepler residual across eccentricities and signed multi-revolution anomalies",
+      "status": "passed",
+      "cases": 2886,
+      "maxResidual": 4.440892098500626e-16,
+      "tolerance": 1e-11
+    },
+    {
+      "name": "Energy and angular momentum conservation on actual propagated ellipse",
+      "status": "passed",
+      "cases": 3003,
+      "maxRelativeEnergyError": 3.041550926074942e-14,
+      "maxRelativeAngularMomentumError": 9.903420347597643e-16,
+      "tolerance": 1e-10
+    },
+    {
+      "name": "Hohmann boundary positions, burn speeds, and direction for raised and lowered orbits",
+      "status": "passed",
+      "missions": 6,
+      "maxPositionErrorKm": 6.904330501894096e-12,
+      "maxSpeedErrorKmS": 3.552713678800501e-15,
+      "positionToleranceKm": 1e-7,
+      "speedToleranceKmS": 1e-10
+    },
+    {
+      "name": "Independent LEO to GEO reference benchmark and transfer symmetry",
+      "status": "passed",
+      "deltaV": 3.853959216408821,
+      "transferTimeSeconds": 19048.562509797113,
+      "referenceDeltaV": 3.854,
+      "deltaVTolerance": 0.001,
+      "referenceTimeSeconds": 19048.6,
+      "timeToleranceSeconds": 0.1
+    },
+    {
+      "name": "Circular orbit period, return position and equal-altitude no-op",
+      "status": "passed",
+      "periodSeconds": 5553.624271252228,
+      "speedKmS": 7.668558175407055,
+      "positionToleranceKm": 1e-8
+    },
+    {
+      "name": "Invalid input rejection",
+      "status": "passed",
+      "cases": 8
+    }
+  ]
+}

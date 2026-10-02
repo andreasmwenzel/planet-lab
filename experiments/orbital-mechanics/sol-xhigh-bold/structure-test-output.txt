@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "staticDOMTargetsChecked": 45,
+  "templateIds": 51,
+  "checks": [
+    "Exact runtime script",
+    "Static DOM target presence",
+    "No remote or imported CSS assets",
+    "No runtime network calls",
+    "No persistent origin storage",
+    "No cross-frame access",
+    "Responsive rule presence",
+    "Focus-style presence"
+  ],
+  "limitation": "Static source checks only. This does not verify actual DOM execution, browser rendering, interaction behavior, accessibility or performance."
+}

@@ -1,0 +1,402 @@
+{
+  "id": "astra-medium-minimal",
+  "experimentId": "orbital-mechanics",
+  "title": "Astra · medium · minimal",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/orbital-mechanics/astra-medium-minimal/index.html",
+  "axes": {
+    "model": "Astra",
+    "effort": "medium",
+    "promptApproach": "minimal"
+  },
+  "summary": "A self-contained Earth-centered planar orbital maneuver laboratory with four initial scenarios, custom apsides, exact Kepler propagation, editable along-track and radial impulsive burns, a live candidate-orbit overlay, telemetry, surface-contact events, maneuver history, and a circular Hohmann transfer calculator.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation in a fresh native task, with the displayed model and effort explicitly configured. Four frozen creative prompts share the same separately recorded runtime and numerical-testing scaffold. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6-astra",
+    "effort": "medium",
+    "runId": "astra-medium-minimal",
+    "launchIndex": 17,
+    "startedAt": "2026-10-02T09:31:03Z",
+    "completedAt": "2026-10-02T09:41:30.735Z",
+    "durationSeconds": 628,
+    "durationScope": "Observed wall-clock time from task launch to independently verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "tokenUsageReason": "No runtime-provided token counters are exposed to this worker through the supplied tools or task context. Restricted session-history paths were not inspected. Counts were not estimated.",
+    "tokenUsageSource": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1 (optional)",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; deployed browser review is separate. Available cloud browser does not support WebGL2."
+    },
+    "sourceHashes": {
+      "build-results.json": "09b8b43d612962422179deb411526293433c9c9b18d578d60093e408dc3b955e",
+      "index.html": "35b343a4d787e6693fd359d1592f5d474083c8178ff5d781be58d33ef0e14d1d",
+      "main.js": "209cb292cdca49c1c27533f87dc7807ac00adff6fa8afe23fe0a22f9dde58091",
+      "physics.mjs": "7e44dd50f7d6424bf86eae5f193315278c3a0918fafd00f25581c8c49558e4af",
+      "prompt.txt": "e4cbb6b12e024eb757b65e62bbc4cc22c80aed8a6a42b74bee9bfd98d8f67be0",
+      "self-test.mjs": "d753545256b0c15af55da667c3097988196249d0f94c1c4c090366f079dbc57e",
+      "style.css": "184053b5d554322699102a493fd23eb69cf060fe57ac3b4e1b540632506e4131",
+      "test-results.json": "fd46eb02950816f465a283b46cc081ad94cf32fca5316a4c3b30f9e2141c02b3",
+      "verify-build.mjs": "8d6d6b4c388e77b22432e791d025d51188a3756d367ff6201ec65274efdebdc6",
+      "worker-report.json": "28d35bfa3f752af9f3dcac12334835a83c5ba8fa17cde70f8a27efc61de5b0fc"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an in-browser orbital mechanics simulator\n\nDeliver a finished, usable product, not a demo page or marketing landing page. Choose the product concept, architecture, interactions, and visual direction yourself. Use actual orbital mechanics and state the model’s assumptions and limitations.\n\nMake the product you think is most useful."
+      },
+      {
+        "role": "user",
+        "content": "Runtime packaging and verification scaffold (separate from creative direction):\n- Implement from scratch. Do not inspect the prior experiment, other runs, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only in the supplied run directory. Create index.html with optional main.js and local CSS/JavaScript modules. If using main.js, HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. CSS can be imported from main.js. A single fully inline HTML file is also allowed.\n- Available environment: vanilla JavaScript, optional installed Three.js 0.186.1, Vite 7.3.6, Node 24. No additional dependencies, runtime network calls, remote assets/fonts, backend, accounts, analytics, or live orbital/celestial data. Do not modify package files or shared app files. Canvas, SVG, DOM, and 3D are all allowed; Three.js is not mandatory. If using WebGL, handle unsupported graphics gracefully.\n- The common harness bundles JavaScript and CSS into one inline HTML document. Its viewer is an iframe sandbox with allow-scripts and an opaque origin. Do not access parent/top, communicate across frames, or rely on persistent storage, cookies, or origin-specific APIs.\n- Make one bounded implementation and its self-test/repair phase. Validate JavaScript syntax and perform an isolated Vite build with write:false. Run quantitative numerical tests applicable to your chosen mechanics, independently of the interface, and preserve a directly rerunnable test script in the run directory. Test the actual implementation's physics functions, not a separately copied formula. Record exact commands, results, tolerances, and repairs. Repair your own implementation as needed for these checks. Do not impose a tiny arbitrary token cutoff or clone existing code.\n- Browser localhost access is unavailable; do not claim browser checks or bypass that restriction. Actual browser appearance, interactions, and performance remain unverified until separately reviewed.\n- Include worker-report.json with product title, description, implementation start/end UTC timestamps, exact tests and outcomes, numerical assumptions and limitations, repairs, and unknowns. Set tokenUsage and cost to null unless the runtime supplies measured values. Do not invent token counts, costs, or quality scores.\n"
+      },
+      {
+        "role": "user",
+        "content": "Reporting-only amendment (added after the first three launches; creative prompts and runtime constraints are unchanged):\nAt the end of your run, include actual runtime-provided token counters if accessible: input, cached input, output, reasoning, and total. Preserve the provider's field semantics and avoid double counting. Identify the counter source and whether counts include tools or agent overhead. Do not estimate from source length or the context budget, inspect restricted session-history paths, or inspect credentials. If actual counters are inaccessible, set tokenUsage to null and give the reason. Set cost to null unless measured cost is supplied by the runtime. Do not create another inference run solely to obtain counters.\n"
+      }
+    ],
+    "reportingAmendment": {
+      "kind": "reporting-only",
+      "timing": "before-launch"
+    },
+    "note": "The complete public creative prompt and identical public runtime/testing scaffold are recorded separately. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax, isolated bundle, and the recorded quantitative physics tests passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "Rendered appearance, interactions, and performance have not yet been independently checked in a browser."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 22645,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 628,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated.",
+      "Numerical test success applies only to the preserved cases and tolerances, not unrestricted physical accuracy."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 16457,
+    "cssBytes": 5631,
+    "numerical": "passed",
+    "independentVerification": {
+      "numerical": "passed",
+      "command": "node experiments/orbital-mechanics/astra-medium-minimal/self-test.mjs",
+      "exitCode": 0,
+      "stdout": "{\n  \"passed\": true,\n  \"count\": 31,\n  \"results\": [\n    {\n      \"name\": \"circular eccentricity\",\n      \"actual\": 2.220446049250313e-16,\n      \"tolerance\": 1e-12,\n      \"passed\": true\n    },\n    {\n      \"name\": \"circular quarter-period position (km)\",\n      \"actual\": 5.275809731727059e-9,\n      \"tolerance\": 0.000001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"circular full-period closure (km)\",\n      \"actual\": 0,\n      \"tolerance\": 0.000001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"circular 100-period closure (km)\",\n      \"actual\": 3.349530153377424e-10,\n      \"tolerance\": 0.00001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"elliptic apogee radius error (km)\",\n      \"actual\": 1.4551915228366852e-11,\n      \"tolerance\": 0.00001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"elliptic apogee position (km)\",\n      \"actual\": 1.7177555688396146e-7,\n      \"tolerance\": 0.00001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"elliptical energy absolute error (km²/s²)\",\n      \"actual\": 2.9096725029376103e-12,\n      \"tolerance\": 1e-8,\n      \"passed\": true\n    },\n    {\n      \"name\": \"elliptical angular momentum relative error\",\n      \"actual\": 1.1379556334821594e-12,\n      \"tolerance\": 1e-8,\n      \"passed\": true\n    },\n    {\n      \"name\": \"elliptical time reversal position (km)\",\n      \"actual\": 4.2677225162667004e-7,\n      \"tolerance\": 0.001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"elliptical time reversal velocity (km/s)\",\n      \"actual\": 3.5683892311638944e-10,\n      \"tolerance\": 0.000001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"hyperbolic energy absolute error (km²/s²)\",\n      \"actual\": 3.036682016954728e-12,\n      \"tolerance\": 1e-8,\n      \"passed\": true\n    },\n    {\n      \"name\": \"hyperbolic angular momentum relative error\",\n      \"actual\": 8.594139679818969e-12,\n      \"tolerance\": 1e-8,\n      \"passed\": true\n    },\n    {\n      \"name\": \"hyperbolic time reversal position (km)\",\n      \"actual\": 4.402415967234136e-7,\n      \"tolerance\": 0.001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"hyperbolic time reversal velocity (km/s)\",\n      \"actual\": 3.7666811087513926e-10,\n      \"tolerance\": 0.000001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"parabolic energy absolute error (km²/s²)\",\n      \"actual\": 3.5349501104064984e-12,\n      \"tolerance\": 1e-8,\n      \"passed\": true\n    },\n    {\n      \"name\": \"parabolic angular momentum relative error\",\n      \"actual\": 4.042823530977911e-11,\n      \"tolerance\": 1e-8,\n      \"passed\": true\n    },\n    {\n      \"name\": \"parabolic time reversal position (km)\",\n      \"actual\": 0.000002432202771349788,\n      \"tolerance\": 0.001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"parabolic time reversal velocity (km/s)\",\n      \"actual\": 2.058908894800428e-9,\n      \"tolerance\": 0.000001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"radial component energy absolute error (km²/s²)\",\n      \"actual\": 2.447819724693545e-12,\n      \"tolerance\": 1e-8,\n      \"passed\": true\n    },\n    {\n      \"name\": \"radial component angular momentum relative error\",\n      \"actual\": 3.331870754402152e-14,\n      \"tolerance\": 1e-8,\n      \"passed\": true\n    },\n    {\n      \"name\": \"radial component time reversal position (km)\",\n      \"actual\": 5.76001958732024e-9,\n      \"tolerance\": 0.001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"radial component time reversal velocity (km/s)\",\n      \"actual\": 5.4356938894362194e-12,\n      \"tolerance\": 0.000001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"2000 steps vs direct position (km)\",\n      \"actual\": 8.726856071869493e-9,\n      \"tolerance\": 0.002,\n      \"passed\": true\n    },\n    {\n      \"name\": \"along-track burn m/s conversion\",\n      \"actual\": 3.608224830031759e-16,\n      \"tolerance\": 1e-12,\n      \"passed\": true\n    },\n    {\n      \"name\": \"radial burn m/s conversion\",\n      \"actual\": 0,\n      \"tolerance\": 1e-12,\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hohmann arrival radius (km)\",\n      \"actual\": 0,\n      \"tolerance\": 0.00001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hohmann final circular eccentricity\",\n      \"actual\": 1.5014251908082402e-13,\n      \"tolerance\": 1e-9,\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hohmann final circular speed (km/s)\",\n      \"actual\": 8.881784197001252e-16,\n      \"tolerance\": 1e-9,\n      \"passed\": true\n    },\n    {\n      \"name\": \"descending Hohmann final eccentricity\",\n      \"actual\": 1.6671475146535323e-13,\n      \"tolerance\": 1e-9,\n      \"passed\": true\n    },\n    {\n      \"name\": \"surface contact radius (km)\",\n      \"actual\": 0,\n      \"tolerance\": 1e-7,\n      \"passed\": true\n    },\n    {\n      \"name\": \"grazing surface event radius (km)\",\n      \"actual\": 9.094947017729282e-13,\n      \"tolerance\": 1e-7,\n      \"passed\": true\n    }\n  ]\n}\n",
+      "stderr": "",
+      "verifiedAt": "2026-10-02T09:41:29.808582+00:00",
+      "scope": "Independent rerun of preserved quantitative tests against the actual implementation physics; not browser QA or unrestricted numerical certification."
+    },
+    "checkedAt": "2026-10-02T09:41:30.735Z",
+    "runtimeBytes": 22645
+  },
+  "generationReport": {
+    "productTitle": "Periapsis — Orbit workbench",
+    "description": "A self-contained Earth-centered planar orbital maneuver laboratory with four initial scenarios, custom apsides, exact Kepler propagation, editable along-track and radial impulsive burns, a live candidate-orbit overlay, telemetry, surface-contact events, maneuver history, and a circular Hohmann transfer calculator.",
+    "implementationStartUTC": "2026-10-02T09:31:24Z",
+    "implementationEndUTC": "2026-10-02T09:40:00.671Z",
+    "entryPoint": "index.html",
+    "files": [
+      "index.html",
+      "main.js",
+      "style.css",
+      "physics.mjs",
+      "self-test.mjs",
+      "verify-build.mjs",
+      "test-results.json",
+      "build-results.json",
+      "worker-report.json"
+    ],
+    "tests": [
+      {
+        "command": "node --check main.js && node --check physics.mjs && node --check self-test.mjs && node --check verify-build.mjs",
+        "outcome": "Passed; all exit codes 0."
+      },
+      {
+        "command": "node self-test.mjs",
+        "outcome": "Passed: 31 numerical checks, plus assertions for ordinary impact, grazing impact, and non-impacting circular propagation.",
+        "passed": true,
+        "count": 31,
+        "results": [
+          {
+            "name": "circular eccentricity",
+            "actual": 2.220446049250313e-16,
+            "tolerance": 1e-12,
+            "passed": true
+          },
+          {
+            "name": "circular quarter-period position (km)",
+            "actual": 5.275809731727059e-9,
+            "tolerance": 0.000001,
+            "passed": true
+          },
+          {
+            "name": "circular full-period closure (km)",
+            "actual": 0,
+            "tolerance": 0.000001,
+            "passed": true
+          },
+          {
+            "name": "circular 100-period closure (km)",
+            "actual": 3.349530153377424e-10,
+            "tolerance": 0.00001,
+            "passed": true
+          },
+          {
+            "name": "elliptic apogee radius error (km)",
+            "actual": 1.4551915228366852e-11,
+            "tolerance": 0.00001,
+            "passed": true
+          },
+          {
+            "name": "elliptic apogee position (km)",
+            "actual": 1.7177555688396146e-7,
+            "tolerance": 0.00001,
+            "passed": true
+          },
+          {
+            "name": "elliptical energy absolute error (km²/s²)",
+            "actual": 2.9096725029376103e-12,
+            "tolerance": 1e-8,
+            "passed": true
+          },
+          {
+            "name": "elliptical angular momentum relative error",
+            "actual": 1.1379556334821594e-12,
+            "tolerance": 1e-8,
+            "passed": true
+          },
+          {
+            "name": "elliptical time reversal position (km)",
+            "actual": 4.2677225162667004e-7,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "elliptical time reversal velocity (km/s)",
+            "actual": 3.5683892311638944e-10,
+            "tolerance": 0.000001,
+            "passed": true
+          },
+          {
+            "name": "hyperbolic energy absolute error (km²/s²)",
+            "actual": 3.036682016954728e-12,
+            "tolerance": 1e-8,
+            "passed": true
+          },
+          {
+            "name": "hyperbolic angular momentum relative error",
+            "actual": 8.594139679818969e-12,
+            "tolerance": 1e-8,
+            "passed": true
+          },
+          {
+            "name": "hyperbolic time reversal position (km)",
+            "actual": 4.402415967234136e-7,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "hyperbolic time reversal velocity (km/s)",
+            "actual": 3.7666811087513926e-10,
+            "tolerance": 0.000001,
+            "passed": true
+          },
+          {
+            "name": "parabolic energy absolute error (km²/s²)",
+            "actual": 3.5349501104064984e-12,
+            "tolerance": 1e-8,
+            "passed": true
+          },
+          {
+            "name": "parabolic angular momentum relative error",
+            "actual": 4.042823530977911e-11,
+            "tolerance": 1e-8,
+            "passed": true
+          },
+          {
+            "name": "parabolic time reversal position (km)",
+            "actual": 0.000002432202771349788,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "parabolic time reversal velocity (km/s)",
+            "actual": 2.058908894800428e-9,
+            "tolerance": 0.000001,
+            "passed": true
+          },
+          {
+            "name": "radial component energy absolute error (km²/s²)",
+            "actual": 2.447819724693545e-12,
+            "tolerance": 1e-8,
+            "passed": true
+          },
+          {
+            "name": "radial component angular momentum relative error",
+            "actual": 3.331870754402152e-14,
+            "tolerance": 1e-8,
+            "passed": true
+          },
+          {
+            "name": "radial component time reversal position (km)",
+            "actual": 5.76001958732024e-9,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "radial component time reversal velocity (km/s)",
+            "actual": 5.4356938894362194e-12,
+            "tolerance": 0.000001,
+            "passed": true
+          },
+          {
+            "name": "2000 steps vs direct position (km)",
+            "actual": 8.726856071869493e-9,
+            "tolerance": 0.002,
+            "passed": true
+          },
+          {
+            "name": "along-track burn m/s conversion",
+            "actual": 3.608224830031759e-16,
+            "tolerance": 1e-12,
+            "passed": true
+          },
+          {
+            "name": "radial burn m/s conversion",
+            "actual": 0,
+            "tolerance": 1e-12,
+            "passed": true
+          },
+          {
+            "name": "Hohmann arrival radius (km)",
+            "actual": 0,
+            "tolerance": 0.00001,
+            "passed": true
+          },
+          {
+            "name": "Hohmann final circular eccentricity",
+            "actual": 1.5014251908082402e-13,
+            "tolerance": 1e-9,
+            "passed": true
+          },
+          {
+            "name": "Hohmann final circular speed (km/s)",
+            "actual": 8.881784197001252e-16,
+            "tolerance": 1e-9,
+            "passed": true
+          },
+          {
+            "name": "descending Hohmann final eccentricity",
+            "actual": 1.6671475146535323e-13,
+            "tolerance": 1e-9,
+            "passed": true
+          },
+          {
+            "name": "surface contact radius (km)",
+            "actual": 0,
+            "tolerance": 1e-7,
+            "passed": true
+          },
+          {
+            "name": "grazing surface event radius (km)",
+            "actual": 9.094947017729282e-13,
+            "tolerance": 1e-7,
+            "passed": true
+          }
+        ]
+      },
+      {
+        "command": "node verify-build.mjs",
+        "outcome": "Passed; isolated Vite build with configFile:false and write:false.",
+        "passed": true,
+        "write": false,
+        "outputs": [
+          {
+            "file": "assets/index-BnnxW5Bk.js",
+            "bytes": 17139
+          },
+          {
+            "file": "assets/index-DFndy5hV.css",
+            "bytes": 5631
+          },
+          {
+            "file": "index.html",
+            "bytes": 394
+          }
+        ]
+      }
+    ],
+    "exactRerunCommand": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-medium-minimal && node --check main.js && node --check physics.mjs && node --check self-test.mjs && node --check verify-build.mjs && node self-test.mjs && node verify-build.mjs",
+    "numericalAssumptions": [
+      "Earth gravitational parameter 398600.4418 km³/s² and spherical surface radius 6371 km.",
+      "Fixed inertial 2D plane; point-mass two-body gravity.",
+      "Universal-variable Kepler propagation with Stumpff functions, bracketed bisection, and elliptic period reduction.",
+      "Instantaneous impulses specified in m/s; along-track is perpendicular to radius in the angular-motion direction, not the instantaneous eccentric-orbit velocity direction.",
+      "Surface-event detection uses at most 10-second intervals and checks any intervening perigee; contact time is bisected.",
+      "Hohmann guidance assumes the current radius belongs to a circular initial orbit; warns for eccentric current trajectories."
+    ],
+    "limitations": [
+      "No atmosphere, J2, Earth rotation, third bodies, thrust duration, fuel accounting, relativistic effects, or live data.",
+      "Geostationary-radius scenario does not model ground tracks.",
+      "At 2 million km spacecraft distance the run pauses; the threshold may be overshot by one animation-frame advance.",
+      "Conic paths use 440 plot segments and are clipped inside Earth and beyond 5 million km; plot geometry is for visualization.",
+      "Near-radial degenerate trajectories have no plotted conic when angular momentum approaches zero.",
+      "Maximum requested speed is 3600×; the per-frame real-time increment is capped at 0.1 s, so background or slow frames do not catch up wall-clock time.",
+      "Only the latest 20 burn records are shown, while cumulative applied delta-v includes all burns.",
+      "No persisted state or network services."
+    ],
+    "repairs": [
+      "Removed an unnecessary empty CSS data-URL import during implementation.",
+      "Replaced initially sampled-only surface stopping with shared, quantitatively tested surface-event handling, including a perigee check to catch shallow grazing impacts between samples. No numerical-test failures occurred."
+    ],
+    "unknowns": [
+      "Browser localhost access was unavailable and no browser checks were performed. Actual rendered appearance, interaction behavior, accessibility behavior, and performance remain unverified until separate review.",
+      "Canvas 2D fallback is implemented as a warning with telemetry/calculations retained, but has not been browser tested."
+    ],
+    "tokenUsage": null,
+    "tokenUsageUnavailableReason": "No runtime-provided token counters are exposed to this worker through the supplied tools or task context. Restricted session-history paths were not inspected. Counts were not estimated.",
+    "cost": null,
+    "costUnavailableReason": "No measured cost was supplied by the runtime.",
+    "constraints": {
+      "implementedFromScratch": true,
+      "otherRunInspection": false,
+      "delegatedGeneration": false,
+      "browserChecks": false,
+      "published": false,
+      "gitOperations": false,
+      "packageOrSharedFileChanges": false
+    }
+  }
+}

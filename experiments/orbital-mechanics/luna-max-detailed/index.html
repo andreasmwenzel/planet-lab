@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b1118" />
+    <meta name="description" content="An Earth-orbit sandbox for exploring how small velocity changes reshape a spacecraft's path." />
+    <title>Orbital Lab — Earth Orbit Studio</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#main" aria-label="Orbital Lab home">
+          <span class="brand-mark" aria-hidden="true"><span></span></span>
+          <span class="brand-name">orbital<span>lab</span></span>
+        </a>
+        <div class="topbar-right">
+          <span class="model-badge"><i></i> EARTH · TWO-BODY MODEL</span>
+          <span class="version-note">PLANAR SANDBOX&nbsp; / &nbsp;01</span>
+        </div>
+      </header>
+
+      <main id="main" class="workspace">
+        <section class="stage-card card" aria-labelledby="stage-title">
+          <div class="stage-head">
+            <div>
+              <p class="eyebrow">MISSION VIEW <span class="eyebrow-line"></span></p>
+              <h1 id="stage-title">Shape an orbit</h1>
+              <p class="stage-subtitle">One careful burn can change the whole route</p>
+            </div>
+            <div class="mode-chip"><span class="mode-dot"></span><span id="modeLabel">ELLIPTIC ORBIT</span></div>
+          </div>
+
+          <div class="canvas-wrap">
+            <canvas id="orbitCanvas" aria-label="Top-down Earth-centered view of the spacecraft orbit. A dashed line shows the predicted orbit and a bright line shows the flown path." role="img"></canvas>
+            <div class="canvas-overlay overlay-top-left">
+              <span class="overlay-label">MISSION ELAPSED</span>
+              <strong id="clockReadout">T+ 00:00:00</strong>
+            </div>
+            <div class="canvas-overlay overlay-top-right">
+              <span class="overlay-label">CURRENT ALTITUDE</span>
+              <strong id="altitudeReadout">420 km</strong>
+            </div>
+            <div class="scene-caption"><span class="caption-orbit"></span> Predicted conic <span class="caption-trail"></span> Flown path</div>
+            <div id="impactBanner" class="impact-banner" hidden><span>●</span> EARTH INTERCEPT · SIMULATION PAUSED</div>
+          </div>
+
+          <div class="transport-row">
+            <div class="transport-controls" aria-label="Simulation controls">
+              <button id="playButton" class="button button-primary" type="button" aria-pressed="false">
+                <span id="playIcon" class="play-symbol" aria-hidden="true">▶</span><span id="playText">Play mission</span>
+              </button>
+              <button id="stepButton" class="button button-quiet" type="button" title="Advance the simulation by five minutes">Step +5 min <span aria-hidden="true">↗</span></button>
+              <button id="resetButton" class="icon-button" type="button" aria-label="Reset to the current maneuver settings" title="Reset simulation">↺</button>
+            </div>
+            <label class="speed-control" for="timeScale">
+              <span>TIME SCALE</span>
+              <select id="timeScale" aria-label="Simulation time scale">
+                <option value="1">1×</option>
+                <option value="60" selected>60×</option>
+                <option value="300">300×</option>
+                <option value="900">900×</option>
+              </select>
+            </label>
+          </div>
+          <div class="stage-note"><span class="note-mark">i</span><span id="trajectoryNote">The dashed ellipse is your predicted path. Change the impulse to compare trajectories, then play to fly it.</span></div>
+        </section>
+
+        <aside class="control-rail" aria-label="Mission design and orbit data">
+          <section class="card presets-card" aria-labelledby="preset-title">
+            <div class="card-heading">
+              <div><p class="eyebrow">STARTING POINT</p><h2 id="preset-title">Try a maneuver</h2></div>
+              <span class="step-count">01 <span>/ 02</span></span>
+            </div>
+            <div class="preset-grid">
+              <button class="preset-button selected" type="button" data-preset="circular" aria-pressed="true">
+                <span class="preset-symbol symbol-ring" aria-hidden="true"></span>
+                <span class="preset-copy"><strong>Stay in LEO</strong><small>Near-circular baseline</small></span>
+                <span class="preset-check" aria-hidden="true">✓</span>
+              </button>
+              <button class="preset-button" type="button" data-preset="geo" aria-pressed="false">
+                <span class="preset-symbol symbol-transfer" aria-hidden="true"></span>
+                <span class="preset-copy"><strong>Reach GEO</strong><small>Raise apogee to geostationary altitude</small></span>
+                <span class="preset-check" aria-hidden="true">✓</span>
+              </button>
+              <button class="preset-button" type="button" data-preset="escape" aria-pressed="false">
+                <span class="preset-symbol symbol-escape" aria-hidden="true"></span>
+                <span class="preset-copy"><strong>Escape Earth</strong><small>Just above local escape speed</small></span>
+                <span class="preset-check" aria-hidden="true">✓</span>
+              </button>
+              <button class="preset-button" type="button" data-preset="reentry" aria-pressed="false">
+                <span class="preset-symbol symbol-entry" aria-hidden="true"></span>
+                <span class="preset-copy"><strong>Aim for reentry</strong><small>Lower the path through the surface</small></span>
+                <span class="preset-check" aria-hidden="true">✓</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="card maneuver-card" aria-labelledby="maneuver-title">
+            <div class="card-heading compact-heading">
+              <div><p class="eyebrow">DESIGN THE BURN</p><h2 id="maneuver-title">Tune the impulse</h2></div>
+              <span id="customBadge" class="custom-badge" hidden>CUSTOM</span>
+            </div>
+            <div class="range-control">
+              <div class="range-label-line"><label for="orbitAltitude">Starting altitude</label><output id="altitudeValue" for="orbitAltitude">420 km</output></div>
+              <input id="orbitAltitude" type="range" min="200" max="2000" step="10" value="420" aria-describedby="altitudeHint" />
+              <div class="range-scale"><span>200 km</span><span>2,000 km</span></div>
+              <p id="altitudeHint" class="micro-copy">Circular Earth orbit before the burn</p>
+            </div>
+            <div class="range-control">
+              <div class="range-label-line"><label for="deltaV">Velocity change · Δv</label><output id="deltaVValue" for="deltaV">0 m/s</output></div>
+              <input id="deltaV" type="range" min="-2200" max="4200" step="10" value="0" aria-describedby="deltaVHint" />
+              <div class="range-scale"><span>−2,200 m/s retrograde</span><span>+4,200 m/s prograde</span></div>
+              <p id="deltaVHint" class="micro-copy">Impulse is instantaneous; negative values burn retrograde</p>
+            </div>
+            <div class="range-control angle-control">
+              <div class="range-label-line"><label for="burnAngle">Burn aim</label><output id="burnAngleValue" for="burnAngle">0° · prograde</output></div>
+              <input id="burnAngle" type="range" min="-90" max="90" step="1" value="0" aria-describedby="angleHint" />
+              <div class="range-scale"><span>−90° inward</span><span>prograde</span><span>+90° outward</span></div>
+              <p id="angleHint" class="micro-copy">Angle is measured from prograde toward radial-out</p>
+            </div>
+            <div class="result-strip">
+              <div class="result-glyph" aria-hidden="true">↗</div>
+              <p id="outcomeText">A circular orbit keeps the spacecraft at roughly the same altitude.</p>
+            </div>
+          </section>
+
+          <section class="card telemetry-card" aria-labelledby="telemetry-title" aria-live="polite">
+            <div class="telemetry-heading">
+              <div><p class="eyebrow">LIVE TELEMETRY</p><h2 id="telemetry-title">Orbit readout</h2></div>
+              <span class="telemetry-live"><i></i> LIVE</span>
+            </div>
+            <div class="telemetry-grid">
+              <div class="metric metric-primary"><span>APOGEE ALTITUDE</span><strong id="apogeeValue">420 km</strong><small>farthest point</small></div>
+              <div class="metric metric-primary"><span>PERIGEE ALTITUDE</span><strong id="perigeeValue">420 km</strong><small>closest point</small></div>
+              <div class="metric"><span>ORBIT SPEED</span><strong id="speedValue">7.67 km/s</strong></div>
+              <div class="metric"><span>ECCENTRICITY</span><strong id="eccentricityValue">0.000</strong></div>
+              <div class="metric"><span>SPECIFIC ENERGY</span><strong id="energyValue">−29.35 MJ/kg</strong></div>
+              <div class="metric"><span>PERIOD</span><strong id="periodValue">90 min</strong></div>
+            </div>
+            <div class="readout-foot"><span>INERTIAL POSITION</span><strong id="positionValue">x +6,791 km · y 0 km</strong></div>
+          </section>
+
+          <details class="card assumptions-card">
+            <summary><span class="assumption-icon" aria-hidden="true">◎</span><span><strong>Model &amp; assumptions</strong><small>What this simulator includes</small></span><span class="details-arrow" aria-hidden="true">⌄</span></summary>
+            <div class="assumption-body">
+              <p><strong>Newtonian two-body motion.</strong> Earth is a fixed point mass with μ = 398,600.4418 km³/s². The spacecraft moves in a planar inertial frame under gravity only.</p>
+              <p>Burns are instantaneous changes to velocity. The drawn conic is the exact osculating two-body path; the flown trail uses a 5-second velocity-Verlet step.</p>
+              <p><strong>Not modeled:</strong> atmosphere and drag, Earth oblateness, Moon/Sun gravity, thrust duration, finite spacecraft mass, or rotating-Earth launch coordinates. Earth is a spherical 6,371 km impact boundary; GEO altitude is measured from that radius.</p>
+            </div>
+          </details>
+        </aside>
+      </main>
+      <footer class="app-footer"><span>ORBITAL LAB <span class="footer-separator">/</span> LEARN BY CHANGING ONE THING AT A TIME</span><span>NO LIVE FLIGHT DATA · EDUCATIONAL MODEL</span></footer>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

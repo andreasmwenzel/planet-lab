@@ -1,0 +1,84 @@
+{
+  "results": [
+    {
+      "name": "Circular eccentricity",
+      "value": 1.1891684236100184e-16,
+      "tolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "Ten-orbit relative energy drift",
+      "value": 1.7453329819850352e-10,
+      "tolerance": 1e-8,
+      "pass": true
+    },
+    {
+      "name": "Ten-orbit relative angular momentum drift",
+      "value": 8.726657906007388e-11,
+      "tolerance": 1e-8,
+      "pass": true
+    },
+    {
+      "name": "Ten-orbit position closure (km)",
+      "value": 0.0001509226754315608,
+      "tolerance": 0.01,
+      "pass": true
+    },
+    {
+      "name": "Transfer half-period apsis timing (s)",
+      "value": 0,
+      "tolerance": 1e-7,
+      "pass": true
+    },
+    {
+      "name": "Transfer apogee altitude error (km)",
+      "value": 0.0000026751549739856273,
+      "tolerance": 0.001,
+      "pass": true
+    },
+    {
+      "name": "Circularization eccentricity",
+      "value": 0,
+      "tolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "Circularization target apsides error (km)",
+      "value": 0.0000026751549739856273,
+      "tolerance": 0.001,
+      "pass": true
+    },
+    {
+      "name": "Hohmann first burn apoapsis error (km)",
+      "value": 5.4569682106375694e-12,
+      "tolerance": 1e-7,
+      "pass": true
+    },
+    {
+      "name": "Radial burn projection (km/s)",
+      "value": 0,
+      "tolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "Escape classified and propagates outward",
+      "pass": true
+    },
+    {
+      "name": "Earth-intersecting orbit stops at collision",
+      "pass": true,
+      "time": 531.4432672580648
+    },
+    {
+      "name": "Retrograde circulation burn remains prograde to motion",
+      "value": 0,
+      "tolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "Orbit display points finite for circular, elliptic, radial and escape cases",
+      "pass": true
+    }
+  ],
+  "hohmannFirstBurnMetersPerSecond": 425.11432646153224
+}

@@ -1,0 +1,163 @@
+{
+  "status": "PASS",
+  "checks": 25,
+  "results": [
+    {
+      "name": "400 km circular velocity (km/s)",
+      "value": 7.672598648385013,
+      "expected": 7.672598648385013,
+      "absoluteError": 0,
+      "tolerance": 1e-12
+    },
+    {
+      "name": "Circular eccentricity",
+      "value": 1.2069943631034978e-16,
+      "expected": 0,
+      "absoluteError": 1.2069943631034978e-16,
+      "tolerance": 1e-12
+    },
+    {
+      "name": "Circular one-period position closure (km)",
+      "value": 0.0000010370153198482164,
+      "expected": 0,
+      "absoluteError": 0.0000010370153198482164,
+      "tolerance": 0.001
+    },
+    {
+      "name": "Circular one-period velocity closure (km/s)",
+      "value": 1.175084967547902e-9,
+      "expected": 0,
+      "absoluteError": 1.175084967547902e-9,
+      "tolerance": 0.000001
+    },
+    {
+      "name": "Elliptic three-period relative energy drift",
+      "value": 1.7432434028494576e-12,
+      "expected": 0,
+      "absoluteError": 1.7432434028494576e-12,
+      "tolerance": 1e-8
+    },
+    {
+      "name": "Elliptic three-period relative angular-momentum drift",
+      "value": 5.948309469214773e-13,
+      "expected": 0,
+      "absoluteError": 5.948309469214773e-13,
+      "tolerance": 1e-8
+    },
+    {
+      "name": "Elliptic three-period position closure (km)",
+      "value": 0.0000026172345551048256,
+      "expected": 0,
+      "absoluteError": 0.0000026172345551048256,
+      "tolerance": 0.01
+    },
+    {
+      "name": "Hohmann periapsis altitude (km)",
+      "value": 400.0000000000009,
+      "expected": 400,
+      "absoluteError": 9.094947017729282e-13,
+      "tolerance": 1e-8
+    },
+    {
+      "name": "Hohmann apoapsis altitude (km)",
+      "value": 1199.9999999999982,
+      "expected": 1200,
+      "absoluteError": 1.8189894035458565e-12,
+      "tolerance": 1e-8
+    },
+    {
+      "name": "Next apsis time matches Hohmann half-period (s)",
+      "value": 3021.694600843022,
+      "expected": 3021.6946008430223,
+      "absoluteError": 4.547473508864641e-13,
+      "tolerance": 1e-8
+    },
+    {
+      "name": "Circular orbit has no unique apsis target",
+      "passed": true
+    },
+    {
+      "name": "Propagated Hohmann target altitude (km)",
+      "value": 1199.999999804645,
+      "expected": 1200,
+      "absoluteError": 1.9535491446731612e-7,
+      "tolerance": 0.001
+    },
+    {
+      "name": "Hohmann arrival radial velocity (km/s)",
+      "value": 3.000155628488882e-11,
+      "expected": 0,
+      "absoluteError": 3.000155628488882e-11,
+      "tolerance": 0.000001
+    },
+    {
+      "name": "Next apsis from apoapsis targets periapsis (s)",
+      "value": 3021.6946009065778,
+      "expected": 3021.6946008430223,
+      "absoluteError": 6.355548975989223e-8,
+      "tolerance": 0.001
+    },
+    {
+      "name": "Next apsis correctly switches at apoapsis",
+      "passed": true
+    },
+    {
+      "name": "Hohmann final eccentricity",
+      "value": 2.43539389101285e-11,
+      "expected": 0,
+      "absoluteError": 2.43539389101285e-11,
+      "tolerance": 0.000001
+    },
+    {
+      "name": "Hohmann final semimajor axis (km)",
+      "value": 7570.999999986351,
+      "expected": 7571,
+      "absoluteError": 1.3648786989506334e-8,
+      "tolerance": 0.001
+    },
+    {
+      "name": "Circularization cancels radial velocity",
+      "value": 2.7162063431314278e-17,
+      "expected": 0,
+      "absoluteError": 2.7162063431314278e-17,
+      "tolerance": 1e-12
+    },
+    {
+      "name": "Circularization final eccentricity",
+      "value": 3.540138703438303e-18,
+      "expected": 0,
+      "absoluteError": 3.540138703438303e-18,
+      "tolerance": 1e-12
+    },
+    {
+      "name": "Local radial burn component",
+      "value": 0.249999999876891,
+      "expected": 0.25,
+      "absoluteError": 1.2310899522027796e-10,
+      "tolerance": 1e-7
+    },
+    {
+      "name": "Local prograde burn component",
+      "value": 7.572598648507251,
+      "expected": 7.572598648385013,
+      "absoluteError": 1.2223733136806914e-10,
+      "tolerance": 1e-7
+    },
+    {
+      "name": "4 km/s prograde burn creates unbound orbit",
+      "passed": true
+    },
+    {
+      "name": "Retrograde collision predicted and surface propagation stopped",
+      "passed": true
+    },
+    {
+      "name": "Zero-time propagation preserves state without aliasing",
+      "passed": true
+    },
+    {
+      "name": "Original input state remains immutable",
+      "passed": true
+    }
+  ]
+}

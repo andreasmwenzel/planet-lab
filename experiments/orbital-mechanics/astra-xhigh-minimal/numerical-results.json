@@ -1,0 +1,88 @@
+{
+  "testedAt": "2026-10-02T09:57:57.106Z",
+  "status": "pass",
+  "tests": [
+    {
+      "name": "Circular analytic quarter-orbit and period closure",
+      "status": "pass",
+      "positionErrorKm": 5.230909593113388e-12,
+      "closureErrorKm": 1.39563756390726e-11,
+      "toleranceKm": 0.00002
+    },
+    {
+      "name": "Elliptical apoapsis and vis-viva",
+      "status": "pass",
+      "positionErrorKm": 3.3456026737432933e-10,
+      "speedErrorKmS": 8.43769498715119e-15,
+      "toleranceKm": 0.0002,
+      "toleranceKmS": 2e-8
+    },
+    {
+      "name": "Energy and angular momentum across 1,500 varied conic states",
+      "status": "pass",
+      "states": 1500,
+      "maxEnergyRelative": 3.508125854213381e-9,
+      "maxAngularMomentumRelative": 7.06362462131136e-10,
+      "energyTolerance": 3e-7,
+      "angularMomentumTolerance": 3e-8
+    },
+    {
+      "name": "Propagation reversal for elliptic, parabolic, hyperbolic, and retrograde states",
+      "status": "pass",
+      "cases": 25,
+      "maxPositionErrorKm": 0.000006166773361454341,
+      "maxVelocityErrorKmS": 6.897319295339358e-9,
+      "toleranceKm": 0.03,
+      "toleranceKmS": 0.00002
+    },
+    {
+      "name": "Hohmann transfer energy, arrival radius and circularization across all bodies",
+      "status": "pass",
+      "cases": 9,
+      "maxRadiusErrorKm": 1.0913936421275139e-11,
+      "maxEccentricity": 1.2544121972175713e-11,
+      "maxEnergyError": 2.842170943040401e-14,
+      "radiusToleranceKm": 0.0001,
+      "eccentricityTolerance": 1e-8,
+      "energyTolerance": 1e-7
+    },
+    {
+      "name": "LEO-to-GEO reference Hohmann budget",
+      "status": "pass",
+      "burn1KmS": 2.42576902830686,
+      "burn2KmS": 1.4668387152844526,
+      "totalKmS": 3.8926077435913125,
+      "coastSeconds": 18990.05183848129,
+      "burnToleranceKmS": 0.00003,
+      "coastToleranceSeconds": 10
+    },
+    {
+      "name": "Impulses use radial and local prograde transverse axes, including retrograde",
+      "status": "pass",
+      "maxComponentErrorKmS": 3.608224830031759e-16,
+      "toleranceKmS": 1e-12
+    },
+    {
+      "name": "First surface contact, including inbound/outbound escape and parabolic paths",
+      "status": "pass",
+      "cases": 3,
+      "maxSurfaceErrorKm": 5.9753801906481385e-9,
+      "toleranceKm": 0.002
+    },
+    {
+      "name": "Conic samples satisfy focus equation and sampled state invariants",
+      "status": "pass",
+      "maxEquationErrorKm": 2.6193447411060333e-10,
+      "toleranceKm": 0.000001
+    },
+    {
+      "name": "Repeated small-step propagation over ten circular periods",
+      "status": "pass",
+      "steps": 10000,
+      "positionErrorKm": 9.472239385553613e-8,
+      "relativeEnergyError": 2.0458554454604291e-13,
+      "positionToleranceKm": 0.05,
+      "energyTolerance": 1e-7
+    }
+  ]
+}

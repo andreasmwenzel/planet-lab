@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "write": false,
+  "outputs": [
+    {
+      "fileName": "assets/index-CZ9db1ti.js",
+      "type": "chunk",
+      "bytes": 16697
+    },
+    {
+      "fileName": "assets/index-Bx9ryXyz.css",
+      "type": "asset",
+      "bytes": 7646
+    },
+    {
+      "fileName": "index.html",
+      "type": "asset",
+      "bytes": 364
+    }
+  ]
+}

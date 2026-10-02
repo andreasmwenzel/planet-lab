@@ -1,0 +1,125 @@
+{
+  "executedAt": "2026-10-02T10:10:31.345Z",
+  "command": "node workflow-tests.mjs",
+  "method": "Actual main.js controller imported with a Node-only DOM double; canvas context unavailable. Not a browser test.",
+  "passed": true,
+  "checks": 29,
+  "results": [
+    {
+      "name": "Actual controller initializes default guided plan",
+      "passed": true
+    },
+    {
+      "name": "Initial telemetry populated",
+      "passed": true
+    },
+    {
+      "name": "Changed target blocks executing the stale plan",
+      "passed": true
+    },
+    {
+      "name": "Replanning enables the updated maneuver",
+      "passed": true
+    },
+    {
+      "name": "Departure advances guided workflow to coast",
+      "passed": true
+    },
+    {
+      "name": "Midflight target editing is locked",
+      "passed": true
+    },
+    {
+      "name": "Coast jump advances exact mission clock",
+      "passed": true
+    },
+    {
+      "name": "Arrival burn becomes next action",
+      "passed": true
+    },
+    {
+      "name": "Transport locked at arrival prevents drifting past burn point",
+      "passed": true
+    },
+    {
+      "name": "Arrival completes guided workflow",
+      "passed": true
+    },
+    {
+      "name": "Completed target is circular in actual telemetry",
+      "passed": true
+    },
+    {
+      "name": "Completed flight releases transport lock",
+      "passed": true
+    },
+    {
+      "name": "Undo arrival restores arrival-ready state",
+      "passed": true
+    },
+    {
+      "name": "Free burn replaces the completed plan",
+      "passed": true
+    },
+    {
+      "name": "Free burn clears inputs to prevent accidental duplicate burn",
+      "passed": true
+    },
+    {
+      "name": "Undo restores free-burn values for deliberate retry",
+      "passed": true
+    },
+    {
+      "name": "Reset asks before discarding flight",
+      "passed": true
+    },
+    {
+      "name": "Cancel reset preserves flight time",
+      "passed": true
+    },
+    {
+      "name": "Confirmed reset restores starting orbit and time",
+      "passed": true
+    },
+    {
+      "name": "Reset clears undo history",
+      "passed": true
+    },
+    {
+      "name": "Invalid custom orbit leaves current flight intact",
+      "passed": true
+    },
+    {
+      "name": "Valid custom ellipse loads",
+      "passed": true
+    },
+    {
+      "name": "Elliptical starts select the free-burn workflow",
+      "passed": true
+    },
+    {
+      "name": "Blank free-burn component is blocked",
+      "passed": true
+    },
+    {
+      "name": "Circularize helper produces a circular orbit",
+      "passed": true
+    },
+    {
+      "name": "Deorbit preview warns about surface intersection",
+      "passed": true
+    },
+    {
+      "name": "Surface encounter stops transport",
+      "passed": true
+    },
+    {
+      "name": "Surface encounter explains recovery",
+      "passed": true
+    },
+    {
+      "name": "Undo recovers an impacted flight",
+      "passed": true
+    }
+  ]
+}

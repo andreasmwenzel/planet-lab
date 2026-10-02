@@ -1,0 +1,189 @@
+{
+  "id": "luna-max-refined",
+  "experimentId": "orbital-mechanics",
+  "title": "Luna · max · refined",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/orbital-mechanics/luna-max-refined/index.html",
+  "axes": {
+    "model": "Luna",
+    "effort": "max",
+    "promptApproach": "refined"
+  },
+  "summary": "A browser-based two-body orbit profile editor for Earth, Moon, and Mars. Users set periapsis and apoapsis altitude, select presets, control simulated time, and inspect the planar spacecraft state and classical orbital elements.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation in a fresh native task, with the displayed model and effort explicitly configured. Four frozen creative prompts share the same separately recorded runtime and numerical-testing scaffold. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6-luna",
+    "effort": "max",
+    "runId": "luna-max-refined",
+    "launchIndex": 8,
+    "startedAt": "2026-10-02T08:22:41Z",
+    "completedAt": "2026-10-02T08:44:36.115Z",
+    "durationSeconds": 1315,
+    "durationScope": "Observed wall-clock time from task launch to independently verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "tokenUsageReason": "No actual input, cached-input, output, reasoning, or total token counters were exposed by the execution runtime to this worker. Counts were not estimated and restricted session-history paths were not inspected.",
+    "tokenUsageSource": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1 (optional)",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; deployed browser review is separate. Available cloud browser does not support WebGL2."
+    },
+    "sourceHashes": {
+      "index.html": "7b0ef74289fc8f6ae37da8ea38b73844d02bea38de6b1c1558ad4d31c3064a47",
+      "main.js": "ab750e4ff1707b0114d4a8c0b54c439c69039da5a29dafe5541a99c2b3ebaf29",
+      "mechanics.js": "22e6d1f47fafacbdbcb50d3a6a86b9715ae948c122949fa8d189bf19639c2ec3",
+      "physics.test.mjs": "d8c7ebbaa78d4c842364dc3d93a03a18b506576ee5a07bd28430cb1cb6331e46",
+      "prompt.txt": "14377862ce854d7cbce0f6eab05cd1784408bfee2530b90a4e12fc5c3af6a314",
+      "style.css": "702380a0fe5b2ecdaa6a2298abc4c62f5d4ebbad8262841f5c9c9f33f8aaf8ce",
+      "worker-report.json": "0bbde06e363ab7241c78f0869676abf791e52d870b8c59f51a4abfaf5288f418"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an in-browser orbital mechanics simulator\n\nDeliver a finished, usable product, not a demo page or marketing landing page. Choose the product concept, architecture, interactions, and visual direction yourself. Use actual orbital mechanics and state the model’s assumptions and limitations.\n\nBuild an elegant, carefully resolved product. Find a specific purpose and remove everything that distracts from it. Make the workflow feel considered, the information clear, and the interactions dependable. Restraint should improve usefulness rather than turn the result into a generic minimalist demo."
+      },
+      {
+        "role": "user",
+        "content": "Runtime packaging and verification scaffold (separate from creative direction):\n- Implement from scratch. Do not inspect the prior experiment, other runs, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only in the supplied run directory. Create index.html with optional main.js and local CSS/JavaScript modules. If using main.js, HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. CSS can be imported from main.js. A single fully inline HTML file is also allowed.\n- Available environment: vanilla JavaScript, optional installed Three.js 0.186.1, Vite 7.3.6, Node 24. No additional dependencies, runtime network calls, remote assets/fonts, backend, accounts, analytics, or live orbital/celestial data. Do not modify package files or shared app files. Canvas, SVG, DOM, and 3D are all allowed; Three.js is not mandatory. If using WebGL, handle unsupported graphics gracefully.\n- The common harness bundles JavaScript and CSS into one inline HTML document. Its viewer is an iframe sandbox with allow-scripts and an opaque origin. Do not access parent/top, communicate across frames, or rely on persistent storage, cookies, or origin-specific APIs.\n- Make one bounded implementation and its self-test/repair phase. Validate JavaScript syntax and perform an isolated Vite build with write:false. Run quantitative numerical tests applicable to your chosen mechanics, independently of the interface, and preserve a directly rerunnable test script in the run directory. Test the actual implementation's physics functions, not a separately copied formula. Record exact commands, results, tolerances, and repairs. Repair your own implementation as needed for these checks. Do not impose a tiny arbitrary token cutoff or clone existing code.\n- Browser localhost access is unavailable; do not claim browser checks or bypass that restriction. Actual browser appearance, interactions, and performance remain unverified until separately reviewed.\n- Include worker-report.json with product title, description, implementation start/end UTC timestamps, exact tests and outcomes, numerical assumptions and limitations, repairs, and unknowns. Set tokenUsage and cost to null unless the runtime supplies measured values. Do not invent token counts, costs, or quality scores.\n"
+      },
+      {
+        "role": "user",
+        "content": "Reporting-only amendment (added after the first three launches; creative prompts and runtime constraints are unchanged):\nAt the end of your run, include actual runtime-provided token counters if accessible: input, cached input, output, reasoning, and total. Preserve the provider's field semantics and avoid double counting. Identify the counter source and whether counts include tools or agent overhead. Do not estimate from source length or the context budget, inspect restricted session-history paths, or inspect credentials. If actual counters are inaccessible, set tokenUsage to null and give the reason. Set cost to null unless measured cost is supplied by the runtime. Do not create another inference run solely to obtain counters.\n"
+      }
+    ],
+    "reportingAmendment": {
+      "kind": "reporting-only",
+      "timing": "before-launch"
+    },
+    "note": "The complete public creative prompt and identical public runtime/testing scaffold are recorded separately. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax, isolated bundle, and the recorded quantitative physics tests passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "Rendered appearance, interactions, and performance have not yet been independently checked in a browser."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 34192,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 1315,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated.",
+      "Numerical test success applies only to the preserved cases and tolerances, not unrestricted physical accuracy."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 9563,
+    "cssBytes": 14588,
+    "numerical": "passed",
+    "independentVerification": {
+      "numerical": "passed",
+      "command": "node experiments/orbital-mechanics/luna-max-refined/physics.test.mjs",
+      "exitCode": 0,
+      "stdout": "✔ circular Earth orbit has zero eccentricity and consistent speed, energy, and period (2.009785ms)\n✔ elliptic Earth transfer reaches both apsides with vis-viva speed (0.244316ms)\n✔ propagating one full orbital period closes the perifocal state (0.193403ms)\n✔ Kepler solver meets its residual tolerance for a high-eccentricity ellipse (0.66862ms)\n✔ Kepler solver remains accurate near periapsis at the Moon UI eccentricity limit (0.219745ms)\n✔ specific angular momentum and energy are invariant around a transfer orbit (0.220578ms)\n✔ body constants and invalid orbit guardrails are explicit (0.454823ms)\nℹ tests 7\nℹ suites 0\nℹ pass 7\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 12.455834\n",
+      "stderr": "",
+      "verifiedAt": "2026-10-02T08:44:35.477314+00:00",
+      "scope": "Independent rerun of preserved quantitative tests against the actual implementation physics; not browser QA or unrestricted numerical certification."
+    },
+    "checkedAt": "2026-10-02T08:44:36.115Z",
+    "runtimeBytes": 34192
+  },
+  "generationReport": {
+    "productTitle": "Orbit Desk — Orbital Profile Lab",
+    "description": "A browser-based two-body orbit profile editor for Earth, Moon, and Mars. Users set periapsis and apoapsis altitude, select presets, control simulated time, and inspect the planar spacecraft state and classical orbital elements.",
+    "implementationStartedUTC": "2026-10-02T08:23:08Z",
+    "implementationCompletedUTC": "2026-10-02T08:43:35Z",
+    "sourceFiles": [
+      "index.html",
+      "main.js",
+      "mechanics.js",
+      "style.css",
+      "physics.test.mjs"
+    ],
+    "validation": [
+      {
+        "command": "node --check main.js && node --check mechanics.js",
+        "result": "PASS"
+      },
+      {
+        "command": "node --test physics.test.mjs",
+        "result": "PASS: 7 tests, 7 passed, 0 failed, 0 skipped",
+        "tests": [
+          "Circular Earth orbit: eccentricity within 1e-15, radius within 1e-9 km, speed within 1e-12 km/s of vis-viva, period within 1e-9 s of the independent period expression, energy within 1e-11 km²/s² of −v²/2; LEO period also bounded to 5,500–5,600 s.",
+          "Earth 250 × 35,786 km altitude ellipse: periapsis radius within 1e-8 km, apoapsis within 1e-7 km, vis-viva speeds within 1e-11 km/s, radial velocity within 1e-12 km/s at each apsis, eccentricity within 1e-14.",
+          "Mars 300 × 100,000 km altitude orbit: position after one period closes within 1e-7 km per axis and velocity within 1e-10 km/s per axis.",
+          "Kepler solver at e = 0.98 and M = 2.4 rad: equation residual within 1e-12 rad.",
+          "Kepler solver at the maximum lunar UI altitude pair (100 × 200,000 km; e ≈ 0.98194865) and seven mean anomalies from 1e-6 to 6.2 rad: each residual within 1e-12 rad.",
+          "Earth transfer orbit at four elapsed-time samples: specific angular momentum invariant within 2e-8 km²/s and specific orbital energy within 2e-11 km²/s².",
+          "Body ordering and guardrails: unknown body, apoapsis below periapsis, and eccentricity 1 are rejected."
+        ]
+      },
+      {
+        "command": "node --input-type=module -e 'import { build } from \"vite\"; await build({ root: process.cwd(), configFile: false, publicDir: false, logLevel: \"warn\", build: { write: false } }); console.log(\"Vite isolated build (write:false): passed\");'",
+        "result": "PASS: isolated Vite build completed with write:false; no build output written."
+      },
+      {
+        "check": "Required module script packaging",
+        "result": "PASS: index.html contains the exact required module script tag once."
+      }
+    ],
+    "numericalAssumptions": [
+      "Classical Newtonian, elliptic, two-body motion with a single central point mass and constant gravitational parameter.",
+      "The spacecraft is massless for propagation; spacecraft mass does not affect the orbit.",
+      "The orbital plane is fixed and represented in perifocal coordinates; no inclination, longitude of ascending node, or argument of periapsis is modeled.",
+      "Body radii are spherical reference radii: Earth 6,378.137 km, Moon 1,737.4 km, Mars 3,389.5 km. Altitude is measured above the selected reference radius.",
+      "Gravitational parameters in km³/s²: Earth 398,600.4418, Moon 4,902.800066, Mars 42,828.375214.",
+      "UI altitude controls keep periapsis at or above 100 km and apoapsis no lower than periapsis; the mechanics module also accepts non-negative periapsis altitude.",
+      "Canvas geometry is schematic and adaptively scaled. Numerical telemetry is computed from the same two-body orbit state."
+    ],
+    "limitations": [
+      "No atmosphere or drag, oblateness/J2, third-body effects, thrust or maneuvers, body rotation, collision handling, or interplanetary transfer dynamics.",
+      "High-altitude configurations are still propagated as idealized bound two-body ellipses even where a real mission would need other bodies' gravity.",
+      "Canvas visuals, browser interactions, and performance were not browser-verified; the prompt disallowed localhost browser checks."
+    ],
+    "repairs": [
+      "Changed the altitude note from “mean radius” to “reference radius” to accurately describe the selected body-radius convention."
+    ],
+    "unknowns": [
+      "Actual appearance and responsive behavior in a browser remain unverified.",
+      "No browser cross-engine or runtime performance checks were run."
+    ],
+    "tokenUsage": null,
+    "tokenUsageUnavailableReason": "No actual input, cached-input, output, reasoning, or total token counters were exposed by the execution runtime to this worker. Counts were not estimated and restricted session-history paths were not inspected.",
+    "tokenCounterSource": null,
+    "tokenCounterSemantics": null,
+    "tokenCountsIncludeToolsOrAgentOverhead": null,
+    "cost": null,
+    "costUnavailableReason": "No measured cost was supplied by the runtime."
+  }
+}

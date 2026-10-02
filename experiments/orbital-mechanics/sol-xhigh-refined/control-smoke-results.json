@@ -1,0 +1,18 @@
+{
+  "startedAtUtc": "2026-10-02T09:28:17.551Z",
+  "endedAtUtc": "2026-10-02T09:28:17.725Z",
+  "passed": true,
+  "checks": [
+    "Actual main.js initializes its real HTML IDs and numerical readouts",
+    "Execute records exactly one impulse and clears the draft",
+    "Playback advances analytical state and pauses on a draft change",
+    "Scrubbing changes the burn point and restores a nonzero preview",
+    "Undo restores the exact original draft and burn point",
+    "Zero impulse is disabled; presets and custom validation reset coherently",
+    "Modal opens and closes; reset returns to the chosen custom orbit",
+    "Collision coasting stops exactly at the modeled Earth surface",
+    "Burn inputs clamp to their documented limits and camera controls run",
+    "Escape trajectories stop at the stated six-hour coast horizon"
+  ],
+  "scope": "Actual main.js with deterministic DOM/canvas stubs. This does not verify a real browser, rendering, layout, native events, accessibility, or performance."
+}

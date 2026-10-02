@@ -1,0 +1,366 @@
+{
+  "productTitle": "The Last Orbit",
+  "description": "A finished, local end-of-life flight desk for rehearsing impulsive spacecraft disposal. Users edit an impulse ledger, scrub a true-scale orbital diagram and altitude timeline, and aim the first 120 km atmospheric-interface crossing at a fictional rotating-Earth equatorial sector. Three retirement cases, a vis-viva perigee template, a departure-time solver, budget accounting, undo/redo and copyable/importable flight receipts are included.",
+  "runConfiguration": {
+    "requestedModel": "gpt-6.1-sol",
+    "requestedReasoningEffort": "xhigh",
+    "generationDelegated": false
+  },
+  "implementationStartUTC": "2026-10-02T09:01:29Z",
+  "implementationEndUTC": "2026-10-02T09:27:25Z",
+  "entryPoint": "index.html",
+  "files": [
+    "index.html",
+    "main.js",
+    "style.css",
+    "physics.js",
+    "test-physics.mjs",
+    "test-structure.mjs",
+    "verify-build.mjs",
+    "README.md",
+    "worker-report.json",
+    "physics-test-output.txt",
+    "structure-test-output.txt",
+    "build-test-output.txt"
+  ],
+  "tests": [
+    {
+      "name": "JavaScript syntax",
+      "command": "node --check main.js && node --check physics.js && node --check test-physics.mjs && node --check test-structure.mjs && node --check verify-build.mjs",
+      "outcome": "passed",
+      "exitCode": 0
+    },
+    {
+      "name": "Actual physics implementation numerical tests",
+      "command": "node test-physics.mjs",
+      "outcome": "passed",
+      "exitCode": 0,
+      "result": {
+        "status": "passed",
+        "passed": 14,
+        "maxIndependentPositionErrorKm": 2.0311075473705757e-10,
+        "tests": [
+          {
+            "name": "Circular quarter-turn agrees with analytic coordinates",
+            "status": "passed",
+            "milliseconds": 0.538,
+            "positionErrorKm": 6.404931837835037e-12,
+            "velocityErrorKmS": 1.0821743607125938e-14,
+            "tolerances": {
+              "positionKm": 1e-07,
+              "velocityKmS": 1e-10
+            }
+          },
+          {
+            "name": "Thirty orbit ellipse closes and conserves invariants",
+            "status": "passed",
+            "milliseconds": 4.137,
+            "closureErrorKm": 0,
+            "maxRelativeEnergyError": 3.306577546716064e-13,
+            "maxRelativeAngularMomentumError": 3.3657946871051976e-13,
+            "tolerances": {
+              "closureKm": 1e-05,
+              "invariantsRelative": 1e-10
+            }
+          },
+          {
+            "name": "Ellipse apo/perigee and half-period match vis-viva",
+            "status": "passed",
+            "milliseconds": 3.089,
+            "measuredPerigeeKm": 299.9999999999991,
+            "positionToleranceKm": 1e-07,
+            "speedToleranceKmS": 1e-10
+          },
+          {
+            "name": "Universal propagation matches independent RK4 across conic regimes",
+            "status": "passed",
+            "milliseconds": 91.24,
+            "cases": [
+              {
+                "name": "elliptic",
+                "positionErrorKm": 1.0233432146682005e-10,
+                "velocityErrorKmS": 1.300423806549264e-13
+              },
+              {
+                "name": "near-parabolic-below",
+                "positionErrorKm": 6.86220617737022e-11,
+                "velocityErrorKmS": 5.756739235742288e-14
+              },
+              {
+                "name": "parabolic",
+                "positionErrorKm": 4.1925056160501047e-11,
+                "velocityErrorKmS": 8.747542958250513e-15
+              },
+              {
+                "name": "near-parabolic-above",
+                "positionErrorKm": 2.691432338409122e-11,
+                "velocityErrorKmS": 3.580361673049448e-14
+              },
+              {
+                "name": "hyperbolic",
+                "positionErrorKm": 2.0311075473705757e-10,
+                "velocityErrorKmS": 1.2304717531868368e-13
+              }
+            ],
+            "independentReference": "RK4 acceleration integration, 0.25 s steps",
+            "tolerances": {
+              "positionKm": 2e-05,
+              "velocityKmS": 2e-08
+            }
+          },
+          {
+            "name": "Forward/backward propagation is reversible",
+            "status": "passed",
+            "milliseconds": 0.783,
+            "maxPositionErrorKm": 8.526223301725522e-09,
+            "maxVelocityErrorKmS": 2.1264683532458315e-12,
+            "tolerances": {
+              "positionKm": 2e-05,
+              "velocityKmS": 2e-08
+            }
+          },
+          {
+            "name": "Radial/transverse impulses are correct in both momentum directions",
+            "status": "passed",
+            "milliseconds": 0.426,
+            "toleranceKmS": 1e-12,
+            "directionsTested": [
+              "prograde",
+              "retrograde"
+            ]
+          },
+          {
+            "name": "80 km template yields exact apsides and analytic 120 km crossing",
+            "status": "passed",
+            "milliseconds": 0.634,
+            "deltaVMS": 93.41512373699956,
+            "hitTimeS": 2073.0368255266885,
+            "anomalyTimeErrorS": 4.547473508864641e-12,
+            "crossingAltitudeKm": 120.00000000000091,
+            "tolerance": {
+              "timeS": 1e-07,
+              "radiusKm": 1e-07
+            }
+          },
+          {
+            "name": "Hyperbolic and parabolic inbound crossing is finite and descending",
+            "status": "passed",
+            "milliseconds": 0.214,
+            "maxCrossingRadiusErrorKm": 7.185008144006133e-11,
+            "toleranceKm": 2e-05
+          },
+          {
+            "name": "Rotating-Earth longitude and wrapped sectors behave at the date line",
+            "status": "passed",
+            "milliseconds": 0.092,
+            "toleranceDegrees": 1e-10,
+            "dateLineChecks": 3
+          },
+          {
+            "name": "Mission ledger executes chronologically and stops at handoff",
+            "status": "passed",
+            "milliseconds": 8.886,
+            "handoffTimeS": 2762.0033081736456,
+            "plannedDVMS": 590,
+            "executedDVMS": 90,
+            "radiusToleranceKm": 1e-07
+          },
+          {
+            "name": "One-burn solver acquires each preset corridor within budget",
+            "status": "passed",
+            "milliseconds": 27.001,
+            "cases": [
+              {
+                "targetDegrees": -150,
+                "actualDegrees": -150.00000011327245,
+                "errorDegrees": 1.132724270922664e-07,
+                "deltaVMS": 93.41512373699956,
+                "burnTimeS": 921.8013149999999
+              },
+              {
+                "targetDegrees": -70,
+                "actualDegrees": -69.99999986302997,
+                "errorDegrees": 1.3697005302403988e-07,
+                "deltaVMS": 435.8851625939151,
+                "burnTimeS": 3825.39876
+              },
+              {
+                "targetDegrees": 110,
+                "actualDegrees": 109.99999997978264,
+                "errorDegrees": 2.021733577712883e-08,
+                "deltaVMS": 199.7085188154264,
+                "burnTimeS": 3767.638475
+              }
+            ],
+            "longitudeToleranceDegrees": 0.0001,
+            "budgetToleranceMS": 1e-06
+          },
+          {
+            "name": "Stumpff zero and invalid-input guards",
+            "status": "passed",
+            "milliseconds": 1.2,
+            "stumpffTolerance": 1e-15,
+            "rejectedCases": 3
+          },
+          {
+            "name": "Exactly radial descent uses the bounded event fallback",
+            "status": "passed",
+            "milliseconds": 0.375,
+            "hitTimeS": 364.1892508613719,
+            "radiusErrorKm": 0,
+            "toleranceKm": 1e-07,
+            "bracketStepS": 5
+          },
+          {
+            "name": "Two hundred deterministic mission states remain finite and stop above Earth",
+            "status": "passed",
+            "milliseconds": 85.787,
+            "cases": 200,
+            "componentRangeMS": [
+              -5000,
+              5000
+            ],
+            "horizonS": 21600,
+            "lowestEndpointAltitudeKm": 119.99999999983447,
+            "crossingToleranceKm": 2e-05
+          }
+        ]
+      },
+      "outputFile": "physics-test-output.txt"
+    },
+    {
+      "name": "Static runtime and DOM-target checks",
+      "command": "node test-structure.mjs",
+      "outcome": "passed",
+      "exitCode": 0,
+      "result": {
+        "status": "passed",
+        "staticDOMTargetsChecked": 45,
+        "templateIds": 51,
+        "checks": [
+          "Exact runtime script",
+          "Static DOM target presence",
+          "No remote or imported CSS assets",
+          "No runtime network calls",
+          "No persistent origin storage",
+          "No cross-frame access",
+          "Responsive rule presence",
+          "Focus-style presence"
+        ],
+        "limitation": "Static source checks only. This does not verify actual DOM execution, browser rendering, interaction behavior, accessibility or performance."
+      },
+      "outputFile": "structure-test-output.txt"
+    },
+    {
+      "name": "Isolated Vite build",
+      "command": "node verify-build.mjs",
+      "outcome": "passed",
+      "exitCode": 0,
+      "result": {
+        "status": "passed",
+        "write": false,
+        "configFile": false,
+        "output": [
+          {
+            "file": "assets/index-DR6gvcQn.js",
+            "type": "chunk",
+            "bytes": 36614
+          },
+          {
+            "file": "assets/index-uE-WdHOl.css",
+            "type": "asset",
+            "bytes": 19910
+          },
+          {
+            "file": "index.html",
+            "type": "asset",
+            "bytes": 445
+          }
+        ],
+        "totalBytes": 56969
+      },
+      "outputFile": "build-test-output.txt",
+      "configuration": {
+        "configFile": false,
+        "publicDir": false,
+        "build.write": false,
+        "additionalDependencies": false
+      }
+    }
+  ],
+  "exactRerunCommand": "node --check main.js && node --check physics.js && node --check test-physics.mjs && node --check test-structure.mjs && node --check verify-build.mjs && node test-physics.mjs && node test-structure.mjs && node verify-build.mjs",
+  "testWorkingDirectory": "/workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/sol-xhigh-bold",
+  "numericalAssumptions": [
+    "Units are kilometers, seconds and kilometers per second; displayed impulses are meters per second.",
+    "Planar equatorial two-body gravity: spherical Earth radius 6371 km and gravitational parameter 398600.4418 km^3/s^2. Initial position is at apogee, with prograde angular momentum.",
+    "Between impulsive burns, the actual implementation solves the universal-variable Kepler equation with a bracketed Newton iteration and Stumpff functions. The residual tolerance is sqrt(mu)*max(1,abs(dt))*2e-13.",
+    "Each instantaneous impulse is applied in the radial-outward and current-angular-momentum transverse basis; chronological ordering is stable for simultaneous impulses.",
+    "Atmospheric handoff is the first conic intersection with the 6491 km radius sphere. Elliptic, hyperbolic and parabolic anomaly time-of-flight expressions are used. Exactly radial degeneracies use 5-second event brackets with 45 bisection iterations.",
+    "Forecasts terminate at the 120 km interface. Future burns are marked unexecuted; planned and executed delta-v are recorded separately.",
+    "Earth-fixed longitude subtracts sidereal Earth rotation with period 86164.0905 seconds. The training window is fictional and may wrap across the date line.",
+    "Trajectories are drawn with 15-second sampling. The one-burn solver scans 721 epochs and refines the best feasible region through six local passes; it is not a global multi-burn optimization."
+  ],
+  "limitations": [
+    "No atmospheric drag, J2/oblateness, inclination, third-body perturbations, lift, heating, breakup, mass loss, finite thrust or fuel-mass model.",
+    "The 120 km handoff is not a ground-impact or landing prediction. Matching the fictional longitude window does not establish real-world disposal safety or feasibility.",
+    "The solver can return the closest budget-feasible window miss or no feasible template. It does not prove that no other burn strategy could work.",
+    "No local persistence is used. Plans remain in the current tab unless the user copies the flight receipt or Plan JSON.",
+    "True-scale orbital traces can overlap across revolutions; the altitude chart provides unambiguous mission-time selection.",
+    "Numerical tests use the actual implementation; the structural checks only inspect source and do not constitute browser execution."
+  ],
+  "repairs": [
+    {
+      "issue": "The first isolated build rejected a redundant empty data-URL CSS import with a PostCSS ENOENT error.",
+      "change": "Removed the unnecessary import.",
+      "verification": "Final write:false Vite build passes."
+    },
+    {
+      "issue": "The initial eccentric-case budget of 310 m/s could not align its chosen window center with the 80 km one-burn template; the test found a 48.3367 degree closest miss.",
+      "change": "Raised that preset budget to 450 m/s. The physics and solver were retained; infeasible-budget outcomes remain explicit.",
+      "verification": "The eccentric-case center error is 1.3697005302403988e-7 degrees at 435.8851625939151 m/s."
+    },
+    {
+      "issue": "Independent UI fields could show perigee above apogee while the mechanics normalized them internally.",
+      "change": "Normalize the companion field during edits and reject reversed apsides in imported plans.",
+      "verification": "Syntax and isolated build pass; actual browser interaction is not verified."
+    },
+    {
+      "issue": "Orbit-path pinning can be ambiguous when multiple revolutions overlap.",
+      "change": "Added a visible notice to use the altitude plot for exact mission-time pinning.",
+      "verification": "Source checks and build pass; actual browser behavior is not verified."
+    }
+  ],
+  "unknowns": [
+    "Browser localhost access was unavailable and no browser checks were attempted.",
+    "Actual appearance, interaction behavior, canvas rendering, responsive behavior, keyboard usability, accessibility and browser performance remain unverified until a separate browser review.",
+    "The common single-inline-document opaque-origin iframe harness was not executed in a browser in this run.",
+    "No actual per-run inference usage or measured cost was supplied by the runtime."
+  ],
+  "tokenUsage": null,
+  "tokenUsageReason": "The exposed runtime supplied no per-run inference counters for input, cached input, output, reasoning or total. Command-output token counts are not inference usage and were not repurposed. No restricted session history, credentials or extra inference runs were used to obtain counters.",
+  "cost": null,
+  "costReason": "No measured provider cost was supplied.",
+  "scopeCompliance": {
+    "implementationFromScratch": true,
+    "onlySuppliedRunDirectoryWritten": true,
+    "otherExperimentsInspected": false,
+    "sharedImplementationInspected": false,
+    "packageOrSharedFilesModified": false,
+    "runtimeNetworkCalls": false,
+    "remoteAssets": false,
+    "persistentStorage": false,
+    "crossFrameAccess": false,
+    "browserLocalhostChecks": false,
+    "publishing": false,
+    "gitOperations": false
+  },
+  "sourceSHA256": {
+    "index.html": "de6e7f1a86895e27533797498e3c70cff21bcd22d583fe8a5ae36b0bead5f624",
+    "main.js": "8968af94df20681140e3c1db50eb113168755d430abf275c8bff6ce6059af6b6",
+    "style.css": "8d044f8311e57c34ddb93591374527f2e14e8134443323da6df96ec9f9d56921",
+    "physics.js": "7b4fc73b3586bdca2d2f6e5bf30953f9af1246a1278478678e263effdcc6a8c1",
+    "test-physics.mjs": "d3ab0038c563d47d437970a347c99c797805b6ee9e9b5d187ea0ee39fe573b23",
+    "test-structure.mjs": "cddc7843cedfed041d650b15a718ce0d4e993fa30e883918d856155d12e15c22",
+    "verify-build.mjs": "ffbfe31faeaf30a27f1ab2924a4bbb9604ff0162274654dff47116a8fc4fa9ab"
+  }
+}

@@ -1,0 +1,2 @@
+PASS source-level interface audit: 33 assertions across default load, validation, presets, burn/undo, high-warp impact, planner/autopilot, reset, export, and model notes.
+No browser, localhost, visual, native DOM, or performance checks were performed.

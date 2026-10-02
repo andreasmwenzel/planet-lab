@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "write": false,
+  "outputs": [
+    {
+      "fileName": "assets/index-BCzjmEJl.js",
+      "bytes": 11675
+    },
+    {
+      "fileName": "assets/index-81v806dv.css",
+      "bytes": 8818
+    },
+    {
+      "fileName": "index.html",
+      "bytes": 412
+    }
+  ]
+}

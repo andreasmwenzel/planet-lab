@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07111d" />
+    <meta name="description" content="An interactive, two-body orbital profile and state inspector." />
+    <title>Orbit Desk — Orbital Profile Lab</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Orbit Desk home">
+          <span class="brand-mark" aria-hidden="true"><span></span><i></i></span>
+          <span class="brand-copy"><strong>ORBIT DESK</strong><small>FLIGHT DYNAMICS / 01</small></span>
+        </a>
+        <div class="topbar-center"><span class="status-dot"></span> LIVE TWO-BODY MODEL <span class="topbar-divider">/</span> KEPLER SOLVER</div>
+        <div class="topbar-right"><span class="utc-label">SIM TIME</span><time id="clockDisplay">00:00:00</time></div>
+      </header>
+
+      <main class="workspace">
+        <aside class="panel controls-panel" aria-label="Orbit controls">
+          <div class="panel-heading">
+            <div><span class="eyebrow">MISSION DESIGN</span><h1>Orbit profile</h1></div>
+            <span class="step-count">01 <b>/</b> 01</span>
+          </div>
+          <label class="field-label" for="bodySelect">Central body</label>
+          <div class="select-wrap">
+            <span class="body-glyph" id="bodyGlyph" aria-hidden="true">⊕</span>
+            <select id="bodySelect" aria-label="Central body">
+              <option value="earth">Earth</option>
+              <option value="moon">Moon</option>
+              <option value="mars">Mars</option>
+            </select>
+            <span class="select-chevron" aria-hidden="true">⌄</span>
+          </div>
+          <div class="body-facts"><span id="bodyMu">μ 398,600 km³/s²</span><span id="bodyRadius">R 6,378 km</span></div>
+
+          <div class="section-rule"></div>
+          <div class="section-head"><span class="eyebrow">ORBIT SHAPE</span><span class="unit-tag">ALTITUDE · KM</span></div>
+          <div class="range-field">
+            <div class="range-label"><label for="periInput">Periapsis</label><output id="periValue" for="periInput">400 km</output></div>
+            <input id="periInput" type="range" min="100" max="50000" step="100" value="400" />
+            <div class="range-scale"><span>100</span><span>50,000</span></div>
+          </div>
+          <div class="range-field">
+            <div class="range-label"><label for="apoInput">Apoapsis</label><output id="apoValue" for="apoInput">400 km</output></div>
+            <input id="apoInput" type="range" min="400" max="200000" step="100" value="400" />
+            <div class="range-scale"><span id="apoMin">400</span><span>200,000</span></div>
+          </div>
+
+          <div class="section-head preset-heading"><span class="eyebrow">STARTING POINTS</span><span class="unit-tag">PRESETS</span></div>
+          <div class="preset-list" role="group" aria-label="Orbit presets">
+            <button class="preset active" data-preset="circular" type="button">
+              <span class="preset-icon circular-icon" aria-hidden="true"></span>
+              <span><strong>Near circular</strong><small>400 × 400 km</small></span>
+              <span class="preset-arrow">↗</span>
+            </button>
+            <button class="preset" data-preset="transfer" type="button">
+              <span class="preset-icon transfer-icon" aria-hidden="true"></span>
+              <span><strong>Transfer profile</strong><small>250 × 35,786 km</small></span>
+              <span class="preset-arrow">↗</span>
+            </button>
+            <button class="preset" data-preset="wide" type="button">
+              <span class="preset-icon wide-icon" aria-hidden="true"></span>
+              <span><strong>Wide ellipse</strong><small>300 × 100,000 km</small></span>
+              <span class="preset-arrow">↗</span>
+            </button>
+          </div>
+
+          <div class="section-rule playback-rule"></div>
+          <div class="section-head"><span class="eyebrow">PROPAGATION</span><span class="unit-tag">KEPLERIAN</span></div>
+          <div class="transport-row">
+            <button id="playButton" class="play-button" type="button" aria-label="Pause simulation">
+              <span class="pause-icon" id="playIcon" aria-hidden="true">Ⅱ</span><span id="playLabel">Pause</span>
+            </button>
+            <button id="resetButton" class="transport-button" type="button" title="Reset to periapsis" aria-label="Reset to periapsis">↺</button>
+            <button id="backButton" class="transport-button" type="button" title="Step back one minute" aria-label="Step back one minute">−1m</button>
+            <button id="forwardButton" class="transport-button" type="button" title="Step forward one minute" aria-label="Step forward one minute">+1m</button>
+          </div>
+          <div class="range-field speed-field">
+            <div class="range-label"><label for="speedInput">Time scale</label><output id="speedValue" for="speedInput">120×</output></div>
+            <input id="speedInput" type="range" min="1" max="600" step="1" value="120" />
+            <div class="range-scale"><span>1×</span><span>600×</span></div>
+          </div>
+          <div class="model-note"><span class="note-icon" aria-hidden="true">i</span><p>Idealized planar orbit. No atmosphere, thrust, oblateness, or third-body forces.</p></div>
+        </aside>
+
+        <section class="visual-stage" aria-label="Orbital visualization">
+          <div class="stage-toolbar">
+            <div><span class="eyebrow">TRAJECTORY VIEW</span><strong id="stageTitle">Earth · Near circular</strong></div>
+            <div class="stage-tools"><span class="legend-line"></span><span>ORBIT PATH</span><span class="legend-ship">◆</span><span>VEHICLE</span></div>
+          </div>
+          <div class="canvas-wrap">
+            <canvas id="orbitCanvas" role="img" aria-label="Planar orbit diagram with current spacecraft position and velocity vector"></canvas>
+            <div class="canvas-corner canvas-corner-top"><span class="corner-label">FRAME</span><strong>PERIFOCAL</strong></div>
+            <div class="canvas-corner canvas-corner-bottom"><span class="corner-label">DISPLAY SCALE</span><strong id="scaleDisplay">— km / px</strong></div>
+            <div class="plot-label plot-label-apo">APOAPSIS <span id="apoPlot">400 km</span></div>
+            <div class="plot-label plot-label-peri">PERIAPSIS <span id="periPlot">400 km</span></div>
+          </div>
+          <div class="stage-footer">
+            <span><i class="legend-body"></i><span id="bodyLegend">EARTH</span> CENTER OF MASS</span>
+            <span class="footer-coords">x → periapsis axis <b>·</b> y → transverse axis</span>
+            <span class="live-tag"><span class="status-dot"></span> PROPAGATING</span>
+          </div>
+        </section>
+
+        <aside class="panel telemetry-panel" aria-label="Orbit telemetry">
+          <div class="panel-heading telemetry-heading"><div><span class="eyebrow">LIVE TELEMETRY</span><h2>Orbital state</h2></div><span class="telemetry-mark">↗</span></div>
+          <div class="state-card">
+            <div class="state-card-top"><span>SPACECRAFT</span><span class="state-live"><i></i> TRACKING</span></div>
+            <div class="speed-reading"><strong id="speedReadout">7.67</strong><span>km/s</span></div>
+            <div class="state-detail"><span>Altitude</span><strong id="altitudeReadout">400 km</strong></div>
+            <div class="state-detail"><span>Radius from center</span><strong id="radiusReadout">6,778 km</strong></div>
+          </div>
+          <div class="telemetry-section">
+            <div class="section-head"><span class="eyebrow">OSCULATING ELEMENTS</span><span class="unit-tag">2-BODY</span></div>
+            <div class="data-row"><span>Semi-major axis <em>a</em></span><strong id="semiMajorReadout">6,778 km</strong></div>
+            <div class="data-row"><span>Eccentricity <em>e</em></span><strong id="eccReadout">0.0000</strong></div>
+            <div class="data-row"><span>Semi-latus rectum <em>p</em></span><strong id="pReadout">6,778 km</strong></div>
+            <div class="data-row"><span>Orbital period</span><strong id="periodReadout">92m 34s</strong></div>
+          </div>
+          <div class="telemetry-section state-section">
+            <div class="section-head"><span class="eyebrow">CURRENT STATE</span><span class="unit-tag">PERIFOCAL</span></div>
+            <div class="data-row"><span>True anomaly</span><strong id="anomalyReadout">0.0°</strong></div>
+            <div class="data-row"><span>Radial velocity</span><strong id="radialReadout">0.00 km/s</strong></div>
+            <div class="data-row"><span>Specific energy</span><strong id="energyReadout">−29.40 km²/s²</strong></div>
+          </div>
+          <div class="assumption-card">
+            <div class="assumption-heading"><span class="assumption-symbol">⌁</span><span>MODEL NOTES</span></div>
+            <p>Point-mass gravity with a spherical reference radius. The path is planar and Keplerian; real missions also account for perturbations, drag, maneuvers, and body-fixed frame effects.</p>
+            <div class="assumption-foot">SI-DERIVED UNITS <span>·</span> ALTITUDE ABOVE REFERENCE RADIUS</div>
+          </div>
+        </aside>
+      </main>
+      <footer class="app-footer"><span>ORBIT DESK <b>·</b> PROFILE LAB</span><span>Newtonian two-body propagation <b>·</b> visualization is schematic, values are computed</span><span>BUILD 01.06</span></footer>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

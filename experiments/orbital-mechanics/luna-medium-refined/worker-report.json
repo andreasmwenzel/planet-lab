@@ -1,0 +1,39 @@
+{
+  "title": "Orbit / Field Notes",
+  "description": "A focused interactive heliocentric flight desk for exploring how semimajor axis and eccentricity change an ideal planet's distance, speed, and orbital period. It visualizes the focus-centered orbital plane, solves Kepler's equation, propagates a two-body state, and displays live readouts.",
+  "implementationStartedAtUtc": "2026-10-02T08:11:46Z",
+  "implementationEndedAtUtc": "2026-10-02T08:15:17Z",
+  "tests": [
+    {
+      "command": "node --check main.js && node --check physics.js",
+      "result": "PASS",
+      "details": "Both JavaScript source files passed Node syntax validation."
+    },
+    {
+      "command": "node --test physics.test.mjs",
+      "result": "PASS",
+      "details": "5 passed, 0 failed. Directly imports physics.js. Kepler residual tested over e=0, 0.25, 0.85, 0.95, 0.999 and 61 mean-anomaly samples each, with absolute equation residual <2e-12. Circular radius and speed over 101 points each tested to relative tolerance 2e-14. For e=0.72 over 401 points, specific energy and angular momentum invariants and vis-viva tested to relative tolerances 4e-13, 4e-13, and 6e-13 respectively. One-period state closure for e=0.49 tested to relative tolerance 2e-13; Kepler period fourth-to-first semimajor-axis ratio tested to 2e-15 relative tolerance. Invalid input domains confirmed to throw RangeError."
+    },
+    {
+      "command": "node build-check.mjs",
+      "result": "PASS",
+      "details": "Isolated Vite build completed with build.write=false; emitted 2 in-memory output files."
+    }
+  ],
+  "physics": {
+    "model": "Newtonian two-body Kepler ellipse, planar state in the orbital plane, Sun treated as a fixed central point mass. Propagates with eccentric anomaly and solves M=E-e sin(E) by Newton iteration.",
+    "constants": "Solar gravitational parameter μ=1.32712440018e20 m^3/s^2; astronomical unit=149597870700 m; day=86400 s.",
+    "limitations": "Bound ellipses only (0≤e<1); no perturbing bodies, solar motion, inclination, non-gravitational forces, atmosphere, finite-size bodies, or relativistic effects. Diagram is a 2D orbital-plane projection and is not a multi-body ephemeris."
+  },
+  "repairs": [
+    "The initial isolated build warned about an empty CSS @import and the first build-check assertion incorrectly assumed Vite returned an array. Removed the empty import and updated the checker to accept Vite's single Rollup output object or an array; rerun passed with 2 output files.",
+    "Reviewing the first pass showed the phase caption inferred inbound/outbound from distance relative to semimajor axis, which mislabels the inbound leg past aphelion. Changed it to use the radial position-velocity dot product and explicitly identify apsides. Re-ran syntax, all five physics tests, and the isolated build successfully."
+  ],
+  "unknowns": [
+    "No browser was available under this run's constraints, so rendered appearance, responsive behavior, control interactions, animation behavior, and runtime performance were not verified in an actual browser.",
+    "No quality or user testing was performed."
+  ],
+  "tokenUsage": null,
+  "tokenUsageReason": "No actual runtime-provided token counter or usage metadata was accessible in the assigned environment. No estimate was made and restricted session-history paths were not inspected.",
+  "cost": null
+}

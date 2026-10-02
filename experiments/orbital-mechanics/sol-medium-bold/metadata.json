@@ -1,0 +1,362 @@
+{
+  "id": "sol-medium-bold",
+  "experimentId": "orbital-mechanics",
+  "title": "Sol 6.1 · medium · bold",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/orbital-mechanics/sol-medium-bold/index.html",
+  "axes": {
+    "model": "Sol 6.1",
+    "effort": "medium",
+    "promptApproach": "bold"
+  },
+  "summary": "A low-Earth-orbit salvage dispatch workstation. Users write a tug burn sheet, request a phased Hohmann rendezvous, compare position and relative velocity, and scrub or play an orbital shift. An industrial job-ticket layout treats orbital mechanics as practical tow planning.",
+  "provenance": {
+    "label": "Controlled generation · interrupted and resumed",
+    "note": "This condition was independently begun with the displayed model and effort, interrupted by routine maintenance, and resumed in a fresh task using the same model, effort, frozen creative prompt and scaffold. Partial work from this condition was preserved; no other condition was consulted. Treat this interruption as a confound when comparing runs.",
+    "modelId": "gpt-6.1-sol",
+    "effort": "medium",
+    "runId": "sol-medium-bold",
+    "launchIndex": 11,
+    "startedAt": "2026-10-02T08:41:51Z",
+    "completedAt": "2026-10-02T08:53:11.516Z",
+    "durationSeconds": 681,
+    "durationScope": "Observed wall-clock time from original launch to independently verified runtime bundle, including an interruption, restart gap, tools and coordination; not continuous model latency.",
+    "tokenUsage": null,
+    "tokenUsageReason": "No provider-supplied input, cached input, output, reasoning, or total token counters are exposed to this worker. No token count is estimated from source size or context budget; no session history or credentials were inspected.",
+    "tokenUsageSource": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1 (optional)",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; deployed browser review is separate. Available cloud browser does not support WebGL2."
+    },
+    "sourceHashes": {
+      "index.html": "353ee6738aaae4b9c62d160da78013678271c0f2712c83fdf68a864362e40c8f",
+      "main.js": "f40ff657a958910e265c29ad41e444ccd57ef912139808f65a9900f15c6144e6",
+      "physics.js": "617e97ba470a1d501e9f2d5e528af632ef781198f5762ca73b4c8fd72abc6ec7",
+      "physics.test.mjs": "11c73b9d256aa7d93cd205d14113722a5ac641a21d1cb1c891ed1f954a4c0d30",
+      "prompt.txt": "7a675e9c426d70c349ff3872a01f62f78cf1b4f28723e22824f123fad8a40b10",
+      "style.css": "155f10af7d2c630cc5499f67eccde5d6457ddf62a82a3878fb168825aad57709",
+      "test-results.json": "e4d5f35469ec7622c20e132b6e244a3dee90701705a7c09209a0c27d420b62a6",
+      "verification-results.json": "0327fe5425c1e1a339ed063dd0cc81a6294ddcab9569fbddb1be22db75d58e71",
+      "verify.mjs": "d2fe9dd3dcb6dffa4242e386085b9fd8966dfe0693f93bca7a11cc0df084b6e6",
+      "worker-report.json": "814229a2174526eb134c08d1178e02a01891c344aab868308045b9a7f1d606f9"
+    },
+    "interruption": {
+      "reason": "Original native worker lost during routine maintenance; exact stop timestamp unavailable.",
+      "discoveredAt": "2026-10-02T08:49:35Z",
+      "priorTaskName": "/root/run_orbital_product_matrix/build_sol_medium_bold",
+      "preservedExistingFiles": true
+    },
+    "continuation": {
+      "startedAt": "2026-10-02T08:50:10Z",
+      "taskName": "/root/resume_orbital_experiments/finish_sol_medium_bold",
+      "modelId": "gpt-6.1-sol",
+      "effort": "medium",
+      "forkTurns": "none"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an in-browser orbital mechanics simulator\n\nDeliver a finished, usable product, not a demo page or marketing landing page. Choose the product concept, architecture, interactions, and visual direction yourself. Use actual orbital mechanics and state the model’s assumptions and limitations.\n\nBe bold. Choose an unexpected, distinctive product concept and commit to it. Let that choice change what users do and how the interface is arranged, not just its colors. Take creative risks while making the simulator scientifically honest and genuinely usable."
+      },
+      {
+        "role": "user",
+        "content": "Runtime packaging and verification scaffold (separate from creative direction):\n- Implement from scratch. Do not inspect the prior experiment, other runs, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only in the supplied run directory. Create index.html with optional main.js and local CSS/JavaScript modules. If using main.js, HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. CSS can be imported from main.js. A single fully inline HTML file is also allowed.\n- Available environment: vanilla JavaScript, optional installed Three.js 0.186.1, Vite 7.3.6, Node 24. No additional dependencies, runtime network calls, remote assets/fonts, backend, accounts, analytics, or live orbital/celestial data. Do not modify package files or shared app files. Canvas, SVG, DOM, and 3D are all allowed; Three.js is not mandatory. If using WebGL, handle unsupported graphics gracefully.\n- The common harness bundles JavaScript and CSS into one inline HTML document. Its viewer is an iframe sandbox with allow-scripts and an opaque origin. Do not access parent/top, communicate across frames, or rely on persistent storage, cookies, or origin-specific APIs.\n- Make one bounded implementation and its self-test/repair phase. Validate JavaScript syntax and perform an isolated Vite build with write:false. Run quantitative numerical tests applicable to your chosen mechanics, independently of the interface, and preserve a directly rerunnable test script in the run directory. Test the actual implementation's physics functions, not a separately copied formula. Record exact commands, results, tolerances, and repairs. Repair your own implementation as needed for these checks. Do not impose a tiny arbitrary token cutoff or clone existing code.\n- Browser localhost access is unavailable; do not claim browser checks or bypass that restriction. Actual browser appearance, interactions, and performance remain unverified until separately reviewed.\n- Include worker-report.json with product title, description, implementation start/end UTC timestamps, exact tests and outcomes, numerical assumptions and limitations, repairs, and unknowns. Set tokenUsage and cost to null unless the runtime supplies measured values. Do not invent token counts, costs, or quality scores.\n"
+      },
+      {
+        "role": "user",
+        "content": "Reporting-only amendment (added after the first three launches; creative prompts and runtime constraints are unchanged):\nAt the end of your run, include actual runtime-provided token counters if accessible: input, cached input, output, reasoning, and total. Preserve the provider's field semantics and avoid double counting. Identify the counter source and whether counts include tools or agent overhead. Do not estimate from source length or the context budget, inspect restricted session-history paths, or inspect credentials. If actual counters are inaccessible, set tokenUsage to null and give the reason. Set cost to null unless measured cost is supplied by the runtime. Do not create another inference run solely to obtain counters.\n"
+      }
+    ],
+    "reportingAmendment": {
+      "kind": "reporting-only",
+      "timing": "before-launch"
+    },
+    "note": "The complete public creative prompt and identical public runtime/testing scaffold are recorded separately. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax, isolated bundle, and the recorded quantitative physics tests passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "Rendered appearance, interactions, and performance have not yet been independently checked in a browser."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 22189,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 681,
+        "unit": "seconds",
+        "source": "Original task launch to artifact completion, including maintenance interruption and restart gap"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated.",
+      "Numerical test success applies only to the preserved cases and tolerances, not unrestricted physical accuracy.",
+      "Interrupted/resumed condition: wall-clock includes downtime; context continuity differs from uninterrupted runs."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 16186,
+    "cssBytes": 5469,
+    "numerical": "passed",
+    "independentVerification": {
+      "numerical": "passed",
+      "command": "node experiments/orbital-mechanics/sol-medium-bold/physics.test.mjs",
+      "exitCode": 0,
+      "stdout": "{\n  \"checks\": 18,\n  \"measurements\": [\n    {\n      \"name\": \"One circular revolution position error / km\",\n      \"value\": 0.000001037028347656841,\n      \"tolerance\": 0.0001,\n      \"pass\": true\n    },\n    {\n      \"name\": \"One circular revolution velocity error / km/s\",\n      \"value\": 1.1750975319653284e-9,\n      \"tolerance\": 0.000001,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Ten revolutions relative specific-energy drift\",\n      \"value\": 1.0197412576116213e-11,\n      \"tolerance\": 1e-8,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Ten revolutions relative angular-momentum drift\",\n      \"value\": -5.098658223719389e-12,\n      \"tolerance\": 1e-8,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Radial impulse x velocity change / km/s\",\n      \"value\": 0,\n      \"tolerance\": 1e-12,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Tangential impulse y velocity change / km/s\",\n      \"value\": -3.608224830031759e-16,\n      \"tolerance\": 1e-12,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Rotated local-frame tangential impulse / km/s\",\n      \"value\": 3.608224830031759e-16,\n      \"tolerance\": 1e-12,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Rotated local-frame radial impulse / km/s\",\n      \"value\": 6.938893903907228e-18,\n      \"tolerance\": 1e-12,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Phased Hohmann rendezvous separation / km\",\n      \"value\": 2.753933069392336e-7,\n      \"tolerance\": 0.001,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Phased Hohmann rendezvous relative speed / m/s\",\n      \"value\": 2.3961157438341063e-7,\n      \"tolerance\": 0.001,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Rendezvous separation at exact circularization event / km\",\n      \"value\": 2.802174253128387e-7,\n      \"tolerance\": 0.001,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Relative speed at exact circularization event / m/s\",\n      \"value\": 2.3804848621776908e-7,\n      \"tolerance\": 0.001,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Post-transfer circular altitude error / km\",\n      \"value\": -8.444840204901993e-8,\n      \"tolerance\": 0.001,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Post-transfer circular eccentricity\",\n      \"value\": 0,\n      \"tolerance\": 1e-7,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Hohmann has no impact\",\n      \"value\": null,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Fractional burn event state error\",\n      \"value\": 1.8339108009968186e-10,\n      \"tolerance\": 1e-8,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Impact detected; post-impact tug frozen and later impulse ignored\",\n      \"value\": 515,\n      \"units\": \"seconds\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Escape impulse classified as unbound\",\n      \"pass\": true\n    }\n  ],\n  \"planner\": {\n    \"wait\": 844.3926347256122,\n    \"transfer\": 2896.1670547965455,\n    \"deltaV\": 217.01530841058945,\n    \"meetingTime\": 4340.559689522158\n  }\n}\n",
+      "stderr": "",
+      "verifiedAt": "2026-10-02T08:53:10.842944+00:00",
+      "scope": "Independent rerun of preserved quantitative tests against the actual implementation physics; not browser QA or unrestricted numerical certification."
+    },
+    "checkedAt": "2026-10-02T08:53:11.516Z",
+    "runtimeBytes": 22189
+  },
+  "generationReport": {
+    "productTitle": "DEBRIS UNION · Orbital dispatch",
+    "description": "A low-Earth-orbit salvage dispatch workstation. Users write a tug burn sheet, request a phased Hohmann rendezvous, compare position and relative velocity, and scrub or play an orbital shift. An industrial job-ticket layout treats orbital mechanics as practical tow planning.",
+    "model": "Sol 6.1",
+    "reasoningEffort": "medium",
+    "modelProvenance": "The parent identifies this directory as a genuine Sol 6.1 medium creation run. Continuation was performed by the assigned replacement worker; no new model inference was launched for measurement.",
+    "implementationStartUTC": null,
+    "implementationStartUnknownReason": "The original worker did not leave a report or a runtime start timestamp. Its precise generation start cannot be recovered without restricted session history, which was not accessed.",
+    "firstExistingImplementationArtifactUTC": "2026-10-02T08:44:57.211798312Z",
+    "firstArtifactTimestampSource": "Filesystem birth time of this run’s physics.js (observed by stat; artifact time, not inference start).",
+    "implementationEndUTC": "2026-10-02T08:52:27.021055Z",
+    "continuationStartUTC": "2026-10-02T08:50:11Z",
+    "continuationEndUTC": "2026-10-02T08:52:27.021055Z",
+    "interruption": {
+      "occurred": true,
+      "note": "Original worker was lost during routine maintenance, according to parent handoff. Existing implementation and its test suite were resumed, inspected, and preserved. This was not a single uninterrupted generation. Exact interruption timestamp is unavailable."
+    },
+    "verification": {
+      "command": "node verify.mjs",
+      "node": "v24.19.0",
+      "vite": "7.3.6",
+      "syntax": {
+        "files": 4,
+        "pass": true
+      },
+      "numericalChecks": 18,
+      "build": {
+        "pass": true,
+        "write": false,
+        "configFile": false,
+        "outputs": [
+          {
+            "file": "assets/index-BkuEwlfU.js",
+            "bytes": 16867
+          },
+          {
+            "file": "assets/index-DYitbN-s.css",
+            "bytes": 5469
+          },
+          {
+            "file": "index.html",
+            "bytes": 371
+          }
+        ]
+      },
+      "browserChecks": "Not performed; localhost browser access is unavailable."
+    },
+    "numericalTests": {
+      "checks": 18,
+      "measurements": [
+        {
+          "name": "One circular revolution position error / km",
+          "value": 0.000001037028347656841,
+          "tolerance": 0.0001,
+          "pass": true
+        },
+        {
+          "name": "One circular revolution velocity error / km/s",
+          "value": 1.1750975319653284e-9,
+          "tolerance": 0.000001,
+          "pass": true
+        },
+        {
+          "name": "Ten revolutions relative specific-energy drift",
+          "value": 1.0197412576116213e-11,
+          "tolerance": 1e-8,
+          "pass": true
+        },
+        {
+          "name": "Ten revolutions relative angular-momentum drift",
+          "value": -5.098658223719389e-12,
+          "tolerance": 1e-8,
+          "pass": true
+        },
+        {
+          "name": "Radial impulse x velocity change / km/s",
+          "value": 0,
+          "tolerance": 1e-12,
+          "pass": true
+        },
+        {
+          "name": "Tangential impulse y velocity change / km/s",
+          "value": -3.608224830031759e-16,
+          "tolerance": 1e-12,
+          "pass": true
+        },
+        {
+          "name": "Rotated local-frame tangential impulse / km/s",
+          "value": 3.608224830031759e-16,
+          "tolerance": 1e-12,
+          "pass": true
+        },
+        {
+          "name": "Rotated local-frame radial impulse / km/s",
+          "value": 6.938893903907228e-18,
+          "tolerance": 1e-12,
+          "pass": true
+        },
+        {
+          "name": "Phased Hohmann rendezvous separation / km",
+          "value": 2.753933069392336e-7,
+          "tolerance": 0.001,
+          "pass": true
+        },
+        {
+          "name": "Phased Hohmann rendezvous relative speed / m/s",
+          "value": 2.3961157438341063e-7,
+          "tolerance": 0.001,
+          "pass": true
+        },
+        {
+          "name": "Rendezvous separation at exact circularization event / km",
+          "value": 2.802174253128387e-7,
+          "tolerance": 0.001,
+          "pass": true
+        },
+        {
+          "name": "Relative speed at exact circularization event / m/s",
+          "value": 2.3804848621776908e-7,
+          "tolerance": 0.001,
+          "pass": true
+        },
+        {
+          "name": "Post-transfer circular altitude error / km",
+          "value": -8.444840204901993e-8,
+          "tolerance": 0.001,
+          "pass": true
+        },
+        {
+          "name": "Post-transfer circular eccentricity",
+          "value": 0,
+          "tolerance": 1e-7,
+          "pass": true
+        },
+        {
+          "name": "Hohmann has no impact",
+          "value": null,
+          "pass": true
+        },
+        {
+          "name": "Fractional burn event state error",
+          "value": 1.8339108009968186e-10,
+          "tolerance": 1e-8,
+          "pass": true
+        },
+        {
+          "name": "Impact detected; post-impact tug frozen and later impulse ignored",
+          "value": 515,
+          "units": "seconds",
+          "pass": true
+        },
+        {
+          "name": "Escape impulse classified as unbound",
+          "pass": true
+        }
+      ],
+      "planner": {
+        "wait": 844.3926347256122,
+        "transfer": 2896.1670547965455,
+        "deltaV": 217.01530841058945,
+        "meetingTime": 4340.559689522158
+      }
+    },
+    "exactRerunCommand": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/sol-medium-bold && node verify.mjs",
+    "testsAndOutcomes": [
+      {
+        "command": "node --check main.js && node --check physics.js && node --check physics.test.mjs",
+        "outcome": "Passed before repair; all four scripts are checked again by verify.mjs after repair."
+      },
+      {
+        "command": "node physics.test.mjs > test-results.json",
+        "outcome": "Passed: 18 quantitative and behavioral checks against imported physics.js functions."
+      },
+      {
+        "command": "node verify.mjs",
+        "outcome": "Passed syntax checks, 18 physics checks, exact HTML module entry assertion, and isolated Vite 7.3.6 build with configFile:false and write:false. No built files written."
+      }
+    ],
+    "numericalAssumptions": [
+      "Kilometres and seconds; Earth radius 6371 km and gravitational parameter 398600.4418 km^3/s^2.",
+      "Two-dimensional Earth-centred inertial frame; initially prograde circular coplanar tug and target.",
+      "Central inverse-square gravity integrated by RK4 at steps no greater than 5 seconds, split at exact impulse events.",
+      "Impulses are instantaneous. Positive along is the counterclockwise local tangent; positive radial is outward. Inputs in m/s are converted to km/s.",
+      "Assisted planning is a phase-matched outward Hohmann transfer, requiring target altitude above tug altitude.",
+      "Rendezvous status uses separation <=1 km and relative speed <=1 m/s at the sampled closest approach.",
+      "Ordered delta-v is the sum of impulse vector magnitudes for burns inside the forecast; it is not propellant mass."
+    ],
+    "limitations": [
+      "Closest approach is sampled every 10 seconds plus burn events, not continuously optimized; the telemetry cursor selects the preceding sample.",
+      "Earth crossing is detected at integration step ends, with up to 5 seconds timing uncertainty. Tug state freezes after crossing; later impulses are ignored.",
+      "No atmosphere, Earth oblateness, third-body forces, finite-duration thrust, fuel dynamics, capture/docking, collision handling between spacecraft, or live celestial data.",
+      "Playback and drawn trails use forecast samples; no browser appearance, interaction, accessibility, or performance validation has been performed.",
+      "This educational simulator is not suitable for operational flight planning."
+    ],
+    "repairs": [
+      {
+        "phase": "continuation",
+        "file": "main.js",
+        "change": "Reject an empty burn input before numeric conversion, preventing an empty optional number field from silently becoming zero."
+      }
+    ],
+    "preservedExistingWork": [
+      "index.html",
+      "main.js (apart from the documented input guard)",
+      "style.css",
+      "physics.js",
+      "physics.test.mjs"
+    ],
+    "continuationDeliverables": [
+      "verify.mjs",
+      "verification-results.json",
+      "rerun test-results.json",
+      "worker-report.json"
+    ],
+    "unknowns": [
+      "Original precise generation start and interruption time.",
+      "Actual browser appearance, interaction behavior, and performance.",
+      "Measured runtime token counters and cost for either the original worker or continuation."
+    ],
+    "tokenUsage": null,
+    "tokenUsageUnavailableReason": "No provider-supplied input, cached input, output, reasoning, or total token counters are exposed to this worker. No token count is estimated from source size or context budget; no session history or credentials were inspected.",
+    "cost": null,
+    "costUnavailableReason": "The runtime supplied no measured cost."
+  }
+}

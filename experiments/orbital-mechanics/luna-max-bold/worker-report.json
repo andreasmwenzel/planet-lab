@@ -1,0 +1,68 @@
+{
+  "productTitle": "Night Shift / Conjunction Desk",
+  "description": "A synthetic orbital-operations console for reviewing conjunction alerts and testing a one-impulse correction. Operators select one of three close-pass incidents, inspect a geocentric track, scrub or play the forecast, adjust radial/prograde delta-v, and compare the result with the zero-burn reference. A bounded grid sweep can suggest a low-magnitude clearance candidate.",
+  "implementationStartedUtc": "2026-10-02T08:24:05Z",
+  "implementationEndedUtc": "2026-10-02T08:37:32Z",
+  "files": [
+    "index.html",
+    "main.js",
+    "style.css",
+    "physics.test.mjs",
+    "worker-report.json"
+  ],
+  "tests": [
+    {
+      "command": "node --check experiments/orbital-mechanics/luna-max-bold/main.js",
+      "result": "passed",
+      "outcome": "exit code 0"
+    },
+    {
+      "command": "node --test experiments/orbital-mechanics/luna-max-bold/physics.test.mjs",
+      "result": "passed",
+      "outcome": "5 tests passed; 0 failed, cancelled, skipped, or todo; reported duration 1131.530675 ms",
+      "checks": [
+        "Earth central acceleration at 7,000 km: radial acceleration equals −μ/r² within 1e−12 km/s²; cross-axis value within 1e−15 km/s²",
+        "Circular state propagated for two periods at a 10 s RK4 step: relative specific-energy drift 5.079421241939266e−11 (<1e−9); relative specific-angular-momentum drift 2.539707536737312e−11 (<1e−9); position closure 0.00003058045854580985 km (<0.01 km)",
+        "Local 3 m/s radial plus 4 m/s prograde impulse: total delta-v 0.005 km/s within 1e−12; recovered local components within 1e−12 km/s",
+        "Three synthetic seeded encounters, simulated at 20 s steps over 5.5 h: EV-17 miss 0.36235898876895417 km at 8,640 s (asserted <0.5 km and within 120 s of seed); EV-31 miss 0.6386215591254855 km at 13,639.756021912202 s (asserted <1 km and within 120 s); EV-42 miss 1.3200197173118375 km at 5,522.232360369859 s (asserted <2 km and within 120 s)",
+        "EV-17 low-fuel search: all 441 points of a 21 × 21 grid evaluated; selected radial −0.2 m/s, tangential −0.2 m/s (magnitude sqrt(0.08) m/s); predicted miss 5.175097388445873 km, above the 5 km configured threshold"
+      ]
+    },
+    {
+      "command": "node --input-type=module -e 'import { build } from \"vite\"; const result = await build({ configFile: false, root: \"experiments/orbital-mechanics/luna-max-bold\", build: { write: false } }); const bundles = Array.isArray(result) ? result : [result]; for (const bundle of bundles) console.log(bundle.output.map((item) => `${item.type}:${item.fileName}`).join(\"\\n\"));'",
+      "result": "passed",
+      "outcome": "Vite 7.3.6 isolated in-memory production build; 4 modules transformed; completed in 232 ms; emitted in-memory JS, CSS, and HTML entries; build.write=false; no dist output written"
+    },
+    {
+      "command": "Python static template audit (inline one-off command; no file written)",
+      "result": "passed",
+      "outcome": "All 31 el(\"id\") references have matching HTML IDs; the only script element is exactly <script type=\"module\" src=\"./main.js\"></script>"
+    }
+  ],
+  "numericalAssumptions": [
+    "Two-dimensional inertial orbital plane around a fixed spherical Earth; μ = 398600.4418 km³/s² and Earth reference radius = 6371 km.",
+    "Each craft is propagated independently as a point mass under central inverse-square gravity using classical fourth-order Runge–Kutta with a default 20 s step. The 20 s map is piecewise linear between samples for closest-approach estimation.",
+    "A plotted maneuver is an instantaneous delta-v at epoch, resolved along local radial and prograde-tangential unit vectors. The interface's bounded candidate sweep checks radial/tangential components from −2 to +2 m/s in 0.2 m/s increments; it reports the lowest-magnitude grid candidate meeting 5 km when one is found, otherwise the best miss in that grid.",
+    "The 5 km response ring and 1 km critical band are UI triage thresholds only; they are not collision probabilities, object-size criteria, covariance bounds, or certified maneuver recommendations.",
+    "Incident states are synthetic. Each debris state is seeded by defining a small relative offset and velocity at a future encounter epoch, then numerically integrating backward in the same two-body model. No live catalog or celestial data is used.",
+    "The map uses one linear radial kilometer scale for Earth and orbital shells. The forecast horizon is user-selectable from 1 to 6 hours."
+  ],
+  "limitations": [
+    "No atmospheric drag, Earth oblateness/J2, third-body perturbations, mutual gravity, finite-duration thrust, attitude, object dimensions, fragmentation model, tracking uncertainty, or conjunction probability.",
+    "The planar model has no inclination or cross-track motion; the displayed two-dimensional miss distance can therefore differ materially from a full three-dimensional encounter.",
+    "Closest approach is interpolated along each 20 s relative-position segment; no root-finding refinement of the nonlinear continuous trajectory is performed.",
+    "A browser was not launched and localhost access was unavailable under the supplied scaffold, so actual appearance, browser interactions, accessibility behavior, and performance remain unverified. Static source/template checks and the in-memory Vite build passed."
+  ],
+  "repairs": [
+    "During pre-test code review, replaced hard-coded map object labels with labels derived from the currently selected incident so the map legend and plotted tracks remain consistent across all three scenarios. The final syntax, numerical, static-template, and Vite checks passed after this correction."
+  ],
+  "unknowns": [
+    "Actual visual rendering and browser interaction behavior have not been exercised; the browser was unavailable by instruction.",
+    "The low-fuel grid suggestion is not a flight recommendation and has no uncertainty or real-world dynamics validation; it is only a numerical candidate within the displayed simplified model.",
+    "The execution runtime did not expose measured model token counters through the available tool/runtime interface. No session-history paths or credentials were inspected, and token counts were not estimated."
+  ],
+  "tokenUsage": null,
+  "tokenUsageReason": "Actual input, cached-input, output, reasoning, and total counters were not supplied by the runtime or exposed in the available tools, so provider field semantics and tool-overhead inclusion cannot be stated. No estimates were made.",
+  "cost": null,
+  "costReason": "No measured cost value was supplied by the runtime."
+}

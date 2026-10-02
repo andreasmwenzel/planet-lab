@@ -1,0 +1,9 @@
+{
+  "testedAtUTC": "2026-10-02T09:24:27.944Z",
+  "command": "node audit-source.mjs",
+  "passed": true,
+  "staticElementCount": 70,
+  "uniqueLiteralReferences": 63,
+  "missingReferences": [],
+  "limitations": "Static source audit only; this is not a browser or interaction test."
+}

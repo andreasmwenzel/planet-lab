@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08101a" />
+    <meta name="description" content="A focused Earth-to-Moon transfer planner using Keplerian orbital mechanics and patched-conic capture estimates." />
+    <title>Luna — Mission Designer</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#main" aria-label="Luna Mission Designer home">
+          <span class="brand-mark" aria-hidden="true"><i></i><b></b></span>
+          <span class="brand-copy"><strong>LUNA</strong><small>MISSION DESIGNER</small></span>
+        </a>
+        <div class="topbar-right">
+          <span class="model-badge"><span class="live-dot"></span> TWO-BODY · PATCHED CONIC</span>
+          <span class="version-mark">LAB 01</span>
+        </div>
+      </header>
+
+      <section class="intro" id="main">
+        <div>
+          <p class="eyebrow">EARTH → MOON / TRANSFER STUDY</p>
+          <h1>Make the long way <em>make sense.</em></h1>
+          <p class="intro-copy">Shape a lunar transfer, watch the geometry unfold, and see where the velocity goes.</p>
+        </div>
+        <div class="mission-id"><span class="id-line"></span><span>MISSION <b>01 / LUNA</b></span></div>
+      </section>
+
+      <section class="workspace" aria-label="Lunar transfer workspace">
+        <aside class="panel setup-panel" aria-labelledby="setup-heading">
+          <div class="panel-heading">
+            <div><span class="section-index">01</span><h2 id="setup-heading">Set the orbits</h2></div>
+            <span class="heading-icon" aria-hidden="true">↗</span>
+          </div>
+          <p class="panel-intro">Tune your start and target. The transfer is recalculated instantly.</p>
+
+          <div class="control-group">
+            <div class="control-label-row">
+              <label for="parking-altitude">Earth parking altitude</label>
+              <output id="parking-value" for="parking-altitude">200 <small>km</small></output>
+            </div>
+            <input id="parking-altitude" type="range" min="160" max="1200" step="10" value="200" aria-describedby="parking-help" />
+            <div class="range-ends"><span>160 km</span><span>1,200 km</span></div>
+            <p class="control-hint" id="parking-help">Circular start orbit above Earth's surface</p>
+          </div>
+
+          <div class="control-group capture-group">
+            <div class="control-label-row">
+              <label for="capture-altitude">Lunar capture altitude</label>
+              <output id="capture-value" for="capture-altitude">100 <small>km</small></output>
+            </div>
+            <input id="capture-altitude" type="range" min="50" max="500" step="10" value="100" aria-describedby="capture-help" />
+            <div class="range-ends"><span>50 km</span><span>500 km</span></div>
+            <p class="control-hint" id="capture-help">Target circular orbit around the Moon</p>
+          </div>
+
+          <div class="preset-block">
+            <span class="mini-label">QUICK START</span>
+            <div class="preset-row" role="group" aria-label="Parking orbit presets">
+              <button class="preset is-active" type="button" data-parking="200" aria-pressed="true">LEO <b>200</b></button>
+              <button class="preset" type="button" data-parking="400" aria-pressed="false">LEO <b>400</b></button>
+              <button class="preset" type="button" data-parking="1000" aria-pressed="false">HIGH <b>1k</b></button>
+            </div>
+          </div>
+
+          <details class="model-note">
+            <summary>
+              <span class="note-icon" aria-hidden="true">i</span>
+              <span><strong>Model assumptions</strong><p>Planar Hohmann coast · patched-conic capture</p></span>
+              <span class="note-chevron" aria-hidden="true">⌄</span>
+            </summary>
+            <ul>
+              <li>Earth and Moon are treated as a circular, coplanar two-body system; the Moon's phase is set to meet the transfer ellipse at arrival.</li>
+              <li>Burns are instantaneous. Finite thrust, lunar eccentricity and inclination, third-body perturbations, corrections, and propellant mass are omitted.</li>
+              <li>Capture Δv estimates an ideal lunar hyperbolic arrival into a circular target orbit. No navigation or performance margin is included.</li>
+            </ul>
+          </details>
+        </aside>
+
+        <section class="map-panel" aria-labelledby="map-title">
+          <div class="map-toolbar">
+            <div><span class="section-index">02</span><h2 id="map-title">Transfer geometry</h2></div>
+            <span class="map-scale-tag">NOT TO SCALE <i></i></span>
+          </div>
+          <div class="map-frame">
+            <canvas id="orbit-canvas" role="img" aria-label="Earth to Moon Hohmann transfer visualization. The plotted spacecraft follows an elliptical coast arc toward the Moon's arrival point." ></canvas>
+            <div class="map-overlay map-overlay-top">
+              <div class="overlay-label">TRANSFER ARC <span class="accent-line"></span></div>
+              <div class="overlay-value" id="arc-status">READY TO DEPART</div>
+            </div>
+            <div class="map-overlay map-overlay-bottom">
+              <div class="coordinate">EARTH-CENTERED INERTIAL PLANE <span>·</span> IDEALIZED</div>
+            </div>
+            <div class="map-legend" aria-label="Map legend">
+              <span><i class="legend-earth"></i> Earth</span>
+              <span><i class="legend-moon"></i> Moon now</span>
+              <span><i class="legend-arc"></i> Coast path</span>
+            </div>
+          </div>
+          <div class="time-control">
+            <div class="time-control-heading">
+              <div><span class="mini-label">COAST ELAPSED</span><strong id="elapsed-time">00d 00h 00m</strong></div>
+              <div class="playback-controls">
+                <button class="icon-button" id="reset-button" type="button" aria-label="Reset transfer time" title="Reset to departure">↺</button>
+                <button class="play-button" id="play-button" type="button" aria-label="Play transfer animation"><span class="play-glyph">▶</span><span class="play-text">Play coast</span></button>
+              </div>
+            </div>
+            <input id="time-scrubber" type="range" min="0" max="1000" step="1" value="0" aria-label="Scrub transfer timeline" />
+            <div class="time-endpoints"><span>DEPARTURE <b>T+00:00</b></span><span>ARRIVAL <b id="arrival-time">T+04d 23h</b></span></div>
+          </div>
+        </section>
+
+        <aside class="panel results-panel" aria-labelledby="results-heading">
+          <div class="panel-heading results-heading">
+            <div><span class="section-index">03</span><h2 id="results-heading">Flight plan</h2></div>
+            <span class="status-pill"><span></span> CALCULATED</span>
+          </div>
+
+          <div class="delta-v-card">
+            <div class="delta-v-top"><span class="mini-label">TOTAL IDEAL ΔV</span><span class="delta-v-icon" aria-hidden="true">Δ</span></div>
+            <div class="delta-v-value"><span id="total-dv">3.95</span><small>km/s</small></div>
+            <div class="delta-v-meter"><span id="dv-meter-fill"></span></div>
+            <div class="delta-v-foot"><span>2 planned burns</span><span id="total-dv-ms">3,950 m/s</span></div>
+          </div>
+
+          <div class="burn-list">
+            <div class="burn-row">
+              <span class="burn-seq">A</span>
+              <div class="burn-copy"><strong>Trans-lunar injection</strong><small>Earth departure · prograde</small></div>
+              <div class="burn-value"><b id="departure-dv">3.14</b><small>km/s</small></div>
+            </div>
+            <div class="burn-row">
+              <span class="burn-seq burn-seq-moon">B</span>
+              <div class="burn-copy"><strong>Lunar orbit insertion</strong><small>Perilune · retrograde</small></div>
+              <div class="burn-value"><b id="capture-dv">0.82</b><small>km/s</small></div>
+            </div>
+          </div>
+
+          <div class="flight-stats">
+            <div class="stat-row"><span>Coast duration</span><b id="duration">04d 23h</b></div>
+            <div class="stat-row"><span>Lunar arrival v∞</span><b><span id="vinf">0.83</span> km/s</b></div>
+            <div class="stat-row"><span>Transfer eccentricity</span><b id="eccentricity">0.967</b></div>
+          </div>
+
+          <div class="next-event">
+            <span class="event-marker"></span>
+            <div class="event-copy"><span class="mini-label">NEXT EVENT</span><strong id="next-event-title">Trans-lunar injection</strong><small id="next-event-subtitle">Departure burn · now</small></div>
+            <span class="event-arrow" aria-hidden="true">→</span>
+          </div>
+          <p class="results-caveat">Planning estimate only. Real missions include targeting, finite burns, perturbations, and margins.</p>
+        </aside>
+      </section>
+
+      <footer class="footer-line">
+        <span>LUNA <b>·</b> KEPLERIAN TRANSFER STUDY</span>
+        <span>Earth μ 398,600.44 km³/s² <i></i> Moon mean distance 384,400 km</span>
+      </footer>
+    </main>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

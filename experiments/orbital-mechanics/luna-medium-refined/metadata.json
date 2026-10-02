@@ -1,0 +1,160 @@
+{
+  "id": "luna-medium-refined",
+  "experimentId": "orbital-mechanics",
+  "title": "Luna · medium · refined",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/orbital-mechanics/luna-medium-refined/index.html",
+  "axes": {
+    "model": "Luna",
+    "effort": "medium",
+    "promptApproach": "refined"
+  },
+  "summary": "A focused interactive heliocentric flight desk for exploring how semimajor axis and eccentricity change an ideal planet's distance, speed, and orbital period. It visualizes the focus-centered orbital plane, solves Kepler's equation, propagates a two-body state, and displays live readouts.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation in a fresh native task, with the displayed model and effort explicitly configured. Four frozen creative prompts share the same separately recorded runtime and numerical-testing scaffold. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6-luna",
+    "effort": "medium",
+    "runId": "luna-medium-refined",
+    "launchIndex": 4,
+    "startedAt": "2026-10-02T08:11:26Z",
+    "completedAt": "2026-10-02T08:16:31.592Z",
+    "durationSeconds": 306,
+    "durationScope": "Observed wall-clock time from task launch to independently verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "tokenUsageReason": "No actual runtime-provided token counter or usage metadata was accessible in the assigned environment. No estimate was made and restricted session-history paths were not inspected.",
+    "tokenUsageSource": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1 (optional)",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; deployed browser review is separate. Available cloud browser does not support WebGL2."
+    },
+    "sourceHashes": {
+      "build-check.mjs": "d7801128fe68fccfc71a0d5fa53ceb2091f62632980fcd8721d39af0ab506dab",
+      "index.html": "d248f603ca13869e7e15f597043feaa5e9b75320f4f98c4e629f0e7963bff224",
+      "main.js": "bedf9678612e07ffd63969525c513ffae8d7f595b4a133367cbbd8b3a636cee3",
+      "physics.js": "c2d385f2d01662ee7e5801c40fd648ec75a9fb8d34a7824209aca04a9c057239",
+      "physics.test.mjs": "a0d21883a06e51c337620ce769554c39193159ee1091e73ac0f6c44a8a27a16d",
+      "prompt.txt": "14377862ce854d7cbce0f6eab05cd1784408bfee2530b90a4e12fc5c3af6a314",
+      "worker-report.json": "38e821b7daa1083710b8d5e71d2e3f1936210e7c540af59803ec9d9c9d0f325d"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an in-browser orbital mechanics simulator\n\nDeliver a finished, usable product, not a demo page or marketing landing page. Choose the product concept, architecture, interactions, and visual direction yourself. Use actual orbital mechanics and state the model’s assumptions and limitations.\n\nBuild an elegant, carefully resolved product. Find a specific purpose and remove everything that distracts from it. Make the workflow feel considered, the information clear, and the interactions dependable. Restraint should improve usefulness rather than turn the result into a generic minimalist demo."
+      },
+      {
+        "role": "user",
+        "content": "Runtime packaging and verification scaffold (separate from creative direction):\n- Implement from scratch. Do not inspect the prior experiment, other runs, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only in the supplied run directory. Create index.html with optional main.js and local CSS/JavaScript modules. If using main.js, HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. CSS can be imported from main.js. A single fully inline HTML file is also allowed.\n- Available environment: vanilla JavaScript, optional installed Three.js 0.186.1, Vite 7.3.6, Node 24. No additional dependencies, runtime network calls, remote assets/fonts, backend, accounts, analytics, or live orbital/celestial data. Do not modify package files or shared app files. Canvas, SVG, DOM, and 3D are all allowed; Three.js is not mandatory. If using WebGL, handle unsupported graphics gracefully.\n- The common harness bundles JavaScript and CSS into one inline HTML document. Its viewer is an iframe sandbox with allow-scripts and an opaque origin. Do not access parent/top, communicate across frames, or rely on persistent storage, cookies, or origin-specific APIs.\n- Make one bounded implementation and its self-test/repair phase. Validate JavaScript syntax and perform an isolated Vite build with write:false. Run quantitative numerical tests applicable to your chosen mechanics, independently of the interface, and preserve a directly rerunnable test script in the run directory. Test the actual implementation's physics functions, not a separately copied formula. Record exact commands, results, tolerances, and repairs. Repair your own implementation as needed for these checks. Do not impose a tiny arbitrary token cutoff or clone existing code.\n- Browser localhost access is unavailable; do not claim browser checks or bypass that restriction. Actual browser appearance, interactions, and performance remain unverified until separately reviewed.\n- Include worker-report.json with product title, description, implementation start/end UTC timestamps, exact tests and outcomes, numerical assumptions and limitations, repairs, and unknowns. Set tokenUsage and cost to null unless the runtime supplies measured values. Do not invent token counts, costs, or quality scores.\n"
+      },
+      {
+        "role": "user",
+        "content": "Reporting-only amendment (added after the first three launches; creative prompts and runtime constraints are unchanged):\nAt the end of your run, include actual runtime-provided token counters if accessible: input, cached input, output, reasoning, and total. Preserve the provider's field semantics and avoid double counting. Identify the counter source and whether counts include tools or agent overhead. Do not estimate from source length or the context budget, inspect restricted session-history paths, or inspect credentials. If actual counters are inaccessible, set tokenUsage to null and give the reason. Set cost to null unless measured cost is supplied by the runtime. Do not create another inference run solely to obtain counters.\n"
+      }
+    ],
+    "reportingAmendment": {
+      "kind": "reporting-only",
+      "timing": "before-launch"
+    },
+    "note": "The complete public creative prompt and identical public runtime/testing scaffold are recorded separately. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax, isolated bundle, and the recorded quantitative physics tests passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "Rendered appearance, interactions, and performance have not yet been independently checked in a browser."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 11775,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 306,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated.",
+      "Numerical test success applies only to the preserved cases and tolerances, not unrestricted physical accuracy."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 2955,
+    "cssBytes": 0,
+    "numerical": "passed",
+    "independentVerification": {
+      "numerical": "passed",
+      "command": "node experiments/orbital-mechanics/luna-medium-refined/physics.test.mjs",
+      "exitCode": 0,
+      "stdout": "✔ Kepler solver satisfies equation for wrapped and high-eccentricity anomalies (3.429893ms)\n✔ circular orbit has constant radius and circular speed over one period (1.095231ms)\n✔ elliptic invariants remain constant and vis-viva holds throughout an orbit (3.789611ms)\n✔ one period returns to initial state and Kepler period follows a^(3/2) (0.248083ms)\n✔ invalid domains fail explicitly (0.632594ms)\nℹ tests 5\nℹ suites 0\nℹ pass 5\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 17.119846\n",
+      "stderr": "",
+      "verifiedAt": "2026-10-02T08:16:30.873664+00:00",
+      "scope": "Independent rerun of preserved quantitative tests against the actual implementation physics; not browser QA or unrestricted numerical certification."
+    },
+    "checkedAt": "2026-10-02T08:16:31.592Z",
+    "runtimeBytes": 11775
+  },
+  "generationReport": {
+    "title": "Orbit / Field Notes",
+    "description": "A focused interactive heliocentric flight desk for exploring how semimajor axis and eccentricity change an ideal planet's distance, speed, and orbital period. It visualizes the focus-centered orbital plane, solves Kepler's equation, propagates a two-body state, and displays live readouts.",
+    "implementationStartedAtUtc": "2026-10-02T08:11:46Z",
+    "implementationEndedAtUtc": "2026-10-02T08:15:17Z",
+    "tests": [
+      {
+        "command": "node --check main.js && node --check physics.js",
+        "result": "PASS",
+        "details": "Both JavaScript source files passed Node syntax validation."
+      },
+      {
+        "command": "node --test physics.test.mjs",
+        "result": "PASS",
+        "details": "5 passed, 0 failed. Directly imports physics.js. Kepler residual tested over e=0, 0.25, 0.85, 0.95, 0.999 and 61 mean-anomaly samples each, with absolute equation residual <2e-12. Circular radius and speed over 101 points each tested to relative tolerance 2e-14. For e=0.72 over 401 points, specific energy and angular momentum invariants and vis-viva tested to relative tolerances 4e-13, 4e-13, and 6e-13 respectively. One-period state closure for e=0.49 tested to relative tolerance 2e-13; Kepler period fourth-to-first semimajor-axis ratio tested to 2e-15 relative tolerance. Invalid input domains confirmed to throw RangeError."
+      },
+      {
+        "command": "node build-check.mjs",
+        "result": "PASS",
+        "details": "Isolated Vite build completed with build.write=false; emitted 2 in-memory output files."
+      }
+    ],
+    "physics": {
+      "model": "Newtonian two-body Kepler ellipse, planar state in the orbital plane, Sun treated as a fixed central point mass. Propagates with eccentric anomaly and solves M=E-e sin(E) by Newton iteration.",
+      "constants": "Solar gravitational parameter μ=1.32712440018e20 m^3/s^2; astronomical unit=149597870700 m; day=86400 s.",
+      "limitations": "Bound ellipses only (0≤e<1); no perturbing bodies, solar motion, inclination, non-gravitational forces, atmosphere, finite-size bodies, or relativistic effects. Diagram is a 2D orbital-plane projection and is not a multi-body ephemeris."
+    },
+    "repairs": [
+      "The initial isolated build warned about an empty CSS @import and the first build-check assertion incorrectly assumed Vite returned an array. Removed the empty import and updated the checker to accept Vite's single Rollup output object or an array; rerun passed with 2 output files.",
+      "Reviewing the first pass showed the phase caption inferred inbound/outbound from distance relative to semimajor axis, which mislabels the inbound leg past aphelion. Changed it to use the radial position-velocity dot product and explicitly identify apsides. Re-ran syntax, all five physics tests, and the isolated build successfully."
+    ],
+    "unknowns": [
+      "No browser was available under this run's constraints, so rendered appearance, responsive behavior, control interactions, animation behavior, and runtime performance were not verified in an actual browser.",
+      "No quality or user testing was performed."
+    ],
+    "tokenUsage": null,
+    "tokenUsageReason": "No actual runtime-provided token counter or usage metadata was accessible in the assigned environment. No estimate was made and restricted session-history paths were not inspected.",
+    "cost": null
+  }
+}

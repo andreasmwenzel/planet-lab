@@ -1,0 +1,17 @@
+import { build } from 'vite';
+import { writeFileSync, readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import assert from 'node:assert/strict';
+const root = fileURLToPath(new URL('.', import.meta.url));
+const source = readFileSync(new URL('./index.html', import.meta.url), 'utf8');
+assert.ok(source.includes('<script type="module" src="./main.js"></script>'));
+assert.equal((source.match(/<script\b/g) || []).length, 1);
+const results = await build({ root, configFile: false, logLevel: 'silent', build: { modulePreload: false, write: false, emptyOutDir: false, minify: true, target: 'es2022', assetsInlineLimit: Infinity } });
+const chunks = (Array.isArray(results) ? results : [results]).flatMap(r => r.output);
+const outputs = chunks.map(o => ({ file: o.fileName, type: o.type, bytes: Buffer.byteLength(o.type === 'chunk' ? o.code : o.source) }));
+assert.ok(outputs.some(o => o.file.endsWith('.html'))); assert.ok(outputs.some(o => o.file.endsWith('.js'))); assert.ok(outputs.some(o => o.file.endsWith('.css')));
+const js = chunks.filter(o => o.type === 'chunk').map(o => o.code).join('\n');
+assert.ok(!/\bfetch\s*\(|\bWebSocket\s*\(|\blocalStorage\b|\bsessionStorage\b|\bdocument\.cookie\b/.test(js));
+const report = { testedAtUTC: new Date().toISOString(), command: 'node verify-build.mjs', passed: true, viteVersion: '7.3.6 (runtime scaffold)', configuration: { configFile: false, root, build: { modulePreload: false, write: false, emptyOutDir: false, target: 'es2022', assetsInlineLimit: 'Infinity' } }, outputs, totalBytes: outputs.reduce((sum, item) => sum + item.bytes, 0), staticGuards: ['Exactly the required local module-script entry', 'Bundled HTML, JS and CSS present', 'No fetch, WebSocket, localStorage, sessionStorage, or document.cookie in bundled JS'], browserChecks: 'Not run: localhost browser access unavailable by constraint.' };
+writeFileSync(new URL('./build-results.json', import.meta.url), JSON.stringify(report, null, 2) + '\n');
+console.log(JSON.stringify(report, null, 2));

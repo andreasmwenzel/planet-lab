@@ -1,0 +1,11 @@
+// Planar Earth-centred, inertial two-body propagation. km, s, km/s.
+export const MU=398600.4418, EARTH=6371;
+export function circular(r,phase=0){const v=Math.sqrt(MU/r);return [r*Math.cos(phase),r*Math.sin(phase),-v*Math.sin(phase),v*Math.cos(phase)];}
+export function derivative(s){const r=Math.hypot(s[0],s[1]),q=-MU/r**3;return [s[2],s[3],q*s[0],q*s[1]];}
+export function step(s,dt){const a=derivative(s),b=derivative(s.map((x,i)=>x+a[i]*dt/2)),c=derivative(s.map((x,i)=>x+b[i]*dt/2)),d=derivative(s.map((x,i)=>x+c[i]*dt));return s.map((x,i)=>x+dt*(a[i]+2*b[i]+2*c[i]+d[i])/6);}
+export function impulse(s,prograde,radial){const r=Math.hypot(s[0],s[1]),u=[s[0]/r,s[1]/r];return [s[0],s[1],s[2]+(prograde*-u[1]+radial*u[0])/1000,s[3]+(prograde*u[0]+radial*u[1])/1000];}
+export function elements(s){const r=Math.hypot(s[0],s[1]),v2=s[2]**2+s[3]**2,energy=v2/2-MU/r,h=s[0]*s[3]-s[1]*s[2],a=-MU/(2*energy),e=Math.sqrt(Math.max(0,1+2*energy*h*h/MU**2));return {energy,h,a,e,peri:h*h/MU/(1+e)-EARTH,apo:energy<0?a*(1+e)-EARTH:Infinity,period:energy<0?2*Math.PI*Math.sqrt(a**3/MU):Infinity};}
+export function hohmann(r1,r2){const a=(r1+r2)/2,time=Math.PI*Math.sqrt(a**3/MU),dv1=1000*(Math.sqrt(MU*(2/r1-1/a))-Math.sqrt(MU/r1)),dv2=1000*(Math.sqrt(MU/r2)-Math.sqrt(MU*(2/r2-1/a))),phase=Math.PI-Math.sqrt(MU/r2**3)*time;return {time,dv1,dv2,phase};}
+export function targetAt(r,phase,t){return circular(r,phase+Math.sqrt(MU/r**3)*t);}
+export function propagate(initial,burns,duration,dt=10){let s=[...initial],t=0,j=0;const events=burns.map(b=>({...b})).filter(b=>b.time>=0&&b.time<=duration).sort((a,b)=>a.time-b.time),samples=[],executed=[];let impact=false;while(t<=duration+1e-8){while(j<events.length&&events[j].time<=t+1e-7){s=impulse(s,events[j].prograde,events[j].radial);executed.push({...events[j],state:[...s]});j++;}samples.push({t,state:[...s]});if(Math.hypot(s[0],s[1])<=EARTH){impact=true;break;}if(t>=duration-1e-8)break;const end=Math.min(t+dt,duration,j<events.length?events[j].time:Infinity);s=step(s,end-t);t=end;}return {samples,executed,impact};}
+export function stateAt(samples,t){let lo=0,hi=samples.length-1;if(t>=samples[hi].t)return samples[hi].state;while(lo+1<hi){const m=(lo+hi)>>1;if(samples[m].t<=t)lo=m;else hi=m;}return step(samples[lo].state,Math.max(0,t-samples[lo].t));}

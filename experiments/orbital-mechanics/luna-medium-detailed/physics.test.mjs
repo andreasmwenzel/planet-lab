@@ -1,0 +1,6 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {BODIES,stateFromOrbit,elementsFromState,propagateEllipse} from './main.js';
+const mu=BODIES.Earth.mu,near=(a,b,tol)=>assert.ok(Math.abs(a-b)<=tol,`${a} not within ${tol} of ${b}`);
+test('circular orbit inverse elements and period agree with analytic values',()=>{const a=7000,s=stateFromOrbit({mu,a,e:0,nu:1.1}),o=elementsFromState(s,mu);near(o.a,a,1e-8);near(o.e,0,1e-12);near(o.period,2*Math.PI*Math.sqrt(a**3/mu),1e-8);near(o.energy,-mu/(2*a),1e-10);});
+test('eccentric state round-trips and Kepler propagation closes after one period',()=>{const a=18000,e=.53,nu=.8,s=stateFromOrbit({mu,a,e,nu}),o=elementsFromState(s,mu);near(o.a,a,1e-8);near(o.e,e,1e-12);const q=propagateEllipse(o,mu,o.period);near(q.x,s.x,1e-7);near(q.y,s.y,1e-7);near(q.vx,s.vx,1e-9);near(q.vy,s.vy,1e-9);});
+test('specific energy and angular momentum remain invariant through samples',()=>{const a=12000,e=.7,s=stateFromOrbit({mu,a,e,nu:.1}),o=elementsFromState(s,mu);for(let i=0;i<=100;i++){const q=propagateEllipse(o,mu,o.period*i/100),z=elementsFromState(q,mu);near(z.energy,o.energy,1e-9);near(z.h,o.h,1e-8);}});
+test('ellipse propagation rejects open orbits',()=>assert.throws(()=>propagateEllipse({a:-2,e:1,nu:0},mu,10),RangeError));

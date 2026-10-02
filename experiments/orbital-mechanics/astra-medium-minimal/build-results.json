@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "write": false,
+  "outputs": [
+    {
+      "file": "assets/index-BnnxW5Bk.js",
+      "bytes": 17139
+    },
+    {
+      "file": "assets/index-DFndy5hV.css",
+      "bytes": 5631
+    },
+    {
+      "file": "index.html",
+      "bytes": 394
+    }
+  ]
+}

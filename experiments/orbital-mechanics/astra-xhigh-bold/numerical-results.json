@@ -1,0 +1,1351 @@
+{
+  "passed": true,
+  "assertions": 194,
+  "results": [
+    {
+      "name": "Circular quarter-period position vs analytic coordinates",
+      "measured": 5.230909593113388e-12,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Circular full-period closure",
+      "measured": 2.09345634586089e-11,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Circular quarter-period speed",
+      "measured": 3.552713678800501e-15,
+      "tolerance": 1e-9,
+      "unit": "km/s",
+      "pass": true
+    },
+    {
+      "name": "Elliptic specific-energy conservation over 5.49 periods",
+      "measured": 4.937157766623654e-14,
+      "tolerance": 1e-9,
+      "unit": "relative",
+      "pass": true
+    },
+    {
+      "name": "Elliptic angular-momentum conservation over 5.49 periods",
+      "measured": 8.299319314718834e-15,
+      "tolerance": 1e-9,
+      "unit": "relative",
+      "pass": true
+    },
+    {
+      "name": "Elliptic radii remain within analytic apsides",
+      "measured": 0,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Elliptic time reversibility (position)",
+      "measured": 3.002710221920857e-11,
+      "tolerance": 0.00001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Elliptic time reversibility (velocity)",
+      "measured": 2.9326704586727914e-14,
+      "tolerance": 1e-8,
+      "unit": "km/s",
+      "pass": true
+    },
+    {
+      "name": "Hyperbolic specific-energy conservation",
+      "measured": 1.6118475039764222e-15,
+      "tolerance": 1e-9,
+      "unit": "relative",
+      "pass": true
+    },
+    {
+      "name": "Hyperbolic angular-momentum conservation",
+      "measured": 2.927143525128429e-15,
+      "tolerance": 1e-9,
+      "unit": "relative",
+      "pass": true
+    },
+    {
+      "name": "Hyperbolic round-trip position",
+      "measured": 4.8943999161833605e-11,
+      "tolerance": 0.00001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Parabolic zero-energy conservation",
+      "measured": 1.7763568394002505e-15,
+      "tolerance": 1e-9,
+      "unit": "km²/s²",
+      "pass": true
+    },
+    {
+      "name": "Parabolic round-trip position",
+      "measured": 3.918223088210292e-11,
+      "tolerance": 0.00001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Hohmann transfer apogee altitude",
+      "measured": 0,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Hohmann circularization eccentricity",
+      "measured": 8.422714646108282e-16,
+      "tolerance": 1e-10,
+      "unit": "",
+      "pass": true
+    },
+    {
+      "name": "Hohmann final circular radius",
+      "measured": 9.094947017729282e-12,
+      "tolerance": 0.00001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Mission 60/1200 crosses air inbound",
+      "measured": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "Mission 60/1200 repair outcome",
+      "measured": "clear",
+      "expected": "clear",
+      "pass": true
+    },
+    {
+      "name": "Mission 60/1200 repaired orbit has no air entry",
+      "measured": null,
+      "expected": null,
+      "pass": true
+    },
+    {
+      "name": "Mission 60/1200 repaired apogee preserved",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Mission 60/1200 no-burn entry unchanged",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.000001,
+      "unit": "s",
+      "pass": true
+    },
+    {
+      "name": "Mission 60/1200 terminal state at air line",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Mission 35/2800 crosses air inbound",
+      "measured": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "Mission 35/2800 repair outcome",
+      "measured": "clear",
+      "expected": "clear",
+      "pass": true
+    },
+    {
+      "name": "Mission 35/2800 repaired orbit has no air entry",
+      "measured": null,
+      "expected": null,
+      "pass": true
+    },
+    {
+      "name": "Mission 35/2800 repaired apogee preserved",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Mission 35/2800 no-burn entry unchanged",
+      "measured": 1.2732925824820995e-11,
+      "tolerance": 0.000001,
+      "unit": "s",
+      "pass": true
+    },
+    {
+      "name": "Mission 35/2800 terminal state at air line",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Mission 90/700 crosses air inbound",
+      "measured": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "Mission 90/700 repair outcome",
+      "measured": "clear",
+      "expected": "clear",
+      "pass": true
+    },
+    {
+      "name": "Mission 90/700 repaired orbit has no air entry",
+      "measured": null,
+      "expected": null,
+      "pass": true
+    },
+    {
+      "name": "Mission 90/700 repaired apogee preserved",
+      "measured": 2.7284841053187847e-12,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Mission 90/700 no-burn entry unchanged",
+      "measured": 4.274625098332763e-11,
+      "tolerance": 0.000001,
+      "unit": "s",
+      "pass": true
+    },
+    {
+      "name": "Mission 90/700 terminal state at air line",
+      "measured": 3.637978807091713e-12,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "All mission apoapsis radial speeds",
+      "measured": 9.992116898588562e-16,
+      "tolerance": 1e-9,
+      "unit": "km/s",
+      "pass": true
+    },
+    {
+      "name": "All mission first-entry radius residuals",
+      "measured": 8.185452315956354e-12,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "All assisted repair target-perigee residuals",
+      "measured": 5.4569682106375694e-12,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Off-apsis repair reaches requested perigee",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Off-apsis repair cancels radial velocity",
+      "measured": 4.496787839954995e-16,
+      "tolerance": 1e-9,
+      "unit": "km/s",
+      "pass": true
+    },
+    {
+      "name": "Off-apsis repair makes local radius the apogee",
+      "measured": 0,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Impulse position continuity",
+      "measured": 0,
+      "tolerance": 0,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Impulse magnitude matches 2D component norm",
+      "measured": 3.126388037344441e-13,
+      "tolerance": 1e-9,
+      "unit": "m/s",
+      "pass": true
+    },
+    {
+      "name": "Radial impulse sign and magnitude",
+      "measured": 1.1379786002407855e-15,
+      "tolerance": 1e-10,
+      "unit": "km/s",
+      "pass": true
+    },
+    {
+      "name": "Hyperbolic inbound entry radius",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Hyperbolic outward branch has no future entry",
+      "measured": null,
+      "expected": null,
+      "pass": true
+    },
+    {
+      "name": "Parabolic inbound entry radius",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Near-parabolic entry radius, velocity offset -1e-7",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Near-parabolic entry radius, velocity offset -1e-8",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Near-parabolic entry radius, velocity offset -1e-9",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Near-parabolic entry radius, velocity offset 0",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Near-parabolic entry radius, velocity offset 1e-9",
+      "measured": 0,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Near-parabolic entry radius, velocity offset 1e-8",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Near-parabolic entry radius, velocity offset 1e-7",
+      "measured": 0,
+      "tolerance": 0.000001,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Safe circular orbit never crosses air",
+      "measured": null,
+      "expected": null,
+      "pass": true
+    },
+    {
+      "name": "Start below air is terminal",
+      "measured": 0,
+      "expected": 0,
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 1",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 2",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 3",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 5",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 6",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 8",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 11",
+      "measured": 3.637978807091713e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 12",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 14",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 15",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 16",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 17",
+      "measured": 6.366462912410498e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 18",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 20",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 21",
+      "measured": 3.637978807091713e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 22",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 23",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 24",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 25",
+      "measured": 2.7284841053187847e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 26",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 27",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 28",
+      "measured": 2.7284841053187847e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 29",
+      "measured": 1.2732925824820995e-11,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 35",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 36",
+      "measured": 8.185452315956354e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 38",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 39",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 40",
+      "measured": 3.637978807091713e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 42",
+      "measured": 1.000444171950221e-11,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 44",
+      "measured": 4.547473508864641e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 45",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 46",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 49",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 50",
+      "measured": 5.4569682106375694e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 51",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 53",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 55",
+      "measured": 3.637978807091713e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 56",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 58",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 59",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 61",
+      "measured": 3.637978807091713e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 62",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 63",
+      "measured": 2.7284841053187847e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 64",
+      "measured": 2.7284841053187847e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 65",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 70",
+      "measured": 2.7284841053187847e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 71",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 72",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 73",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 74",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 76",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 77",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 78",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 79",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 80",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 83",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 85",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 90",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 91",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 92",
+      "measured": 3.637978807091713e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 93",
+      "measured": 3.637978807091713e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 97",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 98",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 99",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 102",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 104",
+      "measured": 3.637978807091713e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 105",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 106",
+      "measured": 2.7284841053187847e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 108",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 109",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 110",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 111",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 112",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 113",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 114",
+      "measured": 2.7284841053187847e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 116",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 117",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 120",
+      "measured": 4.547473508864641e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 121",
+      "measured": 2.7284841053187847e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 122",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 123",
+      "measured": 4.547473508864641e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 127",
+      "measured": 1.6370904631912708e-11,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 130",
+      "measured": 2.7284841053187847e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 131",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 133",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 134",
+      "measured": 4.547473508864641e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 135",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 137",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 138",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 139",
+      "measured": 4.547473508864641e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 140",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 141",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 142",
+      "measured": 3.637978807091713e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 145",
+      "measured": 8.185452315956354e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 146",
+      "measured": 3.637978807091713e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 147",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 148",
+      "measured": 2.7284841053187847e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 149",
+      "measured": 2.7284841053187847e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 153",
+      "measured": 4.547473508864641e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 155",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 156",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 158",
+      "measured": 2.7284841053187847e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 159",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 160",
+      "measured": 6.366462912410498e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 162",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 164",
+      "measured": 1.0913936421275139e-11,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 166",
+      "measured": 2.7284841053187847e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 167",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 168",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 170",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 171",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 172",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 173",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 174",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 175",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 177",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 178",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 179",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 180",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 181",
+      "measured": 4.547473508864641e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 183",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 184",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 185",
+      "measured": 0,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 186",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 188",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 189",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 191",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 192",
+      "measured": 4.547473508864641e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 193",
+      "measured": 2.7284841053187847e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 194",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 196",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 197",
+      "measured": 4.547473508864641e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 198",
+      "measured": 1.8189894035458565e-12,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Stress entry boundary 199",
+      "measured": 9.094947017729282e-13,
+      "tolerance": 0.00002,
+      "unit": "km",
+      "pass": true
+    },
+    {
+      "name": "Replay respects the bound/open post-burn time cap",
+      "measured": 7200,
+      "tolerance": 7200,
+      "unit": "s",
+      "pass": true
+    },
+    {
+      "name": "Requested burn beyond deadline is clamped before air",
+      "measured": 4127.330617828275,
+      "tolerance": 4127.331617828275,
+      "unit": "s",
+      "pass": true
+    },
+    {
+      "name": "600 stress-propagation energy residuals",
+      "measured": 4.149110398993697e-15,
+      "tolerance": 1e-8,
+      "unit": "relative (floor 1 km²/s²)",
+      "pass": true
+    },
+    {
+      "name": "600 stress-propagation momentum residuals",
+      "measured": 1.6746163847261872e-15,
+      "tolerance": 1e-8,
+      "unit": "relative",
+      "pass": true
+    },
+    {
+      "name": "Stress propagated samples",
+      "measured": 600,
+      "expected": 600,
+      "pass": true
+    }
+  ]
+}

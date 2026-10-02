@@ -1,0 +1,205 @@
+PASS Circular quarter-turn agrees with analytic coordinates {"positionErrorKm":6.404931837835037e-12,"velocityErrorKmS":1.0821743607125938e-14,"tolerances":{"positionKm":1e-7,"velocityKmS":1e-10}}
+PASS Thirty orbit ellipse closes and conserves invariants {"closureErrorKm":0,"maxRelativeEnergyError":3.306577546716064e-13,"maxRelativeAngularMomentumError":3.3657946871051976e-13,"tolerances":{"closureKm":0.00001,"invariantsRelative":1e-10}}
+PASS Ellipse apo/perigee and half-period match vis-viva {"measuredPerigeeKm":299.9999999999991,"positionToleranceKm":1e-7,"speedToleranceKmS":1e-10}
+PASS Universal propagation matches independent RK4 across conic regimes {"cases":[{"name":"elliptic","positionErrorKm":1.0233432146682005e-10,"velocityErrorKmS":1.300423806549264e-13},{"name":"near-parabolic-below","positionErrorKm":6.86220617737022e-11,"velocityErrorKmS":5.756739235742288e-14},{"name":"parabolic","positionErrorKm":4.1925056160501047e-11,"velocityErrorKmS":8.747542958250513e-15},{"name":"near-parabolic-above","positionErrorKm":2.691432338409122e-11,"velocityErrorKmS":3.580361673049448e-14},{"name":"hyperbolic","positionErrorKm":2.0311075473705757e-10,"velocityErrorKmS":1.2304717531868368e-13}],"independentReference":"RK4 acceleration integration, 0.25 s steps","tolerances":{"positionKm":0.00002,"velocityKmS":2e-8}}
+PASS Forward/backward propagation is reversible {"maxPositionErrorKm":8.526223301725522e-9,"maxVelocityErrorKmS":2.1264683532458315e-12,"tolerances":{"positionKm":0.00002,"velocityKmS":2e-8}}
+PASS Radial/transverse impulses are correct in both momentum directions {"toleranceKmS":1e-12,"directionsTested":["prograde","retrograde"]}
+PASS 80 km template yields exact apsides and analytic 120 km crossing {"deltaVMS":93.41512373699956,"hitTimeS":2073.0368255266885,"anomalyTimeErrorS":4.547473508864641e-12,"crossingAltitudeKm":120.00000000000091,"tolerance":{"timeS":1e-7,"radiusKm":1e-7}}
+PASS Hyperbolic and parabolic inbound crossing is finite and descending {"maxCrossingRadiusErrorKm":7.185008144006133e-11,"toleranceKm":0.00002}
+PASS Rotating-Earth longitude and wrapped sectors behave at the date line {"toleranceDegrees":1e-10,"dateLineChecks":3}
+PASS Mission ledger executes chronologically and stops at handoff {"handoffTimeS":2762.0033081736456,"plannedDVMS":590,"executedDVMS":90,"radiusToleranceKm":1e-7}
+PASS One-burn solver acquires each preset corridor within budget {"cases":[{"targetDegrees":-150,"actualDegrees":-150.00000011327245,"errorDegrees":1.132724270922664e-7,"deltaVMS":93.41512373699956,"burnTimeS":921.8013149999999},{"targetDegrees":-70,"actualDegrees":-69.99999986302997,"errorDegrees":1.3697005302403988e-7,"deltaVMS":435.8851625939151,"burnTimeS":3825.39876},{"targetDegrees":110,"actualDegrees":109.99999997978264,"errorDegrees":2.021733577712883e-8,"deltaVMS":199.7085188154264,"burnTimeS":3767.638475}],"longitudeToleranceDegrees":0.0001,"budgetToleranceMS":0.000001}
+PASS Stumpff zero and invalid-input guards {"stumpffTolerance":1e-15,"rejectedCases":3}
+PASS Exactly radial descent uses the bounded event fallback {"hitTimeS":364.1892508613719,"radiusErrorKm":0,"toleranceKm":1e-7,"bracketStepS":5}
+PASS Two hundred deterministic mission states remain finite and stop above Earth {"cases":200,"componentRangeMS":[-5000,5000],"horizonS":21600,"lowestEndpointAltitudeKm":119.99999999983447,"crossingToleranceKm":0.00002}
+{
+  "status": "passed",
+  "passed": 14,
+  "maxIndependentPositionErrorKm": 2.0311075473705757e-10,
+  "tests": [
+    {
+      "name": "Circular quarter-turn agrees with analytic coordinates",
+      "status": "passed",
+      "milliseconds": 0.538,
+      "positionErrorKm": 6.404931837835037e-12,
+      "velocityErrorKmS": 1.0821743607125938e-14,
+      "tolerances": {
+        "positionKm": 1e-7,
+        "velocityKmS": 1e-10
+      }
+    },
+    {
+      "name": "Thirty orbit ellipse closes and conserves invariants",
+      "status": "passed",
+      "milliseconds": 4.137,
+      "closureErrorKm": 0,
+      "maxRelativeEnergyError": 3.306577546716064e-13,
+      "maxRelativeAngularMomentumError": 3.3657946871051976e-13,
+      "tolerances": {
+        "closureKm": 0.00001,
+        "invariantsRelative": 1e-10
+      }
+    },
+    {
+      "name": "Ellipse apo/perigee and half-period match vis-viva",
+      "status": "passed",
+      "milliseconds": 3.089,
+      "measuredPerigeeKm": 299.9999999999991,
+      "positionToleranceKm": 1e-7,
+      "speedToleranceKmS": 1e-10
+    },
+    {
+      "name": "Universal propagation matches independent RK4 across conic regimes",
+      "status": "passed",
+      "milliseconds": 91.24,
+      "cases": [
+        {
+          "name": "elliptic",
+          "positionErrorKm": 1.0233432146682005e-10,
+          "velocityErrorKmS": 1.300423806549264e-13
+        },
+        {
+          "name": "near-parabolic-below",
+          "positionErrorKm": 6.86220617737022e-11,
+          "velocityErrorKmS": 5.756739235742288e-14
+        },
+        {
+          "name": "parabolic",
+          "positionErrorKm": 4.1925056160501047e-11,
+          "velocityErrorKmS": 8.747542958250513e-15
+        },
+        {
+          "name": "near-parabolic-above",
+          "positionErrorKm": 2.691432338409122e-11,
+          "velocityErrorKmS": 3.580361673049448e-14
+        },
+        {
+          "name": "hyperbolic",
+          "positionErrorKm": 2.0311075473705757e-10,
+          "velocityErrorKmS": 1.2304717531868368e-13
+        }
+      ],
+      "independentReference": "RK4 acceleration integration, 0.25 s steps",
+      "tolerances": {
+        "positionKm": 0.00002,
+        "velocityKmS": 2e-8
+      }
+    },
+    {
+      "name": "Forward/backward propagation is reversible",
+      "status": "passed",
+      "milliseconds": 0.783,
+      "maxPositionErrorKm": 8.526223301725522e-9,
+      "maxVelocityErrorKmS": 2.1264683532458315e-12,
+      "tolerances": {
+        "positionKm": 0.00002,
+        "velocityKmS": 2e-8
+      }
+    },
+    {
+      "name": "Radial/transverse impulses are correct in both momentum directions",
+      "status": "passed",
+      "milliseconds": 0.426,
+      "toleranceKmS": 1e-12,
+      "directionsTested": [
+        "prograde",
+        "retrograde"
+      ]
+    },
+    {
+      "name": "80 km template yields exact apsides and analytic 120 km crossing",
+      "status": "passed",
+      "milliseconds": 0.634,
+      "deltaVMS": 93.41512373699956,
+      "hitTimeS": 2073.0368255266885,
+      "anomalyTimeErrorS": 4.547473508864641e-12,
+      "crossingAltitudeKm": 120.00000000000091,
+      "tolerance": {
+        "timeS": 1e-7,
+        "radiusKm": 1e-7
+      }
+    },
+    {
+      "name": "Hyperbolic and parabolic inbound crossing is finite and descending",
+      "status": "passed",
+      "milliseconds": 0.214,
+      "maxCrossingRadiusErrorKm": 7.185008144006133e-11,
+      "toleranceKm": 0.00002
+    },
+    {
+      "name": "Rotating-Earth longitude and wrapped sectors behave at the date line",
+      "status": "passed",
+      "milliseconds": 0.092,
+      "toleranceDegrees": 1e-10,
+      "dateLineChecks": 3
+    },
+    {
+      "name": "Mission ledger executes chronologically and stops at handoff",
+      "status": "passed",
+      "milliseconds": 8.886,
+      "handoffTimeS": 2762.0033081736456,
+      "plannedDVMS": 590,
+      "executedDVMS": 90,
+      "radiusToleranceKm": 1e-7
+    },
+    {
+      "name": "One-burn solver acquires each preset corridor within budget",
+      "status": "passed",
+      "milliseconds": 27.001,
+      "cases": [
+        {
+          "targetDegrees": -150,
+          "actualDegrees": -150.00000011327245,
+          "errorDegrees": 1.132724270922664e-7,
+          "deltaVMS": 93.41512373699956,
+          "burnTimeS": 921.8013149999999
+        },
+        {
+          "targetDegrees": -70,
+          "actualDegrees": -69.99999986302997,
+          "errorDegrees": 1.3697005302403988e-7,
+          "deltaVMS": 435.8851625939151,
+          "burnTimeS": 3825.39876
+        },
+        {
+          "targetDegrees": 110,
+          "actualDegrees": 109.99999997978264,
+          "errorDegrees": 2.021733577712883e-8,
+          "deltaVMS": 199.7085188154264,
+          "burnTimeS": 3767.638475
+        }
+      ],
+      "longitudeToleranceDegrees": 0.0001,
+      "budgetToleranceMS": 0.000001
+    },
+    {
+      "name": "Stumpff zero and invalid-input guards",
+      "status": "passed",
+      "milliseconds": 1.2,
+      "stumpffTolerance": 1e-15,
+      "rejectedCases": 3
+    },
+    {
+      "name": "Exactly radial descent uses the bounded event fallback",
+      "status": "passed",
+      "milliseconds": 0.375,
+      "hitTimeS": 364.1892508613719,
+      "radiusErrorKm": 0,
+      "toleranceKm": 1e-7,
+      "bracketStepS": 5
+    },
+    {
+      "name": "Two hundred deterministic mission states remain finite and stop above Earth",
+      "status": "passed",
+      "milliseconds": 85.787,
+      "cases": 200,
+      "componentRangeMS": [
+        -5000,
+        5000
+      ],
+      "horizonS": 21600,
+      "lowestEndpointAltitudeKm": 119.99999999983447,
+      "crossingToleranceKm": 0.00002
+    }
+  ]
+}

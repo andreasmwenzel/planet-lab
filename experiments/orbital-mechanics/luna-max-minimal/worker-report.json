@@ -1,0 +1,88 @@
+{
+  "productTitle": "Luna — Mission Designer",
+  "description": "A self-contained Earth-to-Moon transfer planner. Users adjust parking and capture altitudes, inspect an animated top-down Hohmann coast with arrival phasing, scrub mission time, and compare trans-lunar injection, lunar capture, flight time, arrival v-infinity, and transfer eccentricity.",
+  "implementationStartUtc": "2026-10-02T08:17:45Z",
+  "implementationEndUtc": "2026-10-02T08:33:37Z",
+  "sourceFiles": [
+    "index.html",
+    "main.js",
+    "physics.js",
+    "style.css",
+    "test-physics.mjs"
+  ],
+  "tests": [
+    {
+      "name": "JavaScript syntax checks",
+      "commands": [
+        "node --check experiments/orbital-mechanics/luna-max-minimal/main.js",
+        "node --check experiments/orbital-mechanics/luna-max-minimal/physics.js",
+        "node --check experiments/orbital-mechanics/luna-max-minimal/test-physics.mjs"
+      ],
+      "result": "PASS"
+    },
+    {
+      "name": "Physics self-tests against the implementation module",
+      "command": "node --test experiments/orbital-mechanics/luna-max-minimal/test-physics.mjs",
+      "result": "PASS: 8 tests passed, 0 failed",
+      "coverageAndTolerances": [
+        "200 km parking / 100 km capture baseline: departure Δv 3.13134501371772 km/s, capture Δv 0.82170994681712 km/s, total Δv 3.95305496053484 km/s (each within 1e-11 km/s); transfer duration 430095.303923992 s (within 1e-6 s); arrival v-infinity 0.831507477438 km/s (within 1e-12 km/s)",
+        "Kepler equation residual at 7 samples, eccentricities 0 to 0.999: at most 3e-13 rad",
+        "Specific orbital energy conservation at 7 coast-time samples: absolute tolerance 2e-11 km²/s²; specific angular momentum: absolute tolerance 2e-8 km²/s",
+        "Departure/apogee radii and endpoint coordinates: radial absolute tolerance 2e-8 km; departure cross-track 1e-10 km; arrival cross-track 1e-8 km",
+        "Moon arrival phase: sine and cosine checks each within 1e-14",
+        "Patched-conic perilune speed and capture-burn closure: absolute tolerance 1e-13 km/s",
+        "Vis-viva circular-speed identity and transfer departure-speed identity: absolute tolerance 1e-14 km/s",
+        "Supported altitude endpoints (160/50 km and 1200/500 km): positive finite outputs; invalid altitude, eccentricity, and nonphysical vis-viva inputs reject"
+      ]
+    },
+    {
+      "name": "Isolated Vite build with filesystem writes disabled",
+      "command": "node --input-type=module - <<'NODE'\nimport { resolve } from 'node:path';\nimport { build } from 'vite';\nconst root = resolve('experiments/orbital-mechanics/luna-max-minimal');\nconst result = await build({ root, configFile: false, logLevel: 'warn', build: { write: false, emptyOutDir: false } });\nconst builds = Array.isArray(result) ? result : [result];\nfor (const output of builds) console.log(`Vite isolated build: ${output.output?.length ?? 0} output entries; write:false; root=${root}`);\nNODE",
+      "result": "PASS: 3 output entries generated in memory; write:false"
+    },
+    {
+      "name": "Required HTML module entry check",
+      "command": "grep -o '<script type=\"module\" src=\"./main.js\"></script>' experiments/orbital-mechanics/luna-max-minimal/index.html",
+      "result": "PASS: exactly <script type=\"module\" src=\"./main.js\"></script>"
+    },
+    {
+      "name": "Browser appearance, interaction, and performance review",
+      "result": "NOT RUN: the prompt explicitly states localhost browser access is unavailable and prohibits bypasses; appearance, interactions, and performance remain unverified"
+    }
+  ],
+  "numericalAssumptions": [
+    "Earth mu = 398600.4418 km³/s² and mean radius = 6378.137 km; Moon mu = 4902.800066 km³/s² and mean radius = 1737.4 km",
+    "The Moon follows a circular, coplanar orbit at 384400 km from Earth with a 27.321661-day period; its initial phase is chosen so it reaches transfer apogee at arrival",
+    "The Earth-centered spacecraft coast is an ideal two-body Hohmann half-ellipse with instantaneous departure; Kepler's equation gives position and velocity at the scrubbed time",
+    "Arrival v-infinity is the magnitude of the difference between the Hohmann apogee speed and the Moon's assumed circular Earth-centered speed",
+    "Lunar capture Δv uses that arrival v-infinity to estimate hyperbolic speed at the selected lunar periapsis, then subtracts target circular speed; the model assumes ideal coplanar tangent geometry"
+  ],
+  "limitations": [
+    "Not a high-fidelity mission design or ephemeris tool: lunar eccentricity, inclination, third-body perturbations, Earth oblateness, finite-thrust burns, plane changes, correction maneuvers, uncertainty, and performance margins are omitted",
+    "No fuel mass, spacecraft dry mass, launch-window search, arrival targeting, or operational navigation is modeled",
+    "Rendered planetary disks are enlarged for legibility; orbital distances use a common plotted scale",
+    "No actual browser rendering or performance measurement was available"
+  ],
+  "repairs": [
+    {
+      "issue": "The first numerical test run expected a vis-viva exception for radius 100 km and semimajor axis 1000 km, but the vis-viva speed-squared term is positive for that input.",
+      "change": "Corrected the invalid-input test fixture to use a 10 km semimajor axis at 100 km radius, which makes the speed-squared term negative; implementation was unchanged.",
+      "verification": "The final 8-test suite passed."
+    },
+    {
+      "issue": "The first plotted elapsed trail used eccentric anomaly linearly with elapsed time, which does not follow Kepler's equation for an eccentric orbit.",
+      "change": "The trail now samples mean anomaly uniformly in time and calls the implementation's solveKepler function for each plotted point, matching the spacecraft state marker.",
+      "verification": "Final syntax checks and isolated Vite build passed; orbital state conservation tests passed. Browser rendering remains unverified."
+    }
+  ],
+  "unknowns": [
+    "Actual browser appearance, responsive layout, button/scrubber interactions, and runtime performance have not been independently reviewed.",
+    "The locked baseline values are numerical regression fixtures, not a comparison against a mission-design package or live lunar ephemeris."
+  ],
+  "tokenUsage": null,
+  "tokenUsageCounterSource": null,
+  "tokenUsageIncludesToolsOrAgentOverhead": null,
+  "tokenUsageUnavailableReason": "This runtime/task interface did not expose measured input, cached-input, output, reasoning, or total token counters. No counts were estimated.",
+  "cost": null,
+  "costUnavailableReason": "No measured runtime cost was supplied."
+}

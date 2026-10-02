@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#eff0e9" />
+  <title>Apsis — Orbital workbench</title>
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <a class="brand" href="#" aria-label="Apsis home"><svg viewBox="0 0 36 36" aria-hidden="true"><ellipse cx="18" cy="18" rx="16" ry="9" transform="rotate(-40 18 18)"/><circle cx="18" cy="18" r="3"/><circle cx="29" cy="8" r="2.5"/></svg><span>Apsis<span class="brand-sub">ORBITAL WORKBENCH</span></span></a>
+      <div class="header-note"><span class="status-dot"></span> Earth · two-body model</div>
+      <div class="header-actions"><button id="undo" class="quiet" disabled>↶ Undo burn</button><button id="reset" class="quiet">Reset</button><button id="model" class="icon-button" aria-label="Model assumptions and help">?</button></div>
+    </header>
+    <main class="workbench">
+      <aside class="design-panel" aria-label="Orbit and maneuver design">
+        <div class="panel-intro"><span class="eyebrow">ONE-BURN ORBIT DESIGN</span><h1>Shape your orbit.</h1><p>Choose a point. Try a burn.<br>See what changes before you commit.</p></div>
+        <section class="start-section">
+          <h2><span class="step">01</span> Starting orbit</h2>
+          <div class="preset-grid" aria-label="Starting orbit presets"><button class="preset active" data-preset="leo" aria-pressed="true"><strong>Low Earth</strong><span>400 km circular</span></button><button class="preset" data-preset="transfer" aria-pressed="false"><strong>Transfer</strong><span>300 × 35,786 km</span></button><button class="preset" data-preset="high" aria-pressed="false"><strong>High Earth</strong><span>20,200 km circular</span></button></div>
+          <details class="custom-orbit"><summary>Set custom altitudes <span>＋</span></summary><form id="orbit-form"><div class="two-fields"><label>Periapsis <div class="unit-input"><input id="peri-input" type="number" value="400" min="120" max="100000" step="1" required><span>km</span></div></label><label>Apoapsis <div class="unit-input"><input id="apo-input" type="number" value="400" min="120" max="100000" step="1" required><span>km</span></div></label></div><p class="field-note">120–100,000 km. Replaces the starting orbit and clears burns.</p><p id="orbit-error" class="form-error" role="alert"></p><button type="submit" class="small-button">Set orbit</button></form></details>
+        </section>
+        <section class="maneuver-section">
+          <h2><span class="step">02</span> Preview a burn <span id="preview-badge" class="badge">DRAFT</span></h2>
+          <div class="burn-field"><div class="field-heading"><label for="prograde">Prograde</label><div class="number-unit"><input id="prograde-number" aria-label="Prograde delta-v in meters per second" type="number" min="-3500" max="3500" step="10" value="350"><span>m/s</span></div></div><input id="prograde" type="range" min="-3500" max="3500" step="10" value="350" aria-label="Prograde delta-v"><div class="range-caption"><span>Retrograde</span><span>Prograde</span></div></div>
+          <div class="burn-field"><div class="field-heading"><label for="radial">Radial</label><div class="number-unit"><input id="radial-number" aria-label="Radial delta-v in meters per second" type="number" min="-2500" max="2500" step="10" value="0"><span>m/s</span></div></div><input id="radial" type="range" min="-2500" max="2500" step="10" value="0" aria-label="Radial delta-v"><div class="range-caption"><span>Inward</span><span>Outward</span></div></div>
+          <div class="burn-recipes" aria-label="Example burns"><button data-recipe="raise">Raise apogee ↗</button><button data-recipe="lower">Lower periapsis ↘</button><button data-recipe="radial">Radial +300</button></div>
+          <div class="burn-total"><span>Total Δv</span><strong id="burn-magnitude">350 <small>m/s</small></strong><button id="clear-burn" class="clear-button">Clear</button></div>
+          <div id="assessment" class="assessment"><span class="assessment-marker"></span><div><strong id="assessment-title">Bound orbit</strong><p id="assessment-copy">The maneuver raises your apoapsis.</p></div></div>
+          <button id="execute" class="primary-button">Execute burn <span>→</span></button>
+          <p class="execute-note">Instantaneous impulse at the spacecraft.<br>Pause or scrub to choose another point.</p>
+        </section>
+        <section class="burn-log"><div class="log-heading"><h2><span class="step">03</span> Maneuver log</h2><span id="log-count">0 burns</span></div><div id="log-items" class="log-items"><p class="empty-log">Your executed burns will appear here.</p></div><div class="log-total"><span>Mission Δv</span><strong id="mission-dv">0 m/s</strong></div></section>
+      </aside>
+      <div class="flight-area">
+        <section class="viewport" aria-label="Interactive orbital view">
+          <div class="view-heading"><div><span class="eyebrow">EARTH-CENTERED · PLANAR</span><h2>Orbit view</h2></div><div class="view-tools"><button id="fit" aria-label="Fit both orbits in the view">Fit orbits</button><button id="zoom-out" aria-label="Zoom out">−</button><button id="zoom-in" aria-label="Zoom in">＋</button></div></div>
+          <div class="legend"><span><i class="current-line"></i>Current orbit</span><span><i class="preview-line"></i>After burn</span></div>
+          <canvas id="orbit-canvas" tabindex="0" aria-label="Orbit diagram. Drag empty space to pan, scroll to zoom, or drag the green burn handle. Use the controls to change the orbit."></canvas>
+          <div id="canvas-fallback" hidden>The orbit canvas is unavailable in this browser. Orbital calculations and controls still work.</div>
+          <div class="scene-caption"><span class="crosshair">＋</span><span id="scene-tip">Drag the green handle to adjust Δv</span></div>
+          <div class="scene-readout"><span>ALTITUDE <strong id="altitude">400 <small>km</small></strong></span><span>SPEED <strong id="speed">7.673 <small>km/s</small></strong></span></div>
+          <div class="scale" id="scale-label">5,000 km</div>
+          <div id="impact-overlay" class="impact-overlay" hidden><span>SURFACE INTERCEPT</span><strong>Coast stopped at Earth.</strong><button id="rewind-impact">Return to burn point</button></div>
+          <div class="playback-bar"><button id="play" class="play-button" aria-label="Play simulation">▶</button><div class="elapsed-block"><span>COAST TIME</span><strong id="elapsed">00:00:00</strong></div><div class="position-control"><div><label for="position">Burn location</label><span id="position-label">0% of orbit</span></div><input id="position" type="range" min="0" max="1000" step="1" value="0" aria-label="Coast forward to choose the burn location"></div><label class="warp-control"><span>TIME WARP</span><select id="warp" aria-label="Simulation time multiplier"><option value="1">1×</option><option value="10">10×</option><option value="100" selected>100×</option><option value="1000">1,000×</option></select></label></div>
+        </section>
+        <section class="orbit-comparison" aria-label="Before and after orbit comparison"><div class="comparison-heading"><h2>What this burn changes</h2><span>Altitudes above mean Earth radius</span></div><div class="metric-grid"><div class="metric"><span>PERIAPSIS</span><strong id="peri-after">400 <small>km</small></strong><div>Current <span id="peri-before">400 km</span></div><p id="peri-change">Unchanged</p></div><div class="metric"><span>APOAPSIS</span><strong id="apo-after">1,753 <small>km</small></strong><div>Current <span id="apo-before">400 km</span></div><p id="apo-change">+1,353 km</p></div><div class="metric"><span>ORBITAL PERIOD</span><strong id="period-after">—</strong><div>Current <span id="period-before">—</span></div><p id="period-change">—</p></div><div class="metric"><span>ECCENTRICITY</span><strong id="ecc-after">0.093</strong><div>Current <span id="ecc-before">0.000</span></div><p id="ecc-change">Circular → elliptical</p></div></div><div class="comparison-foot"><span class="status-dot"></span><span id="orbit-description">Preview updates as you change the burn.</span><button id="view-model">About the model ↗</button></div></section>
+        <div id="notification" class="notification" role="status" aria-live="polite"></div>
+      </div>
+    </main>
+    <footer class="app-footer"><span>APSIS / FLIGHT DYNAMICS DESK</span><span>Planar two-body mechanics · impulsive maneuvers</span><span>km · km/s · seconds</span></footer>
+  </div>
+  <dialog id="model-dialog"><div class="dialog-header"><span class="eyebrow">THE MODEL</span><button id="close-model" class="icon-button" aria-label="Close model information">×</button></div><h2>Small, precise, and intentionally idealized.</h2><p>Apsis is a one-burn design workbench for a spacecraft orbiting Earth. Scrub the coast timeline, set a transverse or radial impulse, compare the resulting orbit, then execute it. Use Undo to return to the previous burn point.</p><div class="model-facts"><div><span>Earth μ</span><strong>398,600.4418 km³/s²</strong></div><div><span>Earth mean radius</span><strong>6,371 km</strong></div><div><span>State propagation</span><strong>Universal-variable Kepler solver</strong></div></div><h3>What the controls mean</h3><ul><li><strong>Prograde</strong> is transverse, perpendicular to the radius, along the orbit's angular-momentum direction. In an eccentric orbit it is not exactly the velocity direction. A negative value is retrograde.</li><li><strong>Radial</strong> points outward from Earth. Negative values point inward. Δv is the vector magnitude of these two components.</li><li><strong>Burn location</strong> is elapsed time along the current orbit, not true anomaly. A full slider spans one period. Escape trajectories show a six-hour coast window.</li><li><strong>Green</strong> is the predicted post-burn orbit. The white-blue path is the current orbit. Escape and collision previews show only the future arc.</li></ul><h3>Assumptions & limits</h3><p>Planar, Newtonian two-body motion around a fixed spherical Earth. The spacecraft has negligible mass. Burns are instantaneous; no fuel, mass, engine duration, inclination, drag, Earth oblateness, Moon, Sun, or other perturbations are modeled. Atmospheric reentry and heating are not simulated. A surface intersection stops the coast at 6,371 km. Negative periapsis altitude means the mathematical conic passes inside Earth.</p><p>Presets are idealized starting states, not live spacecraft data. Geometry is sampled for display; telemetry and orbital elements come from the analytical state. This tool is for learning and early intuition, not operational flight planning.</p><p class="keyboard-note">Space: play / pause · Arrow keys: adjust focused sliders · Drag: pan · Scroll: zoom</p><button id="got-it" class="primary-button">Back to the workbench →</button></dialog>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

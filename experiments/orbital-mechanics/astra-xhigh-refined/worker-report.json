@@ -1,0 +1,213 @@
+{
+  "productTitle": "Apsis \u2014 Earth transfer workbench",
+  "description": "A finished, self-contained 2D Earth-orbit transfer workbench. Users edit circular departure and arrival altitudes, rehearse a Hohmann transfer, inspect signed burns and live telemetry, and skip insertion to see why a second burn is needed. Restrained paper-and-deep-teal instrument styling, true-scale canvas visualization, timeline controls, presets, pan/zoom, and an in-product model guide.",
+  "implementationStartUTC": "2026-10-02T09:41:16Z",
+  "implementationEndUTC": "2026-10-02T10:03:05Z",
+  "requestedModel": "Astra",
+  "requestedReasoningEffort": "xhigh",
+  "generationDelegated": false,
+  "entryPoint": "index.html",
+  "implementationFiles": [
+    "index.html",
+    "main.js",
+    "style.css",
+    "physics.mjs"
+  ],
+  "verificationFiles": [
+    "verify.mjs",
+    "test-physics.mjs",
+    "test-interface.mjs",
+    "test-build.mjs",
+    "physics-test-results.txt",
+    "interface-test-results.json",
+    "build-test-results.json",
+    "verification-output.txt"
+  ],
+  "exactRerunCommand": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-refined && node verify.mjs",
+  "tests": [
+    {
+      "command": "node --check main.js && node --check physics.mjs && node --check test-physics.mjs && node --check test-interface.mjs && node --check test-build.mjs",
+      "outcome": "passed; all exit codes 0"
+    },
+    {
+      "command": "node test-physics.mjs",
+      "outcome": "passed",
+      "actualImplementationModule": "physics.mjs",
+      "passed": true,
+      "assertions": 115024,
+      "tests": [
+        {
+          "name": "Known circular and radius-ratio-two transfer reference",
+          "passed": true,
+          "firstBurnKmS": 1.167378506618161,
+          "secondBurnKmS": 0.9791495542672495,
+          "transferSeconds": 5353.834394869872,
+          "speedToleranceKmS": 2e-12,
+          "timeToleranceSeconds": 1e-08
+        },
+        {
+          "name": "Kepler solver residual across 13 eccentricities and 2001 mean anomalies",
+          "passed": true,
+          "maximumResidualRadians": 1.964650664376677e-14,
+          "toleranceRadians": 5e-13,
+          "cases": 26013
+        },
+        {
+          "name": "Position continuity, exact apsides, burn vectors, signed burns, and missed insertion",
+          "passed": true,
+          "cases": 11,
+          "maxEndpointErrorKm": 6.904330501894096e-12,
+          "maxInsertionPositionJumpKm": 1.3808661003788193e-11,
+          "positionToleranceKm": 1e-07,
+          "speedToleranceKmS": 1e-11
+        },
+        {
+          "name": "Conserved energy and angular momentum through 11 complete transfer ellipses",
+          "passed": true,
+          "samples": 22011,
+          "maxEnergyRelativeError": 1.2196765916586065e-14,
+          "maxMomentumRelativeError": 6.398421085590277e-16,
+          "maxVisVivaResidualKm2S2": 1.7053025658242404e-13,
+          "relativeTolerance": 2e-12,
+          "visVivaToleranceKm2S2": 2e-10
+        },
+        {
+          "name": "Analytic state agrees with independently integrated central gravity",
+          "passed": true,
+          "cases": 6,
+          "integrationStepsPerCase": 30000,
+          "maximumPositionErrorKm": 1.0504416441200382e-08,
+          "maximumVelocityErrorKmS": 1.5357321242575129e-12,
+          "positionToleranceKm": 0.0001,
+          "velocityToleranceKmS": 1e-07
+        },
+        {
+          "name": "Velocity and acceleration agree with numerical derivatives of actual state",
+          "passed": true,
+          "maximumVelocityErrorKmS": 2.121258282319957e-09,
+          "maximumAccelerationErrorKmS2": 2.708517902959622e-12,
+          "velocityToleranceKmS": 1e-07,
+          "accelerationToleranceKmS2": 1e-09
+        },
+        {
+          "name": "Domain guardrails and zero-cost equal-altitude case",
+          "passed": true,
+          "invalidCases": 9,
+          "validBoundaryCases": 2
+        }
+      ]
+    },
+    {
+      "command": "node test-interface.mjs",
+      "outcome": "passed",
+      "passed": true,
+      "assertions": 46,
+      "scope": "Node DOM/canvas stubs executing actual main.js event handlers; verifies control state and numerical readout wiring only. Does not verify browser rendering, real events, layout, accessibility tree, or performance.",
+      "cases": [
+        "normal canvas API path",
+        "unsupported canvas fallback",
+        "presets",
+        "seek to arrival",
+        "skip insertion",
+        "return orbit",
+        "replay",
+        "background pause",
+        "invalid and valid input",
+        "low-altitude warning",
+        "swap",
+        "slider limit",
+        "guide open/close",
+        "velocity toggle",
+        "zoom/fit",
+        "reset",
+        "same-altitude mission"
+      ]
+    },
+    {
+      "command": "node test-build.mjs",
+      "outcome": "passed",
+      "passed": true,
+      "build": "isolated Vite build, write:false, configFile:false",
+      "root": "/workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-refined/",
+      "htmlIds": 59,
+      "files": [
+        {
+          "fileName": "assets/index-qHF8m03a.js",
+          "type": "chunk",
+          "bytes": 17277
+        },
+        {
+          "fileName": "assets/index-DKrejCrN.css",
+          "type": "asset",
+          "bytes": 22069
+        },
+        {
+          "fileName": "index.html",
+          "type": "asset",
+          "bytes": 11518
+        }
+      ]
+    },
+    {
+      "command": "node verify.mjs",
+      "outcome": "passed; all syntax, physics, Node interface-state, and isolated build checks ran on the final implementation; exit code 0"
+    }
+  ],
+  "numericalAssumptions": [
+    "Earth gravitational parameter \u03bc = 398600.4418 km\u00b3/s\u00b2 and equatorial radius = 6378.137 km.",
+    "Massless spacecraft under point-mass Earth gravity; all trajectories are planar and prograde.",
+    "Circular departure and arrival orbits; instantaneous tangential impulses; a single Hohmann half-ellipse joins the two radii.",
+    "Analytic ellipse propagation solves Kepler's equation. Units are kilometers, seconds, and kilometers per second.",
+    "Elliptic Kepler solver uses normalized mean anomaly, Newton iteration with a bracketed bisection fallback, and a nominal residual threshold 2e-14 radians.",
+    "Altitude input domain is 160\u201350000 km. All Earth and orbit distances share one scale; spacecraft, maneuver markers, and velocity-vector length are illustrative.",
+    "Elapsed time zero is just after burn 1. At the exact arrival time the enabled burn 2 has already been applied. Omitting burn 2 leaves the spacecraft on the transfer ellipse.",
+    "Normal rehearsal horizon is transfer time plus one quarter arrival orbital period. With insertion disabled, the horizon is a full transfer orbital period.",
+    "Playback clamps a frame gap to 0.1 wall-clock seconds and pauses when hidden, avoiding large jumps when inactive."
+  ],
+  "limitations": [
+    "No atmosphere, drag, Earth oblateness, finite-duration thrust, plane changes, perturbing bodies, collision avoidance, navigation errors, or rendezvous targeting.",
+    "GEO preset means a circular orbit at the approximate altitude 35786 km, without longitude or inclination modeling.",
+    "Hohmann transfers are not globally minimum-\u0394v for all large radius ratios; bi-elliptic transfers are outside scope.",
+    "Abstract Earth markings are not a geographic map.",
+    "Educational workbench, not flight operations software."
+  ],
+  "repairs": [
+    {
+      "reason": "Source review found that an equal-altitude explanation described a fixed rehearsal horizon even when insertion was skipped.",
+      "change": "Changed explanation to the invariant statement that no velocity change is needed and the spacecraft coasts on the same circle.",
+      "verification": "Same-altitude interface-state case and full final verification passed."
+    },
+    {
+      "reason": "Source review found that toggling insertion could leave a stale play/replay label after changing the rehearsal duration.",
+      "change": "Recomputed playback button state after clamping time to the new duration.",
+      "verification": "Skip-insertion, replay, and final interface-state checks passed."
+    },
+    {
+      "reason": "Source review found that the post-insertion trail could imply circular travel before the insertion instant.",
+      "change": "Capped the drawn circular trail to angular distance actually traveled since insertion.",
+      "verification": "Drawing code executes through the Node canvas stub; final syntax/build passed. Pixel appearance remains unverified."
+    }
+  ],
+  "unknowns": [
+    "No browser localhost check was attempted. Actual browser appearance, native interactions, accessibility-tree behavior, responsiveness, and performance remain unverified.",
+    "The Node interface harness uses DOM/canvas stubs. Its passing results are limited to JavaScript control-state and numerical readout wiring, not browser correctness.",
+    "No measured runtime token counters or cost were provided by the agent/tool interface."
+  ],
+  "tokenUsage": null,
+  "tokenUsageReason": "Actual provider input, cached-input, output, reasoning, and total counters are not accessible through the runtime responses supplied to this worker. No source-length estimates, context-budget estimates, restricted session-history inspection, credential inspection, or extra inference run were used.",
+  "tokenCounterSource": null,
+  "tokenCounterToolOrAgentOverheadCoverage": "Unknown; no provider counters available.",
+  "cost": null,
+  "costReason": "No measured cost was supplied by the runtime.",
+  "constraints": {
+    "implementedFromScratch": true,
+    "readOtherRuns": false,
+    "modifiedSharedFiles": false,
+    "runtimeNetworkCalls": false,
+    "persistentStorage": false,
+    "browserLocalhostChecks": false,
+    "publishing": false,
+    "gitOperations": false,
+    "viteBuildWrite": false
+  }
+}

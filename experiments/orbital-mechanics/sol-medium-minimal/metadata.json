@@ -1,0 +1,379 @@
+{
+  "id": "sol-medium-minimal",
+  "experimentId": "orbital-mechanics",
+  "title": "Sol 6.1 · medium · minimal",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/orbital-mechanics/sol-medium-minimal/index.html",
+  "axes": {
+    "model": "Sol 6.1",
+    "effort": "medium",
+    "promptApproach": "minimal"
+  },
+  "summary": "A responsive, self-contained Earth-orbit maneuver workspace with an inertial orbital map, numerical propagation, live telemetry, local-frame instantaneous impulse previews, Hohmann transfer planning, exact next-apsis coasting, circularization planning, flight log, collision detection, playback and zoom controls.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation in a fresh native task, with the displayed model and effort explicitly configured. Four frozen creative prompts share the same separately recorded runtime and numerical-testing scaffold. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6.1-sol",
+    "effort": "medium",
+    "runId": "sol-medium-minimal",
+    "launchIndex": 9,
+    "startedAt": "2026-10-02T08:34:37Z",
+    "completedAt": "2026-10-02T08:45:23.838Z",
+    "durationSeconds": 647,
+    "durationScope": "Observed wall-clock time from task launch to independently verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "tokenUsageReason": "No actual runtime/provider inference counters are exposed to this worker. Tool original_token_count values measure command output text, not model input, cached input, output, reasoning or total usage. No session-history paths or credentials were inspected, and no counts were estimated.",
+    "tokenUsageSource": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1 (optional)",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; deployed browser review is separate. Available cloud browser does not support WebGL2."
+    },
+    "sourceHashes": {
+      "build-check.mjs": "58bc0343a6d0fcf47a63ddd441949447134083a6fedcb40b5e3a4835fe9ad1a9",
+      "build-results.json": "3b9b36e47bc01bfed22f5cf5a4275e6470771e1fb8730ac03f2aa77007457fd7",
+      "index.html": "bd2899019eb172af8aea0a56cd08e9ee961ea8bb43cf0c320940ea95aac8e615",
+      "main.js": "14bc05a9c7f4d7fb1548f6d135eb068c224fe86532982d761c230db3019dac2c",
+      "physics.js": "4580500af408e6cc52304a36c322d07309a71bd553fb0b526259e03f1131f2e8",
+      "prompt.txt": "e4cbb6b12e024eb757b65e62bbc4cc22c80aed8a6a42b74bee9bfd98d8f67be0",
+      "style.css": "7c948bded15c3280c6cf7d4c975ce07b673ef517a17f810f35ae1bb4ed02f08a",
+      "test-results.json": "5d573fd64166612a7e18231fd1d7e0fe73d827e6a93f986ca9670e4512a5a6d0",
+      "test.mjs": "cf0cd7f7d87c28a27945efc51f66fbe65daf7d315c92011dea7aebab8ab84441",
+      "worker-report.json": "2023f5675ab51aa9b2217eb46cd7648b93162a11883ee0925bd2fa39526ec150"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an in-browser orbital mechanics simulator\n\nDeliver a finished, usable product, not a demo page or marketing landing page. Choose the product concept, architecture, interactions, and visual direction yourself. Use actual orbital mechanics and state the model’s assumptions and limitations.\n\nMake the product you think is most useful."
+      },
+      {
+        "role": "user",
+        "content": "Runtime packaging and verification scaffold (separate from creative direction):\n- Implement from scratch. Do not inspect the prior experiment, other runs, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only in the supplied run directory. Create index.html with optional main.js and local CSS/JavaScript modules. If using main.js, HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. CSS can be imported from main.js. A single fully inline HTML file is also allowed.\n- Available environment: vanilla JavaScript, optional installed Three.js 0.186.1, Vite 7.3.6, Node 24. No additional dependencies, runtime network calls, remote assets/fonts, backend, accounts, analytics, or live orbital/celestial data. Do not modify package files or shared app files. Canvas, SVG, DOM, and 3D are all allowed; Three.js is not mandatory. If using WebGL, handle unsupported graphics gracefully.\n- The common harness bundles JavaScript and CSS into one inline HTML document. Its viewer is an iframe sandbox with allow-scripts and an opaque origin. Do not access parent/top, communicate across frames, or rely on persistent storage, cookies, or origin-specific APIs.\n- Make one bounded implementation and its self-test/repair phase. Validate JavaScript syntax and perform an isolated Vite build with write:false. Run quantitative numerical tests applicable to your chosen mechanics, independently of the interface, and preserve a directly rerunnable test script in the run directory. Test the actual implementation's physics functions, not a separately copied formula. Record exact commands, results, tolerances, and repairs. Repair your own implementation as needed for these checks. Do not impose a tiny arbitrary token cutoff or clone existing code.\n- Browser localhost access is unavailable; do not claim browser checks or bypass that restriction. Actual browser appearance, interactions, and performance remain unverified until separately reviewed.\n- Include worker-report.json with product title, description, implementation start/end UTC timestamps, exact tests and outcomes, numerical assumptions and limitations, repairs, and unknowns. Set tokenUsage and cost to null unless the runtime supplies measured values. Do not invent token counts, costs, or quality scores.\n"
+      },
+      {
+        "role": "user",
+        "content": "Reporting-only amendment (added after the first three launches; creative prompts and runtime constraints are unchanged):\nAt the end of your run, include actual runtime-provided token counters if accessible: input, cached input, output, reasoning, and total. Preserve the provider's field semantics and avoid double counting. Identify the counter source and whether counts include tools or agent overhead. Do not estimate from source length or the context budget, inspect restricted session-history paths, or inspect credentials. If actual counters are inaccessible, set tokenUsage to null and give the reason. Set cost to null unless measured cost is supplied by the runtime. Do not create another inference run solely to obtain counters.\n"
+      }
+    ],
+    "reportingAmendment": {
+      "kind": "reporting-only",
+      "timing": "before-launch"
+    },
+    "note": "The complete public creative prompt and identical public runtime/testing scaffold are recorded separately. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax, isolated bundle, and the recorded quantitative physics tests passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "Rendered appearance, interactions, and performance have not yet been independently checked in a browser."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 24189,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 647,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated.",
+      "Numerical test success applies only to the preserved cases and tolerances, not unrestricted physical accuracy."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 16016,
+    "cssBytes": 7646,
+    "numerical": "passed",
+    "independentVerification": {
+      "numerical": "passed",
+      "command": "node experiments/orbital-mechanics/sol-medium-minimal/test.mjs",
+      "exitCode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"checks\": 25,\n  \"results\": [\n    {\n      \"name\": \"400 km circular velocity (km/s)\",\n      \"value\": 7.672598648385013,\n      \"expected\": 7.672598648385013,\n      \"absoluteError\": 0,\n      \"tolerance\": 1e-12\n    },\n    {\n      \"name\": \"Circular eccentricity\",\n      \"value\": 1.2069943631034978e-16,\n      \"expected\": 0,\n      \"absoluteError\": 1.2069943631034978e-16,\n      \"tolerance\": 1e-12\n    },\n    {\n      \"name\": \"Circular one-period position closure (km)\",\n      \"value\": 0.0000010370153198482164,\n      \"expected\": 0,\n      \"absoluteError\": 0.0000010370153198482164,\n      \"tolerance\": 0.001\n    },\n    {\n      \"name\": \"Circular one-period velocity closure (km/s)\",\n      \"value\": 1.175084967547902e-9,\n      \"expected\": 0,\n      \"absoluteError\": 1.175084967547902e-9,\n      \"tolerance\": 0.000001\n    },\n    {\n      \"name\": \"Elliptic three-period relative energy drift\",\n      \"value\": 1.7432434028494576e-12,\n      \"expected\": 0,\n      \"absoluteError\": 1.7432434028494576e-12,\n      \"tolerance\": 1e-8\n    },\n    {\n      \"name\": \"Elliptic three-period relative angular-momentum drift\",\n      \"value\": 5.948309469214773e-13,\n      \"expected\": 0,\n      \"absoluteError\": 5.948309469214773e-13,\n      \"tolerance\": 1e-8\n    },\n    {\n      \"name\": \"Elliptic three-period position closure (km)\",\n      \"value\": 0.0000026172345551048256,\n      \"expected\": 0,\n      \"absoluteError\": 0.0000026172345551048256,\n      \"tolerance\": 0.01\n    },\n    {\n      \"name\": \"Hohmann periapsis altitude (km)\",\n      \"value\": 400.0000000000009,\n      \"expected\": 400,\n      \"absoluteError\": 9.094947017729282e-13,\n      \"tolerance\": 1e-8\n    },\n    {\n      \"name\": \"Hohmann apoapsis altitude (km)\",\n      \"value\": 1199.9999999999982,\n      \"expected\": 1200,\n      \"absoluteError\": 1.8189894035458565e-12,\n      \"tolerance\": 1e-8\n    },\n    {\n      \"name\": \"Next apsis time matches Hohmann half-period (s)\",\n      \"value\": 3021.694600843022,\n      \"expected\": 3021.6946008430223,\n      \"absoluteError\": 4.547473508864641e-13,\n      \"tolerance\": 1e-8\n    },\n    {\n      \"name\": \"Circular orbit has no unique apsis target\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Propagated Hohmann target altitude (km)\",\n      \"value\": 1199.999999804645,\n      \"expected\": 1200,\n      \"absoluteError\": 1.9535491446731612e-7,\n      \"tolerance\": 0.001\n    },\n    {\n      \"name\": \"Hohmann arrival radial velocity (km/s)\",\n      \"value\": 3.000155628488882e-11,\n      \"expected\": 0,\n      \"absoluteError\": 3.000155628488882e-11,\n      \"tolerance\": 0.000001\n    },\n    {\n      \"name\": \"Next apsis from apoapsis targets periapsis (s)\",\n      \"value\": 3021.6946009065778,\n      \"expected\": 3021.6946008430223,\n      \"absoluteError\": 6.355548975989223e-8,\n      \"tolerance\": 0.001\n    },\n    {\n      \"name\": \"Next apsis correctly switches at apoapsis\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hohmann final eccentricity\",\n      \"value\": 2.43539389101285e-11,\n      \"expected\": 0,\n      \"absoluteError\": 2.43539389101285e-11,\n      \"tolerance\": 0.000001\n    },\n    {\n      \"name\": \"Hohmann final semimajor axis (km)\",\n      \"value\": 7570.999999986351,\n      \"expected\": 7571,\n      \"absoluteError\": 1.3648786989506334e-8,\n      \"tolerance\": 0.001\n    },\n    {\n      \"name\": \"Circularization cancels radial velocity\",\n      \"value\": 2.7162063431314278e-17,\n      \"expected\": 0,\n      \"absoluteError\": 2.7162063431314278e-17,\n      \"tolerance\": 1e-12\n    },\n    {\n      \"name\": \"Circularization final eccentricity\",\n      \"value\": 3.540138703438303e-18,\n      \"expected\": 0,\n      \"absoluteError\": 3.540138703438303e-18,\n      \"tolerance\": 1e-12\n    },\n    {\n      \"name\": \"Local radial burn component\",\n      \"value\": 0.249999999876891,\n      \"expected\": 0.25,\n      \"absoluteError\": 1.2310899522027796e-10,\n      \"tolerance\": 1e-7\n    },\n    {\n      \"name\": \"Local prograde burn component\",\n      \"value\": 7.572598648507251,\n      \"expected\": 7.572598648385013,\n      \"absoluteError\": 1.2223733136806914e-10,\n      \"tolerance\": 1e-7\n    },\n    {\n      \"name\": \"4 km/s prograde burn creates unbound orbit\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Retrograde collision predicted and surface propagation stopped\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Zero-time propagation preserves state without aliasing\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Original input state remains immutable\",\n      \"passed\": true\n    }\n  ]\n}\n",
+      "stderr": "",
+      "verifiedAt": "2026-10-02T08:45:23.036884+00:00",
+      "scope": "Independent rerun of preserved quantitative tests against the actual implementation physics; not browser QA or unrestricted numerical certification."
+    },
+    "checkedAt": "2026-10-02T08:45:23.838Z",
+    "runtimeBytes": 24189
+  },
+  "generationReport": {
+    "productTitle": "Periapsis — Flight desk",
+    "description": "A responsive, self-contained Earth-orbit maneuver workspace with an inertial orbital map, numerical propagation, live telemetry, local-frame instantaneous impulse previews, Hohmann transfer planning, exact next-apsis coasting, circularization planning, flight log, collision detection, playback and zoom controls.",
+    "implementationStartUTC": "2026-10-02T08:35:02Z",
+    "implementationEndUTC": "2026-10-02T08:43:36Z",
+    "runtime": "Vanilla JavaScript ES modules and Canvas 2D; local CSS; no dependencies beyond the provided Vite test build. No runtime network, storage, backend or cross-frame communication.",
+    "files": [
+      "index.html",
+      "main.js",
+      "physics.js",
+      "style.css",
+      "test.mjs",
+      "build-check.mjs"
+    ],
+    "tests": [
+      {
+        "commands": [
+          "node --check experiments/orbital-mechanics/sol-medium-minimal/main.js",
+          "node --check experiments/orbital-mechanics/sol-medium-minimal/physics.js",
+          "node --check experiments/orbital-mechanics/sol-medium-minimal/test.mjs",
+          "node --check experiments/orbital-mechanics/sol-medium-minimal/build-check.mjs"
+        ],
+        "result": "PASS: all four JavaScript files parsed successfully; exit 0"
+      },
+      {
+        "command": "node experiments/orbital-mechanics/sol-medium-minimal/test.mjs",
+        "result": {
+          "status": "PASS",
+          "checks": 25,
+          "results": [
+            {
+              "name": "400 km circular velocity (km/s)",
+              "value": 7.672598648385013,
+              "expected": 7.672598648385013,
+              "absoluteError": 0,
+              "tolerance": 1e-12
+            },
+            {
+              "name": "Circular eccentricity",
+              "value": 1.2069943631034978e-16,
+              "expected": 0,
+              "absoluteError": 1.2069943631034978e-16,
+              "tolerance": 1e-12
+            },
+            {
+              "name": "Circular one-period position closure (km)",
+              "value": 0.0000010370153198482164,
+              "expected": 0,
+              "absoluteError": 0.0000010370153198482164,
+              "tolerance": 0.001
+            },
+            {
+              "name": "Circular one-period velocity closure (km/s)",
+              "value": 1.175084967547902e-9,
+              "expected": 0,
+              "absoluteError": 1.175084967547902e-9,
+              "tolerance": 0.000001
+            },
+            {
+              "name": "Elliptic three-period relative energy drift",
+              "value": 1.7432434028494576e-12,
+              "expected": 0,
+              "absoluteError": 1.7432434028494576e-12,
+              "tolerance": 1e-8
+            },
+            {
+              "name": "Elliptic three-period relative angular-momentum drift",
+              "value": 5.948309469214773e-13,
+              "expected": 0,
+              "absoluteError": 5.948309469214773e-13,
+              "tolerance": 1e-8
+            },
+            {
+              "name": "Elliptic three-period position closure (km)",
+              "value": 0.0000026172345551048256,
+              "expected": 0,
+              "absoluteError": 0.0000026172345551048256,
+              "tolerance": 0.01
+            },
+            {
+              "name": "Hohmann periapsis altitude (km)",
+              "value": 400.0000000000009,
+              "expected": 400,
+              "absoluteError": 9.094947017729282e-13,
+              "tolerance": 1e-8
+            },
+            {
+              "name": "Hohmann apoapsis altitude (km)",
+              "value": 1199.9999999999982,
+              "expected": 1200,
+              "absoluteError": 1.8189894035458565e-12,
+              "tolerance": 1e-8
+            },
+            {
+              "name": "Next apsis time matches Hohmann half-period (s)",
+              "value": 3021.694600843022,
+              "expected": 3021.6946008430223,
+              "absoluteError": 4.547473508864641e-13,
+              "tolerance": 1e-8
+            },
+            {
+              "name": "Circular orbit has no unique apsis target",
+              "passed": true
+            },
+            {
+              "name": "Propagated Hohmann target altitude (km)",
+              "value": 1199.999999804645,
+              "expected": 1200,
+              "absoluteError": 1.9535491446731612e-7,
+              "tolerance": 0.001
+            },
+            {
+              "name": "Hohmann arrival radial velocity (km/s)",
+              "value": 3.000155628488882e-11,
+              "expected": 0,
+              "absoluteError": 3.000155628488882e-11,
+              "tolerance": 0.000001
+            },
+            {
+              "name": "Next apsis from apoapsis targets periapsis (s)",
+              "value": 3021.6946009065778,
+              "expected": 3021.6946008430223,
+              "absoluteError": 6.355548975989223e-8,
+              "tolerance": 0.001
+            },
+            {
+              "name": "Next apsis correctly switches at apoapsis",
+              "passed": true
+            },
+            {
+              "name": "Hohmann final eccentricity",
+              "value": 2.43539389101285e-11,
+              "expected": 0,
+              "absoluteError": 2.43539389101285e-11,
+              "tolerance": 0.000001
+            },
+            {
+              "name": "Hohmann final semimajor axis (km)",
+              "value": 7570.999999986351,
+              "expected": 7571,
+              "absoluteError": 1.3648786989506334e-8,
+              "tolerance": 0.001
+            },
+            {
+              "name": "Circularization cancels radial velocity",
+              "value": 2.7162063431314278e-17,
+              "expected": 0,
+              "absoluteError": 2.7162063431314278e-17,
+              "tolerance": 1e-12
+            },
+            {
+              "name": "Circularization final eccentricity",
+              "value": 3.540138703438303e-18,
+              "expected": 0,
+              "absoluteError": 3.540138703438303e-18,
+              "tolerance": 1e-12
+            },
+            {
+              "name": "Local radial burn component",
+              "value": 0.249999999876891,
+              "expected": 0.25,
+              "absoluteError": 1.2310899522027796e-10,
+              "tolerance": 1e-7
+            },
+            {
+              "name": "Local prograde burn component",
+              "value": 7.572598648507251,
+              "expected": 7.572598648385013,
+              "absoluteError": 1.2223733136806914e-10,
+              "tolerance": 1e-7
+            },
+            {
+              "name": "4 km/s prograde burn creates unbound orbit",
+              "passed": true
+            },
+            {
+              "name": "Retrograde collision predicted and surface propagation stopped",
+              "passed": true
+            },
+            {
+              "name": "Zero-time propagation preserves state without aliasing",
+              "passed": true
+            },
+            {
+              "name": "Original input state remains immutable",
+              "passed": true
+            }
+          ]
+        }
+      },
+      {
+        "command": "node experiments/orbital-mechanics/sol-medium-minimal/build-check.mjs",
+        "result": {
+          "status": "PASS",
+          "write": false,
+          "outputs": [
+            {
+              "fileName": "assets/index-CZ9db1ti.js",
+              "type": "chunk",
+              "bytes": 16697
+            },
+            {
+              "fileName": "assets/index-Bx9ryXyz.css",
+              "type": "asset",
+              "bytes": 7646
+            },
+            {
+              "fileName": "index.html",
+              "type": "asset",
+              "bytes": 364
+            }
+          ]
+        }
+      }
+    ],
+    "numericalAssumptions": [
+      "Planar Newtonian two-body gravity. Fixed Earth gravitational parameter μ = 398600.4418 km³/s²; Earth radius 6371 km. Units: km, seconds, km/s.",
+      "Massless spacecraft and spherical, non-rotating Earth. Instantaneous burns in a local outward-radial / counterclockwise-prograde frame.",
+      "Fourth-order Runge–Kutta propagation with each internal step no longer than five seconds. Osculating elements are derived directly from position and velocity.",
+      "Hohmann preset requires a near-circular counterclockwise orbit (eccentricity ≤ 0.001). Next-apsis time derives from eccentric anomaly and mean anomaly."
+    ],
+    "limitations": [
+      "No drag, atmospheric interface, J2/oblateness, third-body gravity, relativity, Earth rotation, thrust duration, fuel budgeting or live ephemerides.",
+      "Starting and target altitudes limited to 150–30000 km. Each impulse component is limited to ±4000 m/s; circularization above these limits reports that the proposed burn is partial.",
+      "Predicted paths contain up to 421 displayed points and stop at a sampled surface contact. Bound predictions show at most one period or eight hours; escape predictions show six hours. A below-surface osculating periapsis triggers a warning independently of path display.",
+      "Playback contact detection is sampled at internal steps of at most five seconds, not a root-solved impact time. Next-apsis coasting is restricted to arrivals within eight hours.",
+      "Orbit fitting caps its radial display extent at approximately 92000 km; unbound or very large orbits may extend outside the viewport. Satellite and velocity direction glyphs are enlarged, not physically scaled.",
+      "Educational visualization only; not suitable for operational navigation."
+    ],
+    "repairs": [
+      "Removed an unnecessary data-URL CSS import to keep the stylesheet fully local.",
+      "Throttled moving burn-preview propagation to approximately seven updates per second and reused current-orbit paths for zero-delta previews to reduce unnecessary propagation work.",
+      "Added a visible partial-maneuver warning when circularization requires a component beyond the slider limits.",
+      "Corrected next-apsis selection at a numerically propagated apoapsis to select the following periapsis rather than the same apoapsis one revolution later. Added dedicated regression checks.",
+      "Bounded next-apsis coasting to eight hours to avoid unbounded work on near-escape ellipses."
+    ],
+    "unknowns": [
+      "Actual browser rendering, responsive appearance, interaction behavior and performance remain unverified: localhost browser access was unavailable and no browser checks were attempted.",
+      "Cross-browser Canvas 2D behavior and iframe hosting integration have not been exercised. The isolated Vite build validates bundling, not the common inline harness.",
+      "Long-duration numerical accuracy outside the tested circular and elliptic cases has not been exhaustively characterized."
+    ],
+    "tokenUsage": null,
+    "tokenUsageReason": "No actual runtime/provider inference counters are exposed to this worker. Tool original_token_count values measure command output text, not model input, cached input, output, reasoning or total usage. No session-history paths or credentials were inspected, and no counts were estimated.",
+    "cost": null,
+    "costReason": "The runtime supplied no measured cost.",
+    "sourceFrozen": true,
+    "sourceSHA256": {
+      "index.html": "bd2899019eb172af8aea0a56cd08e9ee961ea8bb43cf0c320940ea95aac8e615",
+      "main.js": "14bc05a9c7f4d7fb1548f6d135eb068c224fe86532982d761c230db3019dac2c",
+      "physics.js": "4580500af408e6cc52304a36c322d07309a71bd553fb0b526259e03f1131f2e8",
+      "style.css": "7c948bded15c3280c6cf7d4c975ce07b673ef517a17f810f35ae1bb4ed02f08a",
+      "test.mjs": "cf0cd7f7d87c28a27945efc51f66fbe65daf7d315c92011dea7aebab8ab84441",
+      "build-check.mjs": "58bc0343a6d0fcf47a63ddd441949447134083a6fedcb40b5e3a4835fe9ad1a9"
+    }
+  }
+}
