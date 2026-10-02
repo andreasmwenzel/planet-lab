@@ -1,0 +1,35 @@
+{
+  "runId": "sol-xhigh-refined",
+  "title": "Aphelion — a solar observatory",
+  "description": "A contemplative Three.js solar-system toy with locally generated planetary textures, restrained orbital guides, eight planet dossiers, orbit/zoom controls, pause and simulation rate, reset, and an inspect view that follows the selected world. Responsive HTML controls, visible keyboard focus, reduced-motion support, and a readable WebGL fallback are included.",
+  "implementationStartUTC": "2026-10-02T07:15:26Z",
+  "implementationEndUTC": "2026-10-02T07:27:10.835Z",
+  "files": [
+    "experiments/planetary/sol-xhigh-refined/index.html",
+    "experiments/planetary/sol-xhigh-refined/main.js",
+    "experiments/planetary/sol-xhigh-refined/style.css",
+    "experiments/planetary/sol-xhigh-refined/worker-report.json"
+  ],
+  "tests": [
+    {
+      "name": "JavaScript syntax",
+      "command": "node --check experiments/planetary/sol-xhigh-refined/main.js",
+      "outcome": "Passed; exit code 0",
+      "workingDirectory": "/workspace/scratch/bb2a48021f5a/planet-lab"
+    },
+    {
+      "name": "Local Vite bundle, no writes",
+      "command": "node --input-type=module <<'NODE'\nimport { build } from 'vite';\nimport path from 'node:path';\nconst root=path.resolve('experiments/planetary/sol-xhigh-refined');\nconst result=await build({root,configFile:false,logLevel:'info',build:{write:false,emptyOutDir:false,rollupOptions:{input:path.join(root,'index.html')}}});\nconst outputs=(Array.isArray(result)?result:[result]).flatMap(r=>r.output);\nconsole.log('WRITE_FALSE_CHECK_PASSED');\nfor(const item of outputs) console.log(item.fileName, item.type, item.type==='chunk' ? item.code.length : item.source.length);\nNODE",
+      "outcome": "Passed; exit code 0. Vite 7.3.6 transformed 7 modules and produced in-memory HTML, JavaScript, and CSS output. No build files written.",
+      "workingDirectory": "/workspace/scratch/bb2a48021f5a/planet-lab"
+    }
+  ],
+  "repairsMade": [],
+  "knownLimitations": [
+    "No browser or WebGL rendering checks were performed: localhost browser access is unavailable under the generation brief.",
+    "Motion, orbital distances, and planet sizes are deliberately stylized; this is not an n-body or scientifically precise orbital simulation.",
+    "Planet textures and dossier previews are procedurally illustrated, not photographs."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}
