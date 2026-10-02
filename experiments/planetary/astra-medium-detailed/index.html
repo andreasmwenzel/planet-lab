@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#080c14" />
+<title>Orbitarium — a little space to explore</title>
+</head>
+<body>
+<div id="app">
+  <main aria-label="Interactive planetary system">
+    <div id="universe" aria-label="3D planetary scene. Drag to orbit and scroll to zoom."></div>
+    <div id="fallback" hidden role="status"><span class="eyebrow">SCENE UNAVAILABLE</span><h2>A little less dimension.</h2><p>Your browser couldn’t start WebGL. The planet guide and controls below are still readable. Try a browser with hardware acceleration to explore the 3D scene.</p></div>
+    <header><a class="wordmark" href="#app" aria-label="Orbitarium home"><span class="brand-orbit" aria-hidden="true">◉</span> orbitarium<span class="wordmark-dot">.</span></a><p>A little space to explore</p><div class="edition"><span class="live-dot"></span> SOLAR SYSTEM / 01</div></header>
+    <div class="scene-note"><span class="small-rule"></span><span>Eight worlds.<br>One extraordinary neighborhood.</span></div>
+    <section class="planet-panel" aria-label="Planet explorer">
+      <div class="panel-top"><span class="eyebrow">FIELD GUIDE</span><span id="planet-counter">03 / 08</span></div>
+      <nav id="planet-nav" aria-label="Choose a planet"></nav>
+      <article id="planet-info" aria-live="polite" aria-atomic="true">
+        <div class="planet-heading"><div><p id="planet-kind" class="eyebrow"></p><h1 id="planet-name"></h1></div><span class="planet-swatch" id="planet-swatch" aria-hidden="true"></span></div>
+        <p id="planet-description"></p>
+        <dl><div><dt>Diameter</dt><dd id="diameter"></dd></div><div><dt>One year</dt><dd id="year"></dd></div><div><dt>From the Sun</dt><dd id="distance"></dd></div></dl>
+        <p class="fact-note">Rounded reference facts · Earth units</p>
+      </article>
+      <div class="guide-footer"><span id="selected-label">Earth selected</span><button id="focus-planet" class="text-button" title="Move the camera target to the selected planet">Find in space <span aria-hidden="true">↗</span></button></div>
+    </section>
+    <section class="controls" aria-label="Simulation and camera controls">
+      <div class="play-group"><button id="play" class="play-button" aria-label="Pause simulation" aria-pressed="false"><span id="play-icon" aria-hidden="true">Ⅱ</span></button><div><span class="control-title" id="motion-state">In motion</span><span class="control-sub">Time is yours</span></div></div>
+      <div class="speed-group"><label for="speed">Simulation speed <output id="speed-value" for="speed">1×</output></label><input id="speed" type="range" min="0.2" max="4" step="0.1" value="1" /></div>
+      <div class="camera-group"><span class="control-sub">Camera</span><div><button id="zoom-out" class="square-button" aria-label="Zoom out">−</button><button id="zoom-in" class="square-button" aria-label="Zoom in">+</button><button id="reset" class="reset-button">↺ <span>Reset</span></button></div></div>
+    </section>
+    <div class="camera-hint"><span aria-hidden="true">↔</span> Drag to orbit <span class="hint-divider">/</span> Scroll or pinch to zoom</div>
+    <footer><span class="legend-dot"></span> An imaginative model. Sizes, distances & motion are stylized.</footer>
+    <div id="scene-label" hidden aria-hidden="true"></div>
+    <div id="announcement" class="sr-only" role="status"></div>
+  </main>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

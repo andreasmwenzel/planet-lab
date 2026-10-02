@@ -1,0 +1,32 @@
+{
+  "run": "astra-medium-detailed",
+  "title": "Orbitarium \u2014 a little space to explore",
+  "description": "An original, scene-first 3D solar-system toy with procedurally textured planets, Saturn rings, luminous Sun, orbital paths, a responsive eight-planet field guide, selection markers, orbit and zoom camera controls, pause/resume, speed adjustment, selected-planet camera tracking, reset, reduced-motion initialization, and a labelled WebGL fallback.",
+  "implementationStartUTC": "2026-10-02T07:20:46Z",
+  "implementationEndUTC": "2026-10-02T07:26:25Z",
+  "files": [
+    "experiments/planetary/astra-medium-detailed/index.html",
+    "experiments/planetary/astra-medium-detailed/main.js",
+    "experiments/planetary/astra-medium-detailed/style.css",
+    "experiments/planetary/astra-medium-detailed/worker-report.json"
+  ],
+  "tests": [
+    {
+      "command": "node --check experiments/planetary/astra-medium-detailed/main.js",
+      "outcome": "Passed; exit code 0."
+    },
+    {
+      "command": "node --input-type=module -e \"import {build} from 'vite'; const r=await build({root:'experiments/planetary/astra-medium-detailed',configFile:false,logLevel:'warn',build:{write:false}}); console.log('Vite bundle check passed; '+r.output.length+' outputs generated in memory.');\"",
+      "outcome": "Passed; exit code 0; Vite generated 3 outputs in memory with write:false."
+    }
+  ],
+  "repairsMade": [],
+  "knownLimitations": [
+    "No browser or visual runtime checks were performed because browser localhost access is unavailable.",
+    "Planet sizes, orbit spacing, relative orbital speeds, surface patterns, and lighting are intentionally stylized and labelled as such.",
+    "Reference facts are rounded, not a precision ephemeris.",
+    "The scene requires WebGL; when unavailable the readable planet guide remains accessible with a labelled explanation and disabled 3D controls."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}
