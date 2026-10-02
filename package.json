@@ -1,0 +1,23 @@
+{
+  "name": "pocket-cosmos",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A playful, procedural Three.js solar system you can hold in your browser.",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test",
+    "check": "npm test && npm run build"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "dependencies": {
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "vite": "7.3.6"
+  }
+}
