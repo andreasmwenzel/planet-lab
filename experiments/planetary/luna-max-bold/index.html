@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#090b26" />
+    <meta name="description" content="A bold, interactive little universe. Pick a planet and take the long way around." />
+    <title>Orbit Club — Make a little universe</title>
+  </head>
+  <body>
+    <main id="experience" aria-label="Orbit Club planetary playground">
+      <div id="canvas-host" class="canvas-host"></div>
+      <div id="tag-layer" class="tag-layer" aria-label="Planet labels"></div>
+      <div class="grain" aria-hidden="true"></div>
+
+      <header class="masthead">
+        <a class="brand" href="#experience" aria-label="Orbit Club home">
+          <span class="brand-mark" aria-hidden="true"><i></i><b></b></span>
+          <span class="brand-name">ORBIT<span>CLUB</span></span>
+        </a>
+        <div class="top-note"><span class="pulse-dot" aria-hidden="true"></span><span id="live-label">A tiny universe, live</span></div>
+      </header>
+
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow"><span>✳</span> YOUR VERY OWN COSMIC PLAYGROUND</p>
+        <h1 id="page-title">Make space<br>for <em>strange.</em></h1>
+        <p class="intro-copy">Eight worlds. One star. Absolutely no rush.</p>
+      </section>
+
+      <aside class="inspector" aria-labelledby="planet-name" aria-live="polite">
+        <div class="inspector-kicker"><span class="kicker-star" aria-hidden="true">✦</span> CURRENT CRUSH <span class="world-count">01 <b>/</b> 08</span></div>
+        <div class="planet-title-row">
+          <span id="planet-swatch" class="planet-swatch" aria-hidden="true"></span>
+          <h2 id="planet-name">Earth</h2>
+        </div>
+        <p id="planet-description" class="planet-description">Blue marble, big feelings. Our bright little home keeps the whole story grounded.</p>
+        <div class="planet-meta">
+          <div><span>PLANET PERSONALITY</span><strong id="planet-vibe">The homebody</strong></div>
+          <div><span>ORBITAL LANE</span><strong id="planet-lane">No. 03 · Blue hour</strong></div>
+        </div>
+        <div class="inspector-footer"><span class="orbit-scribble" aria-hidden="true">↗</span><span id="planet-quip">A good place to begin again.</span></div>
+      </aside>
+
+      <div id="fallback" class="fallback" role="status" hidden>
+        <span class="fallback-icon" aria-hidden="true">◌</span>
+        <div><strong>3D is taking a stargazer break</strong><p>WebGL isn’t available in this browser, so the planets can’t animate here. You can still pick a world and read its field notes below.</p></div>
+      </div>
+
+      <nav id="world-chooser" class="world-chooser" aria-label="Choose a planet">
+        <span class="chooser-label">PICK A WORLD</span>
+      </nav>
+
+      <section class="control-dock" aria-label="Simulation controls">
+        <div class="transport">
+          <button id="pause-button" class="control-button play-button" type="button" aria-pressed="false" aria-label="Pause the planetary motion"><span class="pause-icon" aria-hidden="true">Ⅱ</span><span id="pause-label">Pause</span></button>
+          <button id="reset-button" class="control-button reset-button" type="button" aria-label="Reset the planetary scene and camera"><span aria-hidden="true">↺</span><span>Reset</span></button>
+          <div class="zoom-controls" role="group" aria-label="Camera zoom">
+            <button id="zoom-out" class="zoom-button" type="button" aria-label="Zoom out">−</button>
+            <span aria-hidden="true">ZOOM</span>
+            <button id="zoom-in" class="zoom-button" type="button" aria-label="Zoom in">+</button>
+          </div>
+        </div>
+        <div class="speed-control">
+          <label for="speed-slider"><span class="speed-label">TIME WARP</span><span id="speed-readout" class="speed-readout">1.0×</span></label>
+          <input id="speed-slider" type="range" min="0.25" max="2.5" step="0.25" value="1" aria-label="Simulation speed" />
+          <div class="speed-endpoints"><span>DRIFT</span><span>HYPER</span></div>
+        </div>
+      </section>
+
+      <p class="style-note"><span aria-hidden="true">✳</span> STYLIZED MOTION &amp; SCALES · NOT TO SCALE</p>
+      <div id="announcement" class="sr-only" aria-live="polite"></div>
+    </main>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

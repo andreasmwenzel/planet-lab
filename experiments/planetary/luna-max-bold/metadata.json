@@ -1,0 +1,137 @@
+{
+  "id": "luna-max-bold",
+  "experimentId": "planetary",
+  "title": "Luna · max · bold",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/planetary/luna-max-bold/index.html",
+  "axes": {
+    "model": "Luna",
+    "effort": "max",
+    "promptApproach": "bold"
+  },
+  "summary": "A vivid, responsive Three.js planetary playground with animated orbital paths, drag/pinch orbit controls, zoom, selectable planet field notes, pause/resume, simulation-speed control, reset, and a readable WebGL fallback.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation with requested model and effort explicitly configured. Same public brief, output constraints, and syntax/bundle repair allowance. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6-luna",
+    "effort": "max",
+    "runId": "luna-max-bold",
+    "startedAt": "2026-10-02T06:40:01Z",
+    "completedAt": "2026-10-02T06:49:22.734Z",
+    "durationSeconds": 562,
+    "durationScope": "Observed wall-clock time from task launch to verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; cloud browser does not provide usable WebGL2."
+    },
+    "sourceHashes": {
+      "index.html": "c867a2ed209492d223de73004c8a21223872c2144002babf1edd4e35c162c702",
+      "main.js": "4bdadb43a8b3684a05b80e826b1208f2e04d5eb1e2cb6f833d70800ddc298e3e",
+      "prompt.txt": "e16e31e541d628babce4e9bfbd54ea100b957a346f37a6a5c390e2f4175c1354",
+      "style.css": "6abbac97eb544a0e67d43e044023ff4ec05cf7adb7ef357de4fc428c223bada1"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an original interactive 3D planetary-system toy from scratch. Use the supplied Three.js dependency and a self-contained frontend with no backend, accounts, analytics, runtime network calls, or paid assets. Include an animated planetary scene, camera orbit and zoom, pause/resume, simulation-speed control, reset, and planet selection with clearly labelled information. Make it usable at desktop and phone sizes, with keyboard-accessible HTML controls and visible focus. Clearly label stylized motion/scales; do not imply scientific precision. Make reasonable design choices and implement the experience.\n\nGive this a bold, imaginative creative direction. Make it a memorable interactive cosmic playground through expressive composition, distinctive typography, vivid but intentional color, and playful transitions. Take aesthetic risks while keeping planets, labels, and controls readable and required interactions dependable.\n\nScaffold and output requirements:\n- Build the implementation fresh. Do not inspect the baseline, other variants, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only inside the supplied run directory. Create index.html and main.js there. The HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. Local CSS may be imported from main.js. Use installed three and, if useful, its add-ons via standard imports. A single fully inline HTML file is also allowed.\n- Available environment: Three.js 0.186.1, Vite 7.3.6, Node 24. No extra dependencies, CDN assets, remote fonts, runtime network calls, or backend. Do not modify package files or shared app files.\n- The common build harness bundles JavaScript and CSS into one HTML document. The viewer uses an iframe sandbox with allow-scripts and an opaque origin; do not access parent/top or rely on localStorage, cookies, cross-frame communication, or origin-specific APIs.\n- Validate JavaScript syntax and perform a local Vite bundle check with write:false. You may repair your own implementation and rerun these checks. Use the same test-and-repair allowance: implementation, syntax and local-bundle checks, then repairs needed to pass those checks. Browser localhost access is unavailable in this environment; do not claim browser checks or bypass that restriction.\n- Include a short worker-report.json with your title, description, implementation start/end UTC timestamps, exact tests and outcomes, repairs made, and known limitations. Set tokenUsage and cost to null unless the runtime supplies actual measured values. Do not estimate tokens, cost, or quality scores.\n- Provide a graceful, clearly labelled fallback if WebGL is unavailable, keeping the page readable and explaining the limitation rather than failing to a blank canvas.\n"
+      }
+    ],
+    "note": "Complete public generation brief and shared scaffold requirements, read verbatim by each fresh generation task. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax and isolated bundle checks passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "No usable WebGL2 in the available cloud browser; rendered 3D appearance and interaction have not been verified."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 566865,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 562,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 549480,
+    "cssBytes": 12633,
+    "checkedAt": "2026-10-02T06:49:22.734Z",
+    "runtimeBytes": 566865
+  },
+  "generationReport": {
+    "title": "Orbit Club — Make a little universe",
+    "description": "A vivid, responsive Three.js planetary playground with animated orbital paths, drag/pinch orbit controls, zoom, selectable planet field notes, pause/resume, simulation-speed control, reset, and a readable WebGL fallback.",
+    "files": [
+      "experiments/planetary/luna-max-bold/index.html",
+      "experiments/planetary/luna-max-bold/main.js",
+      "experiments/planetary/luna-max-bold/style.css",
+      "experiments/planetary/luna-max-bold/worker-report.json"
+    ],
+    "implementationStartedAtUTC": "2026-10-02T06:41:04Z",
+    "implementationEndedAtUTC": "2026-10-02T06:48:10Z",
+    "tests": [
+      {
+        "name": "JavaScript syntax",
+        "command": "node --check main.js",
+        "outcome": "PASS"
+      },
+      {
+        "name": "HTML entry contract",
+        "command": "Node assertion that index.html contains exactly one <script type=\"module\" src=\"./main.js\"></script> and no other script elements",
+        "outcome": "PASS"
+      },
+      {
+        "name": "Local Vite bundle check",
+        "command": "vite.build({ configFile: false, root: process.cwd(), logLevel: 'warn', build: { write: false } })",
+        "outcome": "PASS; emitted assets/index-ETeHNChP.js, assets/index-CMSUxNPH.css, and index.html in memory"
+      },
+      {
+        "name": "Worker report validation",
+        "command": "Node JSON.parse and required-field assertions for worker-report.json",
+        "outcome": "PASS"
+      }
+    ],
+    "repairsMade": [
+      "Paused axial planet rotation whenever the simulation is paused, in addition to freezing orbital motion.",
+      "Removed an empty CSS import and lowered the mobile experience minimum height to 520px.",
+      "Guarded camera positioning so reset and zoom controls do not throw if WebGL initialization fails."
+    ],
+    "knownLimitations": [
+      "Motion, scale, and planet field notes are playful approximations rather than scientifically precise ephemerides; the interface labels the scene as stylized and not to scale.",
+      "Browser interaction and visual rendering were not tested because the supplied prompt says localhost browser access is unavailable; the WebGL fallback was validated by source review, not runtime browser testing."
+    ],
+    "tokenUsage": null,
+    "cost": null
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Orbit Club — Make a little universe",
+  "description": "A vivid, responsive Three.js planetary playground with animated orbital paths, drag/pinch orbit controls, zoom, selectable planet field notes, pause/resume, simulation-speed control, reset, and a readable WebGL fallback.",
+  "files": [
+    "experiments/planetary/luna-max-bold/index.html",
+    "experiments/planetary/luna-max-bold/main.js",
+    "experiments/planetary/luna-max-bold/style.css",
+    "experiments/planetary/luna-max-bold/worker-report.json"
+  ],
+  "implementationStartedAtUTC": "2026-10-02T06:41:04Z",
+  "implementationEndedAtUTC": "2026-10-02T06:48:10Z",
+  "tests": [
+    {
+      "name": "JavaScript syntax",
+      "command": "node --check main.js",
+      "outcome": "PASS"
+    },
+    {
+      "name": "HTML entry contract",
+      "command": "Node assertion that index.html contains exactly one <script type=\"module\" src=\"./main.js\"></script> and no other script elements",
+      "outcome": "PASS"
+    },
+    {
+      "name": "Local Vite bundle check",
+      "command": "vite.build({ configFile: false, root: process.cwd(), logLevel: 'warn', build: { write: false } })",
+      "outcome": "PASS; emitted assets/index-ETeHNChP.js, assets/index-CMSUxNPH.css, and index.html in memory"
+    },
+    {
+      "name": "Worker report validation",
+      "command": "Node JSON.parse and required-field assertions for worker-report.json",
+      "outcome": "PASS"
+    }
+  ],
+  "repairsMade": [
+    "Paused axial planet rotation whenever the simulation is paused, in addition to freezing orbital motion.",
+    "Removed an empty CSS import and lowered the mobile experience minimum height to 520px.",
+    "Guarded camera positioning so reset and zoom controls do not throw if WebGL initialization fails."
+  ],
+  "knownLimitations": [
+    "Motion, scale, and planet field notes are playful approximations rather than scientifically precise ephemerides; the interface labels the scene as stylized and not to scale.",
+    "Browser interaction and visual rendering were not tested because the supplied prompt says localhost browser access is unavailable; the WebGL fallback was validated by source review, not runtime browser testing."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}
