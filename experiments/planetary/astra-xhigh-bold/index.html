@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#141320" />
+  <meta name="description" content="Odd Orbits: a colorful, hands-on pocket solar system. Eight worlds, infinite ways to wander." />
+  <title>Odd Orbits — A pocket solar system</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="masthead">
+      <a class="wordmark" href="#playground" aria-label="Odd Orbits, skip to playground"><span class="brand-star" aria-hidden="true">✳</span> ODD ORBITS<span class="wordmark-dot">®</span></a>
+      <div class="edition">A POCKET SOLAR SYSTEM<span>EST. 4.6 BILLION YEARS AGO</span></div>
+      <div class="live-badge"><span id="live-dot"></span><span id="live-state">COSMOS IN MOTION</span></div>
+    </header>
+
+    <main>
+      <section class="playground" id="playground" aria-label="Interactive planetary playground">
+        <div class="scene-wrap" id="scene-wrap">
+          <canvas id="universe" tabindex="0" aria-label="3D solar system. Drag to orbit. Scroll or pinch to zoom. Use arrow keys to orbit and plus or minus to zoom." aria-describedby="scene-help"></canvas>
+          <div class="planet-labels" id="planet-labels" aria-hidden="true"></div>
+          <div class="webgl-fallback" id="webgl-fallback" hidden>
+            <div class="fallback-orbits" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+            <span class="eyebrow">STATIC ILLUSTRATION</span>
+            <h2>Space is still here.</h2>
+            <p>The 3D view couldn’t start because WebGL is unavailable. You can still explore every planet using the buttons below.</p>
+          </div>
+        </div>
+
+        <div class="intro">
+          <div class="eyebrow"><span class="tiny-cross">+</span> YOUR UNIVERSE. YOUR PACE.</div>
+          <h1>Go a little<br><span>out there.</span><span class="title-spark" aria-hidden="true">✦</span></h1>
+          <p>Eight wonderfully weird worlds.<br>One very small corner of infinity.</p>
+          <div class="orbit-note"><span aria-hidden="true">↗</span><span>Pick a planet.<br>Get pleasantly lost.</span></div>
+        </div>
+
+        <div class="view-toolbar" role="group" aria-label="Camera controls">
+          <button type="button" id="zoom-in" title="Zoom in" aria-label="Zoom in">+</button>
+          <button type="button" id="zoom-out" title="Zoom out" aria-label="Zoom out">−</button>
+          <span class="toolbar-divider"></span>
+          <button type="button" id="overview" class="wide-button" title="Return to whole-system view">↗ <span>WIDE VIEW</span></button>
+          <button type="button" id="paths" class="path-toggle" aria-pressed="true" title="Show or hide orbit paths"><span aria-hidden="true">◎</span><span class="sr-only">Orbit paths</span></button>
+        </div>
+
+        <aside class="planet-card" aria-labelledby="planet-name">
+          <div class="card-topline"><span>FIELD NOTES</span><span id="planet-number">03 / 08</span></div>
+          <div class="planet-heading"><div><span class="planet-nickname" id="planet-nickname">THE BLUE MARBLE</span><h2 id="planet-name">Earth</h2></div><div class="card-planet earth" id="card-planet" aria-hidden="true"></div></div>
+          <p class="planet-description" id="planet-description">An ocean-covered rock with a very lively surface. So far, the only world we know that has anyone looking back.</p>
+          <dl class="planet-stats"><div><dt>A year here</dt><dd id="planet-year">365 days</dd></div><div><dt>Diameter</dt><dd id="planet-diameter">12,742 km</dd></div><div><dt>World type</dt><dd id="planet-type">Rocky planet</dd></div></dl>
+          <button id="visit-planet" class="visit-button" type="button"><span>TAKE A CLOSER LOOK</span><span aria-hidden="true">↗</span></button>
+          <p class="fact-note">Approximate real-world facts. Very unreal scale.</p>
+        </aside>
+
+        <div class="scene-footer"><p id="scene-help"><span aria-hidden="true">↔</span> Drag to orbit <span class="help-dot">·</span> Scroll / pinch to zoom</p><span class="scale-label">PLAYFUL PHYSICS · NOT TO SCALE</span></div>
+      </section>
+
+      <section class="control-deck" aria-label="Planet and simulation controls">
+        <div class="selector-heading"><span class="eyebrow">CHOOSE YOUR NEXT STOP</span><span class="selector-arrow" aria-hidden="true">↓</span></div>
+        <div class="planet-selector" id="planet-selector" role="group" aria-label="Select a planet"></div>
+        <div class="transport">
+          <button type="button" class="pause-button" id="pause" aria-label="Pause simulation"><span id="pause-icon" aria-hidden="true">Ⅱ</span><span id="pause-label">PAUSE</span></button>
+          <div class="speed-control"><div><label for="speed">TIME IS A TOY</label><output id="speed-value" for="speed">1×</output></div><input id="speed" type="range" min="0.1" max="4" step="0.1" value="1" aria-label="Simulation speed" aria-valuetext="1 times speed" /><div class="speed-ends"><span>TAKE IT SLOW</span><span>MAKE IT FLY</span></div></div>
+          <button type="button" class="reset-button" id="reset"><span aria-hidden="true">↺</span><span>START OVER</span></button>
+        </div>
+      </section>
+    </main>
+    <footer class="page-footer"><span>A little cosmic perspective goes a long way.</span><span>NO DESTINATION NECESSARY <span aria-hidden="true">✳</span></span></footer>
+    <div id="status" class="sr-only" role="status" aria-live="polite"></div>
+  </div>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
