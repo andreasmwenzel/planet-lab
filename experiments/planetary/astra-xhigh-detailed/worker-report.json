@@ -1,0 +1,57 @@
+{
+  "runId": "astra-xhigh-detailed",
+  "title": "Planet Lab \u2014 Space, at your pace",
+  "description": "An original dark, editorial-style planetary playground with eight procedurally textured worlds, a glowing Sun, orbit paths, selectable field notes, close-up camera tracking, responsive controls, and a readable WebGL fallback.",
+  "requestedModel": "gpt-6-astra",
+  "requestedReasoningEffort": "xhigh",
+  "implementationStartUTC": "2026-10-02T07:28:58Z",
+  "implementationEndUTC": "2026-10-02T07:41:11Z",
+  "files": [
+    "/workspace/scratch/bb2a48021f5a/planet-lab/experiments/planetary/astra-xhigh-detailed/index.html",
+    "/workspace/scratch/bb2a48021f5a/planet-lab/experiments/planetary/astra-xhigh-detailed/main.js",
+    "/workspace/scratch/bb2a48021f5a/planet-lab/experiments/planetary/astra-xhigh-detailed/style.css",
+    "/workspace/scratch/bb2a48021f5a/planet-lab/experiments/planetary/astra-xhigh-detailed/worker-report.json"
+  ],
+  "tests": [
+    {
+      "name": "JavaScript syntax",
+      "command": "node --check experiments/planetary/astra-xhigh-detailed/main.js",
+      "workingDirectory": "/workspace/scratch/bb2a48021f5a/planet-lab",
+      "outcome": "passed",
+      "exitCode": 0,
+      "details": "Node accepted the ES module without syntax errors."
+    },
+    {
+      "name": "Local Vite bundle, in memory",
+      "command": "node --input-type=module - <<'NODE'\nimport { build } from 'vite';\nconst result = await build({\n  configFile: false,\n  root: '/workspace/scratch/bb2a48021f5a/planet-lab/experiments/planetary/astra-xhigh-detailed',\n  logLevel: 'warn',\n  build: { write: false, minify: true, assetsInlineLimit: Infinity }\n});\nconst bundles = Array.isArray(result) ? result : [result];\nfor (const bundle of bundles) {\n  console.log(JSON.stringify({status:'passed', write:false, outputs:bundle.output.map(file=>({fileName:file.fileName,type:file.type,bytes:file.type==='chunk'?Buffer.byteLength(file.code):Buffer.byteLength(file.source)}))}));\n}\nNODE",
+      "workingDirectory": "/workspace/scratch/bb2a48021f5a/planet-lab",
+      "outcome": "passed",
+      "exitCode": 0,
+      "write": false,
+      "outputs": [
+        {
+          "fileName": "assets/index-BueIlDJq.js",
+          "bytes": 574264
+        },
+        {
+          "fileName": "assets/index-sUKlkUiO.css",
+          "bytes": 16321
+        },
+        {
+          "fileName": "index.html",
+          "bytes": 5994
+        }
+      ],
+      "details": "Vite resolved Three.js, OrbitControls, and local CSS and bundled successfully. No bundle files were written."
+    }
+  ],
+  "repairsMade": [],
+  "knownLimitations": [
+    "Browser localhost access was unavailable; no browser rendering, interaction, mobile-device, or visual checks were performed.",
+    "Orbital motion, planet sizes, distances, and generated surface art are intentionally stylized and are labelled as such in the interface.",
+    "This is an orbital toy, not a physical simulation or a scientifically accurate ephemeris.",
+    "WebGL startup failure or context loss displays a labelled fallback with working planet information; reloading is needed to attempt 3D initialization again."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}
