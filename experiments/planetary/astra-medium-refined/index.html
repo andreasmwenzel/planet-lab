@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#101617" />
+<title>Orbit — A planetary observatory</title>
+</head>
+<body>
+<div class="app">
+  <header class="masthead"><a class="brand" href="#observatory" aria-label="Orbit observatory"><span class="brand-mark" aria-hidden="true">◉</span> orbit<span class="brand-sub">PLANETARY OBSERVATORY</span></a><span class="edition">A small study in motion <span>№ 01</span></span></header>
+  <main id="observatory">
+    <section class="introduction"><div><p class="eyebrow">THE SOLAR COLLECTION</p><h1>Everything in its own time.</h1></div><p class="intro-note">Eight worlds. One shared center.<br>A little room to slow down and look.</p></section>
+    <div class="observatory">
+      <aside class="planet-info" aria-label="Selected planet information">
+        <div class="info-heading"><span class="eyebrow">FIELD NOTES</span><span id="planet-number">03 / 08</span></div>
+        <div class="specimen" aria-hidden="true"><div id="planet-portrait"></div><span class="specimen-line"></span></div>
+        <div aria-live="polite" aria-atomic="true"><p class="planet-type" id="planet-type"></p><h2 id="planet-name"></h2><p class="planet-description" id="planet-description"></p><dl class="facts"><div><dt>Orbital period</dt><dd id="planet-period"></dd></div><div><dt>Mean distance from Sun</dt><dd id="planet-distance"></dd></div><div><dt>Diameter</dt><dd id="planet-diameter"></dd></div></dl></div>
+        <button id="focus-planet" class="text-button">Observe closer <span aria-hidden="true">↗</span></button>
+        <p class="fact-note">Reference values are rounded.<br>The scene is an artistic interpretation.</p>
+      </aside>
+      <section class="view" aria-label="Interactive solar system">
+        <div class="view-top"><span class="live-label"><i id="status-dot"></i><span id="motion-status">IN MOTION</span></span><div class="view-options"><button id="perspective" aria-pressed="true">Perspective</button><button id="top-view" aria-pressed="false">From above</button></div></div>
+        <div id="scene" tabindex="0" role="group" aria-label="3D solar system. Drag to orbit, scroll or pinch to zoom. Arrow keys orbit; plus and minus zoom."><div id="selected-label" aria-hidden="true"><span></span><b>Earth</b></div><div id="fallback" hidden><div class="fallback-orbits" aria-hidden="true">☀</div><h3>3D view unavailable</h3><p>This browser could not start WebGL. You can still explore all eight planets in the collection below.</p></div></div>
+        <div class="scene-tools"><button id="overview" title="Return to full system">↙ <span>Full system</span></button><div><button id="zoom-in" aria-label="Zoom in">+</button><button id="zoom-out" aria-label="Zoom out">−</button></div></div>
+        <div class="view-caption"><span>Drag to orbit · Scroll to explore</span><span>STYLIZED SCALE & MOTION</span></div>
+      </section>
+    </div>
+    <nav id="planet-list" aria-label="Choose a planet"></nav>
+    <section class="transport" aria-label="Simulation controls"><button id="play-pause" class="play-button" aria-label="Pause simulation"><span id="play-icon" aria-hidden="true">Ⅱ</span><span id="play-text">Pause</span></button><div class="speed-control"><label for="speed">Passage of time</label><input id="speed" type="range" min="0.2" max="4" step="0.1" value="1"/><output id="speed-value" for="speed">1.0×</output></div><div class="elapsed"><span>SIMULATED YEARS</span><output id="elapsed">000.00</output></div><button id="reset" class="reset-button">↺ <span>Reset</span></button></section>
+  </main>
+  <footer><span>Made for curiosity, not navigation.</span><span>One Earth year ≈ 24 seconds at 1×</span></footer>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

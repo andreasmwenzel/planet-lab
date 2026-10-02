@@ -1,0 +1,38 @@
+{
+  "runId": "astra-medium-refined",
+  "title": "Orbit — A planetary observatory",
+  "description": "A contemplative, dark observatory with eight procedural 3D planets, subtle orbit traces, curated field notes, accessible planet selection, camera orbit and zoom, close observation, overhead and perspective views, playback, adjustable speed, and reset. Responsive layouts and a readable WebGL fallback are included.",
+  "requestedModel": "gpt-6-astra",
+  "requestedReasoningEffort": "medium",
+  "implementationStartUtc": "2026-10-02T07:22:37Z",
+  "implementationEndUtc": "2026-10-02T07:29:15Z",
+  "files": [
+    "experiments/planetary/astra-medium-refined/index.html",
+    "experiments/planetary/astra-medium-refined/main.js",
+    "experiments/planetary/astra-medium-refined/style.css",
+    "experiments/planetary/astra-medium-refined/worker-report.json"
+  ],
+  "tests": [
+    {
+      "command": "node --check experiments/planetary/astra-medium-refined/main.js",
+      "outcome": "Passed, exit code 0, both initial and final validation."
+    },
+    {
+      "command": "node --input-type=module -e \"import {build} from 'vite'; await build({root: 'experiments/planetary/astra-medium-refined',configFile:false,build:{write:false}})\"",
+      "outcome": "Passed, exit code 0. Vite 7.3.6 transformed 7 modules. Initial build 1.76 seconds; final build 1.58 seconds. write:false used; no build artifacts written."
+    }
+  ],
+  "repairsMade": [
+    "Removed an unused color conversion expression from procedural texture generation.",
+    "Kept the static-collection fallback status intact when Reset is used without WebGL.",
+    "No syntax or bundle failures occurred. Both prescribed checks were repeated after the small repairs."
+  ],
+  "knownLimitations": [
+    "Browser localhost access is unavailable, so no browser, screenshot, or interaction checks were performed.",
+    "Planet sizes, orbital spacing, and textures are illustrative. Circular coplanar orbital motion is simplified; it is not an ephemeris or a scientific simulation.",
+    "Reference facts are rounded. Procedural Earth surface patterns do not reproduce accurate geography.",
+    "WebGL failure or context loss shows the static collection; restoring 3D requires reloading the page."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}
