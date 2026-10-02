@@ -1,0 +1,29 @@
+{
+  "title": "Orbitarium — Planetary Lab",
+  "description": "An original responsive planetary-system explorer with a procedural Three.js scene, planet selection and details, orbit/zoom controls, pause and speed controls, reset, and a labelled static fallback when WebGL is unavailable.",
+  "implementationStartUtc": "2026-10-02T06:40:27Z",
+  "implementationEndUtc": "2026-10-02T06:49:43Z",
+  "exactTestsAndOutcomes": [
+    {
+      "command": "node --check main.js",
+      "outcome": "PASS (exit code 0)"
+    },
+    {
+      "command": "node --input-type=module -e \"import { build } from 'vite'; const result = await build({ root: process.cwd(), configFile: false, logLevel: 'warn', build: { write: false, outDir: 'dist', rollupOptions: { input: 'index.html' } } }); const outputs = Array.isArray(result) ? result : [result]; console.log('Vite bundle check passed (write:false); output bundle(s):', outputs.flatMap(x => x.output || []).map(x => x.fileName).join(', '));\"",
+      "outcome": "PASS (write:false); bundle outputs: assets/index-OG14VVkY.js, assets/index-2GLK_J7k.css, index.html"
+    },
+    {
+      "command": "node -e \"JSON.parse(require('fs').readFileSync('worker-report.json', 'utf8')); console.log('worker-report.json valid JSON')\" && grep -F '<script type=\"module\" src=\"./main.js\"></script>' index.html && test \"$(grep -c '<script ' index.html)\" -eq 1",
+      "outcome": "PASS; worker-report.json parses and index.html contains exactly one required module script tag."
+    }
+  ],
+  "repairsMade": [
+    "Removed an unnecessary empty CSS import before running the prescribed checks."
+  ],
+  "knownLimitations": [
+    "Browser/localhost testing was not performed because it is unavailable in this environment.",
+    "If WebGL is unavailable, the page displays a labelled static diagram; simulation animation and speed controls are disabled while planet selection and information remain available."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}
