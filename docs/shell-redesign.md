@@ -2,7 +2,7 @@
 
 ## Decision
 
-The homepage is one genuine, dated experiment post. Its centerpiece is the actual selected creation, with a compact selector whose 24 positions correspond to the model × effort × prompt conditions. The complete post keeps the exact prompts, provenance, and evaluation records underneath that same viewer. Homepage variant/filter URLs preserve browser history, and the original experiment deep links remain stable.
+The homepage is a blog index: dated post titles, concise excerpts, and links. It contains no simulator, run picker, or embedded creation. Opening the planetary post reveals the actual selected creation and 24-condition selector; exact prompts, provenance, and evaluation records sit inside that post. Original experiment deep links remain stable. An initial redesign wrongly put the post on the homepage; this separation corrects that information architecture.
 
 ## What changed, and why
 
