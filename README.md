@@ -17,7 +17,17 @@ npm run preview
 npm run check
 ```
 
-`dev` and `build` first bundle completed experiment sources into standalone HTML under `public/experiments/`. These generated files are ignored by Git and copied to `dist/` by Vite. Do not run the journal from a `file:` URL. No API key, backend, CDN, telemetry, account, or model request is needed.
+`dev` and `build` first bundle completed experiment sources into standalone HTML under `public/experiments/`. These generated files are ignored by Git and copied to `dist/` by Vite. Do not run the journal from a `file:` URL. No API key, backend, CDN, account, or model request is needed to run locally. Analytics is disabled in development and on localhost previews.
+
+## Web Analytics
+
+The deployed journal shell uses [Vercel Web Analytics](https://vercel.com/docs/analytics/quickstart) via the official `@vercel/analytics` package. Enable Web Analytics for the Vercel project and deploy to provide its script and collection endpoints.
+
+Hash routes are recorded as `/`, `/method`, `/experiments/planetary`, or `/not-found`. Page URLs exclude query strings and fragments; switching builds or filters within a post does not create another page view. Unknown paths are grouped under `/not-found` rather than forwarded verbatim. Add new published posts to the explicit allowlist in `src/analytics.js`.
+
+No custom events, simulator interactions, or session replay are added. Vercel receives its standard page-view and request metadata; see its [privacy documentation](https://vercel.com/docs/analytics/privacy-policy). Analytics runs only in the journal shell. The preserved experiment sources and standalone runtime artifacts remain uninstrumented, with their existing network-blocking CSP and sandbox unchanged.
+
+After deployment, visit the index and a post, confirm the Vercel analytics script and page-view requests succeed in browser developer tools, and check the project's Analytics dashboard. Local tests verify routing and collection setup but do not prove the dashboard has received a production visit.
 
 ## Routes
 
