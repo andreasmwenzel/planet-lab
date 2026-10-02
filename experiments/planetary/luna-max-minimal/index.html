@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080d18" />
+    <meta name="description" content="A tiny, hands-on tour through our solar neighborhood." />
+    <title>Orbit Room — A solar-system explorer</title>
+  </head>
+  <body>
+    <main class="stage" id="stage">
+      <div class="scene-frame" id="scene-frame" aria-label="Interactive 3D view of the solar system"></div>
+
+      <section class="webgl-fallback" id="webgl-fallback" hidden aria-labelledby="fallback-title">
+        <div class="fallback-orbit-art" aria-hidden="true">
+          <span class="fallback-orbit fallback-orbit--one"></span>
+          <span class="fallback-orbit fallback-orbit--two"></span>
+          <span class="fallback-sun"></span>
+          <span class="fallback-world fallback-world--one"></span>
+          <span class="fallback-world fallback-world--two"></span>
+          <span class="fallback-world fallback-world--three"></span>
+        </div>
+        <div class="fallback-copy">
+          <span class="eyebrow">A NOTE FROM THE OBSERVATORY</span>
+          <h2 id="fallback-title">3D view unavailable</h2>
+          <p>This browser session couldn’t start WebGL. The planet guide and facts still work below.</p>
+        </div>
+      </section>
+
+      <header class="topbar">
+        <a class="brand" href="#stage" aria-label="Orbit Room home">
+          <span class="brand-mark" aria-hidden="true"><span></span></span>
+          <span class="brand-copy"><strong>ORBIT ROOM</strong><small>A pocket observatory</small></span>
+        </a>
+        <div class="topbar-status" aria-label="Solar system explorer, eight worlds">
+          <span class="status-pip" aria-hidden="true"></span>
+          <span>OUR SOLAR NEIGHBORHOOD</span>
+          <span class="status-divider" aria-hidden="true"></span>
+          <span class="status-count">08 WORLDS</span>
+        </div>
+      </header>
+
+      <div class="scene-heading">
+        <span class="eyebrow"><span class="eyebrow-dash" aria-hidden="true"></span> A LITTLE COSMIC PERSPECTIVE</span>
+        <h1>Find your<br /><em>place in orbit.</em></h1>
+        <p>Pick a world. Follow its path.<br />Stay curious out there.</p>
+      </div>
+
+      <aside class="planet-panel glass-panel" aria-label="Planet selector">
+        <div class="panel-topline"><span class="eyebrow">THE LINEUP</span><span class="panel-index">01 <i>/</i> 08</span></div>
+        <div class="panel-heading-row"><h2>Choose a world</h2><span class="tiny-orbit-icon" aria-hidden="true">↗</span></div>
+        <nav id="planet-list" class="planet-list" aria-label="Select a planet"></nav>
+      </aside>
+
+      <aside class="detail-panel glass-panel" aria-label="Selected planet information" aria-live="polite" aria-atomic="true">
+        <div class="detail-topline"><span class="eyebrow">PLANET FIELD NOTES</span><span class="detail-symbol" id="detail-symbol" aria-hidden="true">⊙</span></div>
+        <p class="planet-order" id="planet-order">THIRD FROM THE SUN</p>
+        <h2 id="planet-name">Earth</h2>
+        <p class="planet-kind" id="planet-kind">Terrestrial planet</p>
+        <p class="planet-description" id="planet-description">Our pale blue dot: the only known world with liquid water on its surface and life in abundance.</p>
+        <div class="detail-divider"></div>
+        <dl class="fact-grid">
+          <div><dt>ORBIT FROM SUN</dt><dd id="planet-distance">1.00 AU</dd></div>
+          <div><dt>ONE YEAR</dt><dd id="planet-year">365 days</dd></div>
+        </dl>
+        <p class="planet-fact" id="planet-fact">A single day-night cycle takes about 24 hours.</p>
+      </aside>
+
+      <section class="transport-panel glass-panel" aria-label="Simulation controls">
+        <button class="transport-button pause-button" id="pause-button" type="button" aria-label="Pause simulation" aria-keyshortcuts="Space">
+          <span class="button-icon pause-icon" id="pause-icon" aria-hidden="true">Ⅱ</span><span id="pause-label">Pause</span>
+        </button>
+        <span class="transport-separator" aria-hidden="true"></span>
+        <button class="transport-button reset-button" id="reset-button" type="button" aria-label="Reset simulation" aria-keyshortcuts="R">
+          <span class="button-icon" aria-hidden="true">↺</span><span>Reset</span>
+        </button>
+        <span class="transport-separator transport-separator--speed" aria-hidden="true"></span>
+        <label class="speed-control" for="speed-slider">
+          <span class="speed-label"><span>TIMEFLOW</span><output id="speed-output" for="speed-slider">1.0×</output></span>
+          <input id="speed-slider" type="range" min="0.2" max="3" step="0.1" value="1" aria-label="Simulation speed" />
+        </label>
+      </section>
+
+      <p class="scene-hint"><span class="hint-orbit" aria-hidden="true">⤢</span> Drag to look around <i>·</i> Scroll to zoom</p>
+      <p class="scale-note"><span class="note-star" aria-hidden="true">✦</span> Orbit spacing and planet sizes are stylized <span class="note-divider">/</span> Not to scale</p>
+      <p class="keyboard-note">SPACE <span>pause</span><i>·</i> R <span>reset</span><i>·</i> [ ] <span>browse worlds</span></p>
+    </main>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
