@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#181322"><title>Orbit Club — make space</title></head>
+<body>
+<div class="app">
+<header><a class="brand" href="#playground" aria-label="Orbit Club playground"><span class="brandmark">✳</span> ORBIT CLUB<span class="brand-caption">A SMALL SYSTEM.<br>A BIG NIGHT OUT.</span></a><span class="edition">INTERPLANETARY PLAYGROUND <b>VOL. 01 / SOL</b></span></header>
+<main id="playground">
+<section class="universe" aria-label="Interactive planetary scene">
+<div class="hero"><div class="eyebrow"><span></span> YOUR LITTLE CORNER OF THE COSMOS</div><h1>MAKE<br><em>SPACE.</em></h1><p>Eight worlds. One star.<br>Absolutely no itinerary.</p></div>
+<div id="viewport" tabindex="0" role="group" aria-label="3D solar system. Drag to orbit, scroll to zoom. When focused, use arrow keys to orbit and plus or minus to zoom."></div>
+<div class="scene-meta"><span class="live-indicator" id="motion-state">● IN ORBIT</span><span id="scene-coordinate">HELIOCENTRIC / WIDE VIEW</span></div>
+<div class="scene-help">DRAG TO ORBIT <span>↔</span> SCROLL / PINCH TO ZOOM</div>
+<div class="scale-note">CREATIVE MODEL<br>Sizes, distances & motion are stylized</div>
+<div id="fallback" hidden><span class="fallback-icon">✳</span><h2>The universe needs WebGL</h2><p>Your browser couldn't start the 3D scene. You can still explore all eight planet notes here. Try a WebGL-enabled browser to orbit and zoom.</p></div>
+<button class="wide-view" id="wide-view" aria-label="Return camera to system view">↗ SYSTEM VIEW</button>
+</section>
+<aside class="manifest"><div class="rail-heading"><h2>THE LINEUP</h2><span>08 WORLDS</span></div><div id="planet-list" class="planet-list" aria-label="Select a planet"></div>
+<article class="planet-card" aria-live="polite" aria-atomic="true"><div class="card-top"><span id="planet-type"></span><span id="planet-number"></span></div><h2 id="planet-name"></h2><p id="planet-description"></p><div class="facts"><div><span>DIAMETER</span><strong id="planet-diameter"></strong></div><div><span>ONE YEAR</span><strong id="planet-year"></strong></div></div><button id="visit">TAKE ME CLOSER <span>↗</span></button></article>
+</aside>
+</main>
+<section class="console" aria-label="Simulation controls"><div class="transport"><button id="pause" aria-pressed="false"><span id="pause-icon">Ⅱ</span><span id="pause-label">PAUSE</span></button><button id="reset" title="Reset scene, selection, speed and camera">↺ RESET</button></div><div class="speed-control"><label for="speed">SET THE PACE <output id="speed-output" for="speed">1×</output></label><input id="speed" type="range" min="0.1" max="4" step="0.1" value="1"><div class="speed-marks"><span>LAZY SUNDAY</span><span>COSMIC RUSH</span></div></div><div class="console-message"><span>✷</span><p>A little perspective<br>goes a long way.</p></div></section>
+<footer><span>ORBIT CLUB · AN EXERCISE IN WONDER</span><span>PLANET FACTS APPROXIMATE · NOT TO SCALE</span></footer>
+</div>
+<script type="module" src="./main.js"></script>
+</body></html>
