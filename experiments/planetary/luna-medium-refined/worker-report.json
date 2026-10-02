@@ -1,0 +1,28 @@
+{
+  "title": "Still / Orbit — A Pocket Observatory",
+  "description": "An elegant, responsive Three.js study of the solar system with gentle orbital motion, drag-to-orbit and scroll zoom, planet selection, readable information, pause, speed, reset, and an explicit WebGL-unavailable fallback. Scale and motion are labelled as stylized.",
+  "implementationStartUtc": "2026-10-02T06:36:18Z",
+  "implementationEndUtc": "2026-10-02T06:39:32Z",
+  "tests": [
+    {
+      "name": "JavaScript syntax",
+      "command": "node --check experiments/planetary/luna-medium-refined/main.js",
+      "outcome": "passed"
+    },
+    {
+      "name": "Local Vite bundle (no output written)",
+      "command": "node --input-type=module -e \"import { build } from 'vite'; await build({ root: new URL('./experiments/planetary/luna-medium-refined/', import.meta.url).pathname, configFile: false, logLevel: 'info', build: { write: false } });\"",
+      "outcome": "passed; Vite 7.3.6 transformed 5 modules and completed the build"
+    }
+  ],
+  "repairs": [
+    "Removed an accidentally duplicated selected-index declaration before validation.",
+    "Removed an empty CSS import so the implementation has no remote font or asset dependency."
+  ],
+  "knownLimitations": [
+    "Browser-based visual interaction checks were not performed because localhost browser access is unavailable in this environment.",
+    "Orbit distances, planet sizes, and speeds are intentionally stylized rather than scientifically to scale."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}

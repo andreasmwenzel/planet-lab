@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080d15" />
+  <title>Still / Orbit — a pocket observatory</title>
+</head>
+<body>
+  <main id="app" aria-label="Still Orbit planetary observatory">
+    <div id="stage" aria-label="Animated stylized planetary system"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="masthead">
+      <a class="wordmark" href="#top" aria-label="Still Orbit home"><span class="mark">◉</span> STILL <i>/</i> ORBIT</a>
+      <div class="edition"><span class="live-dot"></span> POCKET OBSERVATORY <span class="edition-line"></span> VOL. 01</div>
+      <button class="icon-button" id="help" aria-label="About this model" title="About this model">?</button>
+    </header>
+    <section class="intro" id="top">
+      <p class="eyebrow">A SMALL STUDY OF GRAVITY</p>
+      <h1>Worlds in<br><em>their own time.</em></h1>
+      <p class="dek">A quiet, living model of our solar neighborhood.<br>Stay awhile. Follow a single orbit.</p>
+    </section>
+    <div class="scene-caption"><span class="caption-rule"></span><span>THE INNER SYSTEM</span><span class="caption-note">ORBITAL PATHS · NOT TO SCALE</span></div>
+    <nav class="planet-nav" aria-label="Select a world" id="planet-nav"></nav>
+    <aside class="planet-card" aria-live="polite">
+      <div class="card-top"><span class="eyebrow" id="body-type">THE STAR</span><span class="coordinates" id="body-index">00 / 09</span></div>
+      <h2 id="body-name">Sol</h2>
+      <p class="body-copy" id="body-copy">The steady heart of this small system. Every path begins here.</p>
+      <div class="card-meta"><div><span class="meta-label">ORBIT</span><strong id="body-orbit">—</strong></div><div><span class="meta-label">YEAR</span><strong id="body-year">—</strong></div></div>
+    </aside>
+    <section class="controls" aria-label="Simulation controls">
+      <button id="play" class="play-button" aria-label="Pause simulation"><span class="play-icon">Ⅱ</span><span id="play-label">PAUSE</span></button>
+      <span class="control-divider"></span>
+      <label class="speed-control" for="speed"><span>SPEED</span><input id="speed" type="range" min="0" max="2" step="0.01" value="0.55" aria-label="Simulation speed"><output id="speed-value" for="speed">0.6×</output></label>
+      <button id="reset" class="reset-button" aria-label="Reset view and simulation">↺ <span>RESET</span></button>
+    </section>
+    <footer><span>AN INVITATION TO LOOK CLOSER</span><span class="footer-center">DRAG TO ORBIT&nbsp; · &nbsp;SCROLL TO ZOOM</span><span>01—09</span></footer>
+    <dialog id="about"><button class="close" aria-label="Close">×</button><p class="eyebrow">A NOTE ON SCALE</p><h2>Made for looking,<br><em>not measuring.</em></h2><p>Planet sizes, distances, and orbital speeds are stylized to make the whole system visible and pleasant to explore. The motion is an artistic interpretation, not a scientific simulation.</p><p class="dialog-note">Drag to look around. Use the buttons below to choose a world, pause, or change the pace.</p></dialog>
+  </main>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
