@@ -1,0 +1,34 @@
+{
+  "runId": "astra-medium-bold",
+  "title": "Orbit Club — Make Space",
+  "description": "A bold editorial cosmic playground with oversized poster typography, a violet-and-acid palette, painted planet textures, a warm solar halo, an asteroid belt, and a pink planet dossier. Includes eight selectable planets, orbit and zoom controls, keyboard camera controls, planet-following close-ups, pause, speed control, reset, and responsive layouts.",
+  "implementationStartUtc": "2026-10-02T07:21:11Z",
+  "implementationEndUtc": "2026-10-02T07:26:45Z",
+  "files": [
+    "experiments/planetary/astra-medium-bold/index.html",
+    "experiments/planetary/astra-medium-bold/main.js",
+    "experiments/planetary/astra-medium-bold/style.css",
+    "experiments/planetary/astra-medium-bold/worker-report.json"
+  ],
+  "tests": [
+    {
+      "command": "node --check experiments/planetary/astra-medium-bold/main.js",
+      "outcome": "Passed initially and after repair; exit code 0."
+    },
+    {
+      "command": "node --input-type=module -e \"import { build } from 'vite'; await build({root:'experiments/planetary/astra-medium-bold',configFile:false,build:{write:false}});\"",
+      "outcome": "Initial check failed because PostCSS treated an unnecessary empty data-URL CSS import as a filesystem import. After removing that import, the in-memory production build passed: 7 modules transformed, 3 output assets/chunks, no output files written."
+    }
+  ],
+  "repairsMade": [
+    "Removed the unnecessary @import url('data:text/css,') line from style.css to resolve the local Vite/PostCSS bundle failure."
+  ],
+  "knownLimitations": [
+    "No browser, visual, or interactive tests were performed; localhost browser access was unavailable and was not bypassed.",
+    "Planet sizes, distances, speeds, textures, and lighting are deliberately stylized, with explicit on-page disclosure; this is not a scientific simulation.",
+    "The 3D scene requires WebGL. A labelled fallback keeps planet notes readable if WebGL initialization fails or the context is lost.",
+    "System typography varies with fonts installed on the viewing device."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}

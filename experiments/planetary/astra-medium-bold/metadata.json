@@ -1,0 +1,126 @@
+{
+  "id": "astra-medium-bold",
+  "experimentId": "planetary",
+  "title": "Astra · medium · bold",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/planetary/astra-medium-bold/index.html",
+  "axes": {
+    "model": "Astra",
+    "effort": "medium",
+    "promptApproach": "bold"
+  },
+  "summary": "A bold editorial cosmic playground with oversized poster typography, a violet-and-acid palette, painted planet textures, a warm solar halo, an asteroid belt, and a pink planet dossier. Includes eight selectable planets, orbit and zoom controls, keyboard camera controls, planet-following close-ups, pause, speed control, reset, and responsive layouts.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation with requested model and effort explicitly configured. Same public brief, output constraints, and syntax/bundle repair allowance. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6-astra",
+    "effort": "medium",
+    "runId": "astra-medium-bold",
+    "startedAt": "2026-10-02T07:20:43Z",
+    "completedAt": "2026-10-02T07:27:35.645Z",
+    "durationSeconds": 413,
+    "durationScope": "Observed wall-clock time from task launch to verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; cloud browser does not provide usable WebGL2."
+    },
+    "sourceHashes": {
+      "index.html": "b96723e3094abb98e6e79059871a4a4f1f04c9f5df23da5705ca8945c035a61d",
+      "main.js": "2bc7d315f6f3296128b6a1c657da5f81c2b649f54bd7e1eb27a93c476e1bef42",
+      "prompt.txt": "e16e31e541d628babce4e9bfbd54ea100b957a346f37a6a5c390e2f4175c1354",
+      "style.css": "43ba61aeeddf049619411ea0e05786b38a59906f362889d63e7c945ca29b7cc5"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an original interactive 3D planetary-system toy from scratch. Use the supplied Three.js dependency and a self-contained frontend with no backend, accounts, analytics, runtime network calls, or paid assets. Include an animated planetary scene, camera orbit and zoom, pause/resume, simulation-speed control, reset, and planet selection with clearly labelled information. Make it usable at desktop and phone sizes, with keyboard-accessible HTML controls and visible focus. Clearly label stylized motion/scales; do not imply scientific precision. Make reasonable design choices and implement the experience.\n\nGive this a bold, imaginative creative direction. Make it a memorable interactive cosmic playground through expressive composition, distinctive typography, vivid but intentional color, and playful transitions. Take aesthetic risks while keeping planets, labels, and controls readable and required interactions dependable.\n\nScaffold and output requirements:\n- Build the implementation fresh. Do not inspect the baseline, other variants, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only inside the supplied run directory. Create index.html and main.js there. The HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. Local CSS may be imported from main.js. Use installed three and, if useful, its add-ons via standard imports. A single fully inline HTML file is also allowed.\n- Available environment: Three.js 0.186.1, Vite 7.3.6, Node 24. No extra dependencies, CDN assets, remote fonts, runtime network calls, or backend. Do not modify package files or shared app files.\n- The common build harness bundles JavaScript and CSS into one HTML document. The viewer uses an iframe sandbox with allow-scripts and an opaque origin; do not access parent/top or rely on localStorage, cookies, cross-frame communication, or origin-specific APIs.\n- Validate JavaScript syntax and perform a local Vite bundle check with write:false. You may repair your own implementation and rerun these checks. Use the same test-and-repair allowance: implementation, syntax and local-bundle checks, then repairs needed to pass those checks. Browser localhost access is unavailable in this environment; do not claim browser checks or bypass that restriction.\n- Include a short worker-report.json with your title, description, implementation start/end UTC timestamps, exact tests and outcomes, repairs made, and known limitations. Set tokenUsage and cost to null unless the runtime supplies actual measured values. Do not estimate tokens, cost, or quality scores.\n- Provide a graceful, clearly labelled fallback if WebGL is unavailable, keeping the page readable and explaining the limitation rather than failing to a blank canvas.\n"
+      }
+    ],
+    "note": "Complete public generation brief and shared scaffold requirements, read verbatim by each fresh generation task. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax and isolated bundle checks passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "No usable WebGL2 in the available cloud browser; rendered 3D appearance and interaction have not been verified."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 570361,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 413,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 558696,
+    "cssBytes": 8220,
+    "checkedAt": "2026-10-02T07:27:35.645Z",
+    "runtimeBytes": 570361
+  },
+  "generationReport": {
+    "runId": "astra-medium-bold",
+    "title": "Orbit Club — Make Space",
+    "description": "A bold editorial cosmic playground with oversized poster typography, a violet-and-acid palette, painted planet textures, a warm solar halo, an asteroid belt, and a pink planet dossier. Includes eight selectable planets, orbit and zoom controls, keyboard camera controls, planet-following close-ups, pause, speed control, reset, and responsive layouts.",
+    "implementationStartUtc": "2026-10-02T07:21:11Z",
+    "implementationEndUtc": "2026-10-02T07:26:45Z",
+    "files": [
+      "experiments/planetary/astra-medium-bold/index.html",
+      "experiments/planetary/astra-medium-bold/main.js",
+      "experiments/planetary/astra-medium-bold/style.css",
+      "experiments/planetary/astra-medium-bold/worker-report.json"
+    ],
+    "tests": [
+      {
+        "command": "node --check experiments/planetary/astra-medium-bold/main.js",
+        "outcome": "Passed initially and after repair; exit code 0."
+      },
+      {
+        "command": "node --input-type=module -e \"import { build } from 'vite'; await build({root:'experiments/planetary/astra-medium-bold',configFile:false,build:{write:false}});\"",
+        "outcome": "Initial check failed because PostCSS treated an unnecessary empty data-URL CSS import as a filesystem import. After removing that import, the in-memory production build passed: 7 modules transformed, 3 output assets/chunks, no output files written."
+      }
+    ],
+    "repairsMade": [
+      "Removed the unnecessary @import url('data:text/css,') line from style.css to resolve the local Vite/PostCSS bundle failure."
+    ],
+    "knownLimitations": [
+      "No browser, visual, or interactive tests were performed; localhost browser access was unavailable and was not bypassed.",
+      "Planet sizes, distances, speeds, textures, and lighting are deliberately stylized, with explicit on-page disclosure; this is not a scientific simulation.",
+      "The 3D scene requires WebGL. A labelled fallback keeps planet notes readable if WebGL initialization fails or the context is lost.",
+      "System typography varies with fonts installed on the viewing device."
+    ],
+    "tokenUsage": null,
+    "cost": null
+  }
+}
