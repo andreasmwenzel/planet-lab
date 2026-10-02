@@ -1,6 +1,7 @@
 import { build } from 'vite';
 import { readdir, readFile, mkdir, writeFile, stat } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
+import { inlineLocalStylesheets } from './runtime-assets.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const sourceRoot = join(root, 'experiments');
@@ -10,7 +11,11 @@ for (const experiment of await readdir(sourceRoot, { withFileTypes: true })) {
   for (const variant of await readdir(join(sourceRoot, experiment.name), { withFileTypes: true })) {
     if (!variant.isDirectory()) continue;
     const directory = join(sourceRoot, experiment.name, variant.name);
-    if (variant.name !== 'baseline' && !(await stat(join(directory, 'metadata.json')).catch(() => null))?.isFile()) continue;
+    if (!(experiment.name === 'planetary' && variant.name === 'baseline')) {
+      if (!(await stat(join(directory, 'metadata.json')).catch(() => null))?.isFile()) continue;
+      const metadata = JSON.parse(await readFile(join(directory, 'metadata.json'), 'utf8'));
+      if (metadata.status !== 'available') continue;
+    }
     const template = join(directory, 'index.html');
     if (!(await stat(template).catch(() => null))?.isFile()) continue;
     let html = await readFile(template, 'utf8');
@@ -40,6 +45,7 @@ for (const experiment of await readdir(sourceRoot, { withFileTypes: true })) {
       html = html.replace(marker, () => `<script>${javascript.replace(/<\/script/gi, '<\\/script')}</script>`);
       html = html.replace('</head>', () => `<style>${css.replace(/<\/style/gi, '<\\/style')}</style></head>`);
     }
+    ({ html } = await inlineLocalStylesheets(html, directory));
     // No remote resource hints, fetches, frames, forms, popups, or parent access.
     // Inline code only; the viewer additionally gives the document an opaque origin.
     const csp = "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; media-src data: blob:; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'";
