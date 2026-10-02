@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#081014" />
+    <title>Aphelion — a solar observatory</title>
+  </head>
+  <body>
+    <div class="observatory">
+      <header class="masthead">
+        <a class="wordmark" href="#observatory" aria-label="Aphelion observatory">
+          <span class="brand-orbit" aria-hidden="true"><span></span></span>
+          <span>APHELION<small>A SOLAR OBSERVATORY</small></span>
+        </a>
+        <div class="header-note"><span class="status-light" aria-hidden="true"></span>A little perspective</div>
+        <button class="quiet-button guide-button" id="open-guide" type="button">Field guide <span aria-hidden="true">↗</span></button>
+      </header>
+
+      <main id="observatory" class="workspace">
+        <section class="scene-panel" aria-label="Interactive planetary system">
+          <div class="scene-heading"><span class="eyebrow">THE SOLAR SYSTEM</span><span class="view-state" id="view-state">01 / SYSTEM VIEW</span></div>
+          <div class="viewport" id="viewport">
+            <div class="scene-labels" id="scene-labels" aria-hidden="true"></div>
+            <div class="selection-marker" id="selection-marker" aria-hidden="true"></div>
+            <div class="fallback" id="fallback" hidden role="status">
+              <div class="fallback-orbits" aria-hidden="true"><span></span></div>
+              <span class="eyebrow">3D VIEW UNAVAILABLE</span>
+              <h2>A window we can’t open.</h2>
+              <p id="fallback-message">This browser couldn’t create a WebGL scene. You can still select every planet and explore its reference information below.</p>
+            </div>
+          </div>
+          <div class="scene-footer">
+            <div class="scale-note"><span class="scale-mark" aria-hidden="true"></span><span>Composed scale<small>Sizes, distances & motion are stylized</small></span></div>
+            <div class="camera-controls" aria-label="Camera controls">
+              <button id="zoom-out" class="icon-button" type="button" aria-label="Zoom out" title="Zoom out">−</button>
+              <button id="zoom-in" class="icon-button" type="button" aria-label="Zoom in" title="Zoom in">+</button>
+              <button id="system-view" class="icon-button overview-button" type="button" aria-label="Return to full system view" title="Full system view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5"/><circle cx="12" cy="12" r="2.5"/></svg></button>
+            </div>
+          </div>
+          <div class="transport">
+            <button class="play-button" id="play-toggle" type="button" aria-label="Pause simulation"><span id="play-symbol" aria-hidden="true">Ⅱ</span><span id="play-text">Pause</span></button>
+            <div class="speed-control"><label for="speed">Simulation rate</label><input id="speed" type="range" min="0.25" max="4" step="0.25" value="1" /><output id="speed-output" for="speed">1.00×</output></div>
+            <button class="quiet-button reset-button" id="reset" type="button"><span aria-hidden="true">↺</span> Reset</button>
+          </div>
+        </section>
+
+        <aside class="dossier" aria-label="Planet reference information">
+          <div class="dossier-header"><span class="eyebrow">FIELD NOTES</span><span class="dossier-index" id="planet-index">03 / 08</span></div>
+          <div class="planet-preview" id="planet-preview" aria-hidden="true"><div class="preview-sphere"></div><div class="preview-ring"></div></div>
+          <div class="planet-heading"><span class="eyebrow planet-kind" id="planet-kind">TERRESTRIAL PLANET</span><h1 id="planet-name">Earth</h1><p class="planet-subtitle" id="planet-subtitle">Our place among the planets.</p></div>
+          <dl class="planet-facts"><div><dt>Mean radius</dt><dd id="planet-radius">6,371 <span>km</span></dd></div><div><dt>One orbit</dt><dd id="planet-period">365.3 <span>days</span></dd></div></dl>
+          <p class="planet-description" id="planet-description">Liquid oceans, a thin atmosphere, and the only life we know. A small blue world with a great deal going on.</p>
+          <button class="inspect-button" id="inspect" type="button"><span id="inspect-text">Inspect Earth</span><span aria-hidden="true">↗</span></button>
+          <div class="planet-navigation"><div class="navigation-label"><span class="eyebrow">CHOOSE A WORLD</span><span>From the Sun outward</span></div><div class="planet-buttons" id="planet-buttons" role="group" aria-label="Select a planet"></div></div>
+          <p class="reference-note">Reference facts are approximate. The scene is an illustration, not a physical simulation.</p>
+        </aside>
+      </main>
+      <footer class="page-footer"><span>Eight worlds. One star.</span><span>Drag to orbit <i>·</i> Scroll or pinch to zoom <i>·</i> Select a world</span></footer>
+    </div>
+    <div class="sr-only" id="announcement" role="status" aria-live="polite"></div>
+    <dialog class="field-guide" id="field-guide" aria-labelledby="guide-title">
+      <div class="dialog-top"><span class="eyebrow">APHELION / FIELD GUIDE</span><button id="close-guide" class="icon-button" type="button" aria-label="Close field guide">×</button></div>
+      <h2 id="guide-title">Make room for wonder.</h2>
+      <p>Explore a composed portrait of our solar system. Every world moves at a different pace; everything is simplified to make the system legible.</p>
+      <dl class="guide-instructions"><div><dt>Look around</dt><dd>Drag with a mouse or one finger. Scroll or pinch to zoom.</dd></div><div><dt>Look closer</dt><dd>Choose a planet, then select “Inspect.” Return to the full system with the four-corner button.</dd></div><div><dt>Use the keyboard</dt><dd>Tab to the 3D view. Arrow keys rotate, + and − zoom, and Home returns to the system. Space pauses or resumes.</dd></div><div><dt>Take your time</dt><dd>Pause the motion or adjust its rate. Reset restores the original view, selection, and motion.</dd></div></dl>
+      <p class="guide-footnote">Planet sizes, orbital distances, and periods in the animation are deliberately altered. The reference facts describe the real worlds.</p>
+      <button id="guide-done" class="inspect-button" type="button">Back to the observatory <span aria-hidden="true">↗</span></button>
+    </dialog>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
