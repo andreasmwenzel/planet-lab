@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#10151e"><title>Orbital — A pocket observatory</title></head>
+<body>
+<div id="app">
+  <div id="scene" aria-label="Interactive stylized solar system"></div>
+  <header class="masthead"><div class="brand"><span class="brand-mark" aria-hidden="true">◉</span><div>ORBITAL<small>A POCKET OBSERVATORY</small></div></div><div class="edition">FIELD NOTES <span>01 / SOLAR SYSTEM</span></div></header>
+  <section class="intro"><p class="eyebrow">SMALL WORLDS. BIG CURIOSITY.</p><h1>Take the long<br>way around.</h1><p class="intro-copy">Eight worlds, one star.<br>Pick a planet and get a little closer.</p></section>
+  <aside class="planet-card" aria-labelledby="planet-name"><div class="card-top"><span class="eyebrow">IN YOUR VIEW</span><span id="planet-number">03 / 08</span></div><div class="planet-heading"><span id="planet-dot"></span><h2 id="planet-name">Earth</h2></div><p id="planet-tagline"></p><p id="planet-description"></p><dl><div><dt>REAL ORBIT</dt><dd id="planet-year"></dd></div><div><dt>MEAN DISTANCE</dt><dd id="planet-distance"></dd></div><div><dt>WORLD TYPE</dt><dd id="planet-type"></dd></div></dl><button id="visit" class="visit">Get closer <span aria-hidden="true">↗</span></button><p class="card-note">Facts describe real worlds.<br>The scene takes creative liberties.</p></aside>
+  <div id="selection-label" class="selection-label" aria-hidden="true">EARTH <span>↗</span></div>
+  <div class="scene-tools"><button id="home" title="Return to the whole system">↖ <span>Whole system</span></button><button id="orbits" aria-pressed="true">◎ <span>Orbit paths</span></button></div>
+  <p class="gesture-note">DRAG TO ORBIT <span>·</span> SCROLL OR PINCH TO ZOOM</p>
+  <footer class="console"><nav aria-label="Select a planet" id="planet-nav"></nav><div class="transport"><button id="play" aria-label="Pause simulation" class="play">Ⅱ</button><div class="live"><span class="live-dot"></span><span id="play-status">IN MOTION</span></div><label class="speed">TIME FLOW <input id="speed" type="range" min="0.1" max="4" step="0.1" value="1"><output id="speed-value" for="speed">1.0×</output></label><button id="reset">↺ <span>Reset</span></button><span class="scale-note">STYLIZED SIZES, DISTANCES & MOTION</span></div></footer>
+  <div id="fallback" role="status" hidden><span class="eyebrow">THE SKY IS TAKING A BREAK</span><h2>3D rendering isn't available</h2><p>Your browser couldn't start WebGL. You can still explore all eight planets using the planet buttons and fact cards below.</p></div>
+</div><script type="module" src="./main.js"></script>
+</body></html>

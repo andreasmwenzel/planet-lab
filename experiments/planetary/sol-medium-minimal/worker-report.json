@@ -1,0 +1,31 @@
+{
+  "run": "sol-medium-minimal",
+  "title": "Orbital — A pocket observatory",
+  "description": "An original procedural eight-planet 3D explorer with warm editorial fact cards, orbital paths, camera following, accessible planet navigation, responsive controls, and a readable WebGL fallback.",
+  "implementationStartUTC": "2026-10-02T06:52:45Z",
+  "implementationEndUTC": "2026-10-02T06:55:34Z",
+  "files": [
+    "experiments/planetary/sol-medium-minimal/index.html",
+    "experiments/planetary/sol-medium-minimal/main.js",
+    "experiments/planetary/sol-medium-minimal/style.css",
+    "experiments/planetary/sol-medium-minimal/worker-report.json"
+  ],
+  "tests": [
+    {
+      "command": "node --check experiments/planetary/sol-medium-minimal/main.js",
+      "outcome": "Passed; exit code 0"
+    },
+    {
+      "command": "node --input-type=module -e \"import {build} from 'vite'; await build({root: 'experiments/planetary/sol-medium-minimal',configFile:false,build:{write:false}})\"",
+      "outcome": "Passed; exit code 0. Vite 7.3.6 transformed 7 modules and completed production bundle in 1.28 seconds without writing output."
+    }
+  ],
+  "repairsMade": [],
+  "knownLimitations": [
+    "No browser or visual checks were performed; localhost browser access is unavailable.",
+    "Planet textures, orbital motion, sizes, and distances are explicitly stylized and not scientifically scaled.",
+    "WebGL is required for the interactive scene; planet information remains readable when unavailable."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}
