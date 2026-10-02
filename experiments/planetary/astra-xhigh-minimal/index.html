@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1018">
+  <title>Planet Lab — A little space to explore</title>
+</head>
+<body>
+  <div id="app">
+    <header class="masthead">
+      <a class="brand" href="#explorer" aria-label="Planet Lab, go to explorer"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="8"/><ellipse cx="18" cy="18" rx="17" ry="6" transform="rotate(-32 18 18)"/><circle cx="30" cy="10" r="2" class="brand-star"/></svg><span>PLANET<span class="brand-light">LAB</span></span></a>
+      <p>A little space to explore</p>
+      <span class="edition">INTERACTIVE ATLAS <span>·</span> 01</span>
+    </header>
+    <main id="explorer">
+      <div class="workspace">
+        <section class="universe" aria-label="Interactive solar system">
+          <div id="scene"></div>
+          <div class="scene-heading"><span class="eyebrow">OUR SOLAR NEIGHBORHOOD</span><h1>Go where your<br>curiosity takes you.</h1></div>
+          <div id="labels" aria-label="Planets in the scene"></div>
+          <div class="scene-badge"><span class="live-dot" id="live-dot"></span><span id="view-label">System overview</span></div>
+          <div class="view-options" aria-label="Scene layers"><label><input type="checkbox" id="show-orbits" checked> Orbit paths</label><label><input type="checkbox" id="show-labels" checked> Names</label></div>
+          <div class="camera-tools" aria-label="Camera controls">
+            <button id="rotate-left" title="Orbit camera left" aria-label="Orbit camera left">↶</button><button id="rotate-right" title="Orbit camera right" aria-label="Orbit camera right">↷</button>
+            <button id="tilt-up" title="View from higher up" aria-label="View from higher up">↑</button><button id="tilt-down" title="View from lower down" aria-label="View from lower down">↓</button>
+            <button id="zoom-in" title="Zoom in" aria-label="Zoom in">+</button><button id="zoom-out" title="Zoom out" aria-label="Zoom out">−</button>
+            <button id="overview" class="overview-button" title="Return to system overview">Overview</button>
+          </div>
+          <p class="scene-hint">Drag to orbit <span>·</span> Scroll or pinch to zoom <span>·</span> Pick a world</p>
+          <div class="webgl-fallback" id="webgl-fallback" hidden role="status"><span class="fallback-icon">✧</span><h2>The sky needs WebGL</h2><p>This browser can’t display the 3D scene. You can still explore every planet’s field notes below. Try a WebGL-enabled browser for the interactive view.</p></div>
+        </section>
+        <aside class="field-notes" aria-labelledby="planet-name">
+          <div class="notes-top"><span class="eyebrow">YOUR FIELD NOTES</span><span id="planet-number" class="planet-number">03 / 08</span></div>
+          <div class="planet-title"><div><span id="planet-type" class="type-tag">TERRESTRIAL PLANET</span><h2 id="planet-name">Earth</h2><p id="planet-tagline" class="tagline">Our blue home.</p></div><div class="planet-portrait earth" id="planet-portrait" aria-hidden="true"></div></div>
+          <p id="planet-description" class="description"></p>
+          <dl class="facts"><div><dt>DIAMETER</dt><dd id="fact-diameter"></dd></div><div><dt>ONE YEAR</dt><dd id="fact-year"></dd></div><div><dt>ONE ROTATION</dt><dd id="fact-day"></dd></div></dl>
+          <div class="curiosity"><span class="curiosity-label">A CLOSER LOOK</span><p id="planet-curiosity"></p></div>
+          <button id="focus-planet" class="primary-button">Meet Earth <span aria-hidden="true">↗</span></button>
+          <div class="planet-stepper"><button id="previous-planet" aria-label="Select previous planet">← Previous</button><button id="next-planet" aria-label="Select next planet">Next world →</button></div>
+          <p class="reference-note">Facts are rounded reference values. This playground uses enlarged worlds, compressed distances, and illustrative motion.</p>
+        </aside>
+      </div>
+      <section class="planet-library" aria-labelledby="library-label"><div class="library-heading"><h2 id="library-label">Choose your next stop</h2><span>8 WORLDS. ONE STAR.</span></div><div id="planet-list" class="planet-list"></div></section>
+      <section class="flight-deck" aria-label="Simulation controls"><div class="playback"><button id="play-pause" class="play-button" aria-label="Pause simulation"><span id="play-icon" aria-hidden="true">Ⅱ</span><span id="play-label">Pause</span></button><div class="simulation-status"><span id="running-label">IN MOTION</span><span class="elapsed" id="elapsed">00:00</span></div></div><div class="speed-control"><label for="speed">Time flow</label><input id="speed" type="range" min="0" max="6" value="2" step="1" aria-valuetext="1 times speed"><output id="speed-value" for="speed">1×</output></div><button id="reset" class="reset-button"><span aria-hidden="true">⟲</span> Reset journey</button></section>
+      <footer><span>A PLAYGROUND, NOT A SCALE MODEL</span><span>Made for wonder. Built to explore.</span></footer>
+      <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+    </main>
+  </div>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
