@@ -1,0 +1,16 @@
+{
+  "run": "sol-medium-detailed",
+  "title": "Orbit Atlas",
+  "description": "An atmospheric planetary-system toy with an original Three.js solar scene, procedural planet surfaces, glowing sun, orbit paths, eight selectable worlds, responsive information cards, and accessible HTML motion and camera controls.",
+  "implementationStartUTC": "2026-10-02T06:51:13Z",
+  "implementationEndUTC": "2026-10-02T06:55:53Z",
+  "files": ["experiments/planetary/sol-medium-detailed/index.html", "experiments/planetary/sol-medium-detailed/main.js", "experiments/planetary/sol-medium-detailed/style.css", "experiments/planetary/sol-medium-detailed/worker-report.json"],
+  "tests": [
+    {"command": "node --check experiments/planetary/sol-medium-detailed/main.js", "outcome": "Passed twice with exit code 0"},
+    {"command": "node --input-type=module -e \"import {build} from 'vite';const r=await build({root:'experiments/planetary/sol-medium-detailed',configFile:false,build:{write:false}});console.log('BUNDLE CHECK PASS',r.output.map(x=>x.fileName).join(', '));\"", "outcome": "Passed twice, Vite 7.3.6 transformed 7 modules; final output assets/index-Dhp09Qpa.js, assets/index-CyWF1L3U.css, index.html; no build files written"}
+  ],
+  "repairsMade": ["Kept the motion-status label explicitly unavailable after Reset when WebGL initialization fails."],
+  "knownLimitations": ["Browser and visual runtime checks were unavailable and were not performed.", "Planet sizes, spacing, angular speeds, surface textures, and orbital geometry are intentionally stylized; the information panel supplies separately labelled reference facts.", "The 3D scene requires WebGL; a labelled fallback leaves planet information readable when initialization fails."],
+  "tokenUsage": null,
+  "cost": null
+}
