@@ -1,0 +1,41 @@
+{
+  "title": "Solarium \u2014 A Quieter Kind of Orbit",
+  "description": "A self-contained, responsive planetary observatory with an animated Three.js solar-system scene, orbit/zoom camera controls, planet selection and notes, pause/resume, speed adjustment, reset, and a clearly labeled static fallback when WebGL is unavailable.",
+  "implementationStartUTC": "2026-10-02T06:47:03Z",
+  "implementationEndUTC": "2026-10-02T06:57:09Z",
+  "files": [
+    "experiments/planetary/luna-max-refined/index.html",
+    "experiments/planetary/luna-max-refined/main.js",
+    "experiments/planetary/luna-max-refined/styles.css",
+    "experiments/planetary/luna-max-refined/worker-report.json"
+  ],
+  "tests": [
+    {
+      "name": "JavaScript syntax",
+      "command": "node --check main.js",
+      "outcome": "PASS"
+    },
+    {
+      "name": "Vite in-memory bundle",
+      "command": "node --input-type=module -e \"import { build } from 'vite'; await build({ root: process.cwd(), configFile: false, logLevel: 'warn', build: { write: false, rollupOptions: { input: process.cwd() + '/index.html' } } });\"",
+      "outcome": "PASS; write:false"
+    },
+    {
+      "name": "Scaffold and static API check",
+      "command": "Python check: exactly one required module script tag; no fetch/XHR/WebSocket, local/session storage, cookies, or parent/top access in main.js",
+      "outcome": "PASS"
+    }
+  ],
+  "repairsMade": [
+    "Removed an empty CSS @import before the final bundle check.",
+    "Changed generated planet-texture pixel blending to scalar interpolation to avoid repeated per-pixel Three.js color-object allocation.",
+    "Added a WebGL context-loss handler that stops animation and switches to the readable fallback."
+  ],
+  "knownLimitations": [
+    "Browser runtime and visual QA were not performed; localhost/browser access is unavailable for this run.",
+    "The 3D scene requires WebGL. Without it, the 2D orbital diagram is static and motion controls are disabled; planet selection and written notes remain available.",
+    "The scene is a viewing model, not a scientific ephemeris: orbital paths and relative sizes are stylized, and motion is accelerated."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}
