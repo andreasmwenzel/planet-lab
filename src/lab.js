@@ -19,7 +19,11 @@ export function axisOptions(runs, axis, filters = {}) {
 export function parseRoute(hash) {
   const [pathname, search = ''] = hash.replace(/^#/, '').split('?');
   if (pathname === '/method') return { page: 'method' };
-  if (!pathname || pathname === '/' || pathname === '/journal') return { page: 'home' };
+  if (!pathname || pathname === '/' || pathname === '/journal') {
+    if (!search) return { page: 'home' };
+    const params = new URLSearchParams(search);
+    return { page: 'home', variant: params.get('variant'), filters: Object.fromEntries(axisKeys.map(axis => [axis, params.get(axis) || ''])) };
+  }
   const match = pathname.match(/^\/experiments\/([a-z0-9-]+)$/);
   if (match) {
     const params = new URLSearchParams(search);
@@ -48,4 +52,18 @@ export function editorialScore(evaluation) {
   const values = evaluation.editorial.scores.map(score => score.value);
   if (values.some(value => !Number.isFinite(value) || value < 0 || value > 4)) return null;
   return { earned: values.reduce((sum, value) => sum + value, 0), possible: values.length * 4 };
+}
+
+export function homeHref(variant, filters = {}) {
+  const link = experimentHref('planetary', variant, filters);
+  return link.replace('#/experiments/planetary', '#/');
+}
+
+export function selectRun(runs, variant, filters = {}) {
+  const matches = filterRuns(runs, filters);
+  return matches.find(run => run.id === variant) || matches.find(run => run.kind === 'controlled') || matches[0];
+}
+
+export function plannedRunCount(plan) {
+  return plan.models.reduce((sum, model) => sum + model.efforts.length * plan.approaches.length, 0);
 }

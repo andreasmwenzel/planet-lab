@@ -31,3 +31,21 @@ test('unscored or invalid evaluations do not become editorial ratings',()=>{
  assert.equal(editorialScore({status:'scored',editorial:{scores:[{value:9}]}}),null);
  assert.deepEqual(editorialScore({status:'scored',editorial:{scores:[{value:3},{value:2}]}}),{earned:5,possible:8});
 });
+
+test('homepage switches preserve stable variants and filters', async()=>{
+ const {homeHref}=await import('../src/lab.js');
+ assert.deepEqual(parseRoute(homeHref('luna-medium-minimal',{model:'Luna'})),{page:'home',variant:'luna-medium-minimal',filters:{model:'Luna',effort:'',promptApproach:''}});
+ assert.equal(homeHref(), '#/');
+});
+test('default selection features an actual controlled creation before the baseline', async()=>{
+ const {selectRun}=await import('../src/lab.js');
+ const available=[{id:'baseline',kind:'baseline',axes:{model:'Unknown'}},{id:'controlled',kind:'controlled',axes:{model:'Luna'}}];
+ assert.equal(selectRun(available).id,'controlled');
+ assert.equal(selectRun(available,'baseline').id,'baseline');
+ assert.equal(selectRun(available,'missing').id,'controlled');
+ assert.equal(selectRun(available,'controlled',{model:'Absent'}),undefined);
+});
+test('planned total reflects conditions rather than completed artifacts', async()=>{
+ const {plannedRunCount}=await import('../src/lab.js');
+ assert.equal(plannedRunCount({models:[{efforts:['medium','max']},{efforts:['medium','xhigh']},{efforts:['medium','xhigh']}],approaches:['minimal','detailed','bold','refined']}),24);
+});
