@@ -1,0 +1,59 @@
+{
+  "runId": "astra-xhigh-refined",
+  "title": "Still Orbit — A pocket observatory",
+  "description": "A contemplative Three.js solar-system explorer with a graphite-and-parchment palette, procedural planet surfaces, responsive field-note panel, labeled planet collection, gentle focus transitions, and accessible playback and camera controls.",
+  "implementationStartUtc": "2026-10-02T07:40:54Z",
+  "implementationEndUtc": "2026-10-02T07:50:40Z",
+  "reportCreatedUtc": "2026-10-02T07:51:50.487Z",
+  "files": [
+    "experiments/planetary/astra-xhigh-refined/index.html",
+    "experiments/planetary/astra-xhigh-refined/main.js",
+    "experiments/planetary/astra-xhigh-refined/style.css",
+    "experiments/planetary/astra-xhigh-refined/worker-report.json"
+  ],
+  "features": [
+    "Eight animated selectable planets, procedural local textures, Saturn rings, orbit paths, sunlight, sparse stars, and a selection halo",
+    "Pointer orbit, wheel and pinch zoom, keyboard camera movement, zoom buttons, overview, and follow-selected-planet view",
+    "Pause/resume, five simulation speeds, elapsed model days, reset, and reduced-motion-aware initial state",
+    "Responsive planet facts, HTML selection controls, visible keyboard focus, status announcements, and explicit scale/motion disclaimers",
+    "Readable WebGL creation/context-loss fallback with continued planet information access"
+  ],
+  "tests": [
+    {
+      "name": "JavaScript syntax",
+      "command": "node --check experiments/planetary/astra-xhigh-refined/main.js",
+      "outcome": "passed",
+      "exitCode": 0
+    },
+    {
+      "name": "Local Vite production bundle without filesystem output",
+      "command": "node --input-type=module; import { build } from 'vite'; import { resolve } from 'node:path'; await build({ root: resolve('experiments/planetary/astra-xhigh-refined'), configFile: false, logLevel: 'warn', build: { write: false, emptyOutDir: false } });",
+      "outcome": "passed",
+      "exitCode": 0,
+      "write": false,
+      "outputs": [
+        {
+          "fileName": "assets/index-CzjlctBa.js",
+          "bytes": 580456
+        },
+        {
+          "fileName": "assets/index-DxIox3Tr.css",
+          "bytes": 15642
+        },
+        {
+          "fileName": "index.html",
+          "bytes": 470
+        }
+      ]
+    }
+  ],
+  "repairsMade": [],
+  "knownLimitations": [
+    "Browser/runtime and visual checks were not run because localhost browser access is unavailable and prohibited by the brief.",
+    "Planet sizes, spacing, rotations, orbital geometry, and periods are deliberately stylized; outer orbital periods are compressed.",
+    "Planet surface maps and the selected-world portrait are original procedural illustrations rather than scientific imagery.",
+    "WebGL fallback and graphics-context-loss handling are implemented but were not browser-tested."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}
