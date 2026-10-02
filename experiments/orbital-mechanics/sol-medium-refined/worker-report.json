@@ -1,0 +1,125 @@
+{
+  "productTitle": "APOGEE · Transfer planner",
+  "description": "An Earth-orbit Hohmann transfer planner with editable parking and destination altitudes, three mission presets, an analytic orbital diagram, animated and scrubbed propagation, live altitude/speed readouts, individual signed burn directions, total delta-v, coast duration, eccentricity, destination period, and visible model limitations.",
+  "implementationStartUtc": null,
+  "implementationStartNote": "The original implementation start timestamp is unknown. The coordinator supplied original dispatch time 2026-10-02T08:44:43Z; it is explicitly dispatch timing, not observed generation-start timing. Continuation implementation was observed beginning 2026-10-02T08:50:32Z. Filesystem timestamps were not used as timing evidence.",
+  "implementationEndUtc": "2026-10-02T08:57:16.798Z",
+  "continuation": {
+    "startUtc": "2026-10-02T08:50:32Z",
+    "endUtc": "2026-10-02T08:57:16.798Z",
+    "interruptionNote": "This is a resumed genuine Sol 6.1 medium creation run. The original worker was lost during routine maintenance, not a code failure. The continuation inspected only this run’s prompt and existing files, preserved index.html and physics.js, and completed the missing interface, styles, verification scripts and report. This was not a single uninterrupted generation.",
+    "dispatchUtc": "2026-10-02T08:50:31Z"
+  },
+  "model": {
+    "name": "Sol 6.1",
+    "reasoningEffort": "medium",
+    "authorization": "Explicit experiment authorization supplied by parent."
+  },
+  "tests": [
+    {
+      "command": "node --check main.js && node --check physics.js && node --check numerical-tests.mjs && node --check verify-build.mjs",
+      "status": "passed"
+    },
+    {
+      "command": "node numerical-tests.mjs",
+      "status": "passed",
+      "outcomes": [
+        {
+          "name": "Kepler residual across eccentricities and signed multi-revolution anomalies",
+          "status": "passed",
+          "cases": 2886,
+          "maxResidual": 4.440892098500626e-16,
+          "tolerance": 1e-11
+        },
+        {
+          "name": "Energy and angular momentum conservation on actual propagated ellipse",
+          "status": "passed",
+          "cases": 3003,
+          "maxRelativeEnergyError": 3.041550926074942e-14,
+          "maxRelativeAngularMomentumError": 9.903420347597643e-16,
+          "tolerance": 1e-10
+        },
+        {
+          "name": "Hohmann boundary positions, burn speeds, and direction for raised and lowered orbits",
+          "status": "passed",
+          "missions": 6,
+          "maxPositionErrorKm": 6.904330501894096e-12,
+          "maxSpeedErrorKmS": 3.552713678800501e-15,
+          "positionToleranceKm": 1e-7,
+          "speedToleranceKmS": 1e-10
+        },
+        {
+          "name": "Independent LEO to GEO reference benchmark and transfer symmetry",
+          "status": "passed",
+          "deltaV": 3.853959216408821,
+          "transferTimeSeconds": 19048.562509797113,
+          "referenceDeltaV": 3.854,
+          "deltaVTolerance": 0.001,
+          "referenceTimeSeconds": 19048.6,
+          "timeToleranceSeconds": 0.1
+        },
+        {
+          "name": "Circular orbit period, return position and equal-altitude no-op",
+          "status": "passed",
+          "periodSeconds": 5553.624271252228,
+          "speedKmS": 7.668558175407055,
+          "positionToleranceKm": 1e-8
+        },
+        {
+          "name": "Invalid input rejection",
+          "status": "passed",
+          "cases": 8
+        }
+      ]
+    },
+    {
+      "command": "node verify-build.mjs",
+      "status": "passed",
+      "write": false,
+      "outputs": [
+        {
+          "fileName": "assets/index-BCzjmEJl.js",
+          "bytes": 11675
+        },
+        {
+          "fileName": "assets/index-81v806dv.css",
+          "bytes": 8818
+        },
+        {
+          "fileName": "index.html",
+          "bytes": 412
+        }
+      ]
+    }
+  ],
+  "rerunCommand": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/sol-medium-refined && node --check main.js && node --check physics.js && node --check numerical-tests.mjs && node --check verify-build.mjs && node numerical-tests.mjs && node verify-build.mjs",
+  "referenceFixtureNote": "Rounded circular and transfer reference values use the explicit Earth radius and gravitational parameter in the frozen implementation. Conservation, boundary and residual checks exercise the actual exported physics functions. The benchmark reference is a rounded analytic value, not live celestial data.",
+  "assumptions": [
+    "Earth-centered two-body Newtonian gravity with μ = 398600.4418 km³/s² and Earth radius 6378.137 km.",
+    "Coplanar, prograde circular endpoint orbits; two instantaneous tangential burns.",
+    "Kepler equation propagation on the transfer ellipse; circular analytic propagation before and after transfer.",
+    "Altitude input range 160 to 50000 km; no fuel mass conversion.",
+    "Diagram is top-down and scale-to-fit. Full transfer ellipse is shown for context; spacecraft travels half of it."
+  ],
+  "limitations": [
+    "No drag, oblateness, third-body forces, finite burns, plane changes, launch dynamics, rendezvous, longitude or station keeping.",
+    "GEO is an altitude preset; no real-time Earth orientation or live data.",
+    "Equal-altitude missions have zero delta-v, but retain a half-period timeline.",
+    "Educational idealized transfer planning only; not operational flight guidance."
+  ],
+  "repairs": [
+    {
+      "type": "test-fixture correction",
+      "detail": "The initial guessed coast-time fixture 19078 s was incorrect for the fixed 400 km and 35786 km altitudes. Corrected it to rounded analytic 19048.6 s with 0.1 s tolerance. Actual implementation result is 19048.562509797113 s. No physics code was changed."
+    }
+  ],
+  "unknowns": [
+    "Browser localhost checks were unavailable and were not attempted. Actual browser appearance, interactions, responsiveness, accessibility and performance remain unverified until separate review.",
+    "Original launch timestamp and actual inference token counters are unavailable to this continuation worker."
+  ],
+  "tokenUsage": null,
+  "tokenUsageReason": "The runtime does not expose actual provider input, cached-input, output, reasoning or total token counters to this worker. No estimate was made; restricted histories and credentials were not inspected.",
+  "cost": null,
+  "costReason": "No measured runtime cost was supplied.",
+  "originalDispatchUtc": "2026-10-02T08:44:43Z"
+}

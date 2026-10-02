@@ -1,0 +1,263 @@
+{
+  "id": "sol-medium-refined",
+  "experimentId": "orbital-mechanics",
+  "title": "Sol 6.1 · medium · refined",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/orbital-mechanics/sol-medium-refined/index.html",
+  "axes": {
+    "model": "Sol 6.1",
+    "effort": "medium",
+    "promptApproach": "refined"
+  },
+  "summary": "An Earth-orbit Hohmann transfer planner with editable parking and destination altitudes, three mission presets, an analytic orbital diagram, animated and scrubbed propagation, live altitude/speed readouts, individual signed burn directions, total delta-v, coast duration, eccentricity, destination period, and visible model limitations.",
+  "provenance": {
+    "label": "Controlled generation · interrupted and resumed",
+    "note": "This condition was independently begun with the displayed model and effort, interrupted by routine maintenance, and resumed in a fresh task using the same model, effort, frozen creative prompt and scaffold. Partial work from this condition was preserved; no other condition was consulted. Treat this interruption as a confound when comparing runs.",
+    "modelId": "gpt-6.1-sol",
+    "effort": "medium",
+    "runId": "sol-medium-refined",
+    "launchIndex": 12,
+    "startedAt": "2026-10-02T08:44:43Z",
+    "completedAt": "2026-10-02T08:58:04.117Z",
+    "durationSeconds": 801,
+    "durationScope": "Observed wall-clock time from original launch to independently verified runtime bundle, including an interruption, restart gap, tools and coordination; not continuous model latency.",
+    "tokenUsage": null,
+    "tokenUsageReason": "The runtime does not expose actual provider input, cached-input, output, reasoning or total token counters to this worker. No estimate was made; restricted histories and credentials were not inspected.",
+    "tokenUsageSource": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1 (optional)",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; deployed browser review is separate. Available cloud browser does not support WebGL2."
+    },
+    "sourceHashes": {
+      "build-results.json": "95c15c3f08c69a016a199932dc1bbba08d55f3c3bea169181a2cb8480211132c",
+      "index.html": "efbe2849014a991070cd76e570a1ff93e39b67ef91f51c6c2ca304dee01a1e9c",
+      "main.js": "453d5a1c0bd8f46929bbeabe2b45a5cd45230404ff72a71987b8f29b460b64d4",
+      "numerical-results.json": "bfdbd1c6afedc1be7a714ccc87a301882388928cba8b7f068790f61ea8bb0b88",
+      "numerical-tests.mjs": "058f108a947c8b54c44883e31ef2ecb305fa28b6a36208eee49f3ac1c10e640f",
+      "physics.js": "f5564da9df817eababfc24ecfa63dba24bf6be58ca8c2365db34996f95e932ea",
+      "prompt.txt": "14377862ce854d7cbce0f6eab05cd1784408bfee2530b90a4e12fc5c3af6a314",
+      "style.css": "3681c1ef115e681c77d505878e49edb6b895765bb8e22a327d91bbcaf976852a",
+      "verify-build.mjs": "0f3b607c3279e8c0ab4c6f9f7e0e24396589cd803dc1f14f17905a1c35d8ebea",
+      "worker-report.json": "0d703822031fb4f40bbec5ff0a54cd389bbeef4cf6f17a6c5bfac617ca5dbc79"
+    },
+    "interruption": {
+      "reason": "Original native worker lost during routine maintenance; exact stop timestamp unavailable.",
+      "discoveredAt": "2026-10-02T08:49:35Z",
+      "priorTaskName": "/root/run_orbital_product_matrix/build_sol_medium_refined",
+      "preservedExistingFiles": true
+    },
+    "continuation": {
+      "startedAt": "2026-10-02T08:50:31Z",
+      "taskName": "/root/resume_orbital_experiments/finish_sol_medium_refined",
+      "modelId": "gpt-6.1-sol",
+      "effort": "medium",
+      "forkTurns": "none"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an in-browser orbital mechanics simulator\n\nDeliver a finished, usable product, not a demo page or marketing landing page. Choose the product concept, architecture, interactions, and visual direction yourself. Use actual orbital mechanics and state the model’s assumptions and limitations.\n\nBuild an elegant, carefully resolved product. Find a specific purpose and remove everything that distracts from it. Make the workflow feel considered, the information clear, and the interactions dependable. Restraint should improve usefulness rather than turn the result into a generic minimalist demo."
+      },
+      {
+        "role": "user",
+        "content": "Runtime packaging and verification scaffold (separate from creative direction):\n- Implement from scratch. Do not inspect the prior experiment, other runs, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only in the supplied run directory. Create index.html with optional main.js and local CSS/JavaScript modules. If using main.js, HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. CSS can be imported from main.js. A single fully inline HTML file is also allowed.\n- Available environment: vanilla JavaScript, optional installed Three.js 0.186.1, Vite 7.3.6, Node 24. No additional dependencies, runtime network calls, remote assets/fonts, backend, accounts, analytics, or live orbital/celestial data. Do not modify package files or shared app files. Canvas, SVG, DOM, and 3D are all allowed; Three.js is not mandatory. If using WebGL, handle unsupported graphics gracefully.\n- The common harness bundles JavaScript and CSS into one inline HTML document. Its viewer is an iframe sandbox with allow-scripts and an opaque origin. Do not access parent/top, communicate across frames, or rely on persistent storage, cookies, or origin-specific APIs.\n- Make one bounded implementation and its self-test/repair phase. Validate JavaScript syntax and perform an isolated Vite build with write:false. Run quantitative numerical tests applicable to your chosen mechanics, independently of the interface, and preserve a directly rerunnable test script in the run directory. Test the actual implementation's physics functions, not a separately copied formula. Record exact commands, results, tolerances, and repairs. Repair your own implementation as needed for these checks. Do not impose a tiny arbitrary token cutoff or clone existing code.\n- Browser localhost access is unavailable; do not claim browser checks or bypass that restriction. Actual browser appearance, interactions, and performance remain unverified until separately reviewed.\n- Include worker-report.json with product title, description, implementation start/end UTC timestamps, exact tests and outcomes, numerical assumptions and limitations, repairs, and unknowns. Set tokenUsage and cost to null unless the runtime supplies measured values. Do not invent token counts, costs, or quality scores.\n"
+      },
+      {
+        "role": "user",
+        "content": "Reporting-only amendment (added after the first three launches; creative prompts and runtime constraints are unchanged):\nAt the end of your run, include actual runtime-provided token counters if accessible: input, cached input, output, reasoning, and total. Preserve the provider's field semantics and avoid double counting. Identify the counter source and whether counts include tools or agent overhead. Do not estimate from source length or the context budget, inspect restricted session-history paths, or inspect credentials. If actual counters are inaccessible, set tokenUsage to null and give the reason. Set cost to null unless measured cost is supplied by the runtime. Do not create another inference run solely to obtain counters.\n"
+      }
+    ],
+    "reportingAmendment": {
+      "kind": "reporting-only",
+      "timing": "before-launch"
+    },
+    "note": "The complete public creative prompt and identical public runtime/testing scaffold are recorded separately. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax, isolated bundle, and the recorded quantitative physics tests passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "Rendered appearance, interactions, and performance have not yet been independently checked in a browser."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 20387,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 801,
+        "unit": "seconds",
+        "source": "Original task launch to artifact completion, including maintenance interruption and restart gap"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated.",
+      "Numerical test success applies only to the preserved cases and tolerances, not unrestricted physical accuracy.",
+      "Interrupted/resumed condition: wall-clock includes downtime; context continuity differs from uninterrupted runs."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 10994,
+    "cssBytes": 8818,
+    "numerical": "passed",
+    "independentVerification": {
+      "numerical": "passed",
+      "command": "node experiments/orbital-mechanics/sol-medium-refined/numerical-tests.mjs",
+      "exitCode": 0,
+      "stdout": "{\n  \"status\": \"passed\",\n  \"outcomes\": [\n    {\n      \"name\": \"Kepler residual across eccentricities and signed multi-revolution anomalies\",\n      \"status\": \"passed\",\n      \"cases\": 2886,\n      \"maxResidual\": 4.440892098500626e-16,\n      \"tolerance\": 1e-11\n    },\n    {\n      \"name\": \"Energy and angular momentum conservation on actual propagated ellipse\",\n      \"status\": \"passed\",\n      \"cases\": 3003,\n      \"maxRelativeEnergyError\": 3.041550926074942e-14,\n      \"maxRelativeAngularMomentumError\": 9.903420347597643e-16,\n      \"tolerance\": 1e-10\n    },\n    {\n      \"name\": \"Hohmann boundary positions, burn speeds, and direction for raised and lowered orbits\",\n      \"status\": \"passed\",\n      \"missions\": 6,\n      \"maxPositionErrorKm\": 6.904330501894096e-12,\n      \"maxSpeedErrorKmS\": 3.552713678800501e-15,\n      \"positionToleranceKm\": 1e-7,\n      \"speedToleranceKmS\": 1e-10\n    },\n    {\n      \"name\": \"Independent LEO to GEO reference benchmark and transfer symmetry\",\n      \"status\": \"passed\",\n      \"deltaV\": 3.853959216408821,\n      \"transferTimeSeconds\": 19048.562509797113,\n      \"referenceDeltaV\": 3.854,\n      \"deltaVTolerance\": 0.001,\n      \"referenceTimeSeconds\": 19048.6,\n      \"timeToleranceSeconds\": 0.1\n    },\n    {\n      \"name\": \"Circular orbit period, return position and equal-altitude no-op\",\n      \"status\": \"passed\",\n      \"periodSeconds\": 5553.624271252228,\n      \"speedKmS\": 7.668558175407055,\n      \"positionToleranceKm\": 1e-8\n    },\n    {\n      \"name\": \"Invalid input rejection\",\n      \"status\": \"passed\",\n      \"cases\": 8\n    }\n  ]\n}\n",
+      "stderr": "",
+      "verifiedAt": "2026-10-02T08:58:03.442267+00:00",
+      "scope": "Independent rerun of preserved quantitative tests against the actual implementation physics; not browser QA or unrestricted numerical certification."
+    },
+    "checkedAt": "2026-10-02T08:58:04.117Z",
+    "runtimeBytes": 20387
+  },
+  "generationReport": {
+    "productTitle": "APOGEE · Transfer planner",
+    "description": "An Earth-orbit Hohmann transfer planner with editable parking and destination altitudes, three mission presets, an analytic orbital diagram, animated and scrubbed propagation, live altitude/speed readouts, individual signed burn directions, total delta-v, coast duration, eccentricity, destination period, and visible model limitations.",
+    "implementationStartUtc": null,
+    "implementationStartNote": "The original implementation start timestamp is unknown. The coordinator supplied original dispatch time 2026-10-02T08:44:43Z; it is explicitly dispatch timing, not observed generation-start timing. Continuation implementation was observed beginning 2026-10-02T08:50:32Z. Filesystem timestamps were not used as timing evidence.",
+    "implementationEndUtc": "2026-10-02T08:57:16.798Z",
+    "continuation": {
+      "startUtc": "2026-10-02T08:50:32Z",
+      "endUtc": "2026-10-02T08:57:16.798Z",
+      "interruptionNote": "This is a resumed genuine Sol 6.1 medium creation run. The original worker was lost during routine maintenance, not a code failure. The continuation inspected only this run’s prompt and existing files, preserved index.html and physics.js, and completed the missing interface, styles, verification scripts and report. This was not a single uninterrupted generation.",
+      "dispatchUtc": "2026-10-02T08:50:31Z"
+    },
+    "model": {
+      "name": "Sol 6.1",
+      "reasoningEffort": "medium",
+      "authorization": "Explicit experiment authorization supplied by parent."
+    },
+    "tests": [
+      {
+        "command": "node --check main.js && node --check physics.js && node --check numerical-tests.mjs && node --check verify-build.mjs",
+        "status": "passed"
+      },
+      {
+        "command": "node numerical-tests.mjs",
+        "status": "passed",
+        "outcomes": [
+          {
+            "name": "Kepler residual across eccentricities and signed multi-revolution anomalies",
+            "status": "passed",
+            "cases": 2886,
+            "maxResidual": 4.440892098500626e-16,
+            "tolerance": 1e-11
+          },
+          {
+            "name": "Energy and angular momentum conservation on actual propagated ellipse",
+            "status": "passed",
+            "cases": 3003,
+            "maxRelativeEnergyError": 3.041550926074942e-14,
+            "maxRelativeAngularMomentumError": 9.903420347597643e-16,
+            "tolerance": 1e-10
+          },
+          {
+            "name": "Hohmann boundary positions, burn speeds, and direction for raised and lowered orbits",
+            "status": "passed",
+            "missions": 6,
+            "maxPositionErrorKm": 6.904330501894096e-12,
+            "maxSpeedErrorKmS": 3.552713678800501e-15,
+            "positionToleranceKm": 1e-7,
+            "speedToleranceKmS": 1e-10
+          },
+          {
+            "name": "Independent LEO to GEO reference benchmark and transfer symmetry",
+            "status": "passed",
+            "deltaV": 3.853959216408821,
+            "transferTimeSeconds": 19048.562509797113,
+            "referenceDeltaV": 3.854,
+            "deltaVTolerance": 0.001,
+            "referenceTimeSeconds": 19048.6,
+            "timeToleranceSeconds": 0.1
+          },
+          {
+            "name": "Circular orbit period, return position and equal-altitude no-op",
+            "status": "passed",
+            "periodSeconds": 5553.624271252228,
+            "speedKmS": 7.668558175407055,
+            "positionToleranceKm": 1e-8
+          },
+          {
+            "name": "Invalid input rejection",
+            "status": "passed",
+            "cases": 8
+          }
+        ]
+      },
+      {
+        "command": "node verify-build.mjs",
+        "status": "passed",
+        "write": false,
+        "outputs": [
+          {
+            "fileName": "assets/index-BCzjmEJl.js",
+            "bytes": 11675
+          },
+          {
+            "fileName": "assets/index-81v806dv.css",
+            "bytes": 8818
+          },
+          {
+            "fileName": "index.html",
+            "bytes": 412
+          }
+        ]
+      }
+    ],
+    "rerunCommand": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/sol-medium-refined && node --check main.js && node --check physics.js && node --check numerical-tests.mjs && node --check verify-build.mjs && node numerical-tests.mjs && node verify-build.mjs",
+    "referenceFixtureNote": "Rounded circular and transfer reference values use the explicit Earth radius and gravitational parameter in the frozen implementation. Conservation, boundary and residual checks exercise the actual exported physics functions. The benchmark reference is a rounded analytic value, not live celestial data.",
+    "assumptions": [
+      "Earth-centered two-body Newtonian gravity with μ = 398600.4418 km³/s² and Earth radius 6378.137 km.",
+      "Coplanar, prograde circular endpoint orbits; two instantaneous tangential burns.",
+      "Kepler equation propagation on the transfer ellipse; circular analytic propagation before and after transfer.",
+      "Altitude input range 160 to 50000 km; no fuel mass conversion.",
+      "Diagram is top-down and scale-to-fit. Full transfer ellipse is shown for context; spacecraft travels half of it."
+    ],
+    "limitations": [
+      "No drag, oblateness, third-body forces, finite burns, plane changes, launch dynamics, rendezvous, longitude or station keeping.",
+      "GEO is an altitude preset; no real-time Earth orientation or live data.",
+      "Equal-altitude missions have zero delta-v, but retain a half-period timeline.",
+      "Educational idealized transfer planning only; not operational flight guidance."
+    ],
+    "repairs": [
+      {
+        "type": "test-fixture correction",
+        "detail": "The initial guessed coast-time fixture 19078 s was incorrect for the fixed 400 km and 35786 km altitudes. Corrected it to rounded analytic 19048.6 s with 0.1 s tolerance. Actual implementation result is 19048.562509797113 s. No physics code was changed."
+      }
+    ],
+    "unknowns": [
+      "Browser localhost checks were unavailable and were not attempted. Actual browser appearance, interactions, responsiveness, accessibility and performance remain unverified until separate review.",
+      "Original launch timestamp and actual inference token counters are unavailable to this continuation worker."
+    ],
+    "tokenUsage": null,
+    "tokenUsageReason": "The runtime does not expose actual provider input, cached-input, output, reasoning or total token counters to this worker. No estimate was made; restricted histories and credentials were not inspected.",
+    "cost": null,
+    "costReason": "No measured runtime cost was supplied.",
+    "originalDispatchUtc": "2026-10-02T08:44:43Z"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "pass": true,
+  "write": false,
+  "assets": [
+    {
+      "name": "assets/index-CzsmN0KO.js",
+      "bytes": 15732
+    },
+    {
+      "name": "assets/index-DFJCMD6B.css",
+      "bytes": 8016
+    },
+    {
+      "name": "index.html",
+      "bytes": 411
+    }
+  ]
+}

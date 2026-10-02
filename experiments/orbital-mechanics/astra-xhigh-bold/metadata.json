@@ -1,0 +1,688 @@
+{
+  "id": "astra-xhigh-bold",
+  "experimentId": "orbital-mechanics",
+  "title": "Astra · xhigh · bold",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/orbital-mechanics/astra-xhigh-bold/index.html",
+  "axes": {
+    "model": "Astra",
+    "effort": "xhigh",
+    "promptApproach": "bold"
+  },
+  "summary": "A finished single-impulse orbital rescue desk. Three stranded spacecraft arrive on atmospheric-intersecting ellipses. Users choose a burn point on the orbit or time slider, shape a tangential/radial velocity impulse, and replay the altered future. A recovery line, first-entry deadline, true perigee/apogee forecast, repair assistant, custom incoming orbits, and selectable flight sheet make the orbital mechanics actionable.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation in a fresh native task, with the displayed model and effort explicitly configured. Four frozen creative prompts share the same separately recorded runtime and numerical-testing scaffold. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6-astra",
+    "effort": "xhigh",
+    "runId": "astra-xhigh-bold",
+    "launchIndex": 23,
+    "startedAt": "2026-10-02T09:40:43Z",
+    "completedAt": "2026-10-02T10:05:34.581Z",
+    "durationSeconds": 1492,
+    "durationScope": "Observed wall-clock time from task launch to independently verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "tokenUsageReason": "Actual runtime-provided input, cached-input, output, reasoning, and total counters were not accessible through the supplied task/tool results. No estimates, restricted session-history reads, credential inspection, or extra inference runs were used.",
+    "tokenUsageSource": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1 (optional)",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; deployed browser review is separate. Available cloud browser does not support WebGL2."
+    },
+    "sourceHashes": {
+      "build-results.json": "30e45b2be6ed0d9d4cbf0c9d9dd89136355c014fe73eb341591c3758d053ea34",
+      "index.html": "83f8091c34b655f81bea4688a4a125f6c077ecce4c8cf46fb8ad44d3e6b32ef3",
+      "main.js": "1f1cd47f9e31ca7b6d08d5a9e80780013d9a2fafdd66113b8ab2d1ea9350e31f",
+      "numerical-results.json": "ce991e03436328787ad1809be7945c86f4e9a502035d259230cef0e5d65b66b9",
+      "numerical-tests.mjs": "94a4026316666945ab893521f127a92b73d22d46449d9ad761e763b6b5f668c1",
+      "physics.js": "0c373062af38aa696cbfd4a18696f6505c708fd336f4e7010b6eea79638aaec4",
+      "prompt.txt": "7a675e9c426d70c349ff3872a01f62f78cf1b4f28723e22824f123fad8a40b10",
+      "style.css": "bb72b6aebc32bde7195c5f3ef1b086ac2c3b56da264833e07cd9f68310c3c8c0",
+      "verify-build.mjs": "a7ce26fb13762fe4641989534613baf10731aef6635a14ed3d55291143ea0010",
+      "worker-report.json": "8167471eed683cf237dc7f17039e81a9a46a0f14ecc65fc241416501650f579c"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an in-browser orbital mechanics simulator\n\nDeliver a finished, usable product, not a demo page or marketing landing page. Choose the product concept, architecture, interactions, and visual direction yourself. Use actual orbital mechanics and state the model’s assumptions and limitations.\n\nBe bold. Choose an unexpected, distinctive product concept and commit to it. Let that choice change what users do and how the interface is arranged, not just its colors. Take creative risks while making the simulator scientifically honest and genuinely usable."
+      },
+      {
+        "role": "user",
+        "content": "Runtime packaging and verification scaffold (separate from creative direction):\n- Implement from scratch. Do not inspect the prior experiment, other runs, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only in the supplied run directory. Create index.html with optional main.js and local CSS/JavaScript modules. If using main.js, HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. CSS can be imported from main.js. A single fully inline HTML file is also allowed.\n- Available environment: vanilla JavaScript, optional installed Three.js 0.186.1, Vite 7.3.6, Node 24. No additional dependencies, runtime network calls, remote assets/fonts, backend, accounts, analytics, or live orbital/celestial data. Do not modify package files or shared app files. Canvas, SVG, DOM, and 3D are all allowed; Three.js is not mandatory. If using WebGL, handle unsupported graphics gracefully.\n- The common harness bundles JavaScript and CSS into one inline HTML document. Its viewer is an iframe sandbox with allow-scripts and an opaque origin. Do not access parent/top, communicate across frames, or rely on persistent storage, cookies, or origin-specific APIs.\n- Make one bounded implementation and its self-test/repair phase. Validate JavaScript syntax and perform an isolated Vite build with write:false. Run quantitative numerical tests applicable to your chosen mechanics, independently of the interface, and preserve a directly rerunnable test script in the run directory. Test the actual implementation's physics functions, not a separately copied formula. Record exact commands, results, tolerances, and repairs. Repair your own implementation as needed for these checks. Do not impose a tiny arbitrary token cutoff or clone existing code.\n- Browser localhost access is unavailable; do not claim browser checks or bypass that restriction. Actual browser appearance, interactions, and performance remain unverified until separately reviewed.\n- Include worker-report.json with product title, description, implementation start/end UTC timestamps, exact tests and outcomes, numerical assumptions and limitations, repairs, and unknowns. Set tokenUsage and cost to null unless the runtime supplies measured values. Do not invent token counts, costs, or quality scores.\n"
+      },
+      {
+        "role": "user",
+        "content": "Reporting-only amendment (added after the first three launches; creative prompts and runtime constraints are unchanged):\nAt the end of your run, include actual runtime-provided token counters if accessible: input, cached input, output, reasoning, and total. Preserve the provider's field semantics and avoid double counting. Identify the counter source and whether counts include tools or agent overhead. Do not estimate from source length or the context budget, inspect restricted session-history paths, or inspect credentials. If actual counters are inaccessible, set tokenUsage to null and give the reason. Set cost to null unless measured cost is supplied by the runtime. Do not create another inference run solely to obtain counters.\n"
+      }
+    ],
+    "reportingAmendment": {
+      "kind": "reporting-only",
+      "timing": "before-launch"
+    },
+    "note": "The complete public creative prompt and identical public runtime/testing scaffold are recorded separately. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax, isolated bundle, and the recorded quantitative physics tests passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "Rendered appearance, interactions, and performance have not yet been independently checked in a browser."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 52471,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 1492,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated.",
+      "Numerical test success applies only to the preserved cases and tolerances, not unrestricted physical accuracy."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 33091,
+    "cssBytes": 18786,
+    "numerical": "passed",
+    "independentVerification": {
+      "numerical": "passed",
+      "command": "node experiments/orbital-mechanics/astra-xhigh-bold/numerical-tests.mjs",
+      "exitCode": 0,
+      "stdout": "{\n  \"passed\": true,\n  \"assertions\": 194,\n  \"results\": [\n    {\n      \"name\": \"Circular quarter-period position vs analytic coordinates\",\n      \"measured\": 5.230909593113388e-12,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Circular full-period closure\",\n      \"measured\": 2.09345634586089e-11,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Circular quarter-period speed\",\n      \"measured\": 3.552713678800501e-15,\n      \"tolerance\": 1e-9,\n      \"unit\": \"km/s\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Elliptic specific-energy conservation over 5.49 periods\",\n      \"measured\": 4.937157766623654e-14,\n      \"tolerance\": 1e-9,\n      \"unit\": \"relative\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Elliptic angular-momentum conservation over 5.49 periods\",\n      \"measured\": 8.299319314718834e-15,\n      \"tolerance\": 1e-9,\n      \"unit\": \"relative\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Elliptic radii remain within analytic apsides\",\n      \"measured\": 0,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Elliptic time reversibility (position)\",\n      \"measured\": 3.002710221920857e-11,\n      \"tolerance\": 0.00001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Elliptic time reversibility (velocity)\",\n      \"measured\": 2.9326704586727914e-14,\n      \"tolerance\": 1e-8,\n      \"unit\": \"km/s\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Hyperbolic specific-energy conservation\",\n      \"measured\": 1.6118475039764222e-15,\n      \"tolerance\": 1e-9,\n      \"unit\": \"relative\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Hyperbolic angular-momentum conservation\",\n      \"measured\": 2.927143525128429e-15,\n      \"tolerance\": 1e-9,\n      \"unit\": \"relative\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Hyperbolic round-trip position\",\n      \"measured\": 4.8943999161833605e-11,\n      \"tolerance\": 0.00001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Parabolic zero-energy conservation\",\n      \"measured\": 1.7763568394002505e-15,\n      \"tolerance\": 1e-9,\n      \"unit\": \"km²/s²\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Parabolic round-trip position\",\n      \"measured\": 3.918223088210292e-11,\n      \"tolerance\": 0.00001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Hohmann transfer apogee altitude\",\n      \"measured\": 0,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Hohmann circularization eccentricity\",\n      \"measured\": 8.422714646108282e-16,\n      \"tolerance\": 1e-10,\n      \"unit\": \"\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Hohmann final circular radius\",\n      \"measured\": 9.094947017729282e-12,\n      \"tolerance\": 0.00001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Mission 60/1200 crosses air inbound\",\n      \"measured\": true,\n      \"expected\": true,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Mission 60/1200 repair outcome\",\n      \"measured\": \"clear\",\n      \"expected\": \"clear\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Mission 60/1200 repaired orbit has no air entry\",\n      \"measured\": null,\n      \"expected\": null,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Mission 60/1200 repaired apogee preserved\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Mission 60/1200 no-burn entry unchanged\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.000001,\n      \"unit\": \"s\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Mission 60/1200 terminal state at air line\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Mission 35/2800 crosses air inbound\",\n      \"measured\": true,\n      \"expected\": true,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Mission 35/2800 repair outcome\",\n      \"measured\": \"clear\",\n      \"expected\": \"clear\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Mission 35/2800 repaired orbit has no air entry\",\n      \"measured\": null,\n      \"expected\": null,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Mission 35/2800 repaired apogee preserved\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Mission 35/2800 no-burn entry unchanged\",\n      \"measured\": 1.2732925824820995e-11,\n      \"tolerance\": 0.000001,\n      \"unit\": \"s\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Mission 35/2800 terminal state at air line\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Mission 90/700 crosses air inbound\",\n      \"measured\": true,\n      \"expected\": true,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Mission 90/700 repair outcome\",\n      \"measured\": \"clear\",\n      \"expected\": \"clear\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Mission 90/700 repaired orbit has no air entry\",\n      \"measured\": null,\n      \"expected\": null,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Mission 90/700 repaired apogee preserved\",\n      \"measured\": 2.7284841053187847e-12,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Mission 90/700 no-burn entry unchanged\",\n      \"measured\": 4.274625098332763e-11,\n      \"tolerance\": 0.000001,\n      \"unit\": \"s\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Mission 90/700 terminal state at air line\",\n      \"measured\": 3.637978807091713e-12,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"All mission apoapsis radial speeds\",\n      \"measured\": 9.992116898588562e-16,\n      \"tolerance\": 1e-9,\n      \"unit\": \"km/s\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"All mission first-entry radius residuals\",\n      \"measured\": 8.185452315956354e-12,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"All assisted repair target-perigee residuals\",\n      \"measured\": 5.4569682106375694e-12,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Off-apsis repair reaches requested perigee\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Off-apsis repair cancels radial velocity\",\n      \"measured\": 4.496787839954995e-16,\n      \"tolerance\": 1e-9,\n      \"unit\": \"km/s\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Off-apsis repair makes local radius the apogee\",\n      \"measured\": 0,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Impulse position continuity\",\n      \"measured\": 0,\n      \"tolerance\": 0,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Impulse magnitude matches 2D component norm\",\n      \"measured\": 3.126388037344441e-13,\n      \"tolerance\": 1e-9,\n      \"unit\": \"m/s\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Radial impulse sign and magnitude\",\n      \"measured\": 1.1379786002407855e-15,\n      \"tolerance\": 1e-10,\n      \"unit\": \"km/s\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Hyperbolic inbound entry radius\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Hyperbolic outward branch has no future entry\",\n      \"measured\": null,\n      \"expected\": null,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Parabolic inbound entry radius\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Near-parabolic entry radius, velocity offset -1e-7\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Near-parabolic entry radius, velocity offset -1e-8\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Near-parabolic entry radius, velocity offset -1e-9\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Near-parabolic entry radius, velocity offset 0\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Near-parabolic entry radius, velocity offset 1e-9\",\n      \"measured\": 0,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Near-parabolic entry radius, velocity offset 1e-8\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Near-parabolic entry radius, velocity offset 1e-7\",\n      \"measured\": 0,\n      \"tolerance\": 0.000001,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Safe circular orbit never crosses air\",\n      \"measured\": null,\n      \"expected\": null,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Start below air is terminal\",\n      \"measured\": 0,\n      \"expected\": 0,\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 1\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 2\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 3\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 5\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 6\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 8\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 11\",\n      \"measured\": 3.637978807091713e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 12\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 14\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 15\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 16\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 17\",\n      \"measured\": 6.366462912410498e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 18\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 20\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 21\",\n      \"measured\": 3.637978807091713e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 22\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 23\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 24\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 25\",\n      \"measured\": 2.7284841053187847e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 26\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 27\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 28\",\n      \"measured\": 2.7284841053187847e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 29\",\n      \"measured\": 1.2732925824820995e-11,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 35\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 36\",\n      \"measured\": 8.185452315956354e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 38\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 39\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 40\",\n      \"measured\": 3.637978807091713e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 42\",\n      \"measured\": 1.000444171950221e-11,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 44\",\n      \"measured\": 4.547473508864641e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 45\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 46\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 49\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 50\",\n      \"measured\": 5.4569682106375694e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 51\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 53\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 55\",\n      \"measured\": 3.637978807091713e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 56\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 58\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 59\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 61\",\n      \"measured\": 3.637978807091713e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 62\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 63\",\n      \"measured\": 2.7284841053187847e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 64\",\n      \"measured\": 2.7284841053187847e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 65\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 70\",\n      \"measured\": 2.7284841053187847e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 71\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 72\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 73\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 74\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 76\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 77\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 78\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 79\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 80\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 83\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 85\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 90\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 91\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 92\",\n      \"measured\": 3.637978807091713e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 93\",\n      \"measured\": 3.637978807091713e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 97\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 98\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 99\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 102\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 104\",\n      \"measured\": 3.637978807091713e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 105\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 106\",\n      \"measured\": 2.7284841053187847e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 108\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 109\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 110\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 111\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 112\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 113\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 114\",\n      \"measured\": 2.7284841053187847e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 116\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 117\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 120\",\n      \"measured\": 4.547473508864641e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 121\",\n      \"measured\": 2.7284841053187847e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 122\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 123\",\n      \"measured\": 4.547473508864641e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 127\",\n      \"measured\": 1.6370904631912708e-11,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 130\",\n      \"measured\": 2.7284841053187847e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 131\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 133\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 134\",\n      \"measured\": 4.547473508864641e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 135\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 137\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 138\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 139\",\n      \"measured\": 4.547473508864641e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 140\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 141\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 142\",\n      \"measured\": 3.637978807091713e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 145\",\n      \"measured\": 8.185452315956354e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 146\",\n      \"measured\": 3.637978807091713e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 147\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 148\",\n      \"measured\": 2.7284841053187847e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 149\",\n      \"measured\": 2.7284841053187847e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 153\",\n      \"measured\": 4.547473508864641e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 155\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 156\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 158\",\n      \"measured\": 2.7284841053187847e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 159\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 160\",\n      \"measured\": 6.366462912410498e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 162\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 164\",\n      \"measured\": 1.0913936421275139e-11,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 166\",\n      \"measured\": 2.7284841053187847e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 167\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 168\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 170\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 171\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 172\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 173\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 174\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 175\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 177\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 178\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 179\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 180\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 181\",\n      \"measured\": 4.547473508864641e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 183\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 184\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 185\",\n      \"measured\": 0,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 186\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 188\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 189\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 191\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 192\",\n      \"measured\": 4.547473508864641e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 193\",\n      \"measured\": 2.7284841053187847e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 194\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 196\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 197\",\n      \"measured\": 4.547473508864641e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 198\",\n      \"measured\": 1.8189894035458565e-12,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress entry boundary 199\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.00002,\n      \"unit\": \"km\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Replay respects the bound/open post-burn time cap\",\n      \"measured\": 7200,\n      \"tolerance\": 7200,\n      \"unit\": \"s\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Requested burn beyond deadline is clamped before air\",\n      \"measured\": 4127.330617828275,\n      \"tolerance\": 4127.331617828275,\n      \"unit\": \"s\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"600 stress-propagation energy residuals\",\n      \"measured\": 4.149110398993697e-15,\n      \"tolerance\": 1e-8,\n      \"unit\": \"relative (floor 1 km²/s²)\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"600 stress-propagation momentum residuals\",\n      \"measured\": 1.6746163847261872e-15,\n      \"tolerance\": 1e-8,\n      \"unit\": \"relative\",\n      \"pass\": true\n    },\n    {\n      \"name\": \"Stress propagated samples\",\n      \"measured\": 600,\n      \"expected\": 600,\n      \"pass\": true\n    }\n  ]\n}\n",
+      "stderr": "",
+      "verifiedAt": "2026-10-02T10:05:33.727860+00:00",
+      "scope": "Independent rerun of preserved quantitative tests against the actual implementation physics; not browser QA or unrestricted numerical certification."
+    },
+    "checkedAt": "2026-10-02T10:05:34.581Z",
+    "runtimeBytes": 52471
+  },
+  "generationReport": {
+    "productTitle": "Last Light — Orbital Salvage",
+    "title": "Last Light — Orbital Salvage",
+    "description": "A finished single-impulse orbital rescue desk. Three stranded spacecraft arrive on atmospheric-intersecting ellipses. Users choose a burn point on the orbit or time slider, shape a tangential/radial velocity impulse, and replay the altered future. A recovery line, first-entry deadline, true perigee/apogee forecast, repair assistant, custom incoming orbits, and selectable flight sheet make the orbital mechanics actionable.",
+    "concept": "An industrial salvage workshop, arranged as an incoming dossier, an Earth-centered drafting table, an intervention console, and an alternate-ending replay tape. The mission is to rescue a complete orbit above a geometric recovery altitude with one ideal impulse.",
+    "assignedModel": "gpt-6-astra",
+    "assignedReasoningEffort": "xhigh",
+    "implementationStartUtc": "2026-10-02T09:41:15.800Z",
+    "implementationEndUtc": "2026-10-02T10:05:07.797Z",
+    "runtime": {
+      "node": "24.19.0",
+      "framework": "Vanilla JavaScript with Canvas 2D",
+      "build": "Vite; isolated configFile:false, publicDir:false, write:false",
+      "entry": "index.html",
+      "moduleTag": "<script type=\"module\" src=\"./main.js\"></script>",
+      "externalDependenciesAtRuntime": [],
+      "persistentStorage": false,
+      "networkCalls": false,
+      "sharedFilesModified": false,
+      "published": false
+    },
+    "files": [
+      "index.html",
+      "main.js",
+      "style.css",
+      "physics.js",
+      "numerical-tests.mjs",
+      "numerical-results.json",
+      "verify-build.mjs",
+      "build-results.json",
+      "worker-report.json"
+    ],
+    "tests": [
+      {
+        "name": "JavaScript syntax",
+        "command": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-bold && node --check physics.js && node --check main.js",
+        "outcome": "passed",
+        "exitCode": 0
+      },
+      {
+        "name": "Quantitative tests of the actual implementation",
+        "command": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-bold && node numerical-tests.mjs > numerical-results.json",
+        "outcome": "passed",
+        "exitCode": 0,
+        "recordedChecks": 194,
+        "stressPropagationSamples": 600,
+        "coverage": [
+          "circular quarter-period analytic coordinates and full-period closure",
+          "elliptic energy/angular momentum conservation through 5.49 periods",
+          "elliptic and hyperbolic time reversibility",
+          "hyperbolic and parabolic conservation",
+          "analytic Hohmann transfer and circularization",
+          "all three preset rescue solutions and atmospheric terminal states",
+          "off-apsis repair target and radial cancellation",
+          "impulse position continuity, magnitude, and radial sign",
+          "inbound versus outbound hyperbolic entry",
+          "near-parabolic entry on both sides of escape",
+          "200 fixed-seed maneuver plans across the allowed impulse ranges",
+          "bounded replay horizon and burn-deadline clamping"
+        ],
+        "resultsFile": "numerical-results.json",
+        "summary": [
+          {
+            "name": "Circular quarter-period position vs analytic coordinates",
+            "measured": 5.230909593113388e-12,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Circular full-period closure",
+            "measured": 2.09345634586089e-11,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Circular quarter-period speed",
+            "measured": 3.552713678800501e-15,
+            "tolerance": 1e-9,
+            "unit": "km/s",
+            "pass": true
+          },
+          {
+            "name": "Elliptic specific-energy conservation over 5.49 periods",
+            "measured": 4.937157766623654e-14,
+            "tolerance": 1e-9,
+            "unit": "relative",
+            "pass": true
+          },
+          {
+            "name": "Elliptic angular-momentum conservation over 5.49 periods",
+            "measured": 8.299319314718834e-15,
+            "tolerance": 1e-9,
+            "unit": "relative",
+            "pass": true
+          },
+          {
+            "name": "Elliptic radii remain within analytic apsides",
+            "measured": 0,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Elliptic time reversibility (position)",
+            "measured": 3.002710221920857e-11,
+            "tolerance": 0.00001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Elliptic time reversibility (velocity)",
+            "measured": 2.9326704586727914e-14,
+            "tolerance": 1e-8,
+            "unit": "km/s",
+            "pass": true
+          },
+          {
+            "name": "Hyperbolic specific-energy conservation",
+            "measured": 1.6118475039764222e-15,
+            "tolerance": 1e-9,
+            "unit": "relative",
+            "pass": true
+          },
+          {
+            "name": "Hyperbolic angular-momentum conservation",
+            "measured": 2.927143525128429e-15,
+            "tolerance": 1e-9,
+            "unit": "relative",
+            "pass": true
+          },
+          {
+            "name": "Hyperbolic round-trip position",
+            "measured": 4.8943999161833605e-11,
+            "tolerance": 0.00001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Parabolic zero-energy conservation",
+            "measured": 1.7763568394002505e-15,
+            "tolerance": 1e-9,
+            "unit": "km²/s²",
+            "pass": true
+          },
+          {
+            "name": "Parabolic round-trip position",
+            "measured": 3.918223088210292e-11,
+            "tolerance": 0.00001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Hohmann transfer apogee altitude",
+            "measured": 0,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Hohmann circularization eccentricity",
+            "measured": 8.422714646108282e-16,
+            "tolerance": 1e-10,
+            "unit": "",
+            "pass": true
+          },
+          {
+            "name": "Hohmann final circular radius",
+            "measured": 9.094947017729282e-12,
+            "tolerance": 0.00001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Mission 60/1200 crosses air inbound",
+            "measured": true,
+            "expected": true,
+            "pass": true
+          },
+          {
+            "name": "Mission 60/1200 repair outcome",
+            "measured": "clear",
+            "expected": "clear",
+            "pass": true
+          },
+          {
+            "name": "Mission 60/1200 repaired orbit has no air entry",
+            "measured": null,
+            "expected": null,
+            "pass": true
+          },
+          {
+            "name": "Mission 60/1200 repaired apogee preserved",
+            "measured": 9.094947017729282e-13,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Mission 60/1200 no-burn entry unchanged",
+            "measured": 1.8189894035458565e-12,
+            "tolerance": 0.000001,
+            "unit": "s",
+            "pass": true
+          },
+          {
+            "name": "Mission 60/1200 terminal state at air line",
+            "measured": 9.094947017729282e-13,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Mission 35/2800 crosses air inbound",
+            "measured": true,
+            "expected": true,
+            "pass": true
+          },
+          {
+            "name": "Mission 35/2800 repair outcome",
+            "measured": "clear",
+            "expected": "clear",
+            "pass": true
+          },
+          {
+            "name": "Mission 35/2800 repaired orbit has no air entry",
+            "measured": null,
+            "expected": null,
+            "pass": true
+          },
+          {
+            "name": "Mission 35/2800 repaired apogee preserved",
+            "measured": 1.8189894035458565e-12,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Mission 35/2800 no-burn entry unchanged",
+            "measured": 1.2732925824820995e-11,
+            "tolerance": 0.000001,
+            "unit": "s",
+            "pass": true
+          },
+          {
+            "name": "Mission 35/2800 terminal state at air line",
+            "measured": 9.094947017729282e-13,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Mission 90/700 crosses air inbound",
+            "measured": true,
+            "expected": true,
+            "pass": true
+          },
+          {
+            "name": "Mission 90/700 repair outcome",
+            "measured": "clear",
+            "expected": "clear",
+            "pass": true
+          },
+          {
+            "name": "Mission 90/700 repaired orbit has no air entry",
+            "measured": null,
+            "expected": null,
+            "pass": true
+          },
+          {
+            "name": "Mission 90/700 repaired apogee preserved",
+            "measured": 2.7284841053187847e-12,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Mission 90/700 no-burn entry unchanged",
+            "measured": 4.274625098332763e-11,
+            "tolerance": 0.000001,
+            "unit": "s",
+            "pass": true
+          },
+          {
+            "name": "Mission 90/700 terminal state at air line",
+            "measured": 3.637978807091713e-12,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "All mission apoapsis radial speeds",
+            "measured": 9.992116898588562e-16,
+            "tolerance": 1e-9,
+            "unit": "km/s",
+            "pass": true
+          },
+          {
+            "name": "All mission first-entry radius residuals",
+            "measured": 8.185452315956354e-12,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "All assisted repair target-perigee residuals",
+            "measured": 5.4569682106375694e-12,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Off-apsis repair reaches requested perigee",
+            "measured": 1.8189894035458565e-12,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Off-apsis repair cancels radial velocity",
+            "measured": 4.496787839954995e-16,
+            "tolerance": 1e-9,
+            "unit": "km/s",
+            "pass": true
+          },
+          {
+            "name": "Off-apsis repair makes local radius the apogee",
+            "measured": 0,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Impulse position continuity",
+            "measured": 0,
+            "tolerance": 0,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Impulse magnitude matches 2D component norm",
+            "measured": 3.126388037344441e-13,
+            "tolerance": 1e-9,
+            "unit": "m/s",
+            "pass": true
+          },
+          {
+            "name": "Radial impulse sign and magnitude",
+            "measured": 1.1379786002407855e-15,
+            "tolerance": 1e-10,
+            "unit": "km/s",
+            "pass": true
+          },
+          {
+            "name": "Hyperbolic inbound entry radius",
+            "measured": 9.094947017729282e-13,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Hyperbolic outward branch has no future entry",
+            "measured": null,
+            "expected": null,
+            "pass": true
+          },
+          {
+            "name": "Parabolic inbound entry radius",
+            "measured": 1.8189894035458565e-12,
+            "tolerance": 0.00001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Near-parabolic entry radius, velocity offset -1e-7",
+            "measured": 1.8189894035458565e-12,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Near-parabolic entry radius, velocity offset -1e-8",
+            "measured": 9.094947017729282e-13,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Near-parabolic entry radius, velocity offset -1e-9",
+            "measured": 9.094947017729282e-13,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Near-parabolic entry radius, velocity offset 0",
+            "measured": 1.8189894035458565e-12,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Near-parabolic entry radius, velocity offset 1e-9",
+            "measured": 0,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Near-parabolic entry radius, velocity offset 1e-8",
+            "measured": 1.8189894035458565e-12,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Near-parabolic entry radius, velocity offset 1e-7",
+            "measured": 0,
+            "tolerance": 0.000001,
+            "unit": "km",
+            "pass": true
+          },
+          {
+            "name": "Safe circular orbit never crosses air",
+            "measured": null,
+            "expected": null,
+            "pass": true
+          },
+          {
+            "name": "Start below air is terminal",
+            "measured": 0,
+            "expected": 0,
+            "pass": true
+          },
+          {
+            "name": "Replay respects the bound/open post-burn time cap",
+            "measured": 7200,
+            "tolerance": 7200,
+            "unit": "s",
+            "pass": true
+          },
+          {
+            "name": "Requested burn beyond deadline is clamped before air",
+            "measured": 4127.330617828275,
+            "tolerance": 4127.331617828275,
+            "unit": "s",
+            "pass": true
+          },
+          {
+            "name": "600 stress-propagation energy residuals",
+            "measured": 4.149110398993697e-15,
+            "tolerance": 1e-8,
+            "unit": "relative (floor 1 km²/s²)",
+            "pass": true
+          },
+          {
+            "name": "600 stress-propagation momentum residuals",
+            "measured": 1.6746163847261872e-15,
+            "tolerance": 1e-8,
+            "unit": "relative",
+            "pass": true
+          },
+          {
+            "name": "Stress propagated samples",
+            "measured": 600,
+            "expected": 600,
+            "pass": true
+          }
+        ]
+      },
+      {
+        "name": "Isolated Vite build",
+        "command": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-bold && node verify-build.mjs > build-results.json",
+        "outcome": "passed",
+        "exitCode": 0,
+        "checks": [
+          "exact required module script tag",
+          "entry JavaScript bundle produced",
+          "zero external imports",
+          "zero dynamic imports",
+          "write:false; no emitted build directory"
+        ],
+        "passed": true,
+        "configFile": false,
+        "write": false,
+        "outputs": [
+          {
+            "fileName": "assets/index-DGRC2yNB.js",
+            "type": "chunk",
+            "bytes": 33772
+          },
+          {
+            "fileName": "assets/style-s1MX8Hfv.css",
+            "type": "asset",
+            "bytes": 18786
+          },
+          {
+            "fileName": "index.html",
+            "type": "asset",
+            "bytes": 430
+          }
+        ]
+      },
+      {
+        "name": "Browser appearance, interactions, and performance",
+        "outcome": "not run",
+        "reason": "Browser localhost access was explicitly unavailable. No browser checks, screenshots, or interaction/performance claims are made."
+      }
+    ],
+    "exactFullRerunCommand": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-bold && node --check physics.js && node --check main.js && node numerical-tests.mjs > numerical-results.json && node verify-build.mjs > build-results.json",
+    "numericalAssumptions": [
+      "Earth gravitational parameter μ = 398600.4418 km³/s²; spherical radius = 6371 km.",
+      "Massless point spacecraft in an inertial 2D plane under central Newtonian gravity.",
+      "Universal-variable Kepler propagation with safeguarded Newton/bisection solve and Stumpff functions; bound periods reduced modulo the orbital period.",
+      "One instantaneous velocity impulse; tangential is perpendicular to the radius in the current direction of angular motion; radial is outward.",
+      "Burn components limited to ±1500 m/s; impulse cost is the Euclidean norm, not a propellant estimate.",
+      "The first future inbound 120 km altitude crossing is a terminal operational boundary. Event times from conic anomalies are refined against the actual propagator.",
+      "Recovery means a bound orbit whose perigee reaches the selected recovery altitude, with a 1e-6 km floating-point comparison tolerance.",
+      "The assisted rescue is an apogee tangent impulse targeted to the recovery perigee, for below-target incoming ellipses with a reachable apogee; already-safe incoming orbits receive a zero-cost no-burn recommendation.",
+      "Replay ends at the first air crossing or the coast horizon, whichever comes first: one post-burn orbit capped at 8 hours for bound trajectories, 2 hours for open trajectories.",
+      "Orbital path and Earth geometry share one physical scale; spacecraft, markers, labels, and impulse arrows are magnified for usability."
+    ],
+    "limitations": [
+      "No atmosphere, drag, heating, breakup, landing, oblateness/J₂, third bodies, solar pressure, 3D inclination changes, finite burns, pointing/fuel/mass constraints, or real celestial data.",
+      "A geometric recovery line is not a real-flight safety guarantee; real atmospheric decay can occur above 120 km.",
+      "The minimum-cost assistant is scoped to lifting a low perigee from a reachable apogee. It does not solve arbitrary multi-burn optimization.",
+      "Numerical tests establish ideal-model consistency, not real-mission accuracy.",
+      "Flight sheets are selectable in-memory text. There is no persistent storage, account system, backend, or external sharing."
+    ],
+    "repairs": [
+      {
+        "issue": "A near-parabolic probe showed an atmospheric crossing radius residual of approximately 0.000723309 km for one near-escape ellipse and approximately 0.0000161282 km for adjacent near-parabolic cases.",
+        "change": "Added event-time Newton refinement against the actual universal-variable propagator and seven near-parabolic regression tests.",
+        "verifiedResult": "All seven crossing residuals are ≤1.819e-12 km, below the 1e-6 km test tolerance."
+      },
+      {
+        "issue": "Already-safe custom incoming orbits should not spend delta-v to lower their perigee to the requested recovery line.",
+        "change": "The repair assistant now returns the zero-burn solution and explains that the incoming orbit is already clear.",
+        "verifiedResult": "Source-level repair; browser interaction not verified."
+      },
+      {
+        "issue": "A distant future atmospheric return could otherwise extend replay past the declared coast horizon.",
+        "change": "Replay duration now takes the minimum of first-entry time and the bounded post-burn coast duration, with an explicit endsAtEntry flag and accurate terminal labels.",
+        "verifiedResult": "Replay cap and boundary regression tests pass."
+      },
+      {
+        "issue": "Default dl margins and a hidden small-screen custom editor reduced layout consistency and mobile feature access.",
+        "change": "Reset result-sheet margins and retained the custom incoming-orbit disclosure at narrow widths.",
+        "verifiedResult": "Styles compile; actual appearance remains unverified."
+      }
+    ],
+    "unknowns": [
+      "Actual browser rendering, responsive layout, accessibility behavior, pointer interactions, dialog behavior, and performance have not been observed.",
+      "No runtime-provided token or billing counters were exposed to this task."
+    ],
+    "tokenUsage": null,
+    "tokenUsageReason": "Actual runtime-provided input, cached-input, output, reasoning, and total counters were not accessible through the supplied task/tool results. No estimates, restricted session-history reads, credential inspection, or extra inference runs were used.",
+    "tokenCounterSource": null,
+    "tokenCounterIncludesToolsOrAgentOverhead": null,
+    "cost": null,
+    "costReason": "No measured cost was supplied by the runtime.",
+    "qualityScore": null
+  }
+}

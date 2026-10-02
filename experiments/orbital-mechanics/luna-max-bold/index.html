@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10171d">
+  <meta name="description" content="A two-body orbital conjunction response desk. Plot an impulse, compare miss distances, and inspect the assumptions behind every forecast.">
+  <title>Night Shift — Orbital Conjunction Desk</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="console-shell">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div><p class="eyebrow">LOW EARTH ORBIT · FLIGHT DYNAMICS</p><h1>NIGHT SHIFT <span>/</span> CONJUNCTION DESK</h1></div>
+      </div>
+      <div class="shift-stamp"><span class="live-dot"></span><span>WATCH 03</span><i></i><span>SIM MODE · NO LIVE TRACKING</span></div>
+    </header>
+
+    <div class="workspace">
+      <aside class="incident-rail" aria-label="Conjunction watch queue">
+        <div class="rail-heading"><div><p class="eyebrow">INCOMING TRACKS</p><h2>Watch queue</h2></div><span class="queue-count">03</span></div>
+        <p class="rail-copy">Three seeded encounters. Choose one to open the response plot.</p>
+        <div class="event-list">
+          <button class="event-row selected" data-index="0" aria-pressed="true">
+            <span class="event-severity severity-high"></span><span class="event-text"><span class="event-id">EV-17 <small>· CLOSE PASS</small></span><strong>Night relay</strong><span>KITE-04 / FRAG 8821</span></span><span class="event-arrow">↗</span>
+          </button>
+          <button class="event-row" data-index="1" aria-pressed="false">
+            <span class="event-severity severity-mid"></span><span class="event-text"><span class="event-id">EV-31 <small>· POLAR</small></span><strong>Polar crossing</strong><span>NORTH-2 / FRAG 1406</span></span><span class="event-arrow">↗</span>
+          </button>
+          <button class="event-row" data-index="2" aria-pressed="false">
+            <span class="event-severity severity-mid"></span><span class="event-text"><span class="event-id">EV-42 <small>· DRIFT</small></span><strong>Old bus drift</strong><span>MICA-11 / FRAG 3029</span></span><span class="event-arrow">↗</span>
+          </button>
+        </div>
+        <div class="queue-foot"><span class="tiny-ring">!</span><span>All passes are synthetic. No operational tracking data is loaded.</span></div>
+        <div class="rail-index"><span>DESK 01</span><span>SHIFT START · T−00:00</span></div>
+      </aside>
+
+      <section class="main-column" aria-label="Orbital forecast">
+        <div class="section-head">
+          <div><p class="eyebrow">ACTIVE INCIDENT <span class="slash">/</span> <span id="incident-stamp">LEO / 624 KM</span></p><h2 id="incident-title">Night relay</h2><p class="subtitle"><span id="incident-pair">KITE-04 / FRAG 8821</span><span class="sub-dot">•</span><span id="incident-detail">Equatorial relay · untracked panel shard</span></p></div>
+          <div class="lead-chip"><span class="lead-symbol">⌁</span><span><strong id="incident-lead">2h 24m baseline lead</strong><small>closest pass · zero-burn track</small></span></div>
+        </div>
+
+        <div class="map-shell">
+          <div class="map-legend" aria-label="Map legend"><span><i class="legend-dot legend-kite"></i><span id="map-kite">KITE-04</span></span><span><i class="legend-dot legend-frag"></i><span id="map-frag">FRAG 8821</span></span><span><i class="legend-line"></i>0-BURN REFERENCE</span></div>
+          <canvas id="orbit-map" aria-label="Geocentric, two-dimensional orbital map with predicted tracks and a local miss-distance inset"></canvas>
+          <div class="map-caption"><span id="forecast-caption">A 5.5 h two-body forecast · epoch impulse</span><span>ORBIT PLANE · KM</span></div>
+        </div>
+
+        <div class="timebar">
+          <div class="time-controls"><button id="step-back" class="icon-button" aria-label="Step back five minutes">−5m</button><button id="play-toggle" class="play-button">▶ &nbsp; RUN TRACK</button><button id="step-forward" class="icon-button" aria-label="Step forward five minutes">+5m</button><span class="clock-readout" id="clock-readout">T + 0m</span></div>
+          <div class="scrub-wrap"><input id="time-scrub" type="range" min="0" max="19800" step="60" value="0" aria-label="Mission timeline position"><span class="event-marker" id="event-marker" aria-hidden="true"></span></div>
+          <div class="scrub-ends"><span>NOW</span><span>FORECAST END</span></div>
+        </div>
+      </section>
+
+      <aside class="response-column" aria-label="Maneuver response console">
+        <div class="response-head"><div><p class="eyebrow">RESPONSE PLOT <span class="slash">/</span> ACTIVE CRAFT</p><h2>One impulse</h2></div><span class="risk-pill risk-critical" id="risk-pill" aria-live="polite">CRITICAL</span></div>
+        <p class="response-intro">Move the protected craft in its local orbital frame. Every change reruns both trajectories from epoch.</p>
+
+        <div class="metric-card">
+          <div class="metric-top"><span>MINIMUM MISS DISTANCE</span><span id="miss-time">AT 2h 24m</span></div>
+          <div class="metric-value" id="miss-value">362 m</div>
+          <div class="metric-context" id="miss-context">Inside 1 km. A close pass needs immediate review.</div>
+          <div class="metric-divider"></div>
+          <div class="metric-foot"><span>NO-BURN BASELINE</span><strong id="base-value">362 m</strong><span>CHANGE</span><strong id="change-value">+0 m</strong></div>
+        </div>
+
+        <div class="burn-block">
+          <div class="control-label"><label for="radial-range">RADIAL <small>· IN / OUT</small></label><strong id="radial-value">+0.00 m/s</strong></div>
+          <input id="radial-range" class="burn-slider radial" type="range" min="-2" max="2" step="0.05" value="0" aria-label="Radial impulse in meters per second">
+          <div class="range-ends"><span>IN −2</span><span>0</span><span>OUT +2</span></div>
+          <div class="control-label tangent-label"><label for="tangent-range">TANGENTIAL <small>· RETRO / PRO</small></label><strong id="tangent-value">+0.00 m/s</strong></div>
+          <input id="tangent-range" class="burn-slider tangent" type="range" min="-2" max="2" step="0.05" value="0" aria-label="Tangential impulse in meters per second">
+          <div class="range-ends"><span>RETRO −2</span><span>0</span><span>PRO +2</span></div>
+        </div>
+
+        <div class="horizon-row"><label for="horizon-range">FORECAST WINDOW</label><strong id="horizon-value">5.5 h</strong></div>
+        <input id="horizon-range" class="horizon-slider" type="range" min="1" max="6" step="0.25" value="5.5" aria-label="Forecast window in hours">
+        <div class="horizon-foot"><span>1 H</span><span>6 H</span></div>
+
+        <div class="vector-readout"><span>PLANNED ΔV</span><strong id="dv-total">0.00 m/s</strong><small id="burn-summary">+0.00 R / +0.00 T m/s</small></div>
+        <button id="sweep-btn" class="sweep-button">FIND LOW-FUEL CLEARANCE</button>
+        <button id="reset-burn" class="text-button">Clear impulse &amp; return to baseline</button>
+        <p class="sweep-result" id="sweep-result" aria-live="polite">A 0.2 m/s grid search can suggest a bounded first correction.</p>
+      </aside>
+    </div>
+
+    <footer class="bottom-dock">
+      <div class="dock-note"><span class="dock-icon">⌖</span><span><strong>ORBIT IS NOT A MAP</strong><small>Radial scale is linear; Earth and orbit shells use the same km scale.</small></span></div>
+      <details class="assumptions">
+        <summary><span>MODEL NOTES</span><span class="chevron">⌄</span></summary>
+        <div class="assumption-popover"><strong>What this desk calculates</strong><p>Each craft is a point mass propagated independently around a fixed, spherical Earth with μ = 398,600.4418 km³/s². The state is planar and inertial; the forecast uses fourth-order Runge–Kutta integration at 20 s steps and linearly interpolates closest approach between samples.</p><p>A burn is an instantaneous radial/tangential Δv at epoch. The 5 km and 1 km rings are operator triage thresholds, not collision probabilities or certified safety bounds.</p><p>Atmospheric drag, oblateness (J₂), third-body forces, attitude, finite burn duration, covariance, object size, and tracking uncertainty are omitted. The seeded incident states are synthetic, not live catalog data.</p></div>
+      </details>
+      <div class="dock-mode"><span class="mode-dot"></span><span>2-BODY MODEL</span><span class="dock-sep">·</span><span>20 SEC STEP</span></div>
+    </footer>
+  </main>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

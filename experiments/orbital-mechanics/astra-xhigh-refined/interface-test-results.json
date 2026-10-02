@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "assertions": 46,
+  "scope": "Node DOM/canvas stubs executing actual main.js event handlers; verifies control state and numerical readout wiring only. Does not verify browser rendering, real events, layout, accessibility tree, or performance.",
+  "cases": [
+    "normal canvas API path",
+    "unsupported canvas fallback",
+    "presets",
+    "seek to arrival",
+    "skip insertion",
+    "return orbit",
+    "replay",
+    "background pause",
+    "invalid and valid input",
+    "low-altitude warning",
+    "swap",
+    "slider limit",
+    "guide open/close",
+    "velocity toggle",
+    "zoom/fit",
+    "reset",
+    "same-altitude mission"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "configFile": false,
+  "write": false,
+  "outputs": [
+    {
+      "fileName": "assets/index-DGRC2yNB.js",
+      "type": "chunk",
+      "bytes": 33772
+    },
+    {
+      "fileName": "assets/style-s1MX8Hfv.css",
+      "type": "asset",
+      "bytes": 18786
+    },
+    {
+      "fileName": "index.html",
+      "type": "asset",
+      "bytes": 430
+    }
+  ]
+}

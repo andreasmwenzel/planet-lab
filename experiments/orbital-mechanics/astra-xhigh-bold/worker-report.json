@@ -1,0 +1,564 @@
+{
+  "productTitle": "Last Light — Orbital Salvage",
+  "title": "Last Light — Orbital Salvage",
+  "description": "A finished single-impulse orbital rescue desk. Three stranded spacecraft arrive on atmospheric-intersecting ellipses. Users choose a burn point on the orbit or time slider, shape a tangential/radial velocity impulse, and replay the altered future. A recovery line, first-entry deadline, true perigee/apogee forecast, repair assistant, custom incoming orbits, and selectable flight sheet make the orbital mechanics actionable.",
+  "concept": "An industrial salvage workshop, arranged as an incoming dossier, an Earth-centered drafting table, an intervention console, and an alternate-ending replay tape. The mission is to rescue a complete orbit above a geometric recovery altitude with one ideal impulse.",
+  "assignedModel": "gpt-6-astra",
+  "assignedReasoningEffort": "xhigh",
+  "implementationStartUtc": "2026-10-02T09:41:15.800Z",
+  "implementationEndUtc": "2026-10-02T10:05:07.797Z",
+  "runtime": {
+    "node": "24.19.0",
+    "framework": "Vanilla JavaScript with Canvas 2D",
+    "build": "Vite; isolated configFile:false, publicDir:false, write:false",
+    "entry": "index.html",
+    "moduleTag": "<script type=\"module\" src=\"./main.js\"></script>",
+    "externalDependenciesAtRuntime": [],
+    "persistentStorage": false,
+    "networkCalls": false,
+    "sharedFilesModified": false,
+    "published": false
+  },
+  "files": [
+    "index.html",
+    "main.js",
+    "style.css",
+    "physics.js",
+    "numerical-tests.mjs",
+    "numerical-results.json",
+    "verify-build.mjs",
+    "build-results.json",
+    "worker-report.json"
+  ],
+  "tests": [
+    {
+      "name": "JavaScript syntax",
+      "command": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-bold && node --check physics.js && node --check main.js",
+      "outcome": "passed",
+      "exitCode": 0
+    },
+    {
+      "name": "Quantitative tests of the actual implementation",
+      "command": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-bold && node numerical-tests.mjs > numerical-results.json",
+      "outcome": "passed",
+      "exitCode": 0,
+      "recordedChecks": 194,
+      "stressPropagationSamples": 600,
+      "coverage": [
+        "circular quarter-period analytic coordinates and full-period closure",
+        "elliptic energy/angular momentum conservation through 5.49 periods",
+        "elliptic and hyperbolic time reversibility",
+        "hyperbolic and parabolic conservation",
+        "analytic Hohmann transfer and circularization",
+        "all three preset rescue solutions and atmospheric terminal states",
+        "off-apsis repair target and radial cancellation",
+        "impulse position continuity, magnitude, and radial sign",
+        "inbound versus outbound hyperbolic entry",
+        "near-parabolic entry on both sides of escape",
+        "200 fixed-seed maneuver plans across the allowed impulse ranges",
+        "bounded replay horizon and burn-deadline clamping"
+      ],
+      "resultsFile": "numerical-results.json",
+      "summary": [
+        {
+          "name": "Circular quarter-period position vs analytic coordinates",
+          "measured": 5.230909593113388e-12,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Circular full-period closure",
+          "measured": 2.09345634586089e-11,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Circular quarter-period speed",
+          "measured": 3.552713678800501e-15,
+          "tolerance": 1e-9,
+          "unit": "km/s",
+          "pass": true
+        },
+        {
+          "name": "Elliptic specific-energy conservation over 5.49 periods",
+          "measured": 4.937157766623654e-14,
+          "tolerance": 1e-9,
+          "unit": "relative",
+          "pass": true
+        },
+        {
+          "name": "Elliptic angular-momentum conservation over 5.49 periods",
+          "measured": 8.299319314718834e-15,
+          "tolerance": 1e-9,
+          "unit": "relative",
+          "pass": true
+        },
+        {
+          "name": "Elliptic radii remain within analytic apsides",
+          "measured": 0,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Elliptic time reversibility (position)",
+          "measured": 3.002710221920857e-11,
+          "tolerance": 0.00001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Elliptic time reversibility (velocity)",
+          "measured": 2.9326704586727914e-14,
+          "tolerance": 1e-8,
+          "unit": "km/s",
+          "pass": true
+        },
+        {
+          "name": "Hyperbolic specific-energy conservation",
+          "measured": 1.6118475039764222e-15,
+          "tolerance": 1e-9,
+          "unit": "relative",
+          "pass": true
+        },
+        {
+          "name": "Hyperbolic angular-momentum conservation",
+          "measured": 2.927143525128429e-15,
+          "tolerance": 1e-9,
+          "unit": "relative",
+          "pass": true
+        },
+        {
+          "name": "Hyperbolic round-trip position",
+          "measured": 4.8943999161833605e-11,
+          "tolerance": 0.00001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Parabolic zero-energy conservation",
+          "measured": 1.7763568394002505e-15,
+          "tolerance": 1e-9,
+          "unit": "km²/s²",
+          "pass": true
+        },
+        {
+          "name": "Parabolic round-trip position",
+          "measured": 3.918223088210292e-11,
+          "tolerance": 0.00001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Hohmann transfer apogee altitude",
+          "measured": 0,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Hohmann circularization eccentricity",
+          "measured": 8.422714646108282e-16,
+          "tolerance": 1e-10,
+          "unit": "",
+          "pass": true
+        },
+        {
+          "name": "Hohmann final circular radius",
+          "measured": 9.094947017729282e-12,
+          "tolerance": 0.00001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Mission 60/1200 crosses air inbound",
+          "measured": true,
+          "expected": true,
+          "pass": true
+        },
+        {
+          "name": "Mission 60/1200 repair outcome",
+          "measured": "clear",
+          "expected": "clear",
+          "pass": true
+        },
+        {
+          "name": "Mission 60/1200 repaired orbit has no air entry",
+          "measured": null,
+          "expected": null,
+          "pass": true
+        },
+        {
+          "name": "Mission 60/1200 repaired apogee preserved",
+          "measured": 9.094947017729282e-13,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Mission 60/1200 no-burn entry unchanged",
+          "measured": 1.8189894035458565e-12,
+          "tolerance": 0.000001,
+          "unit": "s",
+          "pass": true
+        },
+        {
+          "name": "Mission 60/1200 terminal state at air line",
+          "measured": 9.094947017729282e-13,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Mission 35/2800 crosses air inbound",
+          "measured": true,
+          "expected": true,
+          "pass": true
+        },
+        {
+          "name": "Mission 35/2800 repair outcome",
+          "measured": "clear",
+          "expected": "clear",
+          "pass": true
+        },
+        {
+          "name": "Mission 35/2800 repaired orbit has no air entry",
+          "measured": null,
+          "expected": null,
+          "pass": true
+        },
+        {
+          "name": "Mission 35/2800 repaired apogee preserved",
+          "measured": 1.8189894035458565e-12,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Mission 35/2800 no-burn entry unchanged",
+          "measured": 1.2732925824820995e-11,
+          "tolerance": 0.000001,
+          "unit": "s",
+          "pass": true
+        },
+        {
+          "name": "Mission 35/2800 terminal state at air line",
+          "measured": 9.094947017729282e-13,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Mission 90/700 crosses air inbound",
+          "measured": true,
+          "expected": true,
+          "pass": true
+        },
+        {
+          "name": "Mission 90/700 repair outcome",
+          "measured": "clear",
+          "expected": "clear",
+          "pass": true
+        },
+        {
+          "name": "Mission 90/700 repaired orbit has no air entry",
+          "measured": null,
+          "expected": null,
+          "pass": true
+        },
+        {
+          "name": "Mission 90/700 repaired apogee preserved",
+          "measured": 2.7284841053187847e-12,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Mission 90/700 no-burn entry unchanged",
+          "measured": 4.274625098332763e-11,
+          "tolerance": 0.000001,
+          "unit": "s",
+          "pass": true
+        },
+        {
+          "name": "Mission 90/700 terminal state at air line",
+          "measured": 3.637978807091713e-12,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "All mission apoapsis radial speeds",
+          "measured": 9.992116898588562e-16,
+          "tolerance": 1e-9,
+          "unit": "km/s",
+          "pass": true
+        },
+        {
+          "name": "All mission first-entry radius residuals",
+          "measured": 8.185452315956354e-12,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "All assisted repair target-perigee residuals",
+          "measured": 5.4569682106375694e-12,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Off-apsis repair reaches requested perigee",
+          "measured": 1.8189894035458565e-12,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Off-apsis repair cancels radial velocity",
+          "measured": 4.496787839954995e-16,
+          "tolerance": 1e-9,
+          "unit": "km/s",
+          "pass": true
+        },
+        {
+          "name": "Off-apsis repair makes local radius the apogee",
+          "measured": 0,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Impulse position continuity",
+          "measured": 0,
+          "tolerance": 0,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Impulse magnitude matches 2D component norm",
+          "measured": 3.126388037344441e-13,
+          "tolerance": 1e-9,
+          "unit": "m/s",
+          "pass": true
+        },
+        {
+          "name": "Radial impulse sign and magnitude",
+          "measured": 1.1379786002407855e-15,
+          "tolerance": 1e-10,
+          "unit": "km/s",
+          "pass": true
+        },
+        {
+          "name": "Hyperbolic inbound entry radius",
+          "measured": 9.094947017729282e-13,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Hyperbolic outward branch has no future entry",
+          "measured": null,
+          "expected": null,
+          "pass": true
+        },
+        {
+          "name": "Parabolic inbound entry radius",
+          "measured": 1.8189894035458565e-12,
+          "tolerance": 0.00001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Near-parabolic entry radius, velocity offset -1e-7",
+          "measured": 1.8189894035458565e-12,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Near-parabolic entry radius, velocity offset -1e-8",
+          "measured": 9.094947017729282e-13,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Near-parabolic entry radius, velocity offset -1e-9",
+          "measured": 9.094947017729282e-13,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Near-parabolic entry radius, velocity offset 0",
+          "measured": 1.8189894035458565e-12,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Near-parabolic entry radius, velocity offset 1e-9",
+          "measured": 0,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Near-parabolic entry radius, velocity offset 1e-8",
+          "measured": 1.8189894035458565e-12,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Near-parabolic entry radius, velocity offset 1e-7",
+          "measured": 0,
+          "tolerance": 0.000001,
+          "unit": "km",
+          "pass": true
+        },
+        {
+          "name": "Safe circular orbit never crosses air",
+          "measured": null,
+          "expected": null,
+          "pass": true
+        },
+        {
+          "name": "Start below air is terminal",
+          "measured": 0,
+          "expected": 0,
+          "pass": true
+        },
+        {
+          "name": "Replay respects the bound/open post-burn time cap",
+          "measured": 7200,
+          "tolerance": 7200,
+          "unit": "s",
+          "pass": true
+        },
+        {
+          "name": "Requested burn beyond deadline is clamped before air",
+          "measured": 4127.330617828275,
+          "tolerance": 4127.331617828275,
+          "unit": "s",
+          "pass": true
+        },
+        {
+          "name": "600 stress-propagation energy residuals",
+          "measured": 4.149110398993697e-15,
+          "tolerance": 1e-8,
+          "unit": "relative (floor 1 km²/s²)",
+          "pass": true
+        },
+        {
+          "name": "600 stress-propagation momentum residuals",
+          "measured": 1.6746163847261872e-15,
+          "tolerance": 1e-8,
+          "unit": "relative",
+          "pass": true
+        },
+        {
+          "name": "Stress propagated samples",
+          "measured": 600,
+          "expected": 600,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "Isolated Vite build",
+      "command": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-bold && node verify-build.mjs > build-results.json",
+      "outcome": "passed",
+      "exitCode": 0,
+      "checks": [
+        "exact required module script tag",
+        "entry JavaScript bundle produced",
+        "zero external imports",
+        "zero dynamic imports",
+        "write:false; no emitted build directory"
+      ],
+      "passed": true,
+      "configFile": false,
+      "write": false,
+      "outputs": [
+        {
+          "fileName": "assets/index-DGRC2yNB.js",
+          "type": "chunk",
+          "bytes": 33772
+        },
+        {
+          "fileName": "assets/style-s1MX8Hfv.css",
+          "type": "asset",
+          "bytes": 18786
+        },
+        {
+          "fileName": "index.html",
+          "type": "asset",
+          "bytes": 430
+        }
+      ]
+    },
+    {
+      "name": "Browser appearance, interactions, and performance",
+      "outcome": "not run",
+      "reason": "Browser localhost access was explicitly unavailable. No browser checks, screenshots, or interaction/performance claims are made."
+    }
+  ],
+  "exactFullRerunCommand": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-bold && node --check physics.js && node --check main.js && node numerical-tests.mjs > numerical-results.json && node verify-build.mjs > build-results.json",
+  "numericalAssumptions": [
+    "Earth gravitational parameter μ = 398600.4418 km³/s²; spherical radius = 6371 km.",
+    "Massless point spacecraft in an inertial 2D plane under central Newtonian gravity.",
+    "Universal-variable Kepler propagation with safeguarded Newton/bisection solve and Stumpff functions; bound periods reduced modulo the orbital period.",
+    "One instantaneous velocity impulse; tangential is perpendicular to the radius in the current direction of angular motion; radial is outward.",
+    "Burn components limited to ±1500 m/s; impulse cost is the Euclidean norm, not a propellant estimate.",
+    "The first future inbound 120 km altitude crossing is a terminal operational boundary. Event times from conic anomalies are refined against the actual propagator.",
+    "Recovery means a bound orbit whose perigee reaches the selected recovery altitude, with a 1e-6 km floating-point comparison tolerance.",
+    "The assisted rescue is an apogee tangent impulse targeted to the recovery perigee, for below-target incoming ellipses with a reachable apogee; already-safe incoming orbits receive a zero-cost no-burn recommendation.",
+    "Replay ends at the first air crossing or the coast horizon, whichever comes first: one post-burn orbit capped at 8 hours for bound trajectories, 2 hours for open trajectories.",
+    "Orbital path and Earth geometry share one physical scale; spacecraft, markers, labels, and impulse arrows are magnified for usability."
+  ],
+  "limitations": [
+    "No atmosphere, drag, heating, breakup, landing, oblateness/J₂, third bodies, solar pressure, 3D inclination changes, finite burns, pointing/fuel/mass constraints, or real celestial data.",
+    "A geometric recovery line is not a real-flight safety guarantee; real atmospheric decay can occur above 120 km.",
+    "The minimum-cost assistant is scoped to lifting a low perigee from a reachable apogee. It does not solve arbitrary multi-burn optimization.",
+    "Numerical tests establish ideal-model consistency, not real-mission accuracy.",
+    "Flight sheets are selectable in-memory text. There is no persistent storage, account system, backend, or external sharing."
+  ],
+  "repairs": [
+    {
+      "issue": "A near-parabolic probe showed an atmospheric crossing radius residual of approximately 0.000723309 km for one near-escape ellipse and approximately 0.0000161282 km for adjacent near-parabolic cases.",
+      "change": "Added event-time Newton refinement against the actual universal-variable propagator and seven near-parabolic regression tests.",
+      "verifiedResult": "All seven crossing residuals are ≤1.819e-12 km, below the 1e-6 km test tolerance."
+    },
+    {
+      "issue": "Already-safe custom incoming orbits should not spend delta-v to lower their perigee to the requested recovery line.",
+      "change": "The repair assistant now returns the zero-burn solution and explains that the incoming orbit is already clear.",
+      "verifiedResult": "Source-level repair; browser interaction not verified."
+    },
+    {
+      "issue": "A distant future atmospheric return could otherwise extend replay past the declared coast horizon.",
+      "change": "Replay duration now takes the minimum of first-entry time and the bounded post-burn coast duration, with an explicit endsAtEntry flag and accurate terminal labels.",
+      "verifiedResult": "Replay cap and boundary regression tests pass."
+    },
+    {
+      "issue": "Default dl margins and a hidden small-screen custom editor reduced layout consistency and mobile feature access.",
+      "change": "Reset result-sheet margins and retained the custom incoming-orbit disclosure at narrow widths.",
+      "verifiedResult": "Styles compile; actual appearance remains unverified."
+    }
+  ],
+  "unknowns": [
+    "Actual browser rendering, responsive layout, accessibility behavior, pointer interactions, dialog behavior, and performance have not been observed.",
+    "No runtime-provided token or billing counters were exposed to this task."
+  ],
+  "tokenUsage": null,
+  "tokenUsageReason": "Actual runtime-provided input, cached-input, output, reasoning, and total counters were not accessible through the supplied task/tool results. No estimates, restricted session-history reads, credential inspection, or extra inference runs were used.",
+  "tokenCounterSource": null,
+  "tokenCounterIncludesToolsOrAgentOverhead": null,
+  "cost": null,
+  "costReason": "No measured cost was supplied by the runtime.",
+  "qualityScore": null
+}

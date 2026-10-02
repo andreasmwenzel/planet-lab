@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "write": false,
+  "configFile": false,
+  "output": [
+    {
+      "file": "assets/index-DR6gvcQn.js",
+      "type": "chunk",
+      "bytes": 36614
+    },
+    {
+      "file": "assets/index-uE-WdHOl.css",
+      "type": "asset",
+      "bytes": 19910
+    },
+    {
+      "file": "index.html",
+      "type": "asset",
+      "bytes": 445
+    }
+  ],
+  "totalBytes": 56969
+}

@@ -1,0 +1,322 @@
+{
+  "productTitle": "Apogee · Orbital flight desk",
+  "description": "A usable, self-contained 2D Earth-orbit flight workspace with a zoomable/pannable trajectory map, initial orbit profiles and custom apsides, local-tangential/radial impulse controls, next-apsis burns, play/pause/time warp/scrubbing, surface-impact stopping, undo and restart, numerical telemetry, a flight log, selectable JSON export, and a two-burn Hohmann transfer planner with automatic arrival circularization.",
+  "condition": "sol-xhigh-minimal",
+  "model": "gpt-6.1-sol",
+  "reasoningEffort": "xhigh",
+  "configurationSource": "The parent assigned this as the genuine Sol 6.1 xhigh creation run and stated that the user authorized this model and effort. This worker has no separate provider model-introspection endpoint.",
+  "restart": {
+    "restarted": true,
+    "reason": "The previous worker was lost to routine maintenance. The supplied run directory contained only the frozen prompt.txt, with no saved implementation. This worker implemented the product from scratch.",
+    "workerTaskReceivedUTC": "2026-10-02T08:52:57Z",
+    "initialDirectoryInspectionUTC": "2026-10-02T08:54:04Z",
+    "priorImplementationRead": false,
+    "otherRunsRead": false,
+    "generationDelegated": false
+  },
+  "implementationStartUTC": "2026-10-02T08:59:28Z",
+  "implementationEndUTC": "2026-10-02T09:22:16Z",
+  "timestampSource": "UTC date command recorded immediately before the first implementation write and immediately after the final implementation syntax, numerical, source-level interface, and isolated build checks. Design/planning before the first write is outside the implementation interval.",
+  "entryPoint": "index.html",
+  "files": [
+    "index.html",
+    "main.js",
+    "style.css",
+    "physics.mjs",
+    "physics.test.mjs",
+    "interface.test.mjs",
+    "build-check.mjs",
+    "test-results.txt",
+    "interface-results.txt",
+    "build-results.json",
+    "implementation-start.txt",
+    "implementation-end.txt",
+    "worker-report.json"
+  ],
+  "exactRerunCommand": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/sol-xhigh-minimal && node --check main.js && node --check physics.mjs && node --check physics.test.mjs && node --check interface.test.mjs && node --check build-check.mjs && node physics.test.mjs && node interface.test.mjs && node build-check.mjs",
+  "tests": [
+    {
+      "name": "JavaScript syntax validation",
+      "command": "node --check main.js && node --check physics.mjs && node --check physics.test.mjs && node --check interface.test.mjs && node --check build-check.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "name": "Quantitative actual-implementation physics tests",
+      "command": "node physics.test.mjs",
+      "status": "passed",
+      "suites": 9,
+      "assertions": 1295,
+      "moduleUnderTest": "physics.mjs",
+      "suitesDetail": [
+        {
+          "name": "Circular orbit against analytic quarter-period solution and 1000-period return",
+          "status": "passed",
+          "results": {
+            "positionErrorKm": 5.451709048631551e-12,
+            "velocityErrorKms": 1.0545878133950327e-14,
+            "positionToleranceKm": 1e-06,
+            "velocityToleranceKms": 1e-09
+          }
+        },
+        {
+          "name": "Energy and angular momentum conservation over 600 actual propagated samples",
+          "status": "passed",
+          "results": {
+            "samples": 600,
+            "maxEnergyErrorKm2s2": 1.5170087408478139e-12,
+            "maxAngularMomentumRelativeError": 3.4319907001962673e-13,
+            "energyToleranceKm2s2": 1e-08,
+            "angularMomentumRelativeTolerance": 1e-10
+          }
+        },
+        {
+          "name": "Tangential/radial impulse magnitude and independent kinetic-energy increment",
+          "status": "passed",
+          "results": {
+            "deltaVms": 277.3084924772409,
+            "energyIncrementKm2s2": 1.7790633085231216,
+            "tolerance": 1e-12
+          }
+        },
+        {
+          "name": "Hohmann transfers upward and downward reach target and circularize",
+          "status": "passed",
+          "results": {
+            "cases": [
+              {
+                "fromKm": 400,
+                "toKm": 35786,
+                "firstBurnMs": 2399.3521560036256,
+                "secondBurnMs": 1457.2262857596102,
+                "coastSeconds": 19040.22985583813,
+                "totalDeltaVms": 3856.578441763236
+              },
+              {
+                "fromKm": 35786,
+                "toKm": 400,
+                "firstBurnMs": -1457.2262857596102,
+                "secondBurnMs": -2399.3521560036256,
+                "coastSeconds": 19040.22985583813,
+                "totalDeltaVms": 3856.578441763236
+              },
+              {
+                "fromKm": 400,
+                "toKm": 2000,
+                "firstBurnMs": 395.190303671181,
+                "secondBurnMs": 374.7510264934961,
+                "coastSeconds": 3278.0143777683356,
+                "totalDeltaVms": 769.9413301646771
+              },
+              {
+                "fromKm": 100000,
+                "toKm": 1000,
+                "firstBurnMs": -1238.8783109765825,
+                "secondBurnMs": -2703.38304648288,
+                "coastSeconds": 67486.55855038052,
+                "totalDeltaVms": 3942.2613574594625
+              }
+            ],
+            "maxArrivalRadiusErrorKm": 2.4556356947869062e-11,
+            "maxCircularEccentricity": 8.031621505269785e-15,
+            "maxCircularSpeedErrorKms": 3.375077994860476e-14,
+            "radiusToleranceKm": 1e-05,
+            "eccentricityTolerance": 1e-09,
+            "speedToleranceKms": 1e-09
+          }
+        },
+        {
+          "name": "Apsis timing reaches the expected extremum from an arbitrary epoch",
+          "status": "passed",
+          "results": {
+            "periWaitSeconds": 19995.220917601146,
+            "apoWaitSeconds": 9380.610458800578,
+            "radiusToleranceKm": 1e-05
+          }
+        },
+        {
+          "name": "Hyperbolic and near-parabolic propagation, including reverse-time recovery",
+          "status": "passed",
+          "results": {
+            "samples": 16,
+            "maxEnergyErrorKm2s2": 3.197442310920451e-14,
+            "maxAngularMomentumRelativeError": 1.8700728594983115e-13,
+            "maxReversePositionErrorKm": 2.7456696179221053e-07,
+            "energyToleranceKm2s2": 1e-08,
+            "momentumRelativeTolerance": 1e-09,
+            "reversePositionToleranceKm": 0.001
+          }
+        },
+        {
+          "name": "Retrograde circular motion and local-tangential acceleration",
+          "status": "passed",
+          "results": {
+            "quarterPositionErrorKm": 5.451709048631551e-12,
+            "positionToleranceKm": 1e-06
+          }
+        },
+        {
+          "name": "Surface event timing for elliptic, hyperbolic, parabolic and radial infall",
+          "status": "passed",
+          "results": {
+            "cases": [
+              {
+                "name": "elliptic deorbit",
+                "impactSeconds": 878.7601350222226,
+                "radiusErrorKm": 1.8189894035458565e-12
+              },
+              {
+                "name": "hyperbolic inbound",
+                "impactSeconds": 197.07154826974397,
+                "radiusErrorKm": 1.8189894035458565e-12
+              },
+              {
+                "name": "parabolic inbound",
+                "impactSeconds": 158.78355386442018,
+                "radiusErrorKm": 9.094947017729282e-13
+              },
+              {
+                "name": "radial infall",
+                "impactSeconds": 387.2792289039755,
+                "radiusErrorKm": 0
+              }
+            ],
+            "radiusToleranceKm": 1e-05
+          }
+        },
+        {
+          "name": "Projected ellipse matches both apsidal radii; invalid input is rejected",
+          "status": "passed",
+          "results": {
+            "points": 361,
+            "apsisToleranceKm": 1e-08
+          }
+        }
+      ],
+      "outputFile": "test-results.txt"
+    },
+    {
+      "name": "Source-level interface orchestration audit",
+      "command": "node interface.test.mjs",
+      "status": "passed",
+      "assertions": 33,
+      "method": "Executes the actual main.js event handlers with lightweight Node DOM stubs; only the CSS import is omitted and the physics import location is adapted to a file URL. A test-only export exposes the existing orchestration functions without replacing them. This is not a browser check.",
+      "coverage": [
+        "Default mission and initial readout",
+        "Canvas-unavailable fallback",
+        "Invalid apsidal inputs leave mission intact",
+        "Circular preset and distinct-apsis choices",
+        "Burn bookkeeping and undo",
+        "A 1,000,000-second jump stops at the first physical surface event to within 0.00001 km",
+        "Impact disables dependent controls",
+        "Invalid same-radius transfer",
+        "Transfer departure, warp, arrival overshoot, exact arrival time, circularization, and summed delta-v",
+        "Transfer reset, manual cancellation, undo, and displayed warp synchronization",
+        "Origin-independent selectable JSON export",
+        "Model dialog open/close"
+      ],
+      "outputFile": "interface-results.txt"
+    },
+    {
+      "name": "Isolated Vite build",
+      "command": "node build-check.mjs",
+      "status": "passed",
+      "write": false,
+      "configuration": "root is the supplied run directory; configFile:false; publicDir:false; build.write:false; build.emptyOutDir:false",
+      "results": {
+        "status": "passed",
+        "write": false,
+        "root": "/workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/sol-xhigh-minimal/",
+        "outputs": [
+          {
+            "fileName": "assets/index-RJdHBjFB.js",
+            "type": "chunk",
+            "bytes": 25571
+          },
+          {
+            "fileName": "assets/index-DiGbfq4K.css",
+            "type": "asset",
+            "bytes": 20499
+          },
+          {
+            "fileName": "index.html",
+            "type": "asset",
+            "bytes": 12599
+          }
+        ]
+      },
+      "outputFile": "build-results.json"
+    }
+  ],
+  "numericalModel": {
+    "distanceUnit": "km",
+    "timeUnit": "s",
+    "velocityUnit": "km/s",
+    "burnInputUnit": "m/s",
+    "earthGravitationalParameterKm3s2": 398600.4418,
+    "earthMeanRadiusKm": 6371,
+    "propagation": "Keplerian universal-variable f/g propagation, Stumpff functions with a small-argument series, bracketed Newton iteration, and whole-period reduction for bounded elliptical trajectories.",
+    "burnDefinition": "Instantaneous orthogonal local radial and local tangential velocity increments. Positive tangential follows the current angular-momentum direction; positive radial points away from Earth. Tangential is local-horizontal, not the full velocity-vector direction on an eccentric orbit.",
+    "collisionHandling": "First future crossing of the mean spherical Earth surface is computed from the actual state. Simulation clamps to that time even when a warp step crosses an entire impact event.",
+    "transfer": "Hohmann formulas for circular coplanar start and destination. The planner starts a fresh mission, executes departure, coasts for half of the transfer period, then executes arrival and pauses.",
+    "boundClassification": "Reciprocal semimajor axis greater than 1e-14 km^-1 is treated as bound; the near-zero limit uses parabolic event timing.",
+    "assumptions": [
+      "Fixed, spherical Earth and a negligible-mass spacecraft",
+      "Two-dimensional motion and a central inverse-square gravitational field",
+      "No atmosphere, drag, oblateness/J2, terrain, Sun/Moon perturbations, finite-duration thrust, propulsion/fuel constraints, or live ephemerides",
+      "Altitudes use the 6371 km mean spherical radius",
+      "GEO-class uses the conventional approximate 35786 km altitude and is not exactly sidereal with the chosen mean Earth radius; no rotating ground track is modeled"
+    ],
+    "limitations": [
+      "Educational two-body extrapolations are not mission predictions, especially at distant orbits or low altitude.",
+      "Next-apsis burn scheduling is offered for distinct apsides of bound ellipses; circular and unbound cases use current-position burns.",
+      "The orbit scrubber covers one period since the most recent orbital anchor; unbound trajectories use a 24-hour scrub window. Playback can continue beyond it.",
+      "Escape trajectory drawing is clipped to a finite radius while the physical propagation continues. A degenerate radial path has a schematic radial display.",
+      "Whole-orbit fitting can make Earth very small in an extremely extended orbit; Earth-focus, zoom, and pan controls provide a local view.",
+      "Hohmann is a standard fuel-efficient two-burn transfer, not a claim of global optimality for every radius ratio.",
+      "Each animation-frame wall-time increment is capped at 0.25 seconds to avoid a large background-tab catch-up.",
+      "State is session-only. Export provides manually selectable JSON and uses no origin-dependent clipboard, storage, or download API."
+    ]
+  },
+  "repairs": [
+    {
+      "type": "Source-level correctness repair",
+      "detail": "Moved the automatic arrival undo snapshot before changing the prior-orbit comparison, so undo restores the original comparison state."
+    },
+    {
+      "type": "Source-level correctness repair",
+      "detail": "Synchronized the time-warp selector with the saved numerical warp on undo and restart."
+    },
+    {
+      "type": "UI validity repair",
+      "detail": "Disabled next-apsis scheduling for circular and unbound cases without distinct supported apsides."
+    },
+    {
+      "type": "Graceful-graphics repair",
+      "detail": "Made the no-Canvas fallback independent of the dynamic impact-warning banner, so normal telemetry updates cannot hide it."
+    },
+    {
+      "type": "Scientific-label clarification",
+      "detail": "Labeled the conventional approximate GEO altitude as GEO-class and disclosed its relationship to the chosen mean Earth radius."
+    },
+    {
+      "type": "Bounded usability refinement",
+      "detail": "Added Earth-focus alongside fit-orbit, zoom, and pan for highly extended trajectories."
+    }
+  ],
+  "numericalRepairsRequired": false,
+  "unknowns": [
+    "No browser or localhost checks were performed. Actual visual appearance, native browser DOM behavior, interactions, keyboard/screen-reader behavior, and performance remain unverified.",
+    "The common single-inline-HTML opaque-origin iframe packaging was not separately exercised; the app is designed to require no parent/top access, storage, cookies, runtime network calls, remote assets, or origin-specific APIs.",
+    "Mobile layouts, pointer gesture behavior, modal rendering, and Canvas rendering require separate real-browser review."
+  ],
+  "publishingPerformed": false,
+  "gitOperationsPerformed": false,
+  "sharedFilesModified": false,
+  "tokenUsage": null,
+  "tokenUsageReason": "The worker runtime does not expose measured provider input, cached-input, output, reasoning, or total token counters. Tool output token counts are not provider inference usage and were not repurposed. No restricted session history, credentials, or extra inference run was used.",
+  "tokenCounterSource": null,
+  "tokenCountsIncludeToolsOrAgentOverhead": null,
+  "cost": null,
+  "costReason": "No measured provider cost was supplied by the runtime."
+}

@@ -1,0 +1,10 @@
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 5 modules transformed.
+rendering chunks...
+✓ built in 174ms
+ISOLATED_BUILD_OK [
+  { name: 'assets/index-Brd7O2Nt.js', bytes: 10312 },
+  { name: 'assets/index-BKxM0OKQ.css', bytes: 8538 },
+  { name: 'index.html', bytes: 5850 }
+]

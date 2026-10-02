@@ -1,0 +1,41 @@
+{
+  "testedAtUTC": "2026-10-02T09:24:27.866Z",
+  "command": "node verify-build.mjs",
+  "passed": true,
+  "viteVersion": "7.3.6 (runtime scaffold)",
+  "configuration": {
+    "configFile": false,
+    "root": "/workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/sol-xhigh-detailed/",
+    "build": {
+      "modulePreload": false,
+      "write": false,
+      "emptyOutDir": false,
+      "target": "es2022",
+      "assetsInlineLimit": "Infinity"
+    }
+  },
+  "outputs": [
+    {
+      "file": "assets/index-LwF_FY97.js",
+      "type": "chunk",
+      "bytes": 39549
+    },
+    {
+      "file": "assets/index-Ror9eLEC.css",
+      "type": "asset",
+      "bytes": 21820
+    },
+    {
+      "file": "index.html",
+      "type": "asset",
+      "bytes": 437
+    }
+  ],
+  "totalBytes": 61806,
+  "staticGuards": [
+    "Exactly the required local module-script entry",
+    "Bundled HTML, JS and CSS present",
+    "No fetch, WebSocket, localStorage, sessionStorage, or document.cookie in bundled JS"
+  ],
+  "browserChecks": "Not run: localhost browser access unavailable by constraint."
+}

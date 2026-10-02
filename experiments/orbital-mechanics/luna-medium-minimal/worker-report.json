@@ -1,0 +1,42 @@
+{
+  "productTitle": "Orbit / Field Notes",
+  "description": "A self-contained Earth-centered orbital mechanics console with three reference profiles, editable periapsis altitude/eccentricity/mean anomaly, animated propagation, and live state readouts. Uses analytic elliptic Keplerian propagation and a canvas trajectory display.",
+  "implementationStartUtc": "2026-10-02T08:07:09Z",
+  "implementationEndUtc": "2026-10-02T08:10:37Z",
+  "tests": [
+    {
+      "command": "node --check experiments/orbital-mechanics/luna-medium-minimal/main.js",
+      "result": "PASS"
+    },
+    {
+      "command": "node --test experiments/orbital-mechanics/luna-medium-minimal/physics.test.mjs",
+      "result": "PASS: 5 tests, 5 passed, 0 failed. Quantitative checks use the actual exported solveKepler and orbitalState functions in main.js. Kepler equation residual tolerance 2e-12 rad; circular radius 1e-8 km, speed 1e-12 km/s, energy 1e-11 km²/s², period 1e-8 s; apsides 1e-9 km; vis-viva 1e-12 km/s; energy 1e-11 km²/s²; angular momentum 1e-8 km²/s; one-period state return 2e-8 km position and 2e-11 km/s velocity. Invalid input rejection also tested."
+    },
+    {
+      "command": "node --input-type=module -e \"import {build} from 'vite'; await build({configFile:false,root:process.cwd()+'/experiments/orbital-mechanics/luna-medium-minimal',base:'./',build:{write:false,emptyOutDir:false,rollupOptions:{input:process.cwd()+'/experiments/orbital-mechanics/luna-medium-minimal/index.html'}}}); console.log('Vite build write:false: PASS')\"",
+      "result": "PASS: Vite 7.3.6 transformed 4 modules and completed a write:false build."
+    }
+  ],
+  "modelAssumptions": [
+    "Two-body point-mass propagation about spherical Earth using μ = 398600.4418 km³/s² and reference radius R = 6371 km.",
+    "Bound elliptic orbits only (0 ≤ eccentricity < 1); state derived from semi-major axis, eccentricity, and mean anomaly using Newton iteration on Kepler's equation.",
+    "Time, length, speed and angles use seconds, kilometers, kilometers per second, and radians internally; display converts selected values to hours/degrees."
+  ],
+  "limitations": [
+    "No atmospheric drag, Earth oblateness/precession, third-body perturbations, Earth rotation, thrust, maneuvers, or live ephemerides.",
+    "Visualization is a 2D schematic in the orbital plane; not for mission design.",
+    "Browser rendering, actual appearance/interactions, and performance were not verified because localhost browser access is unavailable."
+  ],
+  "repairs": [
+    "Removed an empty CSS @import after the first isolated Vite build surfaced an unresolved-URI warning; the final build completes without warnings."
+  ],
+  "unknowns": [
+    "Actual browser appearance and interaction behavior remain unverified pending separate browser review.",
+    "Runtime did not expose measured per-run token counters to this worker; no token count was inferred."
+  ],
+  "tokenUsage": null,
+  "tokenUsageReason": "No runtime-provided input, cached-input, output, reasoning, or total token counters were accessible in this worker context. No estimates were made.",
+  "tokenCounterSource": null,
+  "tokenCountsIncludeToolsOrAgentOverhead": null,
+  "cost": null
+}

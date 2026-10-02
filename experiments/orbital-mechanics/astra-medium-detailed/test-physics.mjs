@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import {MU,R,norm,elements,initial,advance,burn,circularBurn,timeToApsis,orbitPoints} from './physics.mjs';
+const results=[];
+function check(name,value,tolerance){assert.ok(Number.isFinite(value)&&value<=tolerance,`${name}: ${value} exceeds ${tolerance}`);results.push({name,value,tolerance,pass:true});}
+let s=initial(),o=elements(s);
+check('Circular eccentricity',o.e,1e-12);
+let q=advance(s,o.period*10),f=elements(q);
+check('Ten-orbit relative energy drift',Math.abs((f.energy-o.energy)/o.energy),1e-8);
+check('Ten-orbit relative angular momentum drift',Math.abs((f.h-o.h)/o.h),1e-8);
+check('Ten-orbit position closure (km)',norm(q.r.map((x,i)=>x-s.r[i])),0.01);
+let t=initial(300,2000),e=elements(t),dt=timeToApsis(t,true),ap=advance(t,dt);
+check('Transfer half-period apsis timing (s)',Math.abs(dt-e.period/2),1e-7);
+check('Transfer apogee altitude error (km)',Math.abs(norm(ap.r)-R-2000),0.001);
+const cb=circularBurn(ap),c=burn(ap,cb.prograde,cb.radial),ce=elements(c);
+check('Circularization eccentricity',ce.e,1e-12);
+check('Circularization target apsides error (km)',Math.max(Math.abs(ce.rp-R-2000),Math.abs(ce.ra-R-2000)),0.001);
+const dv=Math.sqrt(MU*(2/(R+300)-1/((2*R+2300)/2)))-Math.sqrt(MU/(R+300));
+const transfer=burn(s,dv,0);
+check('Hohmann first burn apoapsis error (km)',Math.abs(elements(transfer).ra-R-2000),1e-7);
+const radial=burn(s,0,.25);check('Radial burn projection (km/s)',Math.abs(radial.v[0]-.25),1e-12);
+let escape=burn(s,4,0);assert.equal(elements(escape).ra,Infinity);let esc=advance(escape,3600);assert.ok(norm(esc.r)>norm(escape.r));results.push({name:'Escape classified and propagates outward',pass:true});
+let impact=advance(burn(s,-1,0),7200);assert.equal(impact.impact,true);assert.ok(norm(impact.r)<=R);results.push({name:'Earth-intersecting orbit stops at collision',pass:true,time:impact.t});
+const retro={...s,v:[0,-s.v[1]]};check('Retrograde circulation burn remains prograde to motion',Math.abs(burn(retro,.1,0).v[1]-(retro.v[1]-.1)),1e-12);
+for(const sample of [s,t,escape,radial])assert.ok(orbitPoints(sample).every(p=>p===null||p.every(Number.isFinite)));results.push({name:'Orbit display points finite for circular, elliptic, radial and escape cases',pass:true});
+console.log(JSON.stringify({results,hohmannFirstBurnMetersPerSecond:dv*1000},null,2));

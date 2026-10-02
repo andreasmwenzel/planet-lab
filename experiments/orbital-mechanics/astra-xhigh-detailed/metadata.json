@@ -1,0 +1,1043 @@
+{
+  "id": "astra-xhigh-detailed",
+  "experimentId": "orbital-mechanics",
+  "title": "Astra · xhigh · detailed",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/orbital-mechanics/astra-xhigh-detailed/index.html",
+  "axes": {
+    "model": "Astra",
+    "effort": "xhigh",
+    "promptApproach": "detailed"
+  },
+  "summary": "A finished planar orbital workbench for learning and flying two-burn Earth-orbit transfers. Guided Hohmann planning is paired with free radial/transverse impulse previews, time controls, live telemetry, alternate starting orbits, and recoverable flight history.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation in a fresh native task, with the displayed model and effort explicitly configured. Four frozen creative prompts share the same separately recorded runtime and numerical-testing scaffold. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6-astra",
+    "effort": "xhigh",
+    "runId": "astra-xhigh-detailed",
+    "launchIndex": 22,
+    "startedAt": "2026-10-02T09:40:09Z",
+    "completedAt": "2026-10-02T10:13:04.371Z",
+    "durationSeconds": 1975,
+    "durationScope": "Observed wall-clock time from task launch to independently verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "tokenUsageReason": "The runtime does not expose measured provider input, cached-input, output, reasoning, or total token counters to this worker. No counter source or inclusion semantics for tools/agent overhead is available. No estimates were made, no restricted session history or credentials were inspected, and no additional inference run was created for accounting.",
+    "tokenUsageSource": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1 (optional)",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; deployed browser review is separate. Available cloud browser does not support WebGL2."
+    },
+    "sourceHashes": {
+      "README.md": "1af252eb2ee1523e48a2e61e559a19e61401c44d6755c1595bfc7131283839e9",
+      "build-check.mjs": "467dd1db3e9b4508a76345e64e4a7877fa04ad7eddf0054e945161484ab09958",
+      "build-results.json": "60038b0fce5303a4add4c650da7f085789fc3aa453cdb241edb7852b8eeea85b",
+      "index.html": "e43b76a9fd9e452a079ac263811502b9ae6e39303b3b0a9165881bf8fcb9557f",
+      "main.js": "b8f6839843c5563520a5541c732b3c553794d739c23ecd23e2660d5fe52571f6",
+      "numerical-test-output.txt": "510695d6f8c84778552aab67448697a9721424f3dbf6ccc2eedbd81ba4763466",
+      "numerical-tests.mjs": "abc2a80605f9fb4df56fe6c555a4fc626fbd0256251e42f8b0639a87e9f96dd7",
+      "physics.mjs": "3811dbdbbd7eb6c8ad71d7af537671817e9ca2f72496c1e489e1e9b0c72c1590",
+      "prompt.txt": "d8bec2f90b8c19e523dbf9686186138e5c4765ca662eb00f2ba724214fd74429",
+      "static-results.json": "18d071afe469bfd472fac1402690fe12720b044e204c2b2292ad2c25ffa07abb",
+      "static-tests.mjs": "82bedf33ddb1318b2edc30a8f5381a6a2bc8090030e492a2a4539ea502e9e267",
+      "style.css": "9180d2f86dd29c54115669b19544738d2217cb5530cb88955142cf5dfcecdc94",
+      "test-results.json": "fc860b36a255887a2d722eb6435597bb91b05a5f98e0b713373a69d0f1dc65cc",
+      "worker-report.json": "6eae759ed58f708c3d553e492703173820e8fb37072420ecf844642fdb47b3ed",
+      "workflow-results.json": "dd72c94045509800ad72f1d53c9ccb4a80b4e0c4dd51064e70b3248f304aa76b",
+      "workflow-test-output.txt": "dd72c94045509800ad72f1d53c9ccb4a80b4e0c4dd51064e70b3248f304aa76b",
+      "workflow-tests.mjs": "25f09f1d74944a2995ebe0c777a73d5fa1310ceab8399d1894a0c1f42b673e48"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an in-browser orbital mechanics simulator\n\nDeliver a finished, usable product, not a demo page or marketing landing page. Choose the product concept, architecture, interactions, and visual direction yourself. Use actual orbital mechanics and state the model’s assumptions and limitations.\n\nThink through a real user's purpose, a complete workflow, and the states needed to finish it. Make consequential choices understandable and recoverable. Include useful starting conditions, explain the physics honestly, and test the numerical behavior independently of the interface. Finish the small product well rather than leaving placeholders."
+      },
+      {
+        "role": "user",
+        "content": "Runtime packaging and verification scaffold (separate from creative direction):\n- Implement from scratch. Do not inspect the prior experiment, other runs, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only in the supplied run directory. Create index.html with optional main.js and local CSS/JavaScript modules. If using main.js, HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. CSS can be imported from main.js. A single fully inline HTML file is also allowed.\n- Available environment: vanilla JavaScript, optional installed Three.js 0.186.1, Vite 7.3.6, Node 24. No additional dependencies, runtime network calls, remote assets/fonts, backend, accounts, analytics, or live orbital/celestial data. Do not modify package files or shared app files. Canvas, SVG, DOM, and 3D are all allowed; Three.js is not mandatory. If using WebGL, handle unsupported graphics gracefully.\n- The common harness bundles JavaScript and CSS into one inline HTML document. Its viewer is an iframe sandbox with allow-scripts and an opaque origin. Do not access parent/top, communicate across frames, or rely on persistent storage, cookies, or origin-specific APIs.\n- Make one bounded implementation and its self-test/repair phase. Validate JavaScript syntax and perform an isolated Vite build with write:false. Run quantitative numerical tests applicable to your chosen mechanics, independently of the interface, and preserve a directly rerunnable test script in the run directory. Test the actual implementation's physics functions, not a separately copied formula. Record exact commands, results, tolerances, and repairs. Repair your own implementation as needed for these checks. Do not impose a tiny arbitrary token cutoff or clone existing code.\n- Browser localhost access is unavailable; do not claim browser checks or bypass that restriction. Actual browser appearance, interactions, and performance remain unverified until separately reviewed.\n- Include worker-report.json with product title, description, implementation start/end UTC timestamps, exact tests and outcomes, numerical assumptions and limitations, repairs, and unknowns. Set tokenUsage and cost to null unless the runtime supplies measured values. Do not invent token counts, costs, or quality scores.\n"
+      },
+      {
+        "role": "user",
+        "content": "Reporting-only amendment (added after the first three launches; creative prompts and runtime constraints are unchanged):\nAt the end of your run, include actual runtime-provided token counters if accessible: input, cached input, output, reasoning, and total. Preserve the provider's field semantics and avoid double counting. Identify the counter source and whether counts include tools or agent overhead. Do not estimate from source length or the context budget, inspect restricted session-history paths, or inspect credentials. If actual counters are inaccessible, set tokenUsage to null and give the reason. Set cost to null unless measured cost is supplied by the runtime. Do not create another inference run solely to obtain counters.\n"
+      }
+    ],
+    "reportingAmendment": {
+      "kind": "reporting-only",
+      "timing": "before-launch"
+    },
+    "note": "The complete public creative prompt and identical public runtime/testing scaffold are recorded separately. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax, isolated bundle, and the recorded quantitative physics tests passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "Rendered appearance, interactions, and performance have not yet been independently checked in a browser."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 66016,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 1975,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated.",
+      "Numerical test success applies only to the preserved cases and tolerances, not unrestricted physical accuracy."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 29656,
+    "cssBytes": 22402,
+    "numerical": "passed",
+    "independentVerification": {
+      "numerical": "passed",
+      "command": "node experiments/orbital-mechanics/astra-xhigh-detailed/numerical-tests.mjs",
+      "exitCode": 0,
+      "stdout": "{\n  \"executedAt\": \"2026-10-02T10:13:03.112Z\",\n  \"command\": \"node numerical-tests.mjs\",\n  \"implementation\": \"./physics.mjs\",\n  \"passed\": true,\n  \"checks\": 81,\n  \"results\": [\n    {\n      \"name\": \"400 km circular speed versus direct gravitational balance\",\n      \"measured\": 0,\n      \"tolerance\": 1e-12,\n      \"unit\": \"km/s\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"400 km circular eccentricity\",\n      \"measured\": 1.2069943631034978e-16,\n      \"tolerance\": 2e-15,\n      \"unit\": \"\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Circular analytic positions through 100.25 periods\",\n      \"measured\": 3.8261363182179854e-8,\n      \"tolerance\": 0.00005,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Circular analytic velocities through 100.25 periods\",\n      \"measured\": 9.471717399634232e-11,\n      \"tolerance\": 5e-8,\n      \"unit\": \"km/s\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"50 circular periods / 10,000 steps: relative energy drift\",\n      \"measured\": 4.123092744361549e-13,\n      \"tolerance\": 2e-7,\n      \"unit\": \"\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"50 circular periods / 10,000 steps: relative angular momentum drift\",\n      \"measured\": 2.0615917883024148e-13,\n      \"tolerance\": 2e-7,\n      \"unit\": \"\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"50 circular periods / 10,000 steps: closure error\",\n      \"measured\": 7.949733355787752e-7,\n      \"tolerance\": 0.03,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Geotransfer: half-period apoapsis radius\",\n      \"measured\": 2.1827872842550278e-11,\n      \"tolerance\": 0.0002,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Geotransfer: half-period opposite side\",\n      \"measured\": 3.71112096684025e-11,\n      \"tolerance\": 0.0002,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Geotransfer: relative energy conservation\",\n      \"measured\": 4.347568383064721e-16,\n      \"tolerance\": 2e-9,\n      \"unit\": \"\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Geotransfer: relative angular momentum conservation\",\n      \"measured\": 8.618101675991071e-16,\n      \"tolerance\": 2e-9,\n      \"unit\": \"\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Geotransfer: 10 repeated periods closure\",\n      \"measured\": 0.0006807067984144131,\n      \"tolerance\": 0.1,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Geotransfer: forward / backward reversibility\",\n      \"measured\": 1.970163704976082e-11,\n      \"tolerance\": 0.0002,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"High ellipse: half-period apoapsis radius\",\n      \"measured\": 1.6007106751203537e-10,\n      \"tolerance\": 0.0002,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"High ellipse: half-period opposite side\",\n      \"measured\": 0,\n      \"tolerance\": 0.0002,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"High ellipse: relative energy conservation\",\n      \"measured\": 3.772258468337032e-16,\n      \"tolerance\": 2e-9,\n      \"unit\": \"\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"High ellipse: relative angular momentum conservation\",\n      \"measured\": 4.167472200122829e-15,\n      \"tolerance\": 2e-9,\n      \"unit\": \"\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"High ellipse: 10 repeated periods closure\",\n      \"measured\": 0.001983970358918215,\n      \"tolerance\": 0.1,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"High ellipse: forward / backward reversibility\",\n      \"measured\": 7.226622216018402e-9,\n      \"tolerance\": 0.0002,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Raise 400→1200: arrival target radius\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.001,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Raise 400→1200: final circular eccentricity\",\n      \"measured\": 8.519875176677969e-16,\n      \"tolerance\": 2e-8,\n      \"unit\": \"\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Raise 400→1200: final circular speed\",\n      \"measured\": 2.6645352591003757e-15,\n      \"tolerance\": 2e-8,\n      \"unit\": \"km/s\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Raise 400→1200: total Δv equals component magnitudes\",\n      \"measured\": 2.842170943040401e-14,\n      \"tolerance\": 1e-9,\n      \"unit\": \"m/s\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Lower 1200→400: arrival target radius\",\n      \"measured\": 6.366462912410498e-12,\n      \"tolerance\": 0.001,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Lower 1200→400: final circular eccentricity\",\n      \"measured\": 1.5243696190694783e-14,\n      \"tolerance\": 2e-8,\n      \"unit\": \"\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Lower 1200→400: final circular speed\",\n      \"measured\": 7.993605777301127e-15,\n      \"tolerance\": 2e-8,\n      \"unit\": \"km/s\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Lower 1200→400: total Δv equals component magnitudes\",\n      \"measured\": 2.842170943040401e-14,\n      \"tolerance\": 1e-9,\n      \"unit\": \"m/s\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"High transfer 400→100000: arrival target radius\",\n      \"measured\": 1.3096723705530167e-10,\n      \"tolerance\": 0.001,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"High transfer 400→100000: final circular eccentricity\",\n      \"measured\": 8.64515211457085e-12,\n      \"tolerance\": 2e-8,\n      \"unit\": \"\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"High transfer 400→100000: final circular speed\",\n      \"measured\": 3.552713678800501e-15,\n      \"tolerance\": 2e-8,\n      \"unit\": \"km/s\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"High transfer 400→100000: total Δv equals component magnitudes\",\n      \"measured\": 2.2737367544323206e-13,\n      \"tolerance\": 1e-9,\n      \"unit\": \"m/s\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"400→1200 departure Δv independent energy equation\",\n      \"measured\": 0,\n      \"tolerance\": 1e-9,\n      \"unit\": \"m/s\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Lowering transfer burns are both negative\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Burn preserves position\",\n      \"measured\": 0,\n      \"tolerance\": 0,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Transverse impulse actual Cartesian velocity\",\n      \"measured\": 3.608224830031759e-16,\n      \"tolerance\": 1e-14,\n      \"unit\": \"km/s\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Radial impulse actual Cartesian velocity\",\n      \"measured\": 0,\n      \"tolerance\": 1e-14,\n      \"unit\": \"km/s\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Retrograde positive transverse burn adds orbital speed\",\n      \"measured\": 3.608224830031759e-16,\n      \"tolerance\": 1e-14,\n      \"unit\": \"km/s\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Retrograde quarter-period direction\",\n      \"measured\": 5.075965370961222e-12,\n      \"tolerance\": 0.0001,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hyperbola remains open and travels outward\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hyperbola at 1 day: relative energy conservation\",\n      \"measured\": 3.188761690941259e-13,\n      \"tolerance\": 2e-9,\n      \"unit\": \"\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hyperbola at 1 day: relative angular momentum conservation\",\n      \"measured\": 3.867027534171294e-12,\n      \"tolerance\": 2e-9,\n      \"unit\": \"\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hyperbola: forward/backward position reversibility\",\n      \"measured\": 1.450393186831198e-7,\n      \"tolerance\": 0.005,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Parabola: absolute specific energy\",\n      \"measured\": 1.0480505352461478e-13,\n      \"tolerance\": 1e-8,\n      \"unit\": \"km²/s²\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Parabola: angular momentum conservation\",\n      \"measured\": 3.064215547965432e-14,\n      \"tolerance\": 1e-9,\n      \"unit\": \"\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Parabola: backward reversibility\",\n      \"measured\": 8.885991305249201e-10,\n      \"tolerance\": 0.001,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Deorbit predicts a finite future inbound surface crossing\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Advancing across multiple periods cannot skip impact\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Impact propagation stops at predicted time\",\n      \"measured\": 0,\n      \"tolerance\": 1e-10,\n      \"unit\": \"s\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Impact propagation stops at spherical surface\",\n      \"measured\": 9.094947017729282e-13,\n      \"tolerance\": 0.001,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Impact velocity is inbound\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Circular safe orbit has no impact\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Outbound hyperbola with below-surface past periapsis has no future impact\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hyperbolic impact initial state starts above surface\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hyperbolic inbound surface encounter detected\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hyperbolic impact radius\",\n      \"measured\": 5.4569682106375694e-12,\n      \"tolerance\": 0.003,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Parabolic impact initial state starts above surface\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Parabolic inbound surface encounter detected\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Parabolic impact radius\",\n      \"measured\": 7.201379048638046e-8,\n      \"tolerance\": 0.003,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Near-parabolic e=0.999999: impact detected\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Near-parabolic e=0.999999: surface residual\",\n      \"measured\": 8.966508175944909e-7,\n      \"tolerance\": 0.00001,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Near-parabolic e=0.999999999: impact detected\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Near-parabolic e=0.999999999: surface residual\",\n      \"measured\": 2.7284841053187847e-10,\n      \"tolerance\": 0.00001,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Near-parabolic e=0.999999999999: impact detected\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Near-parabolic e=0.999999999999: surface residual\",\n      \"measured\": 7.821199687896296e-8,\n      \"tolerance\": 0.00001,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Near-parabolic e=1.000000000001: impact detected\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Near-parabolic e=1.000000000001: surface residual\",\n      \"measured\": 6.582558853551745e-8,\n      \"tolerance\": 0.00001,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Near-parabolic e=1.000000001: impact detected\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Near-parabolic e=1.000000001: surface residual\",\n      \"measured\": 0,\n      \"tolerance\": 0.00001,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Near-parabolic e=1.000001: impact detected\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Near-parabolic e=1.000001: surface residual\",\n      \"measured\": 7.338658178923652e-7,\n      \"tolerance\": 0.00001,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Deterministic arbitrary-burn coverage includes at least 190 valid states\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"200 arbitrary-burn cases: scaled specific-energy residual\",\n      \"measured\": 1.2210376653380835e-10,\n      \"tolerance\": 1e-7,\n      \"unit\": \"\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"200 arbitrary-burn cases: relative angular-momentum residual\",\n      \"measured\": 2.3919088931734223e-11,\n      \"tolerance\": 1e-7,\n      \"unit\": \"\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"200 arbitrary-burn cases: maximum surface-stop residual\",\n      \"measured\": 3.697141437442042e-7,\n      \"tolerance\": 0.00001,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Arbitrary eccentric motion vs independent RK4 (12,000 × 0.5 s)\",\n      \"measured\": 2.6623778540075854e-7,\n      \"tolerance\": 0.0002,\n      \"unit\": \"km\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Arbitrary eccentric velocity vs independent RK4\",\n      \"measured\": 5.2025566880399416e-11,\n      \"tolerance\": 2e-8,\n      \"unit\": \"km/s\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Input validation rejects invalid or unsupported requests\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Open conic path samples are finite and bounded\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Stumpff C at zero\",\n      \"measured\": 0,\n      \"tolerance\": 0,\n      \"unit\": \"\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Stumpff S at zero\",\n      \"measured\": 0,\n      \"tolerance\": 0,\n      \"unit\": \"\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"Stumpff series / trig continuity\",\n      \"measured\": 8.305689469523259e-12,\n      \"tolerance\": 1e-10,\n      \"unit\": \"\",\n      \"passed\": true\n    }\n  ],\n  \"referenceTransfer\": {\n    \"departureMs\": 211.0859793705453,\n    \"arrivalMs\": 205.27192585010033,\n    \"totalMs\": 416.35790522064565,\n    \"coastSeconds\": 3021.6946008430223\n  }\n}\n",
+      "stderr": "",
+      "verifiedAt": "2026-10-02T10:13:03.127275+00:00",
+      "scope": "Independent rerun of preserved quantitative tests against the actual implementation physics; not browser QA or unrestricted numerical certification."
+    },
+    "checkedAt": "2026-10-02T10:13:04.371Z",
+    "runtimeBytes": 66016
+  },
+  "generationReport": {
+    "productTitle": "Apogee — Orbital flight lab",
+    "description": "A finished planar orbital workbench for learning and flying two-burn Earth-orbit transfers. Guided Hohmann planning is paired with free radial/transverse impulse previews, time controls, live telemetry, alternate starting orbits, and recoverable flight history.",
+    "runDirectory": "/workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-detailed",
+    "requestedModel": "gpt-6-astra",
+    "requestedReasoningEffort": "xhigh",
+    "implementationStartUtc": "2026-10-02T09:40:32Z",
+    "implementationEndUtc": "2026-10-02T10:12:29.193Z",
+    "timestampSource": "UTC clock obtained from the execution environment at the start of design/implementation and Date.toISOString at final report creation.",
+    "runtime": {
+      "node": "v24.19.0",
+      "vite": "7.3.6",
+      "framework": "Vanilla JavaScript, CSS, Canvas 2D",
+      "additionalDependenciesInstalled": []
+    },
+    "completeWorkflow": [
+      "Load a circular starting orbit or use the prepared 400 km flight.",
+      "Enter a target altitude and review the predicted path, two burns, coast duration, and total delta-v.",
+      "Execute departure. Play at 1×–1,000× or jump to the exact arrival event.",
+      "Arrival automatically pauses and locks time; execute circularization or explicitly cancel the remaining plan.",
+      "Inspect final orbital elements, target-radius error, and flight log. Plan another transfer, try free maneuvers, undo, or reset."
+    ],
+    "features": [
+      "Prepared 400→1,200 km transfer",
+      "Geotransfer, high-ellipse, escape, and custom starts",
+      "Upward and downward Hohmann transfers",
+      "Transverse/radial burn components with actual post-burn conic preview",
+      "Circularize-here helper",
+      "Spherical surface collision detection independent of time warp",
+      "Target editing locks, stale-plan prevention, and confirmation before discarding active flight state",
+      "20-burn undo that restores state, time, plan, and burn inputs",
+      "Flight log, period, eccentricity, speed, perigee and apogee telemetry",
+      "Canvas pan, zoom, fit, labels and vector toggles",
+      "Responsive CSS, keyboard shortcuts, dialog controls and graphic-unavailable fallback"
+    ],
+    "numericalModel": {
+      "units": {
+        "distance": "km",
+        "velocity": "km/s",
+        "time": "s",
+        "burnInputs": "m/s"
+      },
+      "gravitationalParameterKm3S2": 398600.4418,
+      "earthRadiusKm": 6371,
+      "propagator": "Universal-variable Kepler f/g propagation. Stumpff functions use a near-zero series. Universal anomaly uses bracketed Newton iteration with relative equation tolerance 2e-11 and a 100-iteration safeguard. Bound propagation reduces elapsed time modulo the period.",
+      "impacts": "Conic timing predicts the next inbound spherical surface encounter before an advance. The prediction is refined against the actual Kepler propagator to a 1e-6 km radius residual; surface events cannot be skipped by a large time jump.",
+      "maneuvers": "Instantaneous impulses in a local radial/transverse frame. Positive transverse is perpendicular to radius in the current angular-momentum direction. Hohmann plans require a bound orbit with eccentricity ≤1e-4.",
+      "assumptions": [
+        "Earth fixed at the origin; spacecraft mass does not affect Earth.",
+        "Planar, Newtonian two-body motion with a spherical Earth.",
+        "No drag, atmosphere, Earth oblateness/rotation, inclination, third bodies, or finite-duration thrust.",
+        "Delta-v is a velocity-change budget, not propellant mass.",
+        "Hohmann transfers are not universally globally minimum-delta-v for all radius ratios.",
+        "Earth illustration and spacecraft glyphs are decorative; Cartesian geometry and the km scale bar use physical scale."
+      ],
+      "productLimits": [
+        "Custom initial and target altitudes: 120–100,000 km.",
+        "Free-burn components: ±12,000 m/s each.",
+        "Nearly radial states with under 0.1% of local circular transverse speed are rejected.",
+        "Flights stop after 30 simulated days.",
+        "A maximum of 20 burns can be undone; 80 latest log entries are retained.",
+        "No persistence; refreshing the tab starts over.",
+        "Rendering clips conic samples to a finite view extent; open paths have no apoapsis or period."
+      ]
+    },
+    "exactRerunCommand": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-xhigh-detailed && node --check main.js && node --check physics.mjs && node --check numerical-tests.mjs && node --check workflow-tests.mjs && node --check static-tests.mjs && node --check build-check.mjs && node numerical-tests.mjs && node workflow-tests.mjs && node static-tests.mjs && node build-check.mjs",
+    "tests": {
+      "syntax": {
+        "commands": [
+          "node --check main.js",
+          "node --check physics.mjs",
+          "node --check numerical-tests.mjs",
+          "node --check workflow-tests.mjs",
+          "node --check static-tests.mjs",
+          "node --check build-check.mjs"
+        ],
+        "passed": true,
+        "exitCode": 0
+      },
+      "numerical": {
+        "executedAt": "2026-10-02T10:10:31.179Z",
+        "command": "node numerical-tests.mjs",
+        "implementation": "./physics.mjs",
+        "passed": true,
+        "checks": 81,
+        "results": [
+          {
+            "name": "400 km circular speed versus direct gravitational balance",
+            "measured": 0,
+            "tolerance": 1e-12,
+            "unit": "km/s",
+            "passed": true
+          },
+          {
+            "name": "400 km circular eccentricity",
+            "measured": 1.2069943631034978e-16,
+            "tolerance": 2e-15,
+            "unit": "",
+            "passed": true
+          },
+          {
+            "name": "Circular analytic positions through 100.25 periods",
+            "measured": 3.8261363182179854e-8,
+            "tolerance": 0.00005,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Circular analytic velocities through 100.25 periods",
+            "measured": 9.471717399634232e-11,
+            "tolerance": 5e-8,
+            "unit": "km/s",
+            "passed": true
+          },
+          {
+            "name": "50 circular periods / 10,000 steps: relative energy drift",
+            "measured": 4.123092744361549e-13,
+            "tolerance": 2e-7,
+            "unit": "",
+            "passed": true
+          },
+          {
+            "name": "50 circular periods / 10,000 steps: relative angular momentum drift",
+            "measured": 2.0615917883024148e-13,
+            "tolerance": 2e-7,
+            "unit": "",
+            "passed": true
+          },
+          {
+            "name": "50 circular periods / 10,000 steps: closure error",
+            "measured": 7.949733355787752e-7,
+            "tolerance": 0.03,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Geotransfer: half-period apoapsis radius",
+            "measured": 2.1827872842550278e-11,
+            "tolerance": 0.0002,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Geotransfer: half-period opposite side",
+            "measured": 3.71112096684025e-11,
+            "tolerance": 0.0002,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Geotransfer: relative energy conservation",
+            "measured": 4.347568383064721e-16,
+            "tolerance": 2e-9,
+            "unit": "",
+            "passed": true
+          },
+          {
+            "name": "Geotransfer: relative angular momentum conservation",
+            "measured": 8.618101675991071e-16,
+            "tolerance": 2e-9,
+            "unit": "",
+            "passed": true
+          },
+          {
+            "name": "Geotransfer: 10 repeated periods closure",
+            "measured": 0.0006807067984144131,
+            "tolerance": 0.1,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Geotransfer: forward / backward reversibility",
+            "measured": 1.970163704976082e-11,
+            "tolerance": 0.0002,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "High ellipse: half-period apoapsis radius",
+            "measured": 1.6007106751203537e-10,
+            "tolerance": 0.0002,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "High ellipse: half-period opposite side",
+            "measured": 0,
+            "tolerance": 0.0002,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "High ellipse: relative energy conservation",
+            "measured": 3.772258468337032e-16,
+            "tolerance": 2e-9,
+            "unit": "",
+            "passed": true
+          },
+          {
+            "name": "High ellipse: relative angular momentum conservation",
+            "measured": 4.167472200122829e-15,
+            "tolerance": 2e-9,
+            "unit": "",
+            "passed": true
+          },
+          {
+            "name": "High ellipse: 10 repeated periods closure",
+            "measured": 0.001983970358918215,
+            "tolerance": 0.1,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "High ellipse: forward / backward reversibility",
+            "measured": 7.226622216018402e-9,
+            "tolerance": 0.0002,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Raise 400→1200: arrival target radius",
+            "measured": 9.094947017729282e-13,
+            "tolerance": 0.001,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Raise 400→1200: final circular eccentricity",
+            "measured": 8.519875176677969e-16,
+            "tolerance": 2e-8,
+            "unit": "",
+            "passed": true
+          },
+          {
+            "name": "Raise 400→1200: final circular speed",
+            "measured": 2.6645352591003757e-15,
+            "tolerance": 2e-8,
+            "unit": "km/s",
+            "passed": true
+          },
+          {
+            "name": "Raise 400→1200: total Δv equals component magnitudes",
+            "measured": 2.842170943040401e-14,
+            "tolerance": 1e-9,
+            "unit": "m/s",
+            "passed": true
+          },
+          {
+            "name": "Lower 1200→400: arrival target radius",
+            "measured": 6.366462912410498e-12,
+            "tolerance": 0.001,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Lower 1200→400: final circular eccentricity",
+            "measured": 1.5243696190694783e-14,
+            "tolerance": 2e-8,
+            "unit": "",
+            "passed": true
+          },
+          {
+            "name": "Lower 1200→400: final circular speed",
+            "measured": 7.993605777301127e-15,
+            "tolerance": 2e-8,
+            "unit": "km/s",
+            "passed": true
+          },
+          {
+            "name": "Lower 1200→400: total Δv equals component magnitudes",
+            "measured": 2.842170943040401e-14,
+            "tolerance": 1e-9,
+            "unit": "m/s",
+            "passed": true
+          },
+          {
+            "name": "High transfer 400→100000: arrival target radius",
+            "measured": 1.3096723705530167e-10,
+            "tolerance": 0.001,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "High transfer 400→100000: final circular eccentricity",
+            "measured": 8.64515211457085e-12,
+            "tolerance": 2e-8,
+            "unit": "",
+            "passed": true
+          },
+          {
+            "name": "High transfer 400→100000: final circular speed",
+            "measured": 3.552713678800501e-15,
+            "tolerance": 2e-8,
+            "unit": "km/s",
+            "passed": true
+          },
+          {
+            "name": "High transfer 400→100000: total Δv equals component magnitudes",
+            "measured": 2.2737367544323206e-13,
+            "tolerance": 1e-9,
+            "unit": "m/s",
+            "passed": true
+          },
+          {
+            "name": "400→1200 departure Δv independent energy equation",
+            "measured": 0,
+            "tolerance": 1e-9,
+            "unit": "m/s",
+            "passed": true
+          },
+          {
+            "name": "Lowering transfer burns are both negative",
+            "passed": true
+          },
+          {
+            "name": "Burn preserves position",
+            "measured": 0,
+            "tolerance": 0,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Transverse impulse actual Cartesian velocity",
+            "measured": 3.608224830031759e-16,
+            "tolerance": 1e-14,
+            "unit": "km/s",
+            "passed": true
+          },
+          {
+            "name": "Radial impulse actual Cartesian velocity",
+            "measured": 0,
+            "tolerance": 1e-14,
+            "unit": "km/s",
+            "passed": true
+          },
+          {
+            "name": "Retrograde positive transverse burn adds orbital speed",
+            "measured": 3.608224830031759e-16,
+            "tolerance": 1e-14,
+            "unit": "km/s",
+            "passed": true
+          },
+          {
+            "name": "Retrograde quarter-period direction",
+            "measured": 5.075965370961222e-12,
+            "tolerance": 0.0001,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Hyperbola remains open and travels outward",
+            "passed": true
+          },
+          {
+            "name": "Hyperbola at 1 day: relative energy conservation",
+            "measured": 3.188761690941259e-13,
+            "tolerance": 2e-9,
+            "unit": "",
+            "passed": true
+          },
+          {
+            "name": "Hyperbola at 1 day: relative angular momentum conservation",
+            "measured": 3.867027534171294e-12,
+            "tolerance": 2e-9,
+            "unit": "",
+            "passed": true
+          },
+          {
+            "name": "Hyperbola: forward/backward position reversibility",
+            "measured": 1.450393186831198e-7,
+            "tolerance": 0.005,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Parabola: absolute specific energy",
+            "measured": 1.0480505352461478e-13,
+            "tolerance": 1e-8,
+            "unit": "km²/s²",
+            "passed": true
+          },
+          {
+            "name": "Parabola: angular momentum conservation",
+            "measured": 3.064215547965432e-14,
+            "tolerance": 1e-9,
+            "unit": "",
+            "passed": true
+          },
+          {
+            "name": "Parabola: backward reversibility",
+            "measured": 8.885991305249201e-10,
+            "tolerance": 0.001,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Deorbit predicts a finite future inbound surface crossing",
+            "passed": true
+          },
+          {
+            "name": "Advancing across multiple periods cannot skip impact",
+            "passed": true
+          },
+          {
+            "name": "Impact propagation stops at predicted time",
+            "measured": 0,
+            "tolerance": 1e-10,
+            "unit": "s",
+            "passed": true
+          },
+          {
+            "name": "Impact propagation stops at spherical surface",
+            "measured": 9.094947017729282e-13,
+            "tolerance": 0.001,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Impact velocity is inbound",
+            "passed": true
+          },
+          {
+            "name": "Circular safe orbit has no impact",
+            "passed": true
+          },
+          {
+            "name": "Outbound hyperbola with below-surface past periapsis has no future impact",
+            "passed": true
+          },
+          {
+            "name": "Hyperbolic impact initial state starts above surface",
+            "passed": true
+          },
+          {
+            "name": "Hyperbolic inbound surface encounter detected",
+            "passed": true
+          },
+          {
+            "name": "Hyperbolic impact radius",
+            "measured": 5.4569682106375694e-12,
+            "tolerance": 0.003,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Parabolic impact initial state starts above surface",
+            "passed": true
+          },
+          {
+            "name": "Parabolic inbound surface encounter detected",
+            "passed": true
+          },
+          {
+            "name": "Parabolic impact radius",
+            "measured": 7.201379048638046e-8,
+            "tolerance": 0.003,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Near-parabolic e=0.999999: impact detected",
+            "passed": true
+          },
+          {
+            "name": "Near-parabolic e=0.999999: surface residual",
+            "measured": 8.966508175944909e-7,
+            "tolerance": 0.00001,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Near-parabolic e=0.999999999: impact detected",
+            "passed": true
+          },
+          {
+            "name": "Near-parabolic e=0.999999999: surface residual",
+            "measured": 2.7284841053187847e-10,
+            "tolerance": 0.00001,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Near-parabolic e=0.999999999999: impact detected",
+            "passed": true
+          },
+          {
+            "name": "Near-parabolic e=0.999999999999: surface residual",
+            "measured": 7.821199687896296e-8,
+            "tolerance": 0.00001,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Near-parabolic e=1.000000000001: impact detected",
+            "passed": true
+          },
+          {
+            "name": "Near-parabolic e=1.000000000001: surface residual",
+            "measured": 6.582558853551745e-8,
+            "tolerance": 0.00001,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Near-parabolic e=1.000000001: impact detected",
+            "passed": true
+          },
+          {
+            "name": "Near-parabolic e=1.000000001: surface residual",
+            "measured": 0,
+            "tolerance": 0.00001,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Near-parabolic e=1.000001: impact detected",
+            "passed": true
+          },
+          {
+            "name": "Near-parabolic e=1.000001: surface residual",
+            "measured": 7.338658178923652e-7,
+            "tolerance": 0.00001,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Deterministic arbitrary-burn coverage includes at least 190 valid states",
+            "passed": true
+          },
+          {
+            "name": "200 arbitrary-burn cases: scaled specific-energy residual",
+            "measured": 1.2210376653380835e-10,
+            "tolerance": 1e-7,
+            "unit": "",
+            "passed": true
+          },
+          {
+            "name": "200 arbitrary-burn cases: relative angular-momentum residual",
+            "measured": 2.3919088931734223e-11,
+            "tolerance": 1e-7,
+            "unit": "",
+            "passed": true
+          },
+          {
+            "name": "200 arbitrary-burn cases: maximum surface-stop residual",
+            "measured": 3.697141437442042e-7,
+            "tolerance": 0.00001,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Arbitrary eccentric motion vs independent RK4 (12,000 × 0.5 s)",
+            "measured": 2.6623778540075854e-7,
+            "tolerance": 0.0002,
+            "unit": "km",
+            "passed": true
+          },
+          {
+            "name": "Arbitrary eccentric velocity vs independent RK4",
+            "measured": 5.2025566880399416e-11,
+            "tolerance": 2e-8,
+            "unit": "km/s",
+            "passed": true
+          },
+          {
+            "name": "Input validation rejects invalid or unsupported requests",
+            "passed": true
+          },
+          {
+            "name": "Open conic path samples are finite and bounded",
+            "passed": true
+          },
+          {
+            "name": "Stumpff C at zero",
+            "measured": 0,
+            "tolerance": 0,
+            "unit": "",
+            "passed": true
+          },
+          {
+            "name": "Stumpff S at zero",
+            "measured": 0,
+            "tolerance": 0,
+            "unit": "",
+            "passed": true
+          },
+          {
+            "name": "Stumpff series / trig continuity",
+            "measured": 8.305689469523259e-12,
+            "tolerance": 1e-10,
+            "unit": "",
+            "passed": true
+          }
+        ],
+        "referenceTransfer": {
+          "departureMs": 211.0859793705453,
+          "arrivalMs": 205.27192585010033,
+          "totalMs": 416.35790522064565,
+          "coastSeconds": 3021.6946008430223
+        }
+      },
+      "controllerWorkflow": {
+        "executedAt": "2026-10-02T10:10:31.345Z",
+        "command": "node workflow-tests.mjs",
+        "method": "Actual main.js controller imported with a Node-only DOM double; canvas context unavailable. Not a browser test.",
+        "passed": true,
+        "checks": 29,
+        "results": [
+          {
+            "name": "Actual controller initializes default guided plan",
+            "passed": true
+          },
+          {
+            "name": "Initial telemetry populated",
+            "passed": true
+          },
+          {
+            "name": "Changed target blocks executing the stale plan",
+            "passed": true
+          },
+          {
+            "name": "Replanning enables the updated maneuver",
+            "passed": true
+          },
+          {
+            "name": "Departure advances guided workflow to coast",
+            "passed": true
+          },
+          {
+            "name": "Midflight target editing is locked",
+            "passed": true
+          },
+          {
+            "name": "Coast jump advances exact mission clock",
+            "passed": true
+          },
+          {
+            "name": "Arrival burn becomes next action",
+            "passed": true
+          },
+          {
+            "name": "Transport locked at arrival prevents drifting past burn point",
+            "passed": true
+          },
+          {
+            "name": "Arrival completes guided workflow",
+            "passed": true
+          },
+          {
+            "name": "Completed target is circular in actual telemetry",
+            "passed": true
+          },
+          {
+            "name": "Completed flight releases transport lock",
+            "passed": true
+          },
+          {
+            "name": "Undo arrival restores arrival-ready state",
+            "passed": true
+          },
+          {
+            "name": "Free burn replaces the completed plan",
+            "passed": true
+          },
+          {
+            "name": "Free burn clears inputs to prevent accidental duplicate burn",
+            "passed": true
+          },
+          {
+            "name": "Undo restores free-burn values for deliberate retry",
+            "passed": true
+          },
+          {
+            "name": "Reset asks before discarding flight",
+            "passed": true
+          },
+          {
+            "name": "Cancel reset preserves flight time",
+            "passed": true
+          },
+          {
+            "name": "Confirmed reset restores starting orbit and time",
+            "passed": true
+          },
+          {
+            "name": "Reset clears undo history",
+            "passed": true
+          },
+          {
+            "name": "Invalid custom orbit leaves current flight intact",
+            "passed": true
+          },
+          {
+            "name": "Valid custom ellipse loads",
+            "passed": true
+          },
+          {
+            "name": "Elliptical starts select the free-burn workflow",
+            "passed": true
+          },
+          {
+            "name": "Blank free-burn component is blocked",
+            "passed": true
+          },
+          {
+            "name": "Circularize helper produces a circular orbit",
+            "passed": true
+          },
+          {
+            "name": "Deorbit preview warns about surface intersection",
+            "passed": true
+          },
+          {
+            "name": "Surface encounter stops transport",
+            "passed": true
+          },
+          {
+            "name": "Surface encounter explains recovery",
+            "passed": true
+          },
+          {
+            "name": "Undo recovers an impacted flight",
+            "passed": true
+          }
+        ]
+      },
+      "staticPackaging": {
+        "executedAt": "2026-10-02T10:10:31.445Z",
+        "command": "node static-tests.mjs",
+        "passed": true,
+        "checks": 7,
+        "results": [
+          {
+            "name": "HTML contains exactly the required module script",
+            "passed": true
+          },
+          {
+            "name": "HTML IDs are unique",
+            "passed": true
+          },
+          {
+            "name": "Every literal controller ID exists in HTML",
+            "passed": true
+          },
+          {
+            "name": "No remote resource URLs",
+            "passed": true
+          },
+          {
+            "name": "No persistence, network, or cross-frame APIs",
+            "passed": true
+          },
+          {
+            "name": "No CSS remote or secondary import",
+            "passed": true
+          },
+          {
+            "name": "Canvas fallback is implemented",
+            "passed": true
+          }
+        ]
+      },
+      "isolatedViteBuild": {
+        "executedAt": "2026-10-02T10:10:32.114Z",
+        "command": "node build-check.mjs",
+        "configFile": false,
+        "envFile": false,
+        "write": false,
+        "passed": true,
+        "chunks": [
+          {
+            "fileName": "assets/index-C0WXka-u.js",
+            "type": "chunk",
+            "bytes": 30337
+          },
+          {
+            "fileName": "assets/index-2guMrqu5.css",
+            "type": "asset",
+            "bytes": 22402
+          },
+          {
+            "fileName": "index.html",
+            "type": "asset",
+            "bytes": 13796
+          }
+        ]
+      },
+      "browser": {
+        "performed": false,
+        "reason": "Browser localhost access is unavailable and was not attempted. No actual browser appearance, interaction, responsive-layout, or performance checks are claimed."
+      }
+    },
+    "resultsSummary": {
+      "numericalChecks": 81,
+      "nodeControllerChecks": 29,
+      "staticChecks": 7,
+      "allPassed": true,
+      "defaultTransfer": {
+        "departureMs": 211.0859793705453,
+        "arrivalMs": 205.27192585010033,
+        "totalMs": 416.35790522064565,
+        "coastSeconds": 3021.6946008430223
+      },
+      "circular50PeriodClosureKm": 7.949733355787752e-7,
+      "independentRK4PositionErrorKm": 2.6623778540075854e-7
+    },
+    "repairs": [
+      {
+        "type": "test-fixture correction",
+        "finding": "An initially labeled outbound hyperbola used velocity [8,5] km/s at 400 km altitude, which is actually a bound state.",
+        "repair": "Corrected the independent test fixture to [12,5] km/s. The model correctly predicted the original state would eventually return.",
+        "verifiedBy": "Full numerical suite passed after correction."
+      },
+      {
+        "type": "numerical repair",
+        "finding": "A near-parabolic bound impact case with e=0.999999999 initially stopped about 0.185 km below the spherical surface due to cancellation in mean-anomaly timing.",
+        "repair": "Preserved small positive wrapped anomalies, used negative inbound eccentric anomaly, and refined predicted impacts against the production propagator.",
+        "verifiedBy": "Six near-parabolic cases pass a 1e-5 km radius tolerance; 200 deterministic arbitrary-burn cases also pass. Actual maximum random impact residual was 3.697141437442042e-7 km."
+      },
+      {
+        "type": "controller safeguard",
+        "finding": "Code review identified that resuming time at a planned arrival could move away from the burn point while keeping the arrival maneuver active.",
+        "repair": "Locked Play and +60s at arrival until the user executes or explicitly cancels the remaining plan.",
+        "verifiedBy": "Node controller workflow checks for automatic pause, transport lock, completion release, and undo restoration all pass."
+      },
+      {
+        "type": "recovery improvement",
+        "finding": "Undo originally restored the Cartesian state and plan but did not restore manual burn input values.",
+        "repair": "Burn snapshots now retain and restore both manual burn components.",
+        "verifiedBy": "Node controller test verifies deliberate retry after undo."
+      },
+      {
+        "type": "view-fit improvement",
+        "finding": "Focus-centered radius fitting wastes view space for eccentric orbits.",
+        "repair": "Fit uses physical conic-sample bounds and recenters the camera around all relevant paths.",
+        "verifiedBy": "JavaScript syntax and isolated build pass. Actual browser layout remains unverified."
+      }
+    ],
+    "unknowns": [
+      "Actual browser visual appearance and responsive breakpoints have not been reviewed.",
+      "Real pointer, keyboard, focus, native dialog, touch, and assistive-technology behavior are unverified.",
+      "Canvas frame rate and performance on low-power devices are unverified.",
+      "The opaque-origin common viewer and final single-inline-HTML artifact have not been opened; source packaging restrictions and isolated Vite build were verified.",
+      "Node DOM-double workflow tests do not validate a real DOM, graphics, layout, or browser event semantics.",
+      "These tests sample the supported numerical domain; they are not a mission-grade certification or exhaustive proof."
+    ],
+    "constraintsObserved": {
+      "implementedFromScratch": true,
+      "generationDelegated": false,
+      "otherRunOrPriorSimulatorInspected": false,
+      "sharedFilesModified": false,
+      "packageFilesModified": false,
+      "browserLocalhostAttempted": false,
+      "gitOperations": false,
+      "published": false,
+      "runtimeNetworkCalls": false,
+      "persistentOrOriginSpecificApis": false
+    },
+    "tokenUsage": null,
+    "tokenUsageUnavailableReason": "The runtime does not expose measured provider input, cached-input, output, reasoning, or total token counters to this worker. No counter source or inclusion semantics for tools/agent overhead is available. No estimates were made, no restricted session history or credentials were inspected, and no additional inference run was created for accounting.",
+    "tokenCounterSource": null,
+    "tokenCountersIncludeToolsOrAgentOverhead": null,
+    "cost": null,
+    "costUnavailableReason": "No measured monetary cost was supplied by the runtime.",
+    "artifacts": [
+      {
+        "file": "index.html",
+        "bytes": 13692,
+        "sha256": "e43b76a9fd9e452a079ac263811502b9ae6e39303b3b0a9165881bf8fcb9557f"
+      },
+      {
+        "file": "main.js",
+        "bytes": 34861,
+        "sha256": "b8f6839843c5563520a5541c732b3c553794d739c23ecd23e2660d5fe52571f6"
+      },
+      {
+        "file": "style.css",
+        "bytes": 22331,
+        "sha256": "9180d2f86dd29c54115669b19544738d2217cb5530cb88955142cf5dfcecdc94"
+      },
+      {
+        "file": "physics.mjs",
+        "bytes": 9467,
+        "sha256": "3811dbdbbd7eb6c8ad71d7af537671817e9ca2f72496c1e489e1e9b0c72c1590"
+      },
+      {
+        "file": "numerical-tests.mjs",
+        "bytes": 10367,
+        "sha256": "abc2a80605f9fb4df56fe6c555a4fc626fbd0256251e42f8b0639a87e9f96dd7"
+      },
+      {
+        "file": "workflow-tests.mjs",
+        "bytes": 7853,
+        "sha256": "25f09f1d74944a2995ebe0c777a73d5fa1310ceab8399d1894a0c1f42b673e48"
+      },
+      {
+        "file": "static-tests.mjs",
+        "bytes": 1629,
+        "sha256": "82bedf33ddb1318b2edc30a8f5381a6a2bc8090030e492a2a4539ea502e9e267"
+      },
+      {
+        "file": "build-check.mjs",
+        "bytes": 1029,
+        "sha256": "467dd1db3e9b4508a76345e64e4a7877fa04ad7eddf0054e945161484ab09958"
+      },
+      {
+        "file": "README.md",
+        "bytes": 3382,
+        "sha256": "1af252eb2ee1523e48a2e61e559a19e61401c44d6755c1595bfc7131283839e9"
+      }
+    ]
+  }
+}

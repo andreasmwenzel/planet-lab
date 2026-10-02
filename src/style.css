@@ -26,3 +26,5 @@
 .result-page .runtime-toolbar{flex-wrap:wrap;padding-top:max(12px,env(safe-area-inset-top));padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
 .result-page .capability-note{padding-bottom:max(15px,env(safe-area-inset-bottom))}
 @media(max-width:540px){.view-switch{flex-wrap:wrap}.view-switch #open-result{font-size:13px}}
+
+.orbital-report>p,.orbital-report>ul{max-width:76ch;line-height:1.7}.orbital-report>h3{margin-top:2rem}.orbital-report td{vertical-align:top}.orbital-report td:nth-child(2){min-width:18rem;max-width:40rem;white-space:normal}.numerical-evidence{margin:1rem 0}.numerical-evidence summary{cursor:pointer;font-weight:600}.numerical-evidence pre{max-height:22rem;max-width:100%;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;font-size:.75rem}.numerical-evidence code{overflow-wrap:anywhere}.orbital-report th a{white-space:normal}

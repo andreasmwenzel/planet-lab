@@ -1,0 +1,177 @@
+{
+  "id": "luna-medium-bold",
+  "experimentId": "orbital-mechanics",
+  "title": "Luna · medium · bold",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/orbital-mechanics/luna-medium-bold/index.html",
+  "axes": {
+    "model": "Luna",
+    "effort": "medium",
+    "promptApproach": "bold"
+  },
+  "summary": "An orbital triage console for changing a survey satellite's orbital clearance with a single instantaneous impulse. The user chooses true-anomaly burn location and radial/tangential delta-v, then compares current and post-burn osculating paths, closest/farthest approach, speed, and impulse cost against a 10,000 km periapsis target.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation in a fresh native task, with the displayed model and effort explicitly configured. Four frozen creative prompts share the same separately recorded runtime and numerical-testing scaffold. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6-luna",
+    "effort": "medium",
+    "runId": "luna-medium-bold",
+    "launchIndex": 3,
+    "startedAt": "2026-10-02T08:07:26Z",
+    "completedAt": "2026-10-02T08:17:17.255Z",
+    "durationSeconds": 591,
+    "durationScope": "Observed wall-clock time from task launch to independently verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "tokenUsageReason": "Runtime-provided token counters are inaccessible in this environment, so tokenUsage is null; no token counts were estimated.",
+    "tokenUsageSource": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1 (optional)",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; deployed browser review is separate. Available cloud browser does not support WebGL2."
+    },
+    "sourceHashes": {
+      "index.html": "ad5d5d63efd2a95b0053b543ff3bd363565944380fbed62662d4af604654564f",
+      "main.js": "6fae69f471be9c97af61dd8e97a627e5c5c0f6b191292aa5703373efe95ad56b",
+      "physics.js": "5889f2c82a6b402181290df66f65ed46dd8f98e0bf2851b7e96c562ceb89c4a2",
+      "physics.test.js": "fe6ccd26a5a91a1028912edcf8e5eb8fa33e21923ecb10a1f74db69f7c2a7ffc",
+      "prompt.txt": "7a675e9c426d70c349ff3872a01f62f78cf1b4f28723e22824f123fad8a40b10",
+      "style.css": "68afc54b2171792c2ae68ef590134317fc565e5ac856f19d3efd42da2982f3bb",
+      "worker-report.json": "cfe047e0c68c1522aec0ccfe7599846d0683694030c17d1d32ae595b6ef04fac"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an in-browser orbital mechanics simulator\n\nDeliver a finished, usable product, not a demo page or marketing landing page. Choose the product concept, architecture, interactions, and visual direction yourself. Use actual orbital mechanics and state the model’s assumptions and limitations.\n\nBe bold. Choose an unexpected, distinctive product concept and commit to it. Let that choice change what users do and how the interface is arranged, not just its colors. Take creative risks while making the simulator scientifically honest and genuinely usable."
+      },
+      {
+        "role": "user",
+        "content": "Runtime packaging and verification scaffold (separate from creative direction):\n- Implement from scratch. Do not inspect the prior experiment, other runs, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only in the supplied run directory. Create index.html with optional main.js and local CSS/JavaScript modules. If using main.js, HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. CSS can be imported from main.js. A single fully inline HTML file is also allowed.\n- Available environment: vanilla JavaScript, optional installed Three.js 0.186.1, Vite 7.3.6, Node 24. No additional dependencies, runtime network calls, remote assets/fonts, backend, accounts, analytics, or live orbital/celestial data. Do not modify package files or shared app files. Canvas, SVG, DOM, and 3D are all allowed; Three.js is not mandatory. If using WebGL, handle unsupported graphics gracefully.\n- The common harness bundles JavaScript and CSS into one inline HTML document. Its viewer is an iframe sandbox with allow-scripts and an opaque origin. Do not access parent/top, communicate across frames, or rely on persistent storage, cookies, or origin-specific APIs.\n- Make one bounded implementation and its self-test/repair phase. Validate JavaScript syntax and perform an isolated Vite build with write:false. Run quantitative numerical tests applicable to your chosen mechanics, independently of the interface, and preserve a directly rerunnable test script in the run directory. Test the actual implementation's physics functions, not a separately copied formula. Record exact commands, results, tolerances, and repairs. Repair your own implementation as needed for these checks. Do not impose a tiny arbitrary token cutoff or clone existing code.\n- Browser localhost access is unavailable; do not claim browser checks or bypass that restriction. Actual browser appearance, interactions, and performance remain unverified until separately reviewed.\n- Include worker-report.json with product title, description, implementation start/end UTC timestamps, exact tests and outcomes, numerical assumptions and limitations, repairs, and unknowns. Set tokenUsage and cost to null unless the runtime supplies measured values. Do not invent token counts, costs, or quality scores.\n"
+      },
+      {
+        "role": "user",
+        "content": "Reporting-only amendment (added after the first three launches; creative prompts and runtime constraints are unchanged):\nAt the end of your run, include actual runtime-provided token counters if accessible: input, cached input, output, reasoning, and total. Preserve the provider's field semantics and avoid double counting. Identify the counter source and whether counts include tools or agent overhead. Do not estimate from source length or the context budget, inspect restricted session-history paths, or inspect credentials. If actual counters are inaccessible, set tokenUsage to null and give the reason. Set cost to null unless measured cost is supplied by the runtime. Do not create another inference run solely to obtain counters.\n"
+      }
+    ],
+    "reportingAmendment": {
+      "kind": "reporting-only",
+      "timing": "after-launch"
+    },
+    "note": "The complete public creative prompt and identical public runtime/testing scaffold are recorded separately. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax, isolated bundle, and the recorded quantitative physics tests passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "Rendered appearance, interactions, and performance have not yet been independently checked in a browser."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 20902,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 591,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated.",
+      "Numerical test success applies only to the preserved cases and tolerances, not unrestricted physical accuracy."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 6568,
+    "cssBytes": 8006,
+    "numerical": "passed",
+    "independentVerification": {
+      "numerical": "passed",
+      "command": "node experiments/orbital-mechanics/luna-medium-bold/physics.test.js",
+      "exitCode": 0,
+      "stdout": "✔ Kepler solver converges to the defining equation for circular and eccentric cases (2.668478ms)\n✔ Circular state uses vis-viva circular speed and circular osculating elements (3.644335ms)\n✔ Elliptic propagation conserves specific energy and angular momentum over one period (2.139397ms)\n✔ True-anomaly positioning and tangential apoapsis burn raise periapsis (2.10356ms)\n✔ Default clinic prescription meets the 10,000 km clearance objective (0.241761ms)\n✔ Prograde escape injection produces an unbound conic and infinite apoapsis (0.233046ms)\nℹ tests 6\nℹ suites 0\nℹ pass 6\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 33.060584\n",
+      "stderr": "",
+      "verifiedAt": "2026-10-02T08:17:16.568114+00:00",
+      "scope": "Independent rerun of preserved quantitative tests against the actual implementation physics; not browser QA or unrestricted numerical certification."
+    },
+    "checkedAt": "2026-10-02T08:17:17.255Z",
+    "runtimeBytes": 20902
+  },
+  "generationReport": {
+    "productTitle": "Periapsis Clinic",
+    "description": "An orbital triage console for changing a survey satellite's orbital clearance with a single instantaneous impulse. The user chooses true-anomaly burn location and radial/tangential delta-v, then compares current and post-burn osculating paths, closest/farthest approach, speed, and impulse cost against a 10,000 km periapsis target.",
+    "implementationStartUtc": "2026-10-02T08:07:45Z",
+    "implementationEndUtc": "2026-10-02T08:15:30Z",
+    "tests": [
+      {
+        "command": "node --check experiments/orbital-mechanics/luna-medium-bold/main.js && node --check experiments/orbital-mechanics/luna-medium-bold/physics.js",
+        "result": "PASS; both JavaScript modules parse"
+      },
+      {
+        "command": "node --test experiments/orbital-mechanics/luna-medium-bold/physics.test.js",
+        "result": "PASS; 6 tests, 6 passed, 0 failed. Tests import and execute the production physics.js module"
+      },
+      {
+        "command": "node --input-type=module -e \"import { build } from 'vite'; await build({ root: 'experiments/orbital-mechanics/luna-medium-bold', configFile: false, build: { write: false, emptyOutDir: false } }); console.log('Vite build:write:false passed');\"",
+        "result": "PASS; Vite 7.3.6 transformed 5 modules and built successfully with write:false; no output bundle was written"
+      },
+      {
+        "command": "grep -o '<script[^>]*></script>' experiments/orbital-mechanics/luna-medium-bold/index.html",
+        "result": "PASS; exactly <script type=\"module\" src=\"./main.js\"></script>"
+      }
+    ],
+    "quantitativeTestCoverage": [
+      "Kepler equation residual <= 2e-11 across eccentricities 0, 0.35, 0.8, 0.95, 0.999 and several positive/negative mean anomalies",
+      "Circular radius/semimajor-axis tolerance 1e-8 km; circular speed tolerance 1e-12 km/s; eccentricity tolerance 1e-12",
+      "Across 81 samples over one 12,500 km, e=0.35 period: specific-energy drift <= 5e-12 km^2/s^2 and angular-momentum drift <= 2e-10 km^2/s; period-return position tolerances <= 2e-8 km and velocity <= 2e-11 km/s",
+      "True anomaly 0/pi radii agree with a(1-e)/a(1+e) within 1e-8 km; prograde apoapsis impulse increases periapsis; impulse magnitude agrees within 1e-15 km/s",
+      "Default 0.28 km/s prograde apoapsis impulse remains bound and reaches >=10,000 km periapsis",
+      "3.1 km/s prograde apoapsis injection is detected as unbound and has infinite apoapsis"
+    ],
+    "modelAssumptions": [
+      "Earth is a spherical point mass with fixed gravitational parameter mu=398600.4418 km^3/s^2.",
+      "Motion is planar and two-body; all displayed radii are measured from Earth's center.",
+      "Maneuvers are instantaneous impulses resolved into local radial and tangential components.",
+      "Bound trajectories are propagated analytically by solving Kepler's equation; post-burn osculating elements derive from specific energy and angular momentum.",
+      "Initial case is a=12,500 km, e=0.35, with target periapsis radius 10,000 km. Default impulse is 0.28 km/s prograde at apoapsis."
+    ],
+    "limitations": [
+      "No atmospheric drag, oblateness, third-body perturbations, finite-duration thrust, spacecraft mass, propulsion constraints, or real debris data.",
+      "It is an educational maneuver sandbox, not flight guidance.",
+      "Unbound paths are visualized as schematic rays rather than propagated hyperbolae; the osculating classification and energy remain numerically reported."
+    ],
+    "repairs": [
+      "Corrected the burn-location slider to convert its labelled true anomaly to eccentric/mean anomaly before evaluating the state; this ensures intermediate slider settings represent the requested true anomaly rather than mean anomaly.",
+      "Adjusted the default apoapsis prograde prescription from 0.16 to 0.28 km/s so the initial case demonstrates a successful clearance, and added a quantitative regression test for the 10,000 km threshold.",
+      "Revised an initial escape test case: a large retrograde burn at apoapsis reversed the velocity but remained bound; the test now uses a prograde escape injection and checks the hyperbolic classification and infinite apoapsis."
+    ],
+    "unknowns": [
+      "Browser appearance, actual interactions, mobile layout, and runtime performance were not inspected because browser localhost access is unavailable.",
+      "UI behavior is not automated; quantitative tests target the actual production physics functions directly.",
+      "Runtime-provided token counters are inaccessible in this environment, so tokenUsage is null; no token counts were estimated."
+    ],
+    "tokenUsage": null,
+    "cost": null
+  }
+}

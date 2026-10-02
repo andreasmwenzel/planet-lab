@@ -1,0 +1,72 @@
+PASS Known circular and radius-ratio-two transfer reference {"firstBurnKmS":1.167378506618161,"secondBurnKmS":0.9791495542672495,"transferSeconds":5353.834394869872,"speedToleranceKmS":2e-12,"timeToleranceSeconds":1e-8}
+PASS Kepler solver residual across 13 eccentricities and 2001 mean anomalies {"maximumResidualRadians":1.964650664376677e-14,"toleranceRadians":5e-13,"cases":26013}
+PASS Position continuity, exact apsides, burn vectors, signed burns, and missed insertion {"cases":11,"maxEndpointErrorKm":6.904330501894096e-12,"maxInsertionPositionJumpKm":1.3808661003788193e-11,"positionToleranceKm":1e-7,"speedToleranceKmS":1e-11}
+PASS Conserved energy and angular momentum through 11 complete transfer ellipses {"samples":22011,"maxEnergyRelativeError":1.2196765916586065e-14,"maxMomentumRelativeError":6.398421085590277e-16,"maxVisVivaResidualKm2S2":1.7053025658242404e-13,"relativeTolerance":2e-12,"visVivaToleranceKm2S2":2e-10}
+PASS Analytic state agrees with independently integrated central gravity {"cases":6,"integrationStepsPerCase":30000,"maximumPositionErrorKm":1.0504416441200382e-8,"maximumVelocityErrorKmS":1.5357321242575129e-12,"positionToleranceKm":0.0001,"velocityToleranceKmS":1e-7}
+PASS Velocity and acceleration agree with numerical derivatives of actual state {"maximumVelocityErrorKmS":2.121258282319957e-9,"maximumAccelerationErrorKmS2":2.708517902959622e-12,"velocityToleranceKmS":1e-7,"accelerationToleranceKmS2":1e-9}
+PASS Domain guardrails and zero-cost equal-altitude case {"invalidCases":9,"validBoundaryCases":2}
+{
+  "passed": true,
+  "assertions": 115024,
+  "tests": [
+    {
+      "name": "Known circular and radius-ratio-two transfer reference",
+      "passed": true,
+      "firstBurnKmS": 1.167378506618161,
+      "secondBurnKmS": 0.9791495542672495,
+      "transferSeconds": 5353.834394869872,
+      "speedToleranceKmS": 2e-12,
+      "timeToleranceSeconds": 1e-8
+    },
+    {
+      "name": "Kepler solver residual across 13 eccentricities and 2001 mean anomalies",
+      "passed": true,
+      "maximumResidualRadians": 1.964650664376677e-14,
+      "toleranceRadians": 5e-13,
+      "cases": 26013
+    },
+    {
+      "name": "Position continuity, exact apsides, burn vectors, signed burns, and missed insertion",
+      "passed": true,
+      "cases": 11,
+      "maxEndpointErrorKm": 6.904330501894096e-12,
+      "maxInsertionPositionJumpKm": 1.3808661003788193e-11,
+      "positionToleranceKm": 1e-7,
+      "speedToleranceKmS": 1e-11
+    },
+    {
+      "name": "Conserved energy and angular momentum through 11 complete transfer ellipses",
+      "passed": true,
+      "samples": 22011,
+      "maxEnergyRelativeError": 1.2196765916586065e-14,
+      "maxMomentumRelativeError": 6.398421085590277e-16,
+      "maxVisVivaResidualKm2S2": 1.7053025658242404e-13,
+      "relativeTolerance": 2e-12,
+      "visVivaToleranceKm2S2": 2e-10
+    },
+    {
+      "name": "Analytic state agrees with independently integrated central gravity",
+      "passed": true,
+      "cases": 6,
+      "integrationStepsPerCase": 30000,
+      "maximumPositionErrorKm": 1.0504416441200382e-8,
+      "maximumVelocityErrorKmS": 1.5357321242575129e-12,
+      "positionToleranceKm": 0.0001,
+      "velocityToleranceKmS": 1e-7
+    },
+    {
+      "name": "Velocity and acceleration agree with numerical derivatives of actual state",
+      "passed": true,
+      "maximumVelocityErrorKmS": 2.121258282319957e-9,
+      "maximumAccelerationErrorKmS2": 2.708517902959622e-12,
+      "velocityToleranceKmS": 1e-7,
+      "accelerationToleranceKmS2": 1e-9
+    },
+    {
+      "name": "Domain guardrails and zero-cost equal-altitude case",
+      "passed": true,
+      "invalidCases": 9,
+      "validBoundaryCases": 2
+    }
+  ]
+}

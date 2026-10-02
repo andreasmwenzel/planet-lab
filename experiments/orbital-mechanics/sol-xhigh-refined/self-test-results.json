@@ -1,0 +1,156 @@
+{
+  "startedAtUtc": "2026-10-02T09:30:43.444Z",
+  "endedAtUtc": "2026-10-02T09:30:43.501Z",
+  "passed": true,
+  "testCount": 10,
+  "results": [
+    {
+      "name": "Circular state and quarter/full/multiple-period propagation",
+      "passed": true,
+      "milliseconds": 1.774,
+      "periodSeconds": 5544.855095980794,
+      "maximumPositionErrorKm": 2.277680504296648e-8,
+      "positionToleranceKm": 0.00001,
+      "quarterPositionToleranceKm": 1e-7
+    },
+    {
+      "name": "Elliptic conservation, reversal and semigroup at high eccentricity",
+      "passed": true,
+      "milliseconds": 6.228,
+      "eccentricity": 0.884974570714678,
+      "samples": 120,
+      "maxEnergyRelativeError": 9.606684899364975e-14,
+      "maxAngularMomentumRelativeError": 9.772722309288035e-14,
+      "maxSemigroupErrorKm": 0.000004372264396508975,
+      "conservationRelativeTolerance": 2e-9,
+      "positionToleranceKm": 0.0001
+    },
+    {
+      "name": "400 km to 35,786 km Hohmann transfer and circularization",
+      "passed": true,
+      "milliseconds": 0.714,
+      "firstBurnMetersPerSecond": 2399.3521560036265,
+      "secondBurnMetersPerSecond": 1457.2262857596113,
+      "halfTransferSeconds": 19040.22985583813,
+      "positionToleranceKm": 0.000001,
+      "circularEccentricityTolerance": 1e-11
+    },
+    {
+      "name": "Universal solver compared with independent RK4 for all conic classes",
+      "passed": true,
+      "milliseconds": 7.452,
+      "durationSeconds": 3600,
+      "rk4StepSeconds": 2,
+      "positionToleranceKm": 0.00002,
+      "velocityToleranceKmPerSecond": 2e-8,
+      "errors": [
+        {
+          "class": "elliptic",
+          "positionErrorKm": 1.4724565887626253e-8,
+          "velocityErrorKmPerSecond": 7.435879869948073e-12
+        },
+        {
+          "class": "parabolic",
+          "positionErrorKm": 1.8699912109397495e-8,
+          "velocityErrorKmPerSecond": 6.345727093157567e-12
+        },
+        {
+          "class": "hyperbolic",
+          "positionErrorKm": 1.9997643578356237e-8,
+          "velocityErrorKmPerSecond": 6.511663365927498e-12
+        }
+      ]
+    },
+    {
+      "name": "Parabolic propagation independently checked with Barker equation",
+      "passed": true,
+      "milliseconds": 0.119,
+      "durationSeconds": 21600,
+      "positionErrorKm": 4.1159031748919956e-11,
+      "positionToleranceKm": 0.00001
+    },
+    {
+      "name": "Near-parabolic continuity and Stumpff zero limit",
+      "passed": true,
+      "milliseconds": 0.212,
+      "durationSeconds": 21600,
+      "relativeSpeedPerturbation": 1e-10,
+      "maxNeighbourDistanceKm": 0.00007019168654959802,
+      "continuityToleranceKm": 0.001,
+      "stumpffSeriesTolerance": 1e-16
+    },
+    {
+      "name": "Future impact times for elliptic, radial, hyperbolic and parabolic states",
+      "passed": true,
+      "milliseconds": 0.741,
+      "crossings": [
+        {
+          "class": "retrograde ellipse",
+          "timeSeconds": 878.7601350222242,
+          "surfaceErrorKm": 0
+        },
+        {
+          "class": "radial bound inward",
+          "timeSeconds": 207.3370811599236,
+          "surfaceErrorKm": 0
+        },
+        {
+          "class": "radial bound outward",
+          "timeSeconds": 440.0060568515726,
+          "surfaceErrorKm": 9.094947017729282e-13
+        },
+        {
+          "class": "radial hyperbolic inward",
+          "timeSeconds": 30.39884185304898,
+          "surfaceErrorKm": 0
+        },
+        {
+          "class": "radial parabolic inward",
+          "timeSeconds": 36.31408219823808,
+          "surfaceErrorKm": 0
+        },
+        {
+          "class": "oblique hyperbolic inward",
+          "timeSeconds": 30.40429541382218,
+          "surfaceErrorKm": 7.275957614183426e-12
+        },
+        {
+          "class": "oblique parabolic inward",
+          "timeSeconds": 36.47406823569507,
+          "surfaceErrorKm": 0
+        }
+      ],
+      "surfaceToleranceKm": 0.00002,
+      "outboundEscapeAndSafeCircularMissEarth": true
+    },
+    {
+      "name": "Impulse frame orthogonality, retrograde direction and energy accounting",
+      "passed": true,
+      "milliseconds": 0.173,
+      "states": 2,
+      "maxEnergyIdentityError": 1.2434497875801753e-14,
+      "energyToleranceKmSquaredPerSecondSquared": 1e-12
+    },
+    {
+      "name": "Deterministic envelope sweep of actual control ranges and trajectory sampling",
+      "passed": true,
+      "milliseconds": 35.306,
+      "samples": 400,
+      "collisions": 199,
+      "escapes": 84,
+      "maxEnergyRelativeError": 9.314523853975987e-14,
+      "maxMomentumRelativeError": 3.7015320484599116e-14,
+      "maxSurfaceErrorKm": 6.172012945171446e-8,
+      "conservationRelativeTolerance": 2e-8,
+      "surfaceAndConicToleranceKm": 0.00002
+    },
+    {
+      "name": "Invalid inputs and runtime packaging contract",
+      "passed": true,
+      "milliseconds": 1.823,
+      "invalidStatesRejected": true,
+      "exactModuleTag": true,
+      "noRuntimeNetworkOrPersistentStorage": true
+    }
+  ]
+}

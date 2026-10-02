@@ -1,0 +1,25 @@
+{
+  "executedAt": "2026-10-02T10:10:32.114Z",
+  "command": "node build-check.mjs",
+  "configFile": false,
+  "envFile": false,
+  "write": false,
+  "passed": true,
+  "chunks": [
+    {
+      "fileName": "assets/index-C0WXka-u.js",
+      "type": "chunk",
+      "bytes": 30337
+    },
+    {
+      "fileName": "assets/index-2guMrqu5.css",
+      "type": "asset",
+      "bytes": 22402
+    },
+    {
+      "fileName": "index.html",
+      "type": "asset",
+      "bytes": 13796
+    }
+  ]
+}

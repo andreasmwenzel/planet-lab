@@ -1,0 +1,315 @@
+{
+  "id": "astra-medium-bold",
+  "experimentId": "orbital-mechanics",
+  "title": "Astra · medium · bold",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/orbital-mechanics/astra-medium-bold/index.html",
+  "axes": {
+    "model": "Astra",
+    "effort": "medium",
+    "promptApproach": "bold"
+  },
+  "summary": "A planar orbital cargo dispatch desk. Schedule up to six signed tangential/radial burn orders, compare the flight against an unpowered lane, scrub or play the mission, and meet a moving depot with both distance and relative-speed criteria. Three raising/lowering routes include exact Hohmann reference plans and editable target phase.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation in a fresh native task, with the displayed model and effort explicitly configured. Four frozen creative prompts share the same separately recorded runtime and numerical-testing scaffold. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6-astra",
+    "effort": "medium",
+    "runId": "astra-medium-bold",
+    "launchIndex": 19,
+    "startedAt": "2026-10-02T09:31:36Z",
+    "completedAt": "2026-10-02T09:39:30.230Z",
+    "durationSeconds": 474,
+    "durationScope": "Observed wall-clock time from task launch to independently verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "tokenUsageReason": "Runtime-provided measured input, cached input, output, reasoning, and total token counters are not exposed to this worker through its available tools. No counts were estimated and no restricted histories were inspected.",
+    "tokenUsageSource": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1 (optional)",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; deployed browser review is separate. Available cloud browser does not support WebGL2."
+    },
+    "sourceHashes": {
+      "build-results.json": "7b6c8747b4341ada4be27899f981dc040d6fe40e3adb8029ee0c22a79ca47435",
+      "index.html": "58c016326741c931cc5448dec23a2da3eb0e6a29e09ebd5a03b9b2847d23f80b",
+      "main.js": "348a5edef795de9a85b1d9e5602e550893d2caf95b4c1f4f6e96692b39d859c9",
+      "physics.mjs": "ba7fcbe8835507909a7652161e8f8b4d2953a48327a56845dd9475831973a65e",
+      "prompt.txt": "7a675e9c426d70c349ff3872a01f62f78cf1b4f28723e22824f123fad8a40b10",
+      "style.css": "e92d1ffa595567b11b28e20cc02b9a2529d61fc533f282d1be672afbe55e528c",
+      "test-physics.mjs": "3a8d46f64058f1aa1bd61594a4394000e57066b7ca64e7e9bd84915aa5be4004",
+      "test-results.json": "888da26d4259851fd2293a3e73667a13a16ce3a1a322cb14b2161fca70750c53",
+      "verify-build.mjs": "8022e0794fb8de737ab52913612fa668607db90a932237d8702006517255ec7c",
+      "worker-report.json": "968e7d68994507de46c826b84d8470cd567f47cfe8fc094ee87f7513368c7d4e"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an in-browser orbital mechanics simulator\n\nDeliver a finished, usable product, not a demo page or marketing landing page. Choose the product concept, architecture, interactions, and visual direction yourself. Use actual orbital mechanics and state the model’s assumptions and limitations.\n\nBe bold. Choose an unexpected, distinctive product concept and commit to it. Let that choice change what users do and how the interface is arranged, not just its colors. Take creative risks while making the simulator scientifically honest and genuinely usable."
+      },
+      {
+        "role": "user",
+        "content": "Runtime packaging and verification scaffold (separate from creative direction):\n- Implement from scratch. Do not inspect the prior experiment, other runs, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only in the supplied run directory. Create index.html with optional main.js and local CSS/JavaScript modules. If using main.js, HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. CSS can be imported from main.js. A single fully inline HTML file is also allowed.\n- Available environment: vanilla JavaScript, optional installed Three.js 0.186.1, Vite 7.3.6, Node 24. No additional dependencies, runtime network calls, remote assets/fonts, backend, accounts, analytics, or live orbital/celestial data. Do not modify package files or shared app files. Canvas, SVG, DOM, and 3D are all allowed; Three.js is not mandatory. If using WebGL, handle unsupported graphics gracefully.\n- The common harness bundles JavaScript and CSS into one inline HTML document. Its viewer is an iframe sandbox with allow-scripts and an opaque origin. Do not access parent/top, communicate across frames, or rely on persistent storage, cookies, or origin-specific APIs.\n- Make one bounded implementation and its self-test/repair phase. Validate JavaScript syntax and perform an isolated Vite build with write:false. Run quantitative numerical tests applicable to your chosen mechanics, independently of the interface, and preserve a directly rerunnable test script in the run directory. Test the actual implementation's physics functions, not a separately copied formula. Record exact commands, results, tolerances, and repairs. Repair your own implementation as needed for these checks. Do not impose a tiny arbitrary token cutoff or clone existing code.\n- Browser localhost access is unavailable; do not claim browser checks or bypass that restriction. Actual browser appearance, interactions, and performance remain unverified until separately reviewed.\n- Include worker-report.json with product title, description, implementation start/end UTC timestamps, exact tests and outcomes, numerical assumptions and limitations, repairs, and unknowns. Set tokenUsage and cost to null unless the runtime supplies measured values. Do not invent token counts, costs, or quality scores.\n"
+      },
+      {
+        "role": "user",
+        "content": "Reporting-only amendment (added after the first three launches; creative prompts and runtime constraints are unchanged):\nAt the end of your run, include actual runtime-provided token counters if accessible: input, cached input, output, reasoning, and total. Preserve the provider's field semantics and avoid double counting. Identify the counter source and whether counts include tools or agent overhead. Do not estimate from source length or the context budget, inspect restricted session-history paths, or inspect credentials. If actual counters are inaccessible, set tokenUsage to null and give the reason. Set cost to null unless measured cost is supplied by the runtime. Do not create another inference run solely to obtain counters.\n"
+      }
+    ],
+    "reportingAmendment": {
+      "kind": "reporting-only",
+      "timing": "before-launch"
+    },
+    "note": "The complete public creative prompt and identical public runtime/testing scaffold are recorded separately. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax, isolated bundle, and the recorded quantitative physics tests passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "Rendered appearance, interactions, and performance have not yet been independently checked in a browser."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 21592,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 474,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated.",
+      "Numerical test success applies only to the preserved cases and tolerances, not unrestricted physical accuracy."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 14964,
+    "cssBytes": 6098,
+    "numerical": "passed",
+    "independentVerification": {
+      "numerical": "passed",
+      "command": "node experiments/orbital-mechanics/astra-medium-bold/test-physics.mjs",
+      "exitCode": 0,
+      "stdout": "{\n  \"passed\": 19,\n  \"results\": [\n    {\n      \"name\": \"Circular orbit: relative energy drift over 10 periods\",\n      \"value\": 3.260602333358141e-10,\n      \"tolerance\": 1e-8,\n      \"passed\": true\n    },\n    {\n      \"name\": \"Circular orbit: relative angular momentum drift over 10 periods\",\n      \"value\": 1.6303003437152113e-10,\n      \"tolerance\": 1e-8,\n      \"passed\": true\n    },\n    {\n      \"name\": \"Circular orbit: 10-period closure in km\",\n      \"value\": 0.00026479432318758097,\n      \"tolerance\": 0.01,\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hohmann 400→1200: rendezvous separation km\",\n      \"value\": 0.000009476691030035035,\n      \"tolerance\": 0.001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hohmann 400→1200: relative speed m/s\",\n      \"value\": 0.00000860753676372552,\n      \"tolerance\": 0.001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hohmann 400→1200: final eccentricity\",\n      \"value\": 0,\n      \"tolerance\": 0.000001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hohmann 400→1200: second burn timing seconds\",\n      \"value\": 0,\n      \"tolerance\": 1e-10,\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hohmann 1800→500: rendezvous separation km\",\n      \"value\": 0.0000034262112533770647,\n      \"tolerance\": 0.001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hohmann 1800→500: relative speed m/s\",\n      \"value\": 0.000004623443634730081,\n      \"tolerance\": 0.001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hohmann 1800→500: final eccentricity\",\n      \"value\": 1.4901161193847656e-8,\n      \"tolerance\": 0.000001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hohmann 1800→500: second burn timing seconds\",\n      \"value\": 0,\n      \"tolerance\": 1e-10,\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hohmann 400→5000: rendezvous separation km\",\n      \"value\": 0.000013222987020042907,\n      \"tolerance\": 0.001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hohmann 400→5000: relative speed m/s\",\n      \"value\": 0.000006852280023260791,\n      \"tolerance\": 0.001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hohmann 400→5000: final eccentricity\",\n      \"value\": 1.4901161193847656e-8,\n      \"tolerance\": 0.000001,\n      \"passed\": true\n    },\n    {\n      \"name\": \"Hohmann 400→5000: second burn timing seconds\",\n      \"value\": 0,\n      \"tolerance\": 1e-10,\n      \"passed\": true\n    },\n    {\n      \"name\": \"Tangential/radial impulse vector error km/s\",\n      \"value\": 0,\n      \"tolerance\": 1e-12,\n      \"passed\": true\n    },\n    {\n      \"name\": \"Earth-contact termination\",\n      \"passed\": true,\n      \"time\": 520\n    },\n    {\n      \"name\": \"Non-grid event placement seconds\",\n      \"value\": 0,\n      \"tolerance\": 1e-12,\n      \"passed\": true\n    },\n    {\n      \"name\": \"stateAt preserves post-burn state\",\n      \"value\": 0,\n      \"tolerance\": 1e-12,\n      \"passed\": true\n    }\n  ]\n}\n",
+      "stderr": "",
+      "verifiedAt": "2026-10-02T09:39:29.546097+00:00",
+      "scope": "Independent rerun of preserved quantitative tests against the actual implementation physics; not browser QA or unrestricted numerical certification."
+    },
+    "checkedAt": "2026-10-02T09:39:30.230Z",
+    "runtimeBytes": 21592
+  },
+  "generationReport": {
+    "productTitle": "TUG — Night Shift Dispatch",
+    "description": "A planar orbital cargo dispatch desk. Schedule up to six signed tangential/radial burn orders, compare the flight against an unpowered lane, scrub or play the mission, and meet a moving depot with both distance and relative-speed criteria. Three raising/lowering routes include exact Hohmann reference plans and editable target phase.",
+    "implementationStartUTC": "2026-10-02T09:32:11Z",
+    "implementationEndUTC": "2026-10-02T09:39:04.872Z",
+    "model": "gpt-6-astra",
+    "reasoningEffort": "medium",
+    "entryPoint": "index.html",
+    "tests": [
+      {
+        "command": "node --check main.js && node --check physics.mjs && node --check test-physics.mjs && node --check verify-build.mjs",
+        "outcome": "PASS: syntax checks exit 0"
+      },
+      {
+        "command": "node test-physics.mjs",
+        "outcome": {
+          "passed": 19,
+          "results": [
+            {
+              "name": "Circular orbit: relative energy drift over 10 periods",
+              "value": 3.260602333358141e-10,
+              "tolerance": 1e-8,
+              "passed": true
+            },
+            {
+              "name": "Circular orbit: relative angular momentum drift over 10 periods",
+              "value": 1.6303003437152113e-10,
+              "tolerance": 1e-8,
+              "passed": true
+            },
+            {
+              "name": "Circular orbit: 10-period closure in km",
+              "value": 0.00026479432318758097,
+              "tolerance": 0.01,
+              "passed": true
+            },
+            {
+              "name": "Hohmann 400→1200: rendezvous separation km",
+              "value": 0.000009476691030035035,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "Hohmann 400→1200: relative speed m/s",
+              "value": 0.00000860753676372552,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "Hohmann 400→1200: final eccentricity",
+              "value": 0,
+              "tolerance": 0.000001,
+              "passed": true
+            },
+            {
+              "name": "Hohmann 400→1200: second burn timing seconds",
+              "value": 0,
+              "tolerance": 1e-10,
+              "passed": true
+            },
+            {
+              "name": "Hohmann 1800→500: rendezvous separation km",
+              "value": 0.0000034262112533770647,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "Hohmann 1800→500: relative speed m/s",
+              "value": 0.000004623443634730081,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "Hohmann 1800→500: final eccentricity",
+              "value": 1.4901161193847656e-8,
+              "tolerance": 0.000001,
+              "passed": true
+            },
+            {
+              "name": "Hohmann 1800→500: second burn timing seconds",
+              "value": 0,
+              "tolerance": 1e-10,
+              "passed": true
+            },
+            {
+              "name": "Hohmann 400→5000: rendezvous separation km",
+              "value": 0.000013222987020042907,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "Hohmann 400→5000: relative speed m/s",
+              "value": 0.000006852280023260791,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "Hohmann 400→5000: final eccentricity",
+              "value": 1.4901161193847656e-8,
+              "tolerance": 0.000001,
+              "passed": true
+            },
+            {
+              "name": "Hohmann 400→5000: second burn timing seconds",
+              "value": 0,
+              "tolerance": 1e-10,
+              "passed": true
+            },
+            {
+              "name": "Tangential/radial impulse vector error km/s",
+              "value": 0,
+              "tolerance": 1e-12,
+              "passed": true
+            },
+            {
+              "name": "Earth-contact termination",
+              "passed": true,
+              "time": 520
+            },
+            {
+              "name": "Non-grid event placement seconds",
+              "value": 0,
+              "tolerance": 1e-12,
+              "passed": true
+            },
+            {
+              "name": "stateAt preserves post-burn state",
+              "value": 0,
+              "tolerance": 1e-12,
+              "passed": true
+            }
+          ]
+        }
+      },
+      {
+        "command": "node verify-build.mjs",
+        "outcome": {
+          "passed": true,
+          "write": false,
+          "files": [
+            {
+              "name": "assets/index-DgbTYLaE.js",
+              "bytes": 15645
+            },
+            {
+              "name": "assets/index-5UbLwyA1.css",
+              "bytes": 6098
+            },
+            {
+              "name": "index.html",
+              "bytes": 367
+            }
+          ]
+        }
+      }
+    ],
+    "exactRerunCommand": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-medium-bold && node --check main.js && node --check physics.mjs && node --check test-physics.mjs && node --check verify-build.mjs && node test-physics.mjs && node verify-build.mjs",
+    "numericalAssumptions": [
+      "Earth-centred inertial 2D Newtonian point-mass field; mu 398600.4418 km^3/s^2 and Earth radius 6371 km.",
+      "Fourth-order Runge–Kutta at maximum 10-second steps, split at exact impulse times.",
+      "Impulses use local counterclockwise tangential and outward radial bases, in m/s.",
+      "Depot is an analytically propagated circular orbit.",
+      "Rendezvous qualification: sampled separation under 50 km AND relative speed under 50 m/s.",
+      "Initial mission phase supports analytic Hohmann rendezvous; users may change phase."
+    ],
+    "limitations": [
+      "No atmosphere, oblateness, third bodies, finite-duration thrust, fuel mass, or docking/contact dynamics.",
+      "Closest approach and arrival use samples no more than 10 seconds apart; very brief close passes may be missed.",
+      "Earth contact is detected after a propagation step and its time is approximate.",
+      "Preview horizon is finite; arbitrary high-energy trajectories can escape the view before zoom adjustment.",
+      "Tangential direction is counterclockwise rather than velocity-aligned for eccentric or retrograde motion.",
+      "No persistence; reload resets the session."
+    ],
+    "repairs": [
+      "Removed an unused unpowered-orbit numerical propagation; its circular reference is drawn analytically. No numerical failures required repairs."
+    ],
+    "unknowns": [
+      "Actual browser appearance, interactions, accessibility behavior, and performance remain unverified: browser localhost access was unavailable and no browser checks were attempted."
+    ],
+    "tokenUsage": null,
+    "tokenUsageUnavailableReason": "Runtime-provided measured input, cached input, output, reasoning, and total token counters are not exposed to this worker through its available tools. No counts were estimated and no restricted histories were inspected.",
+    "counterSource": null,
+    "cost": null,
+    "costUnavailableReason": "No measured runtime cost supplied.",
+    "scopeCompliance": [
+      "Created from scratch inside the assigned run directory only.",
+      "No prior or sibling run, shared app implementation, package file, credential, or restricted session history inspected.",
+      "No network calls, runtime external assets, backend, storage, browser localhost checks, publishing, or git operations.",
+      "Vite build used configFile:false and build.write:false."
+    ]
+  }
+}

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#132a33" />
+  <title>Apsis — Earth transfer workbench</title>
+</head>
+<body>
+  <div id="app">
+    <header class="masthead">
+      <a class="identity" href="#" aria-label="Apsis home" id="home-link"><span class="brand-orbit" aria-hidden="true"></span><span>apsis<span class="brand-period">.</span></span></a>
+      <span class="masthead-description">THE ORBITAL TRANSFER WORKBENCH</span>
+      <button class="quiet-button model-button" id="model-open"><span class="info-icon">i</span> Model &amp; guide</button>
+    </header>
+
+    <main class="workspace">
+      <aside class="planner" aria-label="Transfer planner">
+        <div class="planner-heading"><span class="eyebrow">01 / MISSION DESIGN</span><button class="text-button" id="reset" title="Restore the initial mission">Reset</button></div>
+        <h1>A change of orbit.</h1>
+        <p class="intro">Set two circular orbits. Rehearse the two burns that connect them.</p>
+        <div class="presets" role="group" aria-label="Transfer presets">
+          <button class="preset active" data-preset="raise" aria-pressed="true">Raise orbit</button>
+          <button class="preset" data-preset="geo" aria-pressed="false">To GEO</button>
+          <button class="preset" data-preset="return" aria-pressed="false">Return</button>
+        </div>
+        <section class="orbit-input departure-input">
+          <label for="departure"><span class="orbit-dot departure-dot"></span>Departure altitude</label>
+          <div class="number-input"><input id="departure" type="number" inputmode="decimal" min="160" max="50000" step="10" value="400" aria-describedby="altitude-help input-error"><span>km</span></div>
+          <input id="departure-range" class="altitude-range" type="range" min="0" max="1000" step="1" aria-label="Departure altitude, logarithmic scale" />
+        </section>
+        <div class="swap-row"><span></span><button id="swap" aria-label="Swap departure and arrival altitudes" title="Swap the two orbits">⇅</button><span></span></div>
+        <section class="orbit-input arrival-input">
+          <label for="arrival"><span class="orbit-dot arrival-dot"></span>Arrival altitude</label>
+          <div class="number-input"><input id="arrival" type="number" inputmode="decimal" min="160" max="50000" step="10" value="2000" aria-describedby="altitude-help input-error"><span>km</span></div>
+          <input id="arrival-range" class="altitude-range" type="range" min="0" max="1000" step="1" aria-label="Arrival altitude, logarithmic scale" />
+        </section>
+        <p class="field-note" id="altitude-help">Above Earth's surface · 160–50,000 km</p>
+        <p class="input-error" id="input-error" role="alert" hidden></p>
+        <div class="insertion-setting">
+          <div><label for="circularize">Perform arrival burn</label><p>Switch off to stay on the transfer ellipse.</p></div>
+          <label class="switch"><input id="circularize" type="checkbox" checked aria-label="Perform arrival circularization burn" /><span></span></label>
+        </div>
+        <div class="plan-cost"><span class="eyebrow">TOTAL VELOCITY CHANGE</span><div><span id="total-dv">—</span><span class="metric-unit">km/s</span></div><p id="cost-description">Two instantaneous, tangential burns</p></div>
+        <div class="plan-facts"><div><span>Transfer time</span><strong id="transfer-time">—</strong></div><div><span>Ellipticity <span title="0 is circular; closer to 1 is more elongated">e</span></span><strong id="eccentricity">—</strong></div></div>
+        <p class="low-orbit-note" id="low-orbit-note" hidden>Low orbit: atmospheric drag would matter here. This ideal model excludes it.</p>
+        <div class="planner-foot"><span class="tiny-earth" aria-hidden="true">⊕</span><span>Earth · planar, two-body dynamics<br><span>Altitude and distance shown to scale</span></span></div>
+      </aside>
+
+      <section class="flight-panel" aria-label="Mission rehearsal">
+        <div class="scene" id="scene">
+          <canvas id="orbit-canvas" aria-label="Plan view of Earth, departure and arrival orbits, transfer ellipse, and spacecraft. Use the timeline below to move the spacecraft." role="img"></canvas>
+          <div class="canvas-fallback" id="canvas-fallback" hidden>Orbit graphics aren't available in this browser. The controls, timeline, and numerical readouts still work.</div>
+          <div class="scene-top"><div><span class="eyebrow">02 / FLIGHT REHEARSAL</span><div class="stage-line"><span class="status-light"></span><span id="stage-label">Ready at departure</span></div></div><span class="frame-label">EARTH-CENTERED<br>PROGRADE ↺</span></div>
+          <div class="scene-tools" role="group" aria-label="Orbit view controls"><button id="vectors" aria-pressed="false" title="Show a velocity vector (direction and relative speed)">↗ <span>Velocity</span></button><span class="tool-divider"></span><button id="zoom-out" aria-label="Zoom out">−</button><button id="zoom-in" aria-label="Zoom in">+</button><button id="fit" title="Fit both orbits in view">Fit</button></div>
+          <div class="orbit-legend" aria-label="Orbit colors"><span><i class="legend-departure"></i>Departure</span><span><i class="legend-transfer"></i>Transfer</span><span><i class="legend-arrival"></i>Arrival</span></div>
+          <div class="telemetry" aria-label="Live spacecraft telemetry"><div><span>ALTITUDE</span><p><strong id="live-altitude">—</strong><small>km</small></p></div><div><span>SPEED</span><p><strong id="live-speed">—</strong><small>km/s</small></p></div><div class="radial-readout"><span>RADIAL SPEED</span><p><strong id="live-radial">—</strong><small>km/s</small></p></div></div>
+          <span class="scene-hint" id="scene-hint">Drag to pan · scroll to zoom · click the transfer to seek</span>
+          <span class="scale-note" id="scale-note">—</span>
+        </div>
+
+        <div class="transport">
+          <div class="transport-top"><button class="play-button" id="play" aria-label="Play mission"><span id="play-symbol" aria-hidden="true">▶</span><span id="play-text">Rehearse</span></button><button class="rewind-button" id="rewind" aria-label="Rewind to departure" title="Rewind to departure">↶</button><div class="mission-clock"><span class="eyebrow">MISSION ELAPSED</span><span id="elapsed">00:00:00</span></div><label class="playback-rate"><span>Playback</span><select id="rate" aria-label="Simulation playback rate"><option value="auto">30 s / transfer</option><option value="1">1× real time</option><option value="100">100× real time</option><option value="1000">1,000× real time</option><option value="10000">10,000× real time</option></select></label></div>
+          <div class="timeline-wrap"><div class="timeline-band"><span id="timeline-coast"></span><span class="arrival-tick" id="arrival-tick"></span></div><input id="timeline" type="range" min="0" max="10000" step="1" value="0" aria-label="Mission time" /><div class="timeline-labels"><button id="jump-departure"><i>1</i> Departure burn</button><button id="jump-arrival"><i>2</i> <span id="arrival-jump-label">Arrival burn</span></button><span id="end-label">In orbit</span></div></div>
+        </div>
+
+        <section class="burn-sequence" aria-label="Burn sequence">
+          <article class="burn-card" id="burn-one"><div class="burn-card-heading"><span class="burn-number">1</span><div><span class="eyebrow">DEPARTURE BURN</span><h2 id="burn-one-action">Accelerate into transfer</h2></div><span class="burn-direction" id="burn-one-direction">PROGRADE</span></div><div class="burn-card-body"><div class="burn-value"><span id="burn-one-dv">—</span><small>km/s</small></div><p id="burn-one-speeds">—</p></div></article>
+          <article class="burn-card" id="burn-two"><div class="burn-card-heading"><span class="burn-number">2</span><div><span class="eyebrow">ARRIVAL BURN</span><h2 id="burn-two-action">Circularize the orbit</h2></div><span class="burn-direction" id="burn-two-direction">PROGRADE</span></div><div class="burn-card-body"><div class="burn-value"><span id="burn-two-dv">—</span><small>km/s</small></div><p id="burn-two-speeds">—</p></div></article>
+        </section>
+        <div class="mission-insight"><span class="insight-mark" aria-hidden="true">↳</span><p id="insight">—</p><button id="why-open" class="text-button">Why this works ↗</button></div>
+      </section>
+    </main>
+    <footer class="page-footer"><span>APSIS / EARTH TRANSFER LAB</span><span>Idealized mechanics. Built for understanding, not flight operations.</span></footer>
+  </div>
+  <dialog id="model-dialog" aria-labelledby="model-title">
+    <div class="dialog-heading"><span class="eyebrow">THE MODEL / A QUICK GUIDE</span><button id="model-close" aria-label="Close model and guide">×</button></div>
+    <h2 id="model-title">Two burns. One ellipse.</h2>
+    <p>A Hohmann transfer joins two circular, coplanar orbits with an ellipse tangent to both. The first burn changes your orbit. Half a revolution later, the second matches the speed of the destination circle.</p>
+    <div class="guide-pair"><div><span>01</span><h3>Going higher?</h3><p>Accelerate twice. The first burn lifts the far side of the orbit. Gravity slows you on the way up; the second burn speeds you up to circularize.</p></div><div><span>02</span><h3>Coming back down?</h3><p>Decelerate twice. Coast inward, gaining speed. Brake at the low point to stop the far side of the orbit from rising again.</p></div></div>
+    <h3>Try it</h3><p>Choose “To GEO”, then turn off the arrival burn. Seek to arrival and continue: without the second burn, the spacecraft returns along the same ellipse. Re-enable the burn to hold the new circular orbit.</p>
+    <h3>What the numbers mean</h3><ul><li><strong>Δv</strong> is the magnitude of the velocity changes, not fuel consumption. Signed burn values show acceleration (+) or braking (−).</li><li><strong>Radial speed</strong> is positive moving away from Earth and negative moving inward. It is zero at each end of the transfer.</li><li><strong>Ellipticity e</strong> is eccentricity: 0 for a circle, approaching 1 for an increasingly elongated ellipse.</li></ul>
+    <h3>Assumptions &amp; limits</h3><p>A point-mass Earth, a massless spacecraft, circular start and finish orbits, prograde motion in one plane, and instantaneous tangential burns. Kepler's equation propagates the coast analytically. Earth radius is 6,378.137 km; gravitational parameter μ is 398,600.4418 km³/s².</p><p>No atmosphere, oblateness, plane changes, finite thrust, other bodies, collision avoidance, rendezvous targeting, or live ephemerides. GEO here means a circular orbit at 35,786 km altitude; this 2D model does not specify inclination or longitude. At large radius ratios, a bi-elliptic transfer may cost less than Hohmann. This workbench only compares the selected two-burn transfer.</p>
+    <p class="dialog-note">Use the timeline for precise seeking. The diagram can be panned and zoomed; “Fit” restores the view. Playback starts paused, and it pauses while the tab is hidden.</p>
+    <button class="dialog-done" id="model-done">Back to the workbench</button>
+  </dialog>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

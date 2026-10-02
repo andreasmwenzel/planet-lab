@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#ecefe6" />
+<title>Apogee — Orbital flight lab</title>
+</head>
+<body>
+<div id="app">
+<header class="topbar">
+  <a class="brand" href="#main" aria-label="Apogee orbital flight lab"><span class="brand-icon" aria-hidden="true">◉</span><span>apogee<span class="brand-sub">ORBITAL FLIGHT LAB</span></span></a>
+  <div class="header-center"><span class="status-dot"></span> EARTH <span class="header-divider">/</span> TWO-BODY MODEL</div>
+  <button class="plain-button" id="model-open"><span class="info-icon">i</span> How this works</button>
+</header>
+<main id="main">
+  <section class="workspace" aria-label="Orbital simulation">
+    <div class="flight-heading"><div><div class="eyebrow">YOUR FLIGHT</div><h1 id="flight-title">400 km parking orbit</h1></div><span class="flight-number" id="flight-number">FLIGHT 001</span></div>
+    <div class="viewport" id="viewport">
+      <canvas id="orbit-canvas" aria-label="Earth-centered orbital view. Current and proposed paths are also described in the telemetry and maneuver panels."></canvas>
+      <div class="view-top"><span class="view-label"><span class="tiny-cross">+</span> EARTH-CENTERED INERTIAL</span><div class="view-options"><button class="view-toggle active" id="toggle-labels" aria-pressed="true">Labels</button><button class="view-toggle" id="toggle-vectors" aria-pressed="false">Vectors</button></div></div>
+      <div class="view-heading"><span class="live-badge" id="live-badge"><span></span> PAUSED</span><div class="view-altitude"><span id="view-altitude">400</span><small>km</small></div><span class="view-caption">ALTITUDE ABOVE EARTH</span></div>
+      <div class="view-message hidden" id="view-message" role="status"></div>
+      <div class="view-bottom"><div class="legend"><span><i class="legend-current"></i>Current orbit</span><span id="preview-legend"><i class="legend-preview"></i>Burn preview</span><span id="target-legend"><i class="legend-target"></i>Target</span></div><div class="camera-tools"><button id="zoom-out" aria-label="Zoom out">−</button><button id="zoom-in" aria-label="Zoom in">+</button><button id="fit-view" title="Fit all orbits (F)">Fit</button></div></div>
+      <div class="canvas-help">SCROLL TO ZOOM · DRAG TO PAN</div>
+    </div>
+    <div class="transport">
+      <div class="time-display"><span class="eyebrow">FLIGHT TIME</span><span id="sim-time">00:00:00</span></div>
+      <div class="play-controls"><button id="play" class="play-button" aria-label="Play simulation"><span id="play-symbol">▶</span><span id="play-label">Play</span></button><button id="step" class="step-button" title="Advance 60 simulated seconds">+60 s</button></div>
+      <div class="warp"><span class="eyebrow">TIME WARP</span><div class="warp-buttons" role="group" aria-label="Simulation speed"><button data-warp="1">1×</button><button data-warp="10">10×</button><button data-warp="100" class="selected" aria-pressed="true">100×</button><button data-warp="1000">1,000×</button></div></div>
+    </div>
+    <section class="telemetry" aria-label="Current orbital elements">
+      <div class="section-line"><h2>Orbit telemetry</h2><span id="orbit-class" class="orbit-class">CIRCULAR</span></div>
+      <div class="telemetry-grid">
+        <div><span class="metric-label">Perigee <span title="Closest altitude above the spherical Earth">↘</span></span><strong id="stat-perigee">400 <small>km</small></strong></div>
+        <div><span class="metric-label">Apogee <span title="Highest altitude above the spherical Earth">↗</span></span><strong id="stat-apogee">400 <small>km</small></strong></div>
+        <div><span class="metric-label">Speed</span><strong id="stat-speed">7.673 <small>km/s</small></strong></div>
+        <div><span class="metric-label">Period</span><strong id="stat-period">92.4 <small>min</small></strong></div>
+        <div><span class="metric-label">Eccentricity</span><strong id="stat-ecc">0.0000</strong></div>
+      </div>
+      <div class="orbit-warning hidden" id="orbit-warning" role="status"></div>
+    </section>
+    <section class="flight-log" aria-label="Flight log">
+      <div class="section-line"><h2>Flight log <span id="log-count">01</span></h2><div><button id="undo" class="text-button" disabled>↶ Undo last burn</button><button id="reset" class="text-button">Reset flight</button></div></div>
+      <ol id="log-list"></ol>
+    </section>
+  </section>
+  <aside class="control-panel" aria-label="Flight controls">
+    <section class="setup-section">
+      <div class="section-label"><span>01</span><h2>Starting orbit</h2></div>
+      <div class="setup-line"><select id="preset" aria-label="Starting orbit"><option value="parking">Parking orbit · 400 km</option><option value="transfer">Geotransfer · 250 × 35,786 km</option><option value="elliptic">High ellipse · 600 × 39,700 km</option><option value="escape">Escape trajectory · 600 km</option><option value="custom">Custom ellipse…</option></select><button id="load-orbit" class="small-button">Load</button></div>
+      <div id="custom-fields" class="hidden"><div class="two-fields"><label>Perigee <span>km</span><input id="custom-perigee" type="number" value="400" min="120" max="100000" step="10"></label><label>Apogee <span>km</span><input id="custom-apogee" type="number" value="1200" min="120" max="100000" step="10"></label></div></div>
+      <p class="field-note" id="setup-note">Start circular. Build a transfer. Fly both burns.</p>
+    </section>
+    <section class="maneuver-section">
+      <div class="section-label"><span>02</span><h2>Plan a maneuver</h2></div>
+      <div class="tabs" role="tablist" aria-label="Maneuver method"><button role="tab" id="transfer-tab" aria-selected="true" aria-controls="transfer-panel" class="selected">Guided transfer</button><button role="tab" id="manual-tab" aria-selected="false" aria-controls="manual-panel">Free burn</button></div>
+      <div id="transfer-panel" role="tabpanel" aria-labelledby="transfer-tab">
+        <div class="planner-intro"><h3>A new orbit, in two burns.</h3><p>Change your altitude with a fuel-efficient Hohmann transfer.</p></div>
+        <label class="target-label" for="target-altitude">TARGET CIRCULAR ALTITUDE</label>
+        <div class="target-input"><input id="target-altitude" type="number" min="120" max="100000" step="100" value="1200" aria-describedby="target-hint"><span>km</span><button id="plan-transfer" title="Calculate a plan for this altitude">Plan <span aria-hidden="true">↗</span></button></div>
+        <p class="field-note" id="target-hint">120–100,000 km above Earth's surface</p>
+        <div class="plan-error hidden" id="plan-error" role="alert"></div>
+        <div id="plan-content">
+          <div class="plan-summary"><div><span>TOTAL Δv</span><strong id="plan-dv">416<small> m/s</small></strong></div><div><span>COAST TIME</span><strong id="plan-time">50<small> min</small></strong></div></div>
+          <ol class="mission-steps">
+            <li id="departure-step" class="active"><span class="step-circle">1</span><div><strong id="departure-title">Departure burn</strong><span id="departure-detail">Add speed to raise your apogee.</span></div><b id="departure-dv">+212 m/s</b></li>
+            <li id="coast-step"><span class="step-circle">2</span><div><strong>Coast to arrival</strong><span id="coast-detail">Let gravity do the work.</span></div><b id="coast-time">50 min</b></li>
+            <li id="arrival-step"><span class="step-circle">3</span><div><strong>Arrival burn</strong><span id="arrival-detail">Round out your new orbit.</span></div><b id="arrival-dv">+205 m/s</b></li>
+          </ol>
+          <div id="mission-note" class="mission-note"><span class="note-symbol">↗</span><p>The dashed path is your orbit after this burn. Nothing changes until you execute.</p></div>
+          <button class="primary-button" id="mission-action">Execute departure <span aria-hidden="true">→</span></button>
+          <button class="cancel-plan hidden text-button" id="cancel-plan">Cancel remaining plan</button>
+        </div>
+        <div class="empty-plan hidden" id="empty-plan"><div class="empty-orbit">◎</div><strong>Choose your next orbit.</strong><p>Enter an altitude and select Plan. Guided transfers begin from a circular orbit.</p></div>
+      </div>
+      <div id="manual-panel" role="tabpanel" aria-labelledby="manual-tab" class="hidden">
+        <div class="planner-intro"><h3>A small change goes a long way.</h3><p>Preview an instantaneous velocity change at the spacecraft's current position.</p></div>
+        <div class="burn-field"><label for="transverse">Transverse Δv <span>m/s</span></label><input id="transverse" type="number" value="100" min="-12000" max="12000" step="10"><p class="field-note">+ along the orbit · − against the orbit</p></div>
+        <div class="burn-field"><label for="radial">Radial Δv <span>m/s</span></label><input id="radial" type="number" value="0" min="-12000" max="12000" step="10"><p class="field-note">+ away from Earth · − toward Earth</p></div>
+        <div class="quick-burns"><button data-burn="100,0">+100 m/s</button><button data-burn="-100,0">−100 m/s</button><button id="circularize">Circularize here</button></div>
+        <div class="preview-card"><div class="preview-heading"><span class="preview-dot"></span> AFTER THIS BURN <b id="manual-dv">100 m/s</b></div><div class="two-metrics"><div><span>Perigee</span><strong id="preview-perigee">400 km</strong></div><div><span>Apogee</span><strong id="preview-apogee">767 km</strong></div></div><p id="preview-warning" class="field-note">Preview only. Your spacecraft has not changed.</p></div>
+        <button id="apply-manual" class="primary-button">Execute burn <span aria-hidden="true">→</span></button>
+        <p id="manual-plan-warning" class="field-note hidden">Executing a free burn cancels the remaining guided plan.</p>
+      </div>
+    </section>
+    <div class="science-note"><span>↳</span><p>Real equations. Ideal conditions.<br><button id="model-open-bottom">Explore the model & limitations</button></p></div>
+  </aside>
+</main>
+<footer><span>APOGEE / A TWO-BODY SANDBOX</span><span>km · km/s · seconds <span class="footer-dot">•</span> All calculations stay in this tab</span></footer>
+</div>
+<div class="toast hidden" id="toast" role="status"></div>
+<dialog id="model-dialog" class="model-dialog">
+  <div class="dialog-heading"><div><span class="eyebrow">FLIGHT NOTES</span><h2>A little physics. A lot of possibility.</h2></div><button class="close-button" data-close="model-dialog" aria-label="Close model information">×</button></div>
+  <p>Apogee is a planar, Earth-centered orbital mechanics workbench. Plan a two-burn transfer, compare its cost, then fly it. Or try a free burn and see how the whole orbit responds.</p>
+  <div class="model-grid"><section><h3>What is calculated</h3><p>Newtonian two-body gravity, with Earth fixed at the focus. Position and velocity are advanced using a universal-variable Kepler solver, including elliptical, parabolic, and escape trajectories. The solver uses a bracketed Newton iteration with a relative equation tolerance of 2 × 10⁻¹¹.</p><p>Earth's gravitational parameter is 398,600.4418 km³/s². The spherical surface has a radius of 6,371 km. Burns are instantaneous changes to velocity.</p></section><section><h3>What is left out</h3><p>No atmosphere or drag, oblateness, Earth rotation, third-body gravity, inclination, finite-duration thrust, vehicle mass, or fuel model. A low perigee is flagged, but air is not simulated. A trajectory stops at the spherical surface.</p><p>This is an educational planning tool, not mission-grade flight software. Displayed Δv is a velocity budget, not propellant usage. Orbit lengths and marker sizes are different scales.</p></section><section><h3>Reading the orbit</h3><p>Perigee is the lowest altitude. Apogee is the highest. Eccentricity describes shape: 0 is circular, between 0 and 1 is elliptical, 1 is parabolic, and above 1 is hyperbolic. Open trajectories have no apogee or orbital period.</p><p>The light path is your current orbit. The dashed coral path is a proposed burn. The dotted green ring is the target circular orbit. Path samples show geometry, not equal time steps.</p></section><section><h3>Making a transfer</h3><p>A Hohmann transfer connects two coplanar circular orbits with an ellipse. A departure burn changes the opposite altitude. After half a transfer period, an arrival burn circularizes the orbit. Lowering orbits uses two braking burns.</p><p>The guided planner accepts circular starting states (eccentricity ≤ 0.0001). Time automatically pauses at arrival. Free burns use local radial and transverse components; transverse is perpendicular to the radius and follows your orbit's current direction.</p></section></div>
+  <div class="keyboard-note"><span>KEYBOARD</span> Space: play / pause &nbsp; F: fit view &nbsp; Esc: close this panel. Every control is also available by button.</div>
+  <button class="primary-button dialog-done" data-close="model-dialog">Back to flight</button>
+</dialog>
+<dialog id="confirm-dialog" class="confirm-dialog"><h2 id="confirm-title">Reset this flight?</h2><p id="confirm-copy">This clears the flight time, burns, and maneuver plan. You can load a new orbit anytime.</p><div class="dialog-actions"><button id="confirm-cancel" class="secondary-button">Keep flying</button><button id="confirm-yes" class="primary-button">Reset flight</button></div></dialog>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "executedAt": "2026-10-02T10:10:31.445Z",
+  "command": "node static-tests.mjs",
+  "passed": true,
+  "checks": 7,
+  "results": [
+    {
+      "name": "HTML contains exactly the required module script",
+      "passed": true
+    },
+    {
+      "name": "HTML IDs are unique",
+      "passed": true
+    },
+    {
+      "name": "Every literal controller ID exists in HTML",
+      "passed": true
+    },
+    {
+      "name": "No remote resource URLs",
+      "passed": true
+    },
+    {
+      "name": "No persistence, network, or cross-frame APIs",
+      "passed": true
+    },
+    {
+      "name": "No CSS remote or secondary import",
+      "passed": true
+    },
+    {
+      "name": "Canvas fallback is implemented",
+      "passed": true
+    }
+  ]
+}

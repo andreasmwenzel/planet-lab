@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "write": false,
+  "root": "/workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/sol-xhigh-minimal/",
+  "outputs": [
+    {
+      "fileName": "assets/index-RJdHBjFB.js",
+      "type": "chunk",
+      "bytes": 25571
+    },
+    {
+      "fileName": "assets/index-DiGbfq4K.css",
+      "type": "asset",
+      "bytes": 20499
+    },
+    {
+      "fileName": "index.html",
+      "type": "asset",
+      "bytes": 12599
+    }
+  ]
+}

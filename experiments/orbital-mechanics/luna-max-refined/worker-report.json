@@ -1,0 +1,68 @@
+{
+  "productTitle": "Orbit Desk — Orbital Profile Lab",
+  "description": "A browser-based two-body orbit profile editor for Earth, Moon, and Mars. Users set periapsis and apoapsis altitude, select presets, control simulated time, and inspect the planar spacecraft state and classical orbital elements.",
+  "implementationStartedUTC": "2026-10-02T08:23:08Z",
+  "implementationCompletedUTC": "2026-10-02T08:43:35Z",
+  "sourceFiles": [
+    "index.html",
+    "main.js",
+    "mechanics.js",
+    "style.css",
+    "physics.test.mjs"
+  ],
+  "validation": [
+    {
+      "command": "node --check main.js && node --check mechanics.js",
+      "result": "PASS"
+    },
+    {
+      "command": "node --test physics.test.mjs",
+      "result": "PASS: 7 tests, 7 passed, 0 failed, 0 skipped",
+      "tests": [
+        "Circular Earth orbit: eccentricity within 1e-15, radius within 1e-9 km, speed within 1e-12 km/s of vis-viva, period within 1e-9 s of the independent period expression, energy within 1e-11 km²/s² of −v²/2; LEO period also bounded to 5,500–5,600 s.",
+        "Earth 250 × 35,786 km altitude ellipse: periapsis radius within 1e-8 km, apoapsis within 1e-7 km, vis-viva speeds within 1e-11 km/s, radial velocity within 1e-12 km/s at each apsis, eccentricity within 1e-14.",
+        "Mars 300 × 100,000 km altitude orbit: position after one period closes within 1e-7 km per axis and velocity within 1e-10 km/s per axis.",
+        "Kepler solver at e = 0.98 and M = 2.4 rad: equation residual within 1e-12 rad.",
+        "Kepler solver at the maximum lunar UI altitude pair (100 × 200,000 km; e ≈ 0.98194865) and seven mean anomalies from 1e-6 to 6.2 rad: each residual within 1e-12 rad.",
+        "Earth transfer orbit at four elapsed-time samples: specific angular momentum invariant within 2e-8 km²/s and specific orbital energy within 2e-11 km²/s².",
+        "Body ordering and guardrails: unknown body, apoapsis below periapsis, and eccentricity 1 are rejected."
+      ]
+    },
+    {
+      "command": "node --input-type=module -e 'import { build } from \"vite\"; await build({ root: process.cwd(), configFile: false, publicDir: false, logLevel: \"warn\", build: { write: false } }); console.log(\"Vite isolated build (write:false): passed\");'",
+      "result": "PASS: isolated Vite build completed with write:false; no build output written."
+    },
+    {
+      "check": "Required module script packaging",
+      "result": "PASS: index.html contains the exact required module script tag once."
+    }
+  ],
+  "numericalAssumptions": [
+    "Classical Newtonian, elliptic, two-body motion with a single central point mass and constant gravitational parameter.",
+    "The spacecraft is massless for propagation; spacecraft mass does not affect the orbit.",
+    "The orbital plane is fixed and represented in perifocal coordinates; no inclination, longitude of ascending node, or argument of periapsis is modeled.",
+    "Body radii are spherical reference radii: Earth 6,378.137 km, Moon 1,737.4 km, Mars 3,389.5 km. Altitude is measured above the selected reference radius.",
+    "Gravitational parameters in km³/s²: Earth 398,600.4418, Moon 4,902.800066, Mars 42,828.375214.",
+    "UI altitude controls keep periapsis at or above 100 km and apoapsis no lower than periapsis; the mechanics module also accepts non-negative periapsis altitude.",
+    "Canvas geometry is schematic and adaptively scaled. Numerical telemetry is computed from the same two-body orbit state."
+  ],
+  "limitations": [
+    "No atmosphere or drag, oblateness/J2, third-body effects, thrust or maneuvers, body rotation, collision handling, or interplanetary transfer dynamics.",
+    "High-altitude configurations are still propagated as idealized bound two-body ellipses even where a real mission would need other bodies' gravity.",
+    "Canvas visuals, browser interactions, and performance were not browser-verified; the prompt disallowed localhost browser checks."
+  ],
+  "repairs": [
+    "Changed the altitude note from “mean radius” to “reference radius” to accurately describe the selected body-radius convention."
+  ],
+  "unknowns": [
+    "Actual appearance and responsive behavior in a browser remain unverified.",
+    "No browser cross-engine or runtime performance checks were run."
+  ],
+  "tokenUsage": null,
+  "tokenUsageUnavailableReason": "No actual input, cached-input, output, reasoning, or total token counters were exposed by the execution runtime to this worker. Counts were not estimated and restricted session-history paths were not inspected.",
+  "tokenCounterSource": null,
+  "tokenCounterSemantics": null,
+  "tokenCountsIncludeToolsOrAgentOverhead": null,
+  "cost": null,
+  "costUnavailableReason": "No measured cost was supplied by the runtime."
+}

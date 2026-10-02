@@ -1,0 +1,433 @@
+{
+  "id": "sol-xhigh-refined",
+  "experimentId": "orbital-mechanics",
+  "title": "Sol 6.1 · xhigh · refined",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/orbital-mechanics/sol-xhigh-refined/index.html",
+  "axes": {
+    "model": "Sol 6.1",
+    "effort": "xhigh",
+    "promptApproach": "refined"
+  },
+  "summary": "A finished, local, one-burn Earth-orbit design workbench. Choose an idealized or custom starting orbit, coast or scrub to a burn point, adjust transverse and radial delta-v with controls or a draggable vector, compare the resulting conic, execute the impulse, and undo maneuvers. The product includes precise orbital metrics, collision and escape warnings, time warp, camera controls, a maneuver ledger, and in-product model documentation.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation in a fresh native task, with the displayed model and effort explicitly configured. Four frozen creative prompts share the same separately recorded runtime and numerical-testing scaffold. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6.1-sol",
+    "effort": "xhigh",
+    "runId": "sol-xhigh-refined",
+    "launchIndex": 16,
+    "startedAt": "2026-10-02T08:59:10Z",
+    "completedAt": "2026-10-02T09:30:44.355Z",
+    "durationSeconds": 1894,
+    "durationScope": "Observed wall-clock time from task launch to independently verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "tokenUsageReason": "The current worker runtime did not expose actual provider input, cached-input, output, reasoning, or total counters in the available tool or completion data. No estimates, restricted session-history reads, credential inspection, or additional inference run were used.",
+    "tokenUsageSource": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1 (optional)",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; deployed browser review is separate. Available cloud browser does not support WebGL2."
+    },
+    "sourceHashes": {
+      "build-check.mjs": "c8f5f221bfe3416aea159cec74204811b82e2d456ab2b0b1e7bf7fd1aca2d1f7",
+      "control-smoke-results.json": "a6f4512a7ac6e5badc8b2dd86c5d8dc8c041abb8a0b68179a8f2562f86ca8db2",
+      "control-smoke.mjs": "c3b2a285f58f234ed8f5b11aef467ab0a3375d4d27404968f79eb4f52f98616b",
+      "index.html": "bf01c7c81549ca3869b49e6615a2e770bfb8aa3ea0074ad5e389133076fc9b87",
+      "main.js": "d55abd62bbef245168e39db03fbf87b68c9d0634bb3be1810ef08df99d50854d",
+      "physics.js": "7552102846fc73ec8a3fdef05dee26f2591983922625e9ab7474d919964802e4",
+      "prompt.txt": "14377862ce854d7cbce0f6eab05cd1784408bfee2530b90a4e12fc5c3af6a314",
+      "self-test-results.json": "3f53baeada64a43f6edc0e1c8c0bd415212634298c297a47e482d371fadfa1a1",
+      "self-test.mjs": "7e6923ef7cdf07dc8d6136f890314c67c0d40dce49229f006f8e4eb51cb6f78d",
+      "styles.css": "54c8a1c25c3f6cd21670e39c036147400c47a2ae049a974e0ab5911fc2afca81",
+      "verification.log": "918e0fd54f17560ac13efb7f48b19258cf91de82711aff369910489c71179bc3",
+      "worker-report.json": "7f67adeeb1d6411d31aa5583ab6d6fd825b3f31fb7557bf9f1dcaddd8ba0e7d1"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an in-browser orbital mechanics simulator\n\nDeliver a finished, usable product, not a demo page or marketing landing page. Choose the product concept, architecture, interactions, and visual direction yourself. Use actual orbital mechanics and state the model’s assumptions and limitations.\n\nBuild an elegant, carefully resolved product. Find a specific purpose and remove everything that distracts from it. Make the workflow feel considered, the information clear, and the interactions dependable. Restraint should improve usefulness rather than turn the result into a generic minimalist demo."
+      },
+      {
+        "role": "user",
+        "content": "Runtime packaging and verification scaffold (separate from creative direction):\n- Implement from scratch. Do not inspect the prior experiment, other runs, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only in the supplied run directory. Create index.html with optional main.js and local CSS/JavaScript modules. If using main.js, HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. CSS can be imported from main.js. A single fully inline HTML file is also allowed.\n- Available environment: vanilla JavaScript, optional installed Three.js 0.186.1, Vite 7.3.6, Node 24. No additional dependencies, runtime network calls, remote assets/fonts, backend, accounts, analytics, or live orbital/celestial data. Do not modify package files or shared app files. Canvas, SVG, DOM, and 3D are all allowed; Three.js is not mandatory. If using WebGL, handle unsupported graphics gracefully.\n- The common harness bundles JavaScript and CSS into one inline HTML document. Its viewer is an iframe sandbox with allow-scripts and an opaque origin. Do not access parent/top, communicate across frames, or rely on persistent storage, cookies, or origin-specific APIs.\n- Make one bounded implementation and its self-test/repair phase. Validate JavaScript syntax and perform an isolated Vite build with write:false. Run quantitative numerical tests applicable to your chosen mechanics, independently of the interface, and preserve a directly rerunnable test script in the run directory. Test the actual implementation's physics functions, not a separately copied formula. Record exact commands, results, tolerances, and repairs. Repair your own implementation as needed for these checks. Do not impose a tiny arbitrary token cutoff or clone existing code.\n- Browser localhost access is unavailable; do not claim browser checks or bypass that restriction. Actual browser appearance, interactions, and performance remain unverified until separately reviewed.\n- Include worker-report.json with product title, description, implementation start/end UTC timestamps, exact tests and outcomes, numerical assumptions and limitations, repairs, and unknowns. Set tokenUsage and cost to null unless the runtime supplies measured values. Do not invent token counts, costs, or quality scores.\n"
+      },
+      {
+        "role": "user",
+        "content": "Reporting-only amendment (added after the first three launches; creative prompts and runtime constraints are unchanged):\nAt the end of your run, include actual runtime-provided token counters if accessible: input, cached input, output, reasoning, and total. Preserve the provider's field semantics and avoid double counting. Identify the counter source and whether counts include tools or agent overhead. Do not estimate from source length or the context budget, inspect restricted session-history paths, or inspect credentials. If actual counters are inaccessible, set tokenUsage to null and give the reason. Set cost to null unless measured cost is supplied by the runtime. Do not create another inference run solely to obtain counters.\n"
+      }
+    ],
+    "reportingAmendment": {
+      "kind": "reporting-only",
+      "timing": "before-launch"
+    },
+    "note": "The complete public creative prompt and identical public runtime/testing scaffold are recorded separately. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax, isolated bundle, and the recorded quantitative physics tests passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "Rendered appearance, interactions, and performance have not yet been independently checked in a browser."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 53646,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 1894,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated.",
+      "Numerical test success applies only to the preserved cases and tolerances, not unrestricted physical accuracy."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 21986,
+    "cssBytes": 20304,
+    "numerical": "passed",
+    "independentVerification": {
+      "numerical": "passed",
+      "command": "node experiments/orbital-mechanics/sol-xhigh-refined/self-test.mjs",
+      "exitCode": 0,
+      "stdout": "PASS Circular state and quarter/full/multiple-period propagation {\"periodSeconds\":5544.855095980794,\"maximumPositionErrorKm\":2.277680504296648e-8,\"positionToleranceKm\":0.00001,\"quarterPositionToleranceKm\":1e-7}\nPASS Elliptic conservation, reversal and semigroup at high eccentricity {\"eccentricity\":0.884974570714678,\"samples\":120,\"maxEnergyRelativeError\":9.606684899364975e-14,\"maxAngularMomentumRelativeError\":9.772722309288035e-14,\"maxSemigroupErrorKm\":0.000004372264396508975,\"conservationRelativeTolerance\":2e-9,\"positionToleranceKm\":0.0001}\nPASS 400 km to 35,786 km Hohmann transfer and circularization {\"firstBurnMetersPerSecond\":2399.3521560036265,\"secondBurnMetersPerSecond\":1457.2262857596113,\"halfTransferSeconds\":19040.22985583813,\"positionToleranceKm\":0.000001,\"circularEccentricityTolerance\":1e-11}\nPASS Universal solver compared with independent RK4 for all conic classes {\"durationSeconds\":3600,\"rk4StepSeconds\":2,\"positionToleranceKm\":0.00002,\"velocityToleranceKmPerSecond\":2e-8,\"errors\":[{\"class\":\"elliptic\",\"positionErrorKm\":1.4724565887626253e-8,\"velocityErrorKmPerSecond\":7.435879869948073e-12},{\"class\":\"parabolic\",\"positionErrorKm\":1.8699912109397495e-8,\"velocityErrorKmPerSecond\":6.345727093157567e-12},{\"class\":\"hyperbolic\",\"positionErrorKm\":1.9997643578356237e-8,\"velocityErrorKmPerSecond\":6.511663365927498e-12}]}\nPASS Parabolic propagation independently checked with Barker equation {\"durationSeconds\":21600,\"positionErrorKm\":4.1159031748919956e-11,\"positionToleranceKm\":0.00001}\nPASS Near-parabolic continuity and Stumpff zero limit {\"durationSeconds\":21600,\"relativeSpeedPerturbation\":1e-10,\"maxNeighbourDistanceKm\":0.00007019168654959802,\"continuityToleranceKm\":0.001,\"stumpffSeriesTolerance\":1e-16}\nPASS Future impact times for elliptic, radial, hyperbolic and parabolic states {\"crossings\":[{\"class\":\"retrograde ellipse\",\"timeSeconds\":878.7601350222242,\"surfaceErrorKm\":0},{\"class\":\"radial bound inward\",\"timeSeconds\":207.3370811599236,\"surfaceErrorKm\":0},{\"class\":\"radial bound outward\",\"timeSeconds\":440.0060568515726,\"surfaceErrorKm\":9.094947017729282e-13},{\"class\":\"radial hyperbolic inward\",\"timeSeconds\":30.39884185304898,\"surfaceErrorKm\":0},{\"class\":\"radial parabolic inward\",\"timeSeconds\":36.31408219823808,\"surfaceErrorKm\":0},{\"class\":\"oblique hyperbolic inward\",\"timeSeconds\":30.40429541382218,\"surfaceErrorKm\":7.275957614183426e-12},{\"class\":\"oblique parabolic inward\",\"timeSeconds\":36.47406823569507,\"surfaceErrorKm\":0}],\"surfaceToleranceKm\":0.00002,\"outboundEscapeAndSafeCircularMissEarth\":true}\nPASS Impulse frame orthogonality, retrograde direction and energy accounting {\"states\":2,\"maxEnergyIdentityError\":1.2434497875801753e-14,\"energyToleranceKmSquaredPerSecondSquared\":1e-12}\nPASS Deterministic envelope sweep of actual control ranges and trajectory sampling {\"samples\":400,\"collisions\":199,\"escapes\":84,\"maxEnergyRelativeError\":9.314523853975987e-14,\"maxMomentumRelativeError\":3.7015320484599116e-14,\"maxSurfaceErrorKm\":6.172012945171446e-8,\"conservationRelativeTolerance\":2e-8,\"surfaceAndConicToleranceKm\":0.00002}\nPASS Invalid inputs and runtime packaging contract {\"invalidStatesRejected\":true,\"exactModuleTag\":true,\"noRuntimeNetworkOrPersistentStorage\":true}\n10/10 tests passed; results saved to self-test-results.json\n",
+      "stderr": "",
+      "verifiedAt": "2026-10-02T09:30:43.527860+00:00",
+      "scope": "Independent rerun of preserved quantitative tests against the actual implementation physics; not browser QA or unrestricted numerical certification."
+    },
+    "checkedAt": "2026-10-02T09:30:44.355Z",
+    "runtimeBytes": 53646
+  },
+  "generationReport": {
+    "productTitle": "Apsis — Orbital workbench",
+    "description": "A finished, local, one-burn Earth-orbit design workbench. Choose an idealized or custom starting orbit, coast or scrub to a burn point, adjust transverse and radial delta-v with controls or a draggable vector, compare the resulting conic, execute the impulse, and undo maneuvers. The product includes precise orbital metrics, collision and escape warnings, time warp, camera controls, a maneuver ledger, and in-product model documentation.",
+    "requestedModel": "gpt-6.1-sol",
+    "requestedReasoningEffort": "xhigh",
+    "implementationStartUtc": "2026-10-02T08:59:14Z",
+    "implementationEndUtc": "2026-10-02T09:28:41Z",
+    "timestampSource": "Actual UTC readings from clock.curr_time in this worker. Start includes prompt reading and implementation planning; end follows final code and verification.",
+    "implementedFromScratch": true,
+    "generationDelegated": false,
+    "files": [
+      "index.html",
+      "main.js",
+      "styles.css",
+      "physics.js",
+      "self-test.mjs",
+      "self-test-results.json",
+      "control-smoke.mjs",
+      "control-smoke-results.json",
+      "build-check.mjs",
+      "verification.log",
+      "worker-report.json"
+    ],
+    "architecture": {
+      "runtime": "Vanilla JavaScript, DOM, Canvas 2D, and local CSS; no additional dependencies or WebGL.",
+      "physics": "Pure functions in physics.js, shared directly by the interface and numerical tests. Bracketed Newton universal-variable Kepler f/g propagation with stable Stumpff functions, orbital elements, local radial/transverse impulsive burns, anomaly-derived and numerically refined future surface crossings, and conic trajectory sampling.",
+      "state": "In-memory only. Up to 12 executed burns with exact pre-burn state and draft restoration. No network calls, storage, cookies, accounts, parent/top access, or cross-frame communication.",
+      "packaging": "index.html has exactly <script type=\"module\" src=\"./main.js\"></script>. All assets are local and Vite-bundleable for the opaque-origin allow-scripts iframe."
+    },
+    "tests": [
+      {
+        "kind": "syntax",
+        "command": "node --check main.js && node --check physics.js && node --check self-test.mjs && node --check control-smoke.mjs && node --check build-check.mjs",
+        "outcome": "Passed, exit 0."
+      },
+      {
+        "kind": "quantitative mechanics",
+        "command": "node self-test.mjs",
+        "outcome": "10/10 test groups passed after repairs. Tests import and exercise the actual physics.js implementation.",
+        "details": {
+          "startedAtUtc": "2026-10-02T09:28:17.408Z",
+          "endedAtUtc": "2026-10-02T09:28:17.466Z",
+          "passed": true,
+          "testCount": 10,
+          "results": [
+            {
+              "name": "Circular state and quarter/full/multiple-period propagation",
+              "passed": true,
+              "milliseconds": 1.529,
+              "periodSeconds": 5544.855095980794,
+              "maximumPositionErrorKm": 2.277680504296648e-8,
+              "positionToleranceKm": 0.00001,
+              "quarterPositionToleranceKm": 1e-7
+            },
+            {
+              "name": "Elliptic conservation, reversal and semigroup at high eccentricity",
+              "passed": true,
+              "milliseconds": 5.748,
+              "eccentricity": 0.884974570714678,
+              "samples": 120,
+              "maxEnergyRelativeError": 9.606684899364975e-14,
+              "maxAngularMomentumRelativeError": 9.772722309288035e-14,
+              "maxSemigroupErrorKm": 0.000004372264396508975,
+              "conservationRelativeTolerance": 2e-9,
+              "positionToleranceKm": 0.0001
+            },
+            {
+              "name": "400 km to 35,786 km Hohmann transfer and circularization",
+              "passed": true,
+              "milliseconds": 0.312,
+              "firstBurnMetersPerSecond": 2399.3521560036265,
+              "secondBurnMetersPerSecond": 1457.2262857596113,
+              "halfTransferSeconds": 19040.22985583813,
+              "positionToleranceKm": 0.000001,
+              "circularEccentricityTolerance": 1e-11
+            },
+            {
+              "name": "Universal solver compared with independent RK4 for all conic classes",
+              "passed": true,
+              "milliseconds": 8.412,
+              "durationSeconds": 3600,
+              "rk4StepSeconds": 2,
+              "positionToleranceKm": 0.00002,
+              "velocityToleranceKmPerSecond": 2e-8,
+              "errors": [
+                {
+                  "class": "elliptic",
+                  "positionErrorKm": 1.4724565887626253e-8,
+                  "velocityErrorKmPerSecond": 7.435879869948073e-12
+                },
+                {
+                  "class": "parabolic",
+                  "positionErrorKm": 1.8699912109397495e-8,
+                  "velocityErrorKmPerSecond": 6.345727093157567e-12
+                },
+                {
+                  "class": "hyperbolic",
+                  "positionErrorKm": 1.9997643578356237e-8,
+                  "velocityErrorKmPerSecond": 6.511663365927498e-12
+                }
+              ]
+            },
+            {
+              "name": "Parabolic propagation independently checked with Barker equation",
+              "passed": true,
+              "milliseconds": 0.256,
+              "durationSeconds": 21600,
+              "positionErrorKm": 4.1159031748919956e-11,
+              "positionToleranceKm": 0.00001
+            },
+            {
+              "name": "Near-parabolic continuity and Stumpff zero limit",
+              "passed": true,
+              "milliseconds": 0.316,
+              "durationSeconds": 21600,
+              "relativeSpeedPerturbation": 1e-10,
+              "maxNeighbourDistanceKm": 0.00007019168654959802,
+              "continuityToleranceKm": 0.001,
+              "stumpffSeriesTolerance": 1e-16
+            },
+            {
+              "name": "Future impact times for elliptic, radial, hyperbolic and parabolic states",
+              "passed": true,
+              "milliseconds": 1.241,
+              "crossings": [
+                {
+                  "class": "retrograde ellipse",
+                  "timeSeconds": 878.7601350222242,
+                  "surfaceErrorKm": 0
+                },
+                {
+                  "class": "radial bound inward",
+                  "timeSeconds": 207.3370811599236,
+                  "surfaceErrorKm": 0
+                },
+                {
+                  "class": "radial bound outward",
+                  "timeSeconds": 440.0060568515726,
+                  "surfaceErrorKm": 9.094947017729282e-13
+                },
+                {
+                  "class": "radial hyperbolic inward",
+                  "timeSeconds": 30.39884185304898,
+                  "surfaceErrorKm": 0
+                },
+                {
+                  "class": "radial parabolic inward",
+                  "timeSeconds": 36.31408219823808,
+                  "surfaceErrorKm": 0
+                },
+                {
+                  "class": "oblique hyperbolic inward",
+                  "timeSeconds": 30.40429541382218,
+                  "surfaceErrorKm": 7.275957614183426e-12
+                },
+                {
+                  "class": "oblique parabolic inward",
+                  "timeSeconds": 36.47406823569507,
+                  "surfaceErrorKm": 0
+                }
+              ],
+              "surfaceToleranceKm": 0.00002,
+              "outboundEscapeAndSafeCircularMissEarth": true
+            },
+            {
+              "name": "Impulse frame orthogonality, retrograde direction and energy accounting",
+              "passed": true,
+              "milliseconds": 0.539,
+              "states": 2,
+              "maxEnergyIdentityError": 1.2434497875801753e-14,
+              "energyToleranceKmSquaredPerSecondSquared": 1e-12
+            },
+            {
+              "name": "Deterministic envelope sweep of actual control ranges and trajectory sampling",
+              "passed": true,
+              "milliseconds": 34.235,
+              "samples": 400,
+              "collisions": 199,
+              "escapes": 84,
+              "maxEnergyRelativeError": 9.314523853975987e-14,
+              "maxMomentumRelativeError": 3.7015320484599116e-14,
+              "maxSurfaceErrorKm": 6.172012945171446e-8,
+              "conservationRelativeTolerance": 2e-8,
+              "surfaceAndConicToleranceKm": 0.00002
+            },
+            {
+              "name": "Invalid inputs and runtime packaging contract",
+              "passed": true,
+              "milliseconds": 1.408,
+              "invalidStatesRejected": true,
+              "exactModuleTag": true,
+              "noRuntimeNetworkOrPersistentStorage": true
+            }
+          ]
+        }
+      },
+      {
+        "kind": "headless control logic",
+        "command": "node --experimental-vm-modules control-smoke.mjs",
+        "outcome": "10/10 checks passed. Uses actual main.js and physics.js with a dependency-free deterministic DOM/canvas stub. Node emits the expected experimental VM Modules warning. This is not browser verification.",
+        "details": {
+          "startedAtUtc": "2026-10-02T09:28:17.551Z",
+          "endedAtUtc": "2026-10-02T09:28:17.725Z",
+          "passed": true,
+          "checks": [
+            "Actual main.js initializes its real HTML IDs and numerical readouts",
+            "Execute records exactly one impulse and clears the draft",
+            "Playback advances analytical state and pauses on a draft change",
+            "Scrubbing changes the burn point and restores a nonzero preview",
+            "Undo restores the exact original draft and burn point",
+            "Zero impulse is disabled; presets and custom validation reset coherently",
+            "Modal opens and closes; reset returns to the chosen custom orbit",
+            "Collision coasting stops exactly at the modeled Earth surface",
+            "Burn inputs clamp to their documented limits and camera controls run",
+            "Escape trajectories stop at the stated six-hour coast horizon"
+          ],
+          "scope": "Actual main.js with deterministic DOM/canvas stubs. This does not verify a real browser, rendering, layout, native events, accessibility, or performance."
+        }
+      },
+      {
+        "kind": "isolated bundle",
+        "command": "node build-check.mjs",
+        "outcome": "Passed, exit 0. Vite configFile:false, publicDir:false, write:false, emptyOutDir:false; root and HTML input restricted to this run directory. No build output files written.",
+        "output": [
+          {
+            "file": "assets/index-DYA7FNmx.js",
+            "bytes": 22667
+          },
+          {
+            "file": "assets/index-B0FptZBg.css",
+            "bytes": 20304
+          },
+          {
+            "file": "index.html",
+            "bytes": 11190
+          }
+        ]
+      }
+    ],
+    "exactRerunCommand": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/sol-xhigh-refined && node --check main.js && node --check physics.js && node --check self-test.mjs && node --check control-smoke.mjs && node --check build-check.mjs && node self-test.mjs && node --experimental-vm-modules control-smoke.mjs && node build-check.mjs",
+    "repairs": [
+      {
+        "trigger": "First numerical run: 8/10 groups passed. High-eccentricity time reversal failed its 0.0001 km tolerance with 0.00017548353346498173 km error.",
+        "repair": "Tightened universal-anomaly residual tolerance from 2e-12 to 2e-14 relative to the time equation target.",
+        "verified": "Final high-eccentricity conservation and semigroup tests pass; maximum semigroup position error 0.000004372264396508975 km."
+      },
+      {
+        "trigger": "First envelope sweep: a 200-day near-parabolic ellipse had surface-position error 0.00014167734298098367 km against a 0.00002 km tolerance.",
+        "repair": "Refined anomaly-derived impact times with up to four Newton corrections using the actual propagator and instantaneous radial velocity.",
+        "verified": "Final 400-case sweep maximum surface error is 6.172012945171446e-8 km."
+      },
+      {
+        "trigger": "Code review identified under-resolved periapsis passages in very long colliding ellipses when the display arc was uniformly sampled in time.",
+        "repair": "Sampled colliding elliptical arcs uniformly in eccentric anomaly, with exact propagated start/end points.",
+        "verified": "All 400 sampled paths remain on or above the modeled surface, are finite, and satisfy applicable conic/closure checks."
+      },
+      {
+        "trigger": "Code review identified the surface-stop zero-duration arc edge case.",
+        "repair": "Return a one-point, zero-horizon collision trajectory when already at the modeled surface.",
+        "verified": "Numerical boundary test and actual-main.js headless collision/rewind checks pass."
+      },
+      {
+        "trigger": "Final source review of secondary text and branding.",
+        "repair": "Increased secondary UI font sizes and corrected the footer branding.",
+        "verified": "Final isolated Vite build and control tests pass; actual appearance remains unverified."
+      }
+    ],
+    "numericalAssumptions": {
+      "units": "Position km, velocity km/s, time seconds; user delta-v inputs m/s converted at the physics boundary.",
+      "earthGravitationalParameterKm3PerS2": 398600.4418,
+      "earthMeanRadiusKm": 6371,
+      "forceModel": "Fixed, spherical Earth and negligible spacecraft mass; planar Newtonian two-body motion.",
+      "maneuvers": "Instantaneous impulse in the outward radial and transverse along-angular-momentum directions. Prograde is explicitly transverse and is not generally identical to velocity direction in eccentric motion.",
+      "collision": "Coasting stops at the first future radius=6371 km crossing. A negative mathematical periapsis altitude is exposed in the metrics.",
+      "classification": "Bound for specific energy < -1e-10 km^2/s^2; parabolic numerical neighbourhood for absolute specific energy <= 1e-10 km^2/s^2.",
+      "display": "Full safe closed ellipses; future arcs ending at impact for colliding conics; six-hour future arcs and coast limits for unbound conics. Display geometry has 320 intervals by default.",
+      "interactionRanges": "Initial periapsis/apoapsis altitudes 120–100,000 km, with apoapsis >= periapsis. Transverse delta-v -3,500 to +3,500 m/s, radial delta-v -2,500 to +2,500 m/s, 10 m/s increments. Time warp 1x, 10x, 100x, 1,000x."
+    },
+    "limitations": [
+      "No atmospheric drag, reentry heating, oblateness/J2, third bodies, Earth rotation, inclination, finite-duration thrust, fuel, spacecraft mass evolution, engine limits, relativistic effects, or live celestial data.",
+      "Presets are idealized states, not live spacecraft or actual mission ephemerides.",
+      "Unbound coast inspection is bounded to six hours; the maneuver ledger holds 12 impulses.",
+      "A very large near-parabolic bound ellipse can make Earth appear tiny in the fit-both-orbits view; zoom/pan and Fit controls are available.",
+      "Educational orbit-design intuition; not operational flight planning."
+    ],
+    "unknowns": [
+      "No browser localhost checks were run because the scaffold explicitly makes that unavailable.",
+      "Actual browser appearance, mobile layout, pointer/touch behavior, native keyboard and dialog behavior, accessibility, and performance remain unverified until separately reviewed.",
+      "Headless DOM/canvas stubs verify control logic only and do not establish browser compatibility or rendering quality.",
+      "Floating-point behavior outside the tested initial-state and UI delta-v envelope has not been established."
+    ],
+    "tokenUsage": null,
+    "tokenCounterSource": null,
+    "tokenUsageUnavailableReason": "The current worker runtime did not expose actual provider input, cached-input, output, reasoning, or total counters in the available tool or completion data. No estimates, restricted session-history reads, credential inspection, or additional inference run were used.",
+    "tokenCountsIncludeToolsOrAgentOverhead": null,
+    "cost": null,
+    "costUnavailableReason": "No measured cost was supplied by the runtime.",
+    "compliance": {
+      "otherRunsOrPreexistingImplementationsRead": false,
+      "restrictedSessionHistoryRead": false,
+      "sharedOrPackageFilesModified": false,
+      "browserLocalhostChecks": false,
+      "published": false,
+      "gitOperations": false,
+      "additionalDependenciesInstalled": false
+    }
+  }
+}

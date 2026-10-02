@@ -1,0 +1,109 @@
+{
+  "passed": 20,
+  "results": [
+    {
+      "name": "Circular quarter-period x, km",
+      "error": 3.006928039894774e-12,
+      "tolerance": 1e-7
+    },
+    {
+      "name": "Circular quarter-period y, km",
+      "error": 0,
+      "tolerance": 1e-7
+    },
+    {
+      "name": "One-period closure, km",
+      "error": 0,
+      "tolerance": 1e-7
+    },
+    {
+      "name": "Hohmann apoapsis altitude, km",
+      "error": 0,
+      "tolerance": 1e-7
+    },
+    {
+      "name": "Hohmann circular eccentricity",
+      "error": 8.422714646108282e-16,
+      "tolerance": 1e-10
+    },
+    {
+      "name": "Hohmann time-to-apoapsis, s",
+      "error": 0,
+      "tolerance": 1e-7
+    },
+    {
+      "name": "elliptic specific-energy drift, km²/s²",
+      "error": 2.842170943040401e-14,
+      "tolerance": 1e-9
+    },
+    {
+      "name": "elliptic angular-momentum drift, km²/s",
+      "error": 4.3655745685100555e-11,
+      "tolerance": 0.000001
+    },
+    {
+      "name": "elliptic time-reversal position, km",
+      "error": 2.4158525240314706e-10,
+      "tolerance": 0.00001
+    },
+    {
+      "name": "hyperbolic specific-energy drift, km²/s²",
+      "error": 2.3092638912203256e-14,
+      "tolerance": 1e-9
+    },
+    {
+      "name": "hyperbolic angular-momentum drift, km²/s",
+      "error": 1.7462298274040222e-10,
+      "tolerance": 0.000001
+    },
+    {
+      "name": "hyperbolic time-reversal position, km",
+      "error": 1.687743806798771e-10,
+      "tolerance": 0.00001
+    },
+    {
+      "name": "near-parabolic specific-energy drift, km²/s²",
+      "error": 2.6645352591003757e-15,
+      "tolerance": 1e-9
+    },
+    {
+      "name": "near-parabolic angular-momentum drift, km²/s",
+      "error": 2.473825588822365e-10,
+      "tolerance": 0.000001
+    },
+    {
+      "name": "near-parabolic time-reversal position, km",
+      "error": 2.749744086860578e-10,
+      "tolerance": 0.00001
+    },
+    {
+      "name": "1000-step energy drift, km²/s²",
+      "error": 1.2789769243681803e-13,
+      "tolerance": 1e-9
+    },
+    {
+      "name": "Retrograde surface-intersection detection",
+      "passed": true
+    },
+    {
+      "name": "Rounded controls reach 500 km target, maximum apsis error",
+      "error": 0.25128359549580637,
+      "tolerance": 15
+    },
+    {
+      "name": "Rounded controls reach 2000 km target, maximum apsis error",
+      "error": 1.1525590319979528,
+      "tolerance": 15
+    },
+    {
+      "name": "Rounded controls reach 36000 km target, maximum apsis error",
+      "error": 7.701721983597963,
+      "tolerance": 15
+    }
+  ],
+  "hohmann": {
+    "firstMps": 395.190303671181,
+    "secondMps": 374.7510264934961,
+    "transferSeconds": 3278.0143777683356
+  }
+}

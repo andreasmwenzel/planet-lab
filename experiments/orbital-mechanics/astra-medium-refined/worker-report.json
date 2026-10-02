@@ -1,0 +1,161 @@
+{
+  "productTitle": "APOGEE · Orbit workshop",
+  "description": "A focused, planar Earth orbit-raising instrument. Plan tangential and radial impulses with a live conic preview, execute burns, coast at four time rates, jump to apoapsis, and complete a guided two-burn transfer. Includes numerical telemetry, maneuver history, orbit-fit zoom, escape and impact feedback, and in-product model documentation.",
+  "implementationStartUtc": "2026-10-02T09:32:16Z",
+  "implementationEndUtc": "2026-10-02T09:40:12.177Z",
+  "files": [
+    "index.html",
+    "main.js",
+    "style.css",
+    "physics.mjs",
+    "test-physics.mjs",
+    "verify.mjs",
+    "numerical-results.json",
+    "build-results.txt",
+    "verification-results.txt"
+  ],
+  "tests": [
+    {
+      "command": "node --check main.js && node --check physics.mjs",
+      "outcome": "Passed syntax validation"
+    },
+    {
+      "command": "node test-physics.mjs",
+      "outcome": "20 quantitative assertions passed",
+      "resultsFile": "numerical-results.json",
+      "results": [
+        {
+          "name": "Circular quarter-period x, km",
+          "error": 3.006928039894774e-12,
+          "tolerance": 1e-7
+        },
+        {
+          "name": "Circular quarter-period y, km",
+          "error": 0,
+          "tolerance": 1e-7
+        },
+        {
+          "name": "One-period closure, km",
+          "error": 0,
+          "tolerance": 1e-7
+        },
+        {
+          "name": "Hohmann apoapsis altitude, km",
+          "error": 0,
+          "tolerance": 1e-7
+        },
+        {
+          "name": "Hohmann circular eccentricity",
+          "error": 8.422714646108282e-16,
+          "tolerance": 1e-10
+        },
+        {
+          "name": "Hohmann time-to-apoapsis, s",
+          "error": 0,
+          "tolerance": 1e-7
+        },
+        {
+          "name": "elliptic specific-energy drift, km²/s²",
+          "error": 2.842170943040401e-14,
+          "tolerance": 1e-9
+        },
+        {
+          "name": "elliptic angular-momentum drift, km²/s",
+          "error": 4.3655745685100555e-11,
+          "tolerance": 0.000001
+        },
+        {
+          "name": "elliptic time-reversal position, km",
+          "error": 2.4158525240314706e-10,
+          "tolerance": 0.00001
+        },
+        {
+          "name": "hyperbolic specific-energy drift, km²/s²",
+          "error": 2.3092638912203256e-14,
+          "tolerance": 1e-9
+        },
+        {
+          "name": "hyperbolic angular-momentum drift, km²/s",
+          "error": 1.7462298274040222e-10,
+          "tolerance": 0.000001
+        },
+        {
+          "name": "hyperbolic time-reversal position, km",
+          "error": 1.687743806798771e-10,
+          "tolerance": 0.00001
+        },
+        {
+          "name": "near-parabolic specific-energy drift, km²/s²",
+          "error": 2.6645352591003757e-15,
+          "tolerance": 1e-9
+        },
+        {
+          "name": "near-parabolic angular-momentum drift, km²/s",
+          "error": 2.473825588822365e-10,
+          "tolerance": 0.000001
+        },
+        {
+          "name": "near-parabolic time-reversal position, km",
+          "error": 2.749744086860578e-10,
+          "tolerance": 0.00001
+        },
+        {
+          "name": "1000-step energy drift, km²/s²",
+          "error": 1.2789769243681803e-13,
+          "tolerance": 1e-9
+        },
+        {
+          "name": "Retrograde surface-intersection detection",
+          "passed": true
+        },
+        {
+          "name": "Rounded controls reach 500 km target, maximum apsis error",
+          "error": 0.25128359549580637,
+          "tolerance": 15
+        },
+        {
+          "name": "Rounded controls reach 2000 km target, maximum apsis error",
+          "error": 1.1525590319979528,
+          "tolerance": 15
+        },
+        {
+          "name": "Rounded controls reach 36000 km target, maximum apsis error",
+          "error": 7.701721983597963,
+          "tolerance": 15
+        }
+      ]
+    },
+    {
+      "command": "node verify.mjs",
+      "outcome": "Passed syntax checks, all 20 numerical assertions, and isolated Vite 7.3.6 production build with configFile:false and write:false",
+      "resultsFile": "verification-results.txt"
+    }
+  ],
+  "exactRerunCommand": "cd /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-medium-refined && node verify.mjs",
+  "numericalAssumptions": [
+    "Planar Newtonian two-body gravity with Earth mu=398600.4418 km^3/s^2 and spherical radius=6371 km.",
+    "Universal-variable Kepler propagation with Stumpff functions and a safeguarded bisection solve; supports bound, parabolic, and hyperbolic trajectories.",
+    "Impulses in local tangential and radial components; tangential follows orbital angular-momentum direction, not the full velocity vector on eccentric trajectories.",
+    "Surface collision is checked in at most 15-second increments and contact is refined with 35 bisection iterations.",
+    "Guided Hohmann impulses rounded to 1 m/s; target achievement means both apsides within 15 km."
+  ],
+  "limitations": [
+    "No atmosphere, Earth oblateness, external bodies, finite-duration propulsion, fuel, spacecraft mass, or three-dimensional inclination.",
+    "Predicted conics can show subsurface portions; flight stops at surface impact.",
+    "Finite canvas viewing extent clips hyperbolic paths. Fit view caps its contribution from each conic at 100000 km before margin; manual zoom extends farther.",
+    "Extreme repeated impulses and very long duration scenarios are outside the tested numerical envelope. Surface-crossing detection samples 15-second segments rather than analytically locating all conic intersections.",
+    "No reload persistence or runtime network access."
+  ],
+  "repairs": [
+    "Removed an unnecessary invalid CSS import before validation. No numerical test failures or physics repairs were required."
+  ],
+  "unknowns": [
+    "Browser localhost checks were prohibited and were not attempted. Actual browser appearance, interactions, accessibility, responsiveness, and performance remain unverified until separately reviewed.",
+    "No runtime token or cost counters were exposed to this worker."
+  ],
+  "tokenUsage": null,
+  "tokenUsageReason": "Actual provider token counters were not available through the runtime tools. No estimates or restricted session-history inspection were used.",
+  "counterSource": null,
+  "counterScope": null,
+  "cost": null
+}

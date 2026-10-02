@@ -1,0 +1,356 @@
+{
+  "productTitle": "Orbit Desk",
+  "description": "Finished Earth-centered 2D maneuver workbench: choose a circular starting orbit, preview and complete a two-burn Hohmann transfer, apply custom along-track/radial impulses, coast or run time, inspect live orbital elements and a predicted trajectory, and recover through undo/reset. Responsive local canvas/DOM interface with flight record and cumulative delta-v.",
+  "implementationStartUTC": "2026-10-02T08:39:31Z",
+  "implementationEndUTC": "2026-10-02T08:47:57Z",
+  "files": [
+    "index.html",
+    "main.js",
+    "style.css",
+    "physics.js",
+    "physics.test.mjs",
+    "ui-state.test.mjs",
+    "test-results.json",
+    "ui-state-results.json",
+    "worker-report.json"
+  ],
+  "checks": [
+    {
+      "command": "node --check experiments/orbital-mechanics/sol-medium-detailed/main.js",
+      "outcome": "PASS; exit 0"
+    },
+    {
+      "command": "node --check experiments/orbital-mechanics/sol-medium-detailed/physics.js",
+      "outcome": "PASS; exit 0"
+    },
+    {
+      "command": "node experiments/orbital-mechanics/sol-medium-detailed/physics.test.mjs",
+      "outcome": "PASS; exit 0; 25 reported checks plus assertions for safe-coast and contact flags",
+      "results": {
+        "passed": 25,
+        "outcomes": [
+          {
+            "name": "Circular quarter-period position",
+            "actual": 5.075965370961222e-12,
+            "expected": 0,
+            "error": 5.075965370961222e-12,
+            "tolerance": 1e-06,
+            "unit": "km"
+          },
+          {
+            "name": "Circular quarter-period velocity",
+            "actual": 9.22461140441281e-15,
+            "expected": 0,
+            "error": 9.22461140441281e-15,
+            "tolerance": 1e-09,
+            "unit": "km/s"
+          },
+          {
+            "name": "Circular full-period closure",
+            "actual": 0,
+            "expected": 0,
+            "error": 0,
+            "tolerance": 1e-06,
+            "unit": "km"
+          },
+          {
+            "name": "Circular eccentricity",
+            "actual": 1.2069943631034978e-16,
+            "expected": 0,
+            "error": 1.2069943631034978e-16,
+            "tolerance": 1e-12,
+            "unit": "dimensionless"
+          },
+          {
+            "name": "Hohmann 2000 km arrival radius",
+            "actual": 8371.000000000005,
+            "expected": 8371,
+            "error": 5.4569682106375694e-12,
+            "tolerance": 1e-06,
+            "unit": "km"
+          },
+          {
+            "name": "Hohmann 2000 km opposite-apsis position",
+            "actual": 1.5656968442757685e-11,
+            "expected": 0,
+            "error": 1.5656968442757685e-11,
+            "tolerance": 1e-06,
+            "unit": "km"
+          },
+          {
+            "name": "Hohmann 2000 km circularized eccentricity",
+            "actual": 2.0596234528181165e-16,
+            "expected": 0,
+            "error": 2.0596234528181165e-16,
+            "tolerance": 1e-10,
+            "unit": "dimensionless"
+          },
+          {
+            "name": "Hohmann 35786 km arrival radius",
+            "actual": 42157.00000000002,
+            "expected": 42157,
+            "error": 2.1827872842550278e-11,
+            "tolerance": 1e-06,
+            "unit": "km"
+          },
+          {
+            "name": "Hohmann 35786 km opposite-apsis position",
+            "actual": 4.2650424947487734e-11,
+            "expected": 0,
+            "error": 4.2650424947487734e-11,
+            "tolerance": 1e-06,
+            "unit": "km"
+          },
+          {
+            "name": "Hohmann 35786 km circularized eccentricity",
+            "actual": 7.509084480827716e-16,
+            "expected": 0,
+            "error": 7.509084480827716e-16,
+            "tolerance": 1e-10,
+            "unit": "dimensionless"
+          },
+          {
+            "name": "Hohmann 160 km arrival radius",
+            "actual": 6531.000000000001,
+            "expected": 6531,
+            "error": 9.094947017729282e-13,
+            "tolerance": 1e-06,
+            "unit": "km"
+          },
+          {
+            "name": "Hohmann 160 km opposite-apsis position",
+            "actual": 6.974504233849308e-12,
+            "expected": 0,
+            "error": 6.974504233849308e-12,
+            "tolerance": 1e-06,
+            "unit": "km"
+          },
+          {
+            "name": "Hohmann 160 km circularized eccentricity",
+            "actual": 3.384634339744973e-16,
+            "expected": 0,
+            "error": 3.384634339744973e-16,
+            "tolerance": 1e-10,
+            "unit": "dimensionless"
+          },
+          {
+            "name": "Ten eccentric orbits energy conservation",
+            "actual": -13.92370744252353,
+            "expected": -13.923707442506739,
+            "error": 1.6790124846011167e-11,
+            "tolerance": 1e-08,
+            "unit": "km\u00b2/s\u00b2"
+          },
+          {
+            "name": "Ten eccentric orbits angular momentum conservation",
+            "actual": 64138.965448210576,
+            "expected": 64138.96544821492,
+            "error": 4.343746695667505e-09,
+            "tolerance": 1e-06,
+            "unit": "km\u00b2/s"
+          },
+          {
+            "name": "Ten eccentric orbits closure",
+            "actual": 1.5842355521460224e-06,
+            "expected": 0,
+            "error": 1.5842355521460224e-06,
+            "tolerance": 0.001,
+            "unit": "km"
+          },
+          {
+            "name": "Hyperbolic classification and outward escape",
+            "passed": true
+          },
+          {
+            "name": "Hyperbolic six-hour energy conservation",
+            "actual": 21.928608232325303,
+            "expected": 21.928608232325296,
+            "error": 7.105427357601002e-15,
+            "tolerance": 1e-09,
+            "unit": "km\u00b2/s\u00b2"
+          },
+          {
+            "name": "Hyperbolic six-hour momentum conservation",
+            "actual": 85806.16544821474,
+            "expected": 85806.16544821492,
+            "error": 1.7462298274040222e-10,
+            "tolerance": 1e-06,
+            "unit": "km\u00b2/s"
+          },
+          {
+            "name": "Hyperbolic time reversal",
+            "actual": 6.965280722481337e-10,
+            "expected": 0,
+            "error": 6.965280722481337e-10,
+            "tolerance": 1e-05,
+            "unit": "km"
+          },
+          {
+            "name": "Parabolic propagation energy conservation",
+            "actual": -2.1316282072803006e-14,
+            "expected": 0,
+            "error": 2.1316282072803006e-14,
+            "tolerance": 1e-10,
+            "unit": "km\u00b2/s\u00b2"
+          },
+          {
+            "name": "Parabolic time reversal",
+            "actual": 3.65272819690712e-11,
+            "expected": 0,
+            "error": 3.65272819690712e-11,
+            "tolerance": 1e-05,
+            "unit": "km"
+          },
+          {
+            "name": "Surface contact radius",
+            "actual": 6370.999999999979,
+            "expected": 6371,
+            "error": 2.091837814077735e-11,
+            "tolerance": 1e-07,
+            "unit": "km"
+          },
+          {
+            "name": "Safe coast agreement with exact propagation",
+            "actual": 2.6134686328028796e-09,
+            "expected": 0,
+            "error": 2.6134686328028796e-09,
+            "tolerance": 1e-05,
+            "unit": "km"
+          },
+          {
+            "name": "Impulse component magnitude",
+            "actual": 0.36055512754639907,
+            "expected": 0.3605551275463989,
+            "error": 1.6653345369377348e-16,
+            "tolerance": 1e-12,
+            "unit": "km/s"
+          }
+        ]
+      }
+    },
+    {
+      "command": "node experiments/orbital-mechanics/sol-medium-detailed/ui-state.test.mjs",
+      "outcome": "PASS; exit 0; 9 checks of actual main.js state-machine logic through a stub DOM in Node VM; not browser testing",
+      "results": {
+        "passed": 9,
+        "scope": "Headless Node VM state logic, no browser/rendering coverage",
+        "outcomes": [
+          {
+            "name": "Initial circular state offers transfer",
+            "passed": true
+          },
+          {
+            "name": "Departure locks target and enables arrival",
+            "passed": true
+          },
+          {
+            "name": "Arrival pauses and prevents leaving apsis before second burn",
+            "passed": true
+          },
+          {
+            "name": "Guided cost preview remains fixed during transfer",
+            "passed": true
+          },
+          {
+            "name": "Completion restores free flight at target altitude",
+            "passed": true
+          },
+          {
+            "name": "Undo circularization restores arrival state",
+            "passed": true
+          },
+          {
+            "name": "Custom impulse cancels guided transfer",
+            "passed": true
+          },
+          {
+            "name": "Reset clears maneuver budget and history",
+            "passed": true
+          },
+          {
+            "name": "Out-of-range impulse is rejected without spending delta-v",
+            "passed": true
+          }
+        ]
+      }
+    },
+    {
+      "command": "node --input-type=module -e \"import {build} from 'vite'; const r=await build({configFile:false,root:'experiments/orbital-mechanics/sol-medium-detailed',build:{write:false}}); console.log('WRITE_FALSE_BUILD_OK',r.output.map(x=>({fileName:x.fileName,bytes:(x.code||x.source).length})));\"",
+      "outcome": "PASS; exit 0; Vite 7.3.6, 5 modules, write:false; no build artifacts written",
+      "outputs": [
+        {
+          "fileName": "assets/index-DviL7y-q.js",
+          "reportedStringLength": 15365
+        },
+        {
+          "fileName": "assets/index-D6XOTWUf.css",
+          "reportedStringLength": 6205
+        },
+        {
+          "fileName": "index.html",
+          "reportedStringLength": 371
+        }
+      ],
+      "outputSizeSemantics": "Command labels lengths bytes, but these are JavaScript string lengths, not measured byte counts."
+    }
+  ],
+  "commandWorkingDirectory": "/workspace/scratch/bb2a48021f5a/planet-lab",
+  "numericalModel": {
+    "units": "km, km/s, s; UI custom impulses in m/s",
+    "earthMu": 398600.4418,
+    "earthRadiusKm": 6371,
+    "propagator": "Universal-variable Kepler f/g propagation, Stumpff functions, bracketed Newton iteration with bisection fallback; small-z series",
+    "rootTermination": "Absolute universal-equation residual below 1e-8 or anomaly bracket width below 1e-11; max 120 iterations",
+    "impact": "Forward coasts sample at intervals no longer than 20 s and bisect the first sampled surface crossing for 40 iterations",
+    "transfer": "Coplanar impulsive Hohmann transfer between circular orbits; automatic stop at arrival; guided sequence requires eccentricity < 0.0001",
+    "preview": "320 segments; one bound period capped at seven days, or six hours for unbound trajectories; prediction stops at sampled Earth intersection"
+  },
+  "assumptionsAndLimitations": [
+    "Spherical Earth point-mass gravity, planar Earth-centered inertial motion",
+    "No atmosphere, drag, Earth rotation, J2/oblateness, third bodies, finite thrust, spacecraft mass, propellant, rendezvous or live data",
+    "GEO-height preset is a circular radius; no ground synchronization is modeled",
+    "Delta-v is summed impulse magnitude, not fuel consumption",
+    "Unusual rapid Earth-crossing trajectories can pass inside and out between the 20-second collision samples",
+    "Extreme degenerate/radial or numerical-range trajectories are not comprehensively certified; solver convergence is bounded, not formally proven for all permitted inputs",
+    "Orbit preview is sampled and display extent is capped at 100,000 km for current/trajectory fitting; target itself is fitted and distant escaped spacecraft may be cropped",
+    "Flight state stays in memory; no persistent storage or export; undo retains the most recent 30 action snapshots",
+    "No runtime network calls or remote assets; no WebGL dependency; canvas-unavailable state retains controls/telemetry with an explanatory warning"
+  ],
+  "repairs": [
+    {
+      "issue": "Guided arrival could be left before the circularization burn by using run/coast controls",
+      "change": "Disable run and coast at guided arrival, re-enable after circularization or a custom impulse",
+      "verification": "Headless arrival-lock, completion, and undo checks passed"
+    },
+    {
+      "issue": "Transfer cost preview was recomputed from the current elliptical state",
+      "change": "Store the departure plan and retain it throughout the guided sequence",
+      "verification": "Headless fixed-preview check passed"
+    },
+    {
+      "issue": "Undo could restore flight state with an unrelated current target input",
+      "change": "Save and restore target input in action snapshots",
+      "verification": "Syntax and headless state-machine suite passed"
+    }
+  ],
+  "unknowns": [
+    "Actual browser appearance, interactions, responsiveness, accessibility behavior, and performance are unverified: browser localhost access was unavailable and no bypass was used",
+    "Headless UI checks do not validate canvas, browser event scheduling, native input validation, dialog behavior, or ResizeObserver",
+    "Cross-browser and opaque-origin iframe execution has been bundled but not exercised in a browser",
+    "No measured runtime token counters or measured cost were supplied through this worker conversation or the available tool metadata"
+  ],
+  "browserChecksPerformed": false,
+  "tokenUsage": null,
+  "tokenUsageReason": "Runtime-provided input, cached input, output, reasoning and total counters are not accessible in this worker toolset. Available tool metadata was checked; no usage-counter tool was exposed. Source length/context budget were not used to estimate tokens and restricted session-history paths were not inspected.",
+  "cost": null,
+  "costReason": "No measured cost supplied by runtime.",
+  "sourceImmutableAfterCompletion": true,
+  "sourceSha256": {
+    "index.html": "4c5267fcc09a4dadb20670deb7b4b754ca777a8c691d74c9458929b2a896da0e",
+    "main.js": "cc83d729d516e7efb8410555683df87626db568ebbcedce6aaa88997c0614a30",
+    "style.css": "fb46e130387de1c1b54b2a0df22b55e09e5deb828d854008aeb683a309800926",
+    "physics.js": "339e12820e9c987b5a8b9ec569a2e87ac3a539cfb860c4ae30a0fff71e4de279",
+    "physics.test.mjs": "931dff12661c93dfce31d499ba7b8e974a9fa8568bf6d981a3cfe83a36312de3",
+    "ui-state.test.mjs": "2a79c81c899dae55ea2b7327280a3457cba96a1757392b8deb734434f2338fb6"
+  }
+}

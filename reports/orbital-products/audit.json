@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-10-02T10:13:04.474879+00:00",
+  "runs": 24,
+  "available": 24,
+  "uniqueImplementationHashes": 24,
+  "errors": [],
+  "sourceHashes": {
+    "luna-medium-minimal": "84e7851512b5543f0c3544ebc0f2ba31497f463b7d965d78eb5db499f7990241",
+    "luna-medium-detailed": "dfaa368fcd0488d9203dbc7d11c82d5f9f131657a2db5bf4896b141e84f8a8c5",
+    "luna-medium-bold": "bb84f1cb489a7e9bfad924c5054a9bb77db7e8d882e289acfd0cf072c3a53632",
+    "luna-medium-refined": "90c8f0133076972c3e0ec735a26708dd244b3ea49e3ab3ebb096bfe16257a9a9",
+    "luna-max-minimal": "844dc4747e495fd029425e0578fd43d678a9f26247e916e3b5f23952628f8b88",
+    "luna-max-detailed": "98d162c09119a5eb13bee1a79a8a9de6a9a077c099d4638320e8b799e0e89912",
+    "luna-max-bold": "4b6718034d9341debeba00857011f29ea975f63ed1aac2f6ff05b5636316d29d",
+    "luna-max-refined": "e86977010d44c09c9ef801ae2c460ee1fe04186f06f860d74a8c2e8b38e0542d",
+    "sol-medium-minimal": "4f6de03024f39388640615c27f4173a0a466d10fc6e2f0810b6b23f0aeabaa36",
+    "sol-medium-detailed": "1434a2118d38a41d17a78383b9d712b4cabb9716b1b30154f26398079aa101dc",
+    "sol-medium-bold": "cc9ddfd84d02e0666a540952b091e18ba87891be11f1dd1c6f555390a22fbcbb",
+    "sol-medium-refined": "6b85558c035c2331aeb95c748f71f8696b893a5a5a639ec7bea50dfe28f5a713",
+    "sol-xhigh-minimal": "777922b712ba7d7fd31edfd3f26a2e9162b2719b81f149036d683505c3f7e419",
+    "sol-xhigh-detailed": "cbc80b041807732952938382cdfc45ffd709407a49ab6f042bcca002a1a5b9db",
+    "sol-xhigh-bold": "4e91f0c8c86b79e63e9644f07814176018d291e1025d5e58b132076cd8ec9740",
+    "sol-xhigh-refined": "63b66f4df3455be25d2e9972287bc01ad91a881922d94bbfd979caebd797f98c",
+    "astra-medium-minimal": "b4987b918e3c80532f0b61f99dd384e9c1dcf788c38b2f64ea0da25cbc4ae817",
+    "astra-medium-detailed": "1f4c33a669588de1c576a911e64023072f92b436f07ab7c0f952d56555fc3ac7",
+    "astra-medium-bold": "be3f92aac7217fd621d85a3eaafee9bad5486dbc4fa384904138dd6349875f56",
+    "astra-medium-refined": "7c3d74accc3ebd53f1c44068ed3d81f1c98b3933d7265a72a7ea4e6a7f999188",
+    "astra-xhigh-minimal": "06e179b7f5702b1a34198b2e60e851b685ba70548ddb0d0bf412b48477be5730",
+    "astra-xhigh-detailed": "765da78353814038b04746e860106b4fff68f17024c71cdae80432509f172515",
+    "astra-xhigh-bold": "0152b706fe090110dc739d422be7c64159eab526d3889374c59f2e93f9797fa5",
+    "astra-xhigh-refined": "517fa107983485e6988704427afbc05f4bf29688e8ca6f275cd4bc589f295de9"
+  }
+}

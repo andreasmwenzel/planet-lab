@@ -1,0 +1,42 @@
+{
+  "passed": 9,
+  "scope": "Headless Node VM state logic, no browser/rendering coverage",
+  "outcomes": [
+    {
+      "name": "Initial circular state offers transfer",
+      "passed": true
+    },
+    {
+      "name": "Departure locks target and enables arrival",
+      "passed": true
+    },
+    {
+      "name": "Arrival pauses and prevents leaving apsis before second burn",
+      "passed": true
+    },
+    {
+      "name": "Guided cost preview remains fixed during transfer",
+      "passed": true
+    },
+    {
+      "name": "Completion restores free flight at target altitude",
+      "passed": true
+    },
+    {
+      "name": "Undo circularization restores arrival state",
+      "passed": true
+    },
+    {
+      "name": "Custom impulse cancels guided transfer",
+      "passed": true
+    },
+    {
+      "name": "Reset clears maneuver budget and history",
+      "passed": true
+    },
+    {
+      "name": "Out-of-range impulse is rejected without spending delta-v",
+      "passed": true
+    }
+  ]
+}

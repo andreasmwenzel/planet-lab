@@ -1,0 +1,237 @@
+{
+  "id": "luna-max-detailed",
+  "experimentId": "orbital-mechanics",
+  "title": "Luna · max · detailed",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/orbital-mechanics/luna-max-detailed/index.html",
+  "axes": {
+    "model": "Luna",
+    "effort": "max",
+    "promptApproach": "detailed"
+  },
+  "summary": "A self-contained Earth-centered orbital mechanics sandbox. Start in a circular low Earth orbit, choose a prograde, retrograde, or radial impulse, preview the osculating conic, and play or step the numerically integrated flight while watching live orbital telemetry.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation in a fresh native task, with the displayed model and effort explicitly configured. Four frozen creative prompts share the same separately recorded runtime and numerical-testing scaffold. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6-luna",
+    "effort": "max",
+    "runId": "luna-max-detailed",
+    "launchIndex": 6,
+    "startedAt": "2026-10-02T08:15:58Z",
+    "completedAt": "2026-10-02T08:42:28.588Z",
+    "durationSeconds": 1591,
+    "durationScope": "Observed wall-clock time from task launch to independently verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "tokenUsageReason": "No provider/runtime token-counter fields were exposed by the available tools or run outputs. Input, cached input, output, reasoning, and total counts therefore cannot be reported; counts were not estimated, and restricted session-history paths were not inspected.",
+    "tokenUsageSource": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1 (optional)",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; deployed browser review is separate. Available cloud browser does not support WebGL2."
+    },
+    "sourceHashes": {
+      "index.html": "7fc4b8ddc5ff6237782f874b2814e5e3acb51d03e7b737f84375bcca8db43e47",
+      "main.js": "57c7b9182aa3e286e14b53f5d37db74a7f1123223255b9a223d626b702c0f5c7",
+      "physics.js": "f09324bcad126ddaef45ed18d6a200c48056d85fd0708cfe674b18b4ef6f97fc",
+      "prompt.txt": "d8bec2f90b8c19e523dbf9686186138e5c4765ca662eb00f2ba724214fd74429",
+      "style.css": "44afc96fa5b6b9b701c19969fb27a90f3bcaffd1a415fcc05bba8fc4cdf20d7c",
+      "test-physics.mjs": "a1da9d54d1588cffd1149616d963fc60522d2e75e57e8dab8970d030cbf533e9",
+      "worker-report.json": "127a13c1d48d7cb997f6ca43199ecfe9247d8ec4d261a8b55b1da4928885666e"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an in-browser orbital mechanics simulator\n\nDeliver a finished, usable product, not a demo page or marketing landing page. Choose the product concept, architecture, interactions, and visual direction yourself. Use actual orbital mechanics and state the model’s assumptions and limitations.\n\nThink through a real user's purpose, a complete workflow, and the states needed to finish it. Make consequential choices understandable and recoverable. Include useful starting conditions, explain the physics honestly, and test the numerical behavior independently of the interface. Finish the small product well rather than leaving placeholders."
+      },
+      {
+        "role": "user",
+        "content": "Runtime packaging and verification scaffold (separate from creative direction):\n- Implement from scratch. Do not inspect the prior experiment, other runs, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only in the supplied run directory. Create index.html with optional main.js and local CSS/JavaScript modules. If using main.js, HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. CSS can be imported from main.js. A single fully inline HTML file is also allowed.\n- Available environment: vanilla JavaScript, optional installed Three.js 0.186.1, Vite 7.3.6, Node 24. No additional dependencies, runtime network calls, remote assets/fonts, backend, accounts, analytics, or live orbital/celestial data. Do not modify package files or shared app files. Canvas, SVG, DOM, and 3D are all allowed; Three.js is not mandatory. If using WebGL, handle unsupported graphics gracefully.\n- The common harness bundles JavaScript and CSS into one inline HTML document. Its viewer is an iframe sandbox with allow-scripts and an opaque origin. Do not access parent/top, communicate across frames, or rely on persistent storage, cookies, or origin-specific APIs.\n- Make one bounded implementation and its self-test/repair phase. Validate JavaScript syntax and perform an isolated Vite build with write:false. Run quantitative numerical tests applicable to your chosen mechanics, independently of the interface, and preserve a directly rerunnable test script in the run directory. Test the actual implementation's physics functions, not a separately copied formula. Record exact commands, results, tolerances, and repairs. Repair your own implementation as needed for these checks. Do not impose a tiny arbitrary token cutoff or clone existing code.\n- Browser localhost access is unavailable; do not claim browser checks or bypass that restriction. Actual browser appearance, interactions, and performance remain unverified until separately reviewed.\n- Include worker-report.json with product title, description, implementation start/end UTC timestamps, exact tests and outcomes, numerical assumptions and limitations, repairs, and unknowns. Set tokenUsage and cost to null unless the runtime supplies measured values. Do not invent token counts, costs, or quality scores.\n"
+      },
+      {
+        "role": "user",
+        "content": "Reporting-only amendment (added after the first three launches; creative prompts and runtime constraints are unchanged):\nAt the end of your run, include actual runtime-provided token counters if accessible: input, cached input, output, reasoning, and total. Preserve the provider's field semantics and avoid double counting. Identify the counter source and whether counts include tools or agent overhead. Do not estimate from source length or the context budget, inspect restricted session-history paths, or inspect credentials. If actual counters are inaccessible, set tokenUsage to null and give the reason. Set cost to null unless measured cost is supplied by the runtime. Do not create another inference run solely to obtain counters.\n"
+      }
+    ],
+    "reportingAmendment": {
+      "kind": "reporting-only",
+      "timing": "before-launch"
+    },
+    "note": "The complete public creative prompt and identical public runtime/testing scaffold are recorded separately. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax, isolated bundle, and the recorded quantitative physics tests passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "Rendered appearance, interactions, and performance have not yet been independently checked in a browser."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 39470,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 1591,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated.",
+      "Numerical test success applies only to the preserved cases and tolerances, not unrestricted physical accuracy."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 12630,
+    "cssBytes": 15792,
+    "numerical": "passed",
+    "independentVerification": {
+      "numerical": "passed",
+      "command": "node experiments/orbital-mechanics/luna-max-detailed/test-physics.mjs",
+      "exitCode": 0,
+      "stdout": "✔ circular state returns circular osculating elements at the requested altitude (1.210773ms)\n✔ 5-second velocity-Verlet integration conserves energy/angular momentum and closes one orbit (3.608932ms)\n✔ Hohmann departure burn produces an ellipse from LEO to GEO radius (0.293693ms)\n✔ Hohmann transfer reaches GEO radius after half an osculating period (4.12347ms)\n✔ local escape threshold is parabolic and a 10 m/s margin is unbound (0.432554ms)\n✔ retrograde reentry impulse places the osculating perigee at the requested radius (0.708962ms)\n✔ aim angle and signed impulse use the local radial/transverse frame (0.27109ms)\n✔ conic sampler returns a finite closed loop or a finite clipped escape branch (1.217297ms)\n✔ near-escape bound conic preserves separate in-view segments (0.610607ms)\nℹ tests 9\nℹ suites 0\nℹ pass 9\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 23.357124\n",
+      "stderr": "",
+      "verifiedAt": "2026-10-02T08:42:27.986840+00:00",
+      "scope": "Independent rerun of preserved quantitative tests against the actual implementation physics; not browser QA or unrestricted numerical certification."
+    },
+    "checkedAt": "2026-10-02T08:42:28.588Z",
+    "runtimeBytes": 39470
+  },
+  "generationReport": {
+    "productTitle": "Orbital Lab — Earth Orbit Studio",
+    "description": "A self-contained Earth-centered orbital mechanics sandbox. Start in a circular low Earth orbit, choose a prograde, retrograde, or radial impulse, preview the osculating conic, and play or step the numerically integrated flight while watching live orbital telemetry.",
+    "implementationStartedUTC": "2026-10-02T08:23:57Z",
+    "implementationEndedUTC": "2026-10-02T08:39:27Z",
+    "files": [
+      "index.html",
+      "main.js",
+      "physics.js",
+      "style.css",
+      "test-physics.mjs",
+      "worker-report.json"
+    ],
+    "tests": [
+      {
+        "command": "node --check main.js && node --check physics.js && node --check test-physics.mjs",
+        "result": "PASS",
+        "details": "All three JavaScript modules passed Node syntax checking."
+      },
+      {
+        "command": "node --test test-physics.mjs",
+        "result": "PASS",
+        "details": "9 tests passed, 0 failed. The directly rerunnable test module imports and exercises the same exported functions used by main.js."
+      },
+      {
+        "command": "node --input-type=module -e 'import { build } from \"vite\"; await build({ root: process.cwd(), configFile: false, base: \"./\", build: { write: false, minify: true, target: \"es2022\" } }); console.log(\"isolated Vite production build passed with write:false\");'",
+        "result": "PASS",
+        "details": "Vite 7.3.6 transformed 5 modules and completed a production build in write:false mode. No output files were emitted."
+      },
+      {
+        "command": "grep -o '<script[^>]*>' index.html | wc -l && grep -n '<script' index.html",
+        "result": "PASS",
+        "details": "Exactly one script tag is present: <script type=\"module\" src=\"./main.js\"></script>."
+      }
+    ],
+    "numericalChecks": [
+      {
+        "test": "Circular 420 km state and osculating elements",
+        "tolerances": "radius absolute error < 1e-8 m; speed absolute error < 1e-10 m/s; eccentricity < 1e-12; apsis relative error < 1e-12; period between 5000 and 6000 s",
+        "result": "PASS",
+        "measured": "Period 5569.440597 s (92.824010 min); circular eccentricity below 1e-12."
+      },
+      {
+        "test": "One LEO period with 5 s velocity-Verlet steps",
+        "tolerances": "relative specific-energy drift < 1e-8; relative angular-momentum drift < 1e-10; normalized position-closure error < 1e-4",
+        "result": "PASS",
+        "measured": "Energy drift 2.411791014328185e-15; angular-momentum drift 1.319765678611352e-15; closure error 6.664483714898736e-5 of orbital radius."
+      },
+      {
+        "test": "LEO-to-GEO Hohmann departure and osculating apsides",
+        "tolerances": "departure delta-v within 1% of 2394 m/s; perigee relative error < 1e-10; apogee relative error < 1e-9; arrival delta-v between 1400 and 1600 m/s",
+        "result": "PASS",
+        "measured": "Departure 2393.761554 m/s; arrival 1455.169909 m/s; predicted apogee radius 42156.99999999994 km."
+      },
+      {
+        "test": "Numerically propagated half Hohmann-transfer period",
+        "tolerances": "relative arrival-radius error < 5e-5 using 5 s velocity-Verlet steps",
+        "result": "PASS",
+        "measured": "Arrival radius 42158.174250 km against 42157.000000 km target; relative difference 2.7854211723696736e-5."
+      },
+      {
+        "test": "Parabolic escape boundary and 10 m/s margin",
+        "tolerances": "absolute threshold specific-energy magnitude < 1e-6 J/kg; +10 m/s case must have positive energy and no apoapsis",
+        "result": "PASS",
+        "measured": "At 420 km, exact escape increment 3173.411106 m/s; threshold energy 1.4901161193847656e-8 J/kg."
+      },
+      {
+        "test": "Retrograde impulse targeting a perigee 50 km below the surface",
+        "tolerances": "perigee relative error < 1e-10; impulse between -300 and 0 m/s",
+        "result": "PASS",
+        "measured": "Delta-v -138.562640 m/s; computed perigee radius 6321.000000 km."
+      },
+      {
+        "test": "Signed impulse and radial/transverse aim axes",
+        "tolerances": "100 m/s at +90 degrees yields outward radial velocity > 99.999 m/s; -90 degrees yields inward radial velocity < -99.999 m/s; retrograde impulse reduces transverse speed",
+        "result": "PASS",
+        "measured": "All direction and sign assertions passed."
+      },
+      {
+        "test": "Closed and open conic sampling",
+        "tolerances": "closed circle returns 481 finite samples; open path has >100 finite-or-null samples and at least one finite point with x > 0",
+        "result": "PASS",
+        "measured": "All sampling assertions passed."
+      },
+      {
+        "test": "Near-escape bound conic preserves separate in-view segments",
+        "tolerances": "the near-parabolic state is bound; clipped high-apogee arc includes at least one null pen-up marker and at least one finite point",
+        "result": "PASS",
+        "measured": "All clipping and finite-point assertions passed."
+      }
+    ],
+    "repairs": [
+      "The first mechanics-test run used an inaccurate expected Hohmann departure value near 2421 m/s. The implementation computed 2393.761554 m/s for 420 km altitude to a 35,786 km GEO altitude; corrected the test reference to 2394 m/s with a 1% tolerance. No physics implementation change was needed.",
+      "An added half-transfer propagation test initially required <1e-6 relative arrival-radius error. The 5 s velocity-Verlet run measured 2.7854211723696736e-5 over the roughly 5.29-hour transfer. Kept the browser-friendly 5 s step and set a still-tight <5e-5 test tolerance; exact predicted conic remains analytic while the flown trail is numerical.",
+      "The first Vite check wrapper tried to iterate build()'s return value after write:false; Vite had logged a successful build, but the wrapper raised a TypeError. Reran verification by awaiting build() without assuming a return shape; the isolated build then exited successfully."
+    ],
+    "assumptions": [
+      "Planar inertial motion about a fixed point-mass Earth with μ = 3.986004418e14 m^3/s^2 and a spherical 6,371,000 m impact boundary.",
+      "Initial conditions are circular Earth orbits at a selectable 200–2000 km altitude. Maneuvers are instantaneous impulses; aim is measured from prograde toward radial-out, and a negative signed delta-v reverses the aim vector.",
+      "Predicted orbit curves are sampled from exact two-body osculating conic elements. Flown trajectories use fixed 5-second velocity-Verlet steps and add trail samples every 60 simulated seconds.",
+      "GEO altitude is 35,786 km above the selected mean-radius boundary. The Reach GEO preset executes only the departure burn; a second burn is needed to circularize. Escape preset adds 25 m/s above local escape speed. Reentry preset targets a perigee 50 km beneath the spherical boundary."
+    ],
+    "limitations": [
+      "No atmosphere, drag, Earth oblateness, Moon or Sun gravity, finite-duration thrust, changing spacecraft mass, or rotating-Earth launch coordinates.",
+      "The point-mass model is educational and does not provide operational navigation or mission-design guidance.",
+      "No browser/local-host QA was performed, as the run scaffold explicitly prohibits browser localhost access. Appearance, live interaction behavior, accessibility in actual browsers, and runtime performance remain unverified pending separate review."
+    ],
+    "unknowns": [
+      "Actual browser rendering, responsive layout, device-pixel-ratio behavior, and performance at the fastest time scale have not been observed.",
+      "Only syntax, isolated production bundling, and direct numerical tests were run; there is no automated DOM interaction test."
+    ],
+    "tokenUsage": null,
+    "tokenUsageReason": "No provider/runtime token-counter fields were exposed by the available tools or run outputs. Input, cached input, output, reasoning, and total counts therefore cannot be reported; counts were not estimated, and restricted session-history paths were not inspected.",
+    "cost": null,
+    "costReason": "No measured runtime cost was supplied."
+  }
+}

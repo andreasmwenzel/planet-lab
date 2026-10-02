@@ -1,0 +1,116 @@
+{
+  "productTitle": "Orbital Lab — Earth Orbit Studio",
+  "description": "A self-contained Earth-centered orbital mechanics sandbox. Start in a circular low Earth orbit, choose a prograde, retrograde, or radial impulse, preview the osculating conic, and play or step the numerically integrated flight while watching live orbital telemetry.",
+  "implementationStartedUTC": "2026-10-02T08:23:57Z",
+  "implementationEndedUTC": "2026-10-02T08:39:27Z",
+  "files": [
+    "index.html",
+    "main.js",
+    "physics.js",
+    "style.css",
+    "test-physics.mjs",
+    "worker-report.json"
+  ],
+  "tests": [
+    {
+      "command": "node --check main.js && node --check physics.js && node --check test-physics.mjs",
+      "result": "PASS",
+      "details": "All three JavaScript modules passed Node syntax checking."
+    },
+    {
+      "command": "node --test test-physics.mjs",
+      "result": "PASS",
+      "details": "9 tests passed, 0 failed. The directly rerunnable test module imports and exercises the same exported functions used by main.js."
+    },
+    {
+      "command": "node --input-type=module -e 'import { build } from \"vite\"; await build({ root: process.cwd(), configFile: false, base: \"./\", build: { write: false, minify: true, target: \"es2022\" } }); console.log(\"isolated Vite production build passed with write:false\");'",
+      "result": "PASS",
+      "details": "Vite 7.3.6 transformed 5 modules and completed a production build in write:false mode. No output files were emitted."
+    },
+    {
+      "command": "grep -o '<script[^>]*>' index.html | wc -l && grep -n '<script' index.html",
+      "result": "PASS",
+      "details": "Exactly one script tag is present: <script type=\"module\" src=\"./main.js\"></script>."
+    }
+  ],
+  "numericalChecks": [
+    {
+      "test": "Circular 420 km state and osculating elements",
+      "tolerances": "radius absolute error < 1e-8 m; speed absolute error < 1e-10 m/s; eccentricity < 1e-12; apsis relative error < 1e-12; period between 5000 and 6000 s",
+      "result": "PASS",
+      "measured": "Period 5569.440597 s (92.824010 min); circular eccentricity below 1e-12."
+    },
+    {
+      "test": "One LEO period with 5 s velocity-Verlet steps",
+      "tolerances": "relative specific-energy drift < 1e-8; relative angular-momentum drift < 1e-10; normalized position-closure error < 1e-4",
+      "result": "PASS",
+      "measured": "Energy drift 2.411791014328185e-15; angular-momentum drift 1.319765678611352e-15; closure error 6.664483714898736e-5 of orbital radius."
+    },
+    {
+      "test": "LEO-to-GEO Hohmann departure and osculating apsides",
+      "tolerances": "departure delta-v within 1% of 2394 m/s; perigee relative error < 1e-10; apogee relative error < 1e-9; arrival delta-v between 1400 and 1600 m/s",
+      "result": "PASS",
+      "measured": "Departure 2393.761554 m/s; arrival 1455.169909 m/s; predicted apogee radius 42156.99999999994 km."
+    },
+    {
+      "test": "Numerically propagated half Hohmann-transfer period",
+      "tolerances": "relative arrival-radius error < 5e-5 using 5 s velocity-Verlet steps",
+      "result": "PASS",
+      "measured": "Arrival radius 42158.174250 km against 42157.000000 km target; relative difference 2.7854211723696736e-5."
+    },
+    {
+      "test": "Parabolic escape boundary and 10 m/s margin",
+      "tolerances": "absolute threshold specific-energy magnitude < 1e-6 J/kg; +10 m/s case must have positive energy and no apoapsis",
+      "result": "PASS",
+      "measured": "At 420 km, exact escape increment 3173.411106 m/s; threshold energy 1.4901161193847656e-8 J/kg."
+    },
+    {
+      "test": "Retrograde impulse targeting a perigee 50 km below the surface",
+      "tolerances": "perigee relative error < 1e-10; impulse between -300 and 0 m/s",
+      "result": "PASS",
+      "measured": "Delta-v -138.562640 m/s; computed perigee radius 6321.000000 km."
+    },
+    {
+      "test": "Signed impulse and radial/transverse aim axes",
+      "tolerances": "100 m/s at +90 degrees yields outward radial velocity > 99.999 m/s; -90 degrees yields inward radial velocity < -99.999 m/s; retrograde impulse reduces transverse speed",
+      "result": "PASS",
+      "measured": "All direction and sign assertions passed."
+    },
+    {
+      "test": "Closed and open conic sampling",
+      "tolerances": "closed circle returns 481 finite samples; open path has >100 finite-or-null samples and at least one finite point with x > 0",
+      "result": "PASS",
+      "measured": "All sampling assertions passed."
+    },
+    {
+      "test": "Near-escape bound conic preserves separate in-view segments",
+      "tolerances": "the near-parabolic state is bound; clipped high-apogee arc includes at least one null pen-up marker and at least one finite point",
+      "result": "PASS",
+      "measured": "All clipping and finite-point assertions passed."
+    }
+  ],
+  "repairs": [
+    "The first mechanics-test run used an inaccurate expected Hohmann departure value near 2421 m/s. The implementation computed 2393.761554 m/s for 420 km altitude to a 35,786 km GEO altitude; corrected the test reference to 2394 m/s with a 1% tolerance. No physics implementation change was needed.",
+    "An added half-transfer propagation test initially required <1e-6 relative arrival-radius error. The 5 s velocity-Verlet run measured 2.7854211723696736e-5 over the roughly 5.29-hour transfer. Kept the browser-friendly 5 s step and set a still-tight <5e-5 test tolerance; exact predicted conic remains analytic while the flown trail is numerical.",
+    "The first Vite check wrapper tried to iterate build()'s return value after write:false; Vite had logged a successful build, but the wrapper raised a TypeError. Reran verification by awaiting build() without assuming a return shape; the isolated build then exited successfully."
+  ],
+  "assumptions": [
+    "Planar inertial motion about a fixed point-mass Earth with μ = 3.986004418e14 m^3/s^2 and a spherical 6,371,000 m impact boundary.",
+    "Initial conditions are circular Earth orbits at a selectable 200–2000 km altitude. Maneuvers are instantaneous impulses; aim is measured from prograde toward radial-out, and a negative signed delta-v reverses the aim vector.",
+    "Predicted orbit curves are sampled from exact two-body osculating conic elements. Flown trajectories use fixed 5-second velocity-Verlet steps and add trail samples every 60 simulated seconds.",
+    "GEO altitude is 35,786 km above the selected mean-radius boundary. The Reach GEO preset executes only the departure burn; a second burn is needed to circularize. Escape preset adds 25 m/s above local escape speed. Reentry preset targets a perigee 50 km beneath the spherical boundary."
+  ],
+  "limitations": [
+    "No atmosphere, drag, Earth oblateness, Moon or Sun gravity, finite-duration thrust, changing spacecraft mass, or rotating-Earth launch coordinates.",
+    "The point-mass model is educational and does not provide operational navigation or mission-design guidance.",
+    "No browser/local-host QA was performed, as the run scaffold explicitly prohibits browser localhost access. Appearance, live interaction behavior, accessibility in actual browsers, and runtime performance remain unverified pending separate review."
+  ],
+  "unknowns": [
+    "Actual browser rendering, responsive layout, device-pixel-ratio behavior, and performance at the fastest time scale have not been observed.",
+    "Only syntax, isolated production bundling, and direct numerical tests were run; there is no automated DOM interaction test."
+  ],
+  "tokenUsage": null,
+  "tokenUsageReason": "No provider/runtime token-counter fields were exposed by the available tools or run outputs. Input, cached input, output, reasoning, and total counts therefore cannot be reported; counts were not estimated, and restricted session-history paths were not inspected.",
+  "cost": null,
+  "costReason": "No measured runtime cost was supplied."
+}

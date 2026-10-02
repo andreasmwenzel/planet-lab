@@ -1,0 +1,116 @@
+{
+  "checks": 18,
+  "measurements": [
+    {
+      "name": "One circular revolution position error / km",
+      "value": 0.000001037028347656841,
+      "tolerance": 0.0001,
+      "pass": true
+    },
+    {
+      "name": "One circular revolution velocity error / km/s",
+      "value": 1.1750975319653284e-9,
+      "tolerance": 0.000001,
+      "pass": true
+    },
+    {
+      "name": "Ten revolutions relative specific-energy drift",
+      "value": 1.0197412576116213e-11,
+      "tolerance": 1e-8,
+      "pass": true
+    },
+    {
+      "name": "Ten revolutions relative angular-momentum drift",
+      "value": -5.098658223719389e-12,
+      "tolerance": 1e-8,
+      "pass": true
+    },
+    {
+      "name": "Radial impulse x velocity change / km/s",
+      "value": 0,
+      "tolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "Tangential impulse y velocity change / km/s",
+      "value": -3.608224830031759e-16,
+      "tolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "Rotated local-frame tangential impulse / km/s",
+      "value": 3.608224830031759e-16,
+      "tolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "Rotated local-frame radial impulse / km/s",
+      "value": 6.938893903907228e-18,
+      "tolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "name": "Phased Hohmann rendezvous separation / km",
+      "value": 2.753933069392336e-7,
+      "tolerance": 0.001,
+      "pass": true
+    },
+    {
+      "name": "Phased Hohmann rendezvous relative speed / m/s",
+      "value": 2.3961157438341063e-7,
+      "tolerance": 0.001,
+      "pass": true
+    },
+    {
+      "name": "Rendezvous separation at exact circularization event / km",
+      "value": 2.802174253128387e-7,
+      "tolerance": 0.001,
+      "pass": true
+    },
+    {
+      "name": "Relative speed at exact circularization event / m/s",
+      "value": 2.3804848621776908e-7,
+      "tolerance": 0.001,
+      "pass": true
+    },
+    {
+      "name": "Post-transfer circular altitude error / km",
+      "value": -8.444840204901993e-8,
+      "tolerance": 0.001,
+      "pass": true
+    },
+    {
+      "name": "Post-transfer circular eccentricity",
+      "value": 0,
+      "tolerance": 1e-7,
+      "pass": true
+    },
+    {
+      "name": "Hohmann has no impact",
+      "value": null,
+      "pass": true
+    },
+    {
+      "name": "Fractional burn event state error",
+      "value": 1.8339108009968186e-10,
+      "tolerance": 1e-8,
+      "pass": true
+    },
+    {
+      "name": "Impact detected; post-impact tug frozen and later impulse ignored",
+      "value": 515,
+      "units": "seconds",
+      "pass": true
+    },
+    {
+      "name": "Escape impulse classified as unbound",
+      "pass": true
+    }
+  ],
+  "planner": {
+    "wait": 844.3926347256122,
+    "transfer": 2896.1670547965455,
+    "deltaV": 217.01530841058945,
+    "meetingTime": 4340.559689522158
+  }
+}

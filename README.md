@@ -84,3 +84,11 @@ The repository stays private. Building writes local artifacts only. Hosting is m
 ## Additional orbital game
 
 `/#/results/orbital-mechanics/astra-ultra-game` opens **Kepler Dispatch**, the independently generated Astra Ultra game. It also appears under **Additional builds** in the orbital experiment. This optional extension is outside the standard 24 conditions and their comparison charts. Its runtime source is preserved; the exact game brief, source hashes, numerical tests, mocked interaction tests, build validator, and original worker report are retained in `experiments/orbital-mechanics/astra-ultra-game/`. Token usage and cost are unavailable. See that directory's README for reproducible tests and model limitations.
+
+## Orbital product batch
+
+Experiment 002 contains 24 independent product conditions (three model families, two effort settings each, four creative directions). The optional Astra Ultra game remains an extension outside that matrix. Read [the article](docs/orbital-products.md). All preserved source files are hash-verified; metadata includes the exact prompt, scaffold, numerical rerun output, limitations, and unavailable token/cost fields.
+
+Sol medium bold/refined and Sol xhigh minimal were interrupted and resumed; their wall-clock values include downtime. Charts label those bars. Numerical assertions vary by product and are not comparative scores. Design and browser acceptance remain unscored/unverified in the frozen records.
+
+`npm test` runs journal regressions plus every recorded orbital numerical command in disposable copies, including the preserved Ultra physics and headless UI suites. This prevents test-generated reports from modifying frozen experiment evidence.
