@@ -1,0 +1,31 @@
+{
+  "title": "Orbital \u2014 a little universe",
+  "description": "An original atmospheric 3D solar-neighborhood toy with eight selectable worlds, procedural planet textures, orbit paths, camera exploration, follow-planet views, responsive field-guide cards, and accessible playback controls.",
+  "implementationStartUTC": "2026-10-02T07:15:01Z",
+  "implementationEndUTC": "2026-10-02T07:20:11.023183Z",
+  "files": [
+    "experiments/planetary/astra-medium-minimal/index.html",
+    "experiments/planetary/astra-medium-minimal/main.js",
+    "experiments/planetary/astra-medium-minimal/style.css",
+    "experiments/planetary/astra-medium-minimal/worker-report.json"
+  ],
+  "tests": [
+    {
+      "command": "node --check experiments/planetary/astra-medium-minimal/main.js",
+      "outcome": "Passed; exit code 0"
+    },
+    {
+      "command": "node --input-type=module; import {build} from 'vite'; await build({root:'experiments/planetary/astra-medium-minimal',configFile:false,logLevel:'warn',build:{write:false}})",
+      "outcome": "Passed; exit code 0. Emitted in memory: assets/index-ODvj-yxU.js, assets/index-DYkuDdlB.css, index.html"
+    }
+  ],
+  "repairsMade": [],
+  "knownLimitations": [
+    "Browser localhost access was unavailable; no browser or screenshot checks were performed.",
+    "Planet sizes, orbital distances, orbit shapes, textures, lighting, and motion are intentionally illustrative, not scientifically precise. Orbital rates are compressed for visible movement.",
+    "WebGL failure handling is implemented but was not exercised in a browser.",
+    "Planet facts are a compact guide; moons and dwarf planets are not modeled."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}

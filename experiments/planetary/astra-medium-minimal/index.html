@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#090f1b"><title>Orbital — a little universe</title></head>
+<body>
+<div id="app">
+  <div id="universe" aria-label="Interactive three-dimensional planetary system"></div>
+  <div id="fallback" hidden><div class="fallback-icon">☀</div><h2>Your universe is still here</h2><p>3D rendering isn’t available in this browser. Explore the planet guide below; the animated scene needs WebGL.</p></div>
+  <header><a class="wordmark" href="#"><span class="logo">✳</span> ORBITAL<span class="edition">FIELD GUIDE / 001</span></a><span class="live"><i></i> A LITTLE UNIVERSE</span></header>
+  <main>
+    <section class="intro"><div class="eyebrow">THE SOLAR NEIGHBORHOOD</div><h1>Go a little<br>further out.</h1><p>Eight worlds. One star.<br>A whole new perspective.</p></section>
+    <aside class="planet-card" aria-labelledby="planet-name">
+      <div class="card-top"><span class="eyebrow" id="planet-index">03 / TERRESTRIAL</span><span id="planet-dot"></span></div>
+      <h2 id="planet-name">Earth</h2><p id="planet-tagline" class="tagline"></p><p id="planet-description"></p>
+      <div class="facts"><div><span>ORBITAL PERIOD</span><strong id="planet-year"></strong></div><div><span>MEAN DIAMETER</span><strong id="planet-diameter"></strong></div></div>
+      <button id="focus-planet" class="focus-button">◎ <span>Visit Earth</span> <span aria-hidden="true">↗</span></button>
+    </aside>
+    <div class="scene-caption"><span class="crosshair">+</span> DRAG TO ORBIT <span>·</span> SCROLL TO EXPLORE</div>
+    <div class="view-controls" aria-label="Camera controls"><button id="zoom-in" aria-label="Zoom in">+</button><button id="zoom-out" aria-label="Zoom out">−</button><button id="rotate" aria-label="Rotate view clockwise">↻</button><button id="home-view" aria-label="Show whole system">⌂</button></div>
+  </main>
+  <footer>
+    <nav id="planet-nav" aria-label="Choose a planet"></nav>
+    <div class="transport"><div class="playback"><button id="pause" aria-label="Pause simulation"><span id="pause-icon">Ⅱ</span><span id="pause-label">Pause</span></button><button id="reset">↺ <span>Reset</span></button></div><label class="speed" for="speed">TIME FLOW <input id="speed" type="range" min="0.25" max="4" step="0.25" value="1"><output id="speed-value" for="speed">1×</output></label><span class="model-note">An imagined view · motion & scales stylized</span></div>
+  </footer>
+  <div id="announce" role="status" class="sr-only" aria-live="polite"></div>
+</div>
+<script type="module" src="./main.js"></script>
+</body></html>
