@@ -15,11 +15,11 @@ test('shell retains opaque-origin iframe and CSP validation', () => {
 test('one artifact frame is replaced when switching, never multiplied', () => {
  assert.equal((main.match(/document\.createElement\('iframe'\)/g)||[]).length, 1);
  assert.match(main, /replaceChildren\(frame\)/);
- assert.match(main, /loadedRuntime !== selected\.id/);
+ assert.match(main, /loadedRuntime !== `\$\{selected\.experimentId\}\/\$\{selected\.id\}`/);
 });
 test('homepage is a post index and the simulator stays inside its post', () => {
  assert.match(main, /viewer\(selected\)/);
- assert.match(main, /plannedRunCount\(comparisonPlan\)/);
+ assert.match(main, /plannedRunCount\(exp\.plan\)/);
  assert.doesNotMatch(main, /futureIdeas|orbit-art|hero-note|manifesto-strip/);
  assert.match(main, /main\.innerHTML = journalIndex\(\)/);
  assert.match(main, /main\.innerHTML = post\(exp\)/);
@@ -66,9 +66,35 @@ test('copy edits preserve exact prompts, honest evidence, and the WebGL fallback
  assert.match(main, /No rendered editorial rating yet/);
  assert.match(main, /Use a browser with working WebGL 2 to play/);
  const index = main.slice(main.indexOf('function journalIndex'), main.indexOf('function post('));
- const post = main.slice(main.indexOf('function post('), main.indexOf('function method('));
+ const post = main.slice(main.indexOf('function post('), main.indexOf('function about('));
  assert.match(index, /experimentHref\(exp\.id\)/);
  assert.doesNotMatch(index, /viewer-container|run-record|picker|iframe/);
  assert.match(post, /id="viewer-container"/);
  assert.match(post, /id="run-record"/);
+});
+
+test('posts use their own title, date, category, matrix and filtered run records', async () => {
+ const content = await readFile(new URL('../src/content/experiments.js', import.meta.url), 'utf8');
+ const loader = await readFile(new URL('../src/content/generated-runs.js', import.meta.url), 'utf8');
+ const index = main.slice(main.indexOf('function journalIndex'),main.indexOf('function post('));
+ for(const property of ['title','date','category','excerpt','plan']) assert.match(index,new RegExp(`exp\\.${property}`));
+ assert.match(content,/id: 'orbital-mechanics'/);
+ assert.match(content,/basePrompt: 'Build an in-browser orbital mechanics simulator'/);
+ assert.match(loader,/experiments\/\*\/\*\/metadata\.json/);
+ assert.match(main,/requiresWebGL2 === true/);
+});
+test('Charts disposes the active artifact; unchanged Simulator selection retains it', () => {
+ const charts = main.slice(main.indexOf('function showCharts'),main.indexOf('function implementationHtml'));
+ assert.match(charts,/controller\?\.abort\(\); loadedRuntime = null/);
+ assert.match(charts,/container\.innerHTML = chartsHtml/);
+ assert.doesNotMatch(charts,/createElement\('iframe'\)/);
+ assert.match(main,/else if \(loadedRuntime !==/);
+ assert.match(main,/button\.dataset\.view, route\.metric/);
+});
+test('What this is is two short paragraphs, with no standalone Method navigation', () => {
+ const about = main.slice(main.indexOf('function about('),main.indexOf('function picker('));
+ assert.equal((about.match(/<p>/g)||[]).length,2);
+ assert.match(about,/Andreas and dotson/);
+ assert.match(html,/href="#\/about"/);
+ assert.doesNotMatch(html,/Method|#\/method/);
 });

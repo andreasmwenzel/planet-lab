@@ -27,7 +27,9 @@ test('analytics distinguishes the journal, method, and published experiment', ()
   for (const hash of ['', '#/', '#/journal', '#/?variant=luna-medium-minimal']) {
     assert.equal(analyticsPath(hash), '/');
   }
-  assert.equal(analyticsPath('#/method'), '/method');
+  assert.equal(analyticsPath('#/method'), '/about');
+  assert.equal(analyticsPath('#/about'), '/about');
+  assert.equal(analyticsPath('#/experiments/orbital-mechanics?variant=luna-medium-minimal&view=charts&metric=api'), '/experiments/orbital-mechanics');
   assert.equal(analyticsPath('#/experiments/planetary?variant=astra-xhigh-bold&model=Astra'), '/experiments/planetary');
 });
 
@@ -81,7 +83,7 @@ test('the installed Vercel SDK injects one script and queues sanitized manual pa
     state.navigate('#/experiments/planetary?variant=astra-xhigh-bold');
     assert.equal(state.browser.vaq.length, 2);
     state.navigate('#/method');
-    assert.deepEqual(state.browser.vaq[2], ['pageview', { path: '/method', route: '/method' }]);
+    assert.deepEqual(state.browser.vaq[2], ['pageview', { path: '/about', route: '/about' }]);
   } finally {
     stop?.();
     if (oldWindow === undefined) delete globalThis.window; else globalThis.window = oldWindow;
@@ -99,7 +101,7 @@ test('hash transitions count pages and Back/Forward returns, not build/filter ch
   state.navigate('#/experiments/planetary?variant=luna-medium-minimal');
   state.navigate('#/');
   state.navigate('#/journal');
-  assert.deepEqual(state.calls.map(page => page.path), ['/', '/experiments/planetary', '/method', '/experiments/planetary', '/']);
+  assert.deepEqual(state.calls.map(page => page.path), ['/', '/experiments/planetary', '/about', '/experiments/planetary', '/']);
   stop();
 });
 
@@ -109,7 +111,7 @@ test('rapid hash changes use each event URL, not a newer window location', () =>
   state.browser.location.hash = '#/method';
   state.listeners.get('hashchange')({ newURL: 'https://planet-lab.vercel.app/#/experiments/planetary' });
   state.listeners.get('hashchange')({ newURL: 'https://planet-lab.vercel.app/#/method' });
-  assert.deepEqual(state.calls.map(page => page.path), ['/', '/experiments/planetary', '/method']);
+  assert.deepEqual(state.calls.map(page => page.path), ['/', '/experiments/planetary', '/about']);
   stop();
 });
 

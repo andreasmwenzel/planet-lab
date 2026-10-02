@@ -3,13 +3,13 @@ import { parseRoute } from './lab.js';
 
 // Keep this allowlist in sync with published posts. Never forward arbitrary
 // slugs, variant/filter query strings, or unknown hashes to analytics.
-const publicPaths = new Set(['/', '/method', '/experiments/planetary', '/not-found']);
+const publicPaths = new Set(['/', '/about', '/experiments/planetary', '/experiments/orbital-mechanics', '/not-found']);
 const activeTrackers = new WeakMap();
 
 export function analyticsPath(hash) {
   const route = parseRoute(hash);
   if (route.page === 'home') return '/';
-  if (route.page === 'method') return '/method';
+  if (route.page === 'about') return '/about';
   if (route.page === 'experiment' && publicPaths.has(`/experiments/${route.id}`)) {
     return `/experiments/${route.id}`;
   }

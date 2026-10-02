@@ -17,7 +17,7 @@ test('unavailable axis combinations are disabled while selected axis can change'
 test('deep link preserves selected variant and encoded filters',()=>{
  const link=experimentHref('planetary','sol-xhigh-bold',{model:'Sol 6.1',effort:'xhigh',promptApproach:'bold'});
  assert.deepEqual(parseRoute(link),{page:'experiment',id:'planetary',variant:'sol-xhigh-bold',filters:{model:'Sol 6.1',effort:'xhigh',promptApproach:'bold'}});
- assert.deepEqual(parseRoute('#/method'),{page:'method'});
+ assert.deepEqual(parseRoute('#/method'),{page:'about'});
  assert.deepEqual(parseRoute(''),{page:'home'});
  assert.deepEqual(parseRoute('#/nothing'),{page:'not-found'});
 });
