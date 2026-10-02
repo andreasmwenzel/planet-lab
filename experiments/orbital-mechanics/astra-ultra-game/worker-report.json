@@ -1,0 +1,468 @@
+{
+  "status": "complete",
+  "variant": "Astra Ultra",
+  "productTitle": "Kepler Dispatch",
+  "description": "A finished orbital courier game with six authored contracts, realistic two-body maneuver planning, rendezvous, a flight advisor, fuel and time medals, rewinds, a seeded dispatch board, and unlimited free flight.",
+  "directory": "/workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-ultra-game",
+  "entry": "index.html",
+  "runtimeFiles": [
+    "index.html",
+    "main.js",
+    "physics.js",
+    "missions.js",
+    "renderer.js",
+    "style.css"
+  ],
+  "startedAtUtc": "2026-10-02T08:50:30Z",
+  "completedAtUtc": "2026-10-02T09:34:52Z",
+  "elapsedSeconds": 2662,
+  "features": [
+    "Six complete contracts: apogee raising, circular transfer, eccentric buoy deployment, phased relay rendezvous, retrograde return, and hyperbolic escape",
+    "Instantaneous transverse/radial maneuvers with editable departure time, apsis presets, exact numeric inputs, sliders, and an on-map drag handle",
+    "Current and predicted conics, destination geometry, orbital telemetry, burn cost, C3, and future relay closest approach",
+    "Canvas 2D Earth and orbital map, procedural stars, apsis markers, zoom, fit, grid toggle, thruster feedback, and completion particles",
+    "Pause, four time-warp speeds, apsis coasting, mission recall, restart, unlimited pre-burn rewinds, and flight recorder",
+    "Three seals per campaign contract for completion, delta-v efficiency, and timing; best results retained only for the current visit",
+    "Contextual pilot notebook with computed conventional-transfer suggestions and detailed learning/control/model manual",
+    "Seeded dispatch board with repeatable route codes and free flight at four selectable altitudes",
+    "Responsive layouts, keyboard shortcuts, labeled form inputs, focus-contained dialogs, reduced-motion CSS, optional synthesized sound, and no-Canvas fallback"
+  ],
+  "architecture": {
+    "framework": "Vanilla ES modules",
+    "rendering": "Canvas 2D with CSS/HTML UI; no WebGL needed",
+    "physics": "Bracketed universal-variable Kepler propagation with Stumpff functions, instantaneous orthonormal radial/transverse impulses",
+    "externalRuntimeDependencies": [],
+    "networkCalls": false,
+    "persistence": false,
+    "frameCommunication": false,
+    "opaqueOriginIframeCompatible": true,
+    "published": false
+  },
+  "validation": {
+    "syntax": {
+      "status": "passed",
+      "commands": [
+        "node --check main.js",
+        "node --check physics.js",
+        "node --check missions.js",
+        "node --check renderer.js"
+      ]
+    },
+    "numerical": {
+      "command": "node physics-tests.mjs",
+      "passed": 27,
+      "failed": 0,
+      "report": "physics-test-results.json",
+      "tests": [
+        {
+          "name": "Circular quarter-orbit agrees with analytic position and velocity",
+          "status": "passed"
+        },
+        {
+          "name": "One and one hundred full circular orbits close",
+          "status": "passed"
+        },
+        {
+          "name": "Elliptical apsides and Kepler period match vis-viva",
+          "status": "passed"
+        },
+        {
+          "name": "Energy and angular momentum are conserved across 30,000 seconds",
+          "status": "passed"
+        },
+        {
+          "name": "Backward propagation reverses an elliptic coast",
+          "status": "passed"
+        },
+        {
+          "name": "Step partition does not change the flight",
+          "status": "passed"
+        },
+        {
+          "name": "Hyperbolic escape preserves positive energy",
+          "status": "passed"
+        },
+        {
+          "name": "Near-parabolic propagation is continuous on both sides of escape speed",
+          "status": "passed"
+        },
+        {
+          "name": "Stumpff functions have correct limits and remain continuous near zero",
+          "status": "passed"
+        },
+        {
+          "name": "Radial and transverse impulse axes are orthogonal and use m/s",
+          "status": "passed"
+        },
+        {
+          "name": "Clockwise orbit burns preserve the prograde convention",
+          "status": "passed"
+        },
+        {
+          "name": "Radial zero-angular-momentum orbits have finite apsides",
+          "status": "passed"
+        },
+        {
+          "name": "Hohmann transfer matches endpoint radii and final circular speed",
+          "status": "passed"
+        },
+        {
+          "name": "Closest-approach search recovers the phased rendezvous",
+          "status": "passed"
+        },
+        {
+          "name": "Atmospheric recall catches ordinary surface approach",
+          "status": "passed"
+        },
+        {
+          "name": "Apsidal event check catches a grazing boundary between time samples",
+          "status": "passed"
+        },
+        {
+          "name": "Budget, NaN, negative delay, and excessive impulse are rejected without mutation",
+          "status": "passed"
+        },
+        {
+          "name": "Expired delivery window closes the flight without spending fuel",
+          "status": "passed"
+        },
+        {
+          "name": "Sandbox time and delta-v remain unlimited",
+          "status": "passed"
+        },
+        {
+          "name": "Campaign 01: A little higher is solvable by the actual advisor and game engine",
+          "status": "passed"
+        },
+        {
+          "name": "Campaign 02: The high road is solvable by the actual advisor and game engine",
+          "status": "passed"
+        },
+        {
+          "name": "Campaign 03: The long arc is solvable by the actual advisor and game engine",
+          "status": "passed"
+        },
+        {
+          "name": "Campaign 04: Meet me halfway is solvable by the actual advisor and game engine",
+          "status": "passed"
+        },
+        {
+          "name": "Campaign 05: The way home is solvable by the actual advisor and game engine",
+          "status": "passed"
+        },
+        {
+          "name": "Campaign 06: Beyond the blue is solvable by the actual advisor and game engine",
+          "status": "passed"
+        },
+        {
+          "name": "Sixty-four seeded open-dispatch routes are solvable within budget",
+          "status": "passed"
+        },
+        {
+          "name": "Generated route seeds are repeatable and do not mutate global state",
+          "status": "passed"
+        }
+      ],
+      "metrics": {
+        "circularQuarterPositionErrorKm": 5.230909593113388e-12,
+        "circular100PeriodErrorKm": 3.3510529452451417e-10,
+        "ellipticalApoapsisRadiusErrorKm": 3.637978807091713e-12,
+        "maxRelativeEnergyError": 4.166207964521918e-11,
+        "maxRelativeAngularMomentumError": 2.6957084858871357e-13,
+        "timeReversalStateError": 1.8046595765570564e-9,
+        "partitionPositionErrorKm": 6.75240154925091e-7,
+        "hyperbolicEnergyError": 1.6274714909059185e-10,
+        "parabolicContinuityKm": 0.00009856181732431159,
+        "hohmannDeltaVMps": 600.0856223685433,
+        "hohmannTransferTimeSeconds": 3148.9850705084177,
+        "closestApproachDistanceKm": 5.2583555370725805e-9,
+        "closestApproachTimingErrorSeconds": 1.7904767446452752e-8,
+        "seededRoutes": 64,
+        "maxSeededBudgetFraction": 0.8329318005669212
+      },
+      "campaign": [
+        {
+          "id": "first",
+          "deltaVMps": 211.0859793705444,
+          "burns": 1,
+          "timeSeconds": 0,
+          "seals": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "id": "circular",
+          "deltaVMps": 416.3579052206474,
+          "burns": 2,
+          "timeSeconds": 3021.6946008430223,
+          "seals": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "id": "long",
+          "deltaVMps": 1473.2816064635758,
+          "burns": 2,
+          "timeSeconds": 6193.516874832345,
+          "seals": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "id": "relay",
+          "deltaVMps": 600.0856223685407,
+          "burns": 2,
+          "timeSeconds": 3148.9850705084177,
+          "seals": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "id": "home",
+          "deltaVMps": 1926.288889839399,
+          "burns": 1,
+          "timeSeconds": 9668.42520526754,
+          "seals": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "id": "escape",
+          "deltaVMps": 3214.896014685966,
+          "burns": 1,
+          "timeSeconds": 2560,
+          "seals": [
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    },
+    "interactions": {
+      "command": "node ui-smoke-tests.mjs",
+      "passed": 15,
+      "failed": 0,
+      "report": "ui-smoke-results.json",
+      "canvasApiCalls": 6755,
+      "tests": [
+        {
+          "name": "Boot creates a paused orientation dialog and valid flight readouts",
+          "status": "passed"
+        },
+        {
+          "name": "Dialog close restores the flight without starting time",
+          "status": "passed"
+        },
+        {
+          "name": "Direct numeric control previews and executes a budgeted maneuver",
+          "status": "passed"
+        },
+        {
+          "name": "Rewind restores fuel, orbit, mission readiness, and control state",
+          "status": "passed"
+        },
+        {
+          "name": "Keyboard burn and rewind work while a button has focus",
+          "status": "passed"
+        },
+        {
+          "name": "Over-budget preview blocks the execute control",
+          "status": "passed"
+        },
+        {
+          "name": "Every campaign route completes through UI event handlers and earns three seals",
+          "status": "passed"
+        },
+        {
+          "name": "Manifest, generated routes, and fresh-flight reset are wired",
+          "status": "passed"
+        },
+        {
+          "name": "Route-code selection reproduces the same dispatch and advances the next suggestion",
+          "status": "passed"
+        },
+        {
+          "name": "Pause and time-warp controls advance only the chosen simulation time",
+          "status": "passed"
+        },
+        {
+          "name": "Future maneuver departure, clearing, and apsis controls are wired",
+          "status": "passed"
+        },
+        {
+          "name": "Atmospheric recall, failure dialog, and rewind work through UI",
+          "status": "passed"
+        },
+        {
+          "name": "Manual section switches, escape-to-close, and flight recorder work",
+          "status": "passed"
+        },
+        {
+          "name": "Render loop tolerates desktop and narrow canvas sizes with finite drawing coordinates",
+          "status": "passed"
+        },
+        {
+          "name": "Hiding the tab pauses the simulation",
+          "status": "passed"
+        }
+      ],
+      "method": "Actual main module and handlers under a lightweight mocked DOM and Canvas API. Not browser execution."
+    },
+    "canvasFallback": {
+      "command": "node ui-smoke-tests.mjs --no-canvas",
+      "passed": 15,
+      "failed": 0,
+      "report": "fallback-test-results.json",
+      "method": "Actual main module with getContext returning null; all 15 interaction scenarios remain functional."
+    },
+    "isolatedBuild": {
+      "command": "node validate-build.mjs",
+      "status": "passed",
+      "report": "build-validation.json",
+      "configuration": {
+        "configFile": false,
+        "publicDir": false,
+        "base": "./",
+        "write": false,
+        "modulePreload": false,
+        "target": "es2022"
+      },
+      "checks": [
+        "Exact required module entry",
+        "Source inspection found no runtime fetch, XHR, WebSocket, storage, cookies, frame communication, or remote CSS assets",
+        "Single JavaScript chunk with no imports or dynamic imports",
+        "CSS and HTML build outputs present",
+        "write:false left all source-directory entries unchanged"
+      ],
+      "outputs": [
+        {
+          "file": "assets/index-Dat30goL.js",
+          "type": "chunk",
+          "bytes": 54822
+        },
+        {
+          "file": "assets/index-BzqP4fqT.css",
+          "type": "asset",
+          "bytes": 29758
+        },
+        {
+          "file": "index.html",
+          "type": "asset",
+          "bytes": 9073
+        }
+      ]
+    },
+    "browser": {
+      "status": "not-run",
+      "reason": "Browser localhost access was unavailable as specified. No browser, screenshot, real CSS layout, real pointer gesture, or real audio check is claimed."
+    }
+  },
+  "repairs": [
+    {
+      "finding": "Degenerate radial bound trajectories could produce 0/0 in apoapsis from p/(1-e).",
+      "repair": "Use the stable identity apoapsis = 2a - periapsis and render zero-angular-momentum paths as radial lines.",
+      "verification": "Retained finite-apsides test; numerical and build suites pass."
+    },
+    {
+      "finding": "Completion text was being rewritten into an aria-live notice on every UI refresh.",
+      "repair": "Move that notice update to the one-time delivery event.",
+      "verification": "Interaction suite still completes every contract and result dialog."
+    },
+    {
+      "finding": "Burn/rewind keyboard shortcuts would be suppressed while a previously clicked button held focus.",
+      "repair": "Only suppress text-entry controls globally; retain native Space behavior for focused buttons.",
+      "verification": "Added explicit focused-button keyboard burn and rewind regression test; passed in both Canvas modes."
+    },
+    {
+      "finding": "A goal-triggered pause could retain a prediction from the preceding frame.",
+      "repair": "Recompute the preview when flight pauses on readiness or recall.",
+      "verification": "All campaign and recall interaction paths pass."
+    }
+  ],
+  "assumptions": [
+    "Planar Newtonian two-body motion around a stationary spherical Earth; mu 398600.4418 km^3/s^2 and radius 6371 km.",
+    "Internal units are kilometers, seconds, and km/s; UI impulses use m/s. Transverse and radial axes are perpendicular; transverse is not velocity-aligned away from apsides.",
+    "Burns are instantaneous impulses against an abstract delta-v budget. No thrust duration, propellant mass, rocket equation, or spacecraft attitude dynamics.",
+    "No atmosphere/drag, J2, Sun/Moon perturbations, Earth rotation, inclination, relativistic corrections, launch, landing, or reentry.",
+    "The flight is recalled at the 100 km atmospheric safety boundary. Event checks occur at no more than 20 simulated seconds, plus an apsidal crossing guard.",
+    "Orbital-shape contracts certify osculating apsides without requiring physical arrival at the far point. Escape requires reaching the release altitude outbound.",
+    "Station capture uses a forgiving 50 km and 60 m/s gameplay envelope. Real docking is much more demanding.",
+    "Orbit distances have one linear scale; spacecraft and station symbols are enlarged. Canvas 2D replaces any need for WebGL.",
+    "Progress is memory-only and resets on reload. No backend, accounts, analytics, storage, or runtime network requests."
+  ],
+  "limitations": [
+    "This is a learning game, not operational mission planning or navigation software.",
+    "Nearest-pass search is sampled and refined over a bounded future interval of at most four hours, not a global rendezvous optimizer.",
+    "The notebook assumes conventional transfers. After large off-plan maneuvers, manual correction or rewind may be required.",
+    "Safety boundary and goal recognition can occur up to one 20-second event interval after first crossing.",
+    "A no-Canvas browser retains the flight controls and numerical game, but cannot display the orbital map."
+  ],
+  "unknowns": [
+    "Actual browser layout and pixels at desktop/mobile sizes were not observed.",
+    "Actual assistive-technology behavior, touch/pointer dragging, and Web Audio playback were not verified in a browser.",
+    "Final parent integration into the batch iframe/inline bundler was not performed by this worker."
+  ],
+  "references": [
+    {
+      "title": "NASA Basics of Space Flight, Chapter 3: Gravity & Mechanics",
+      "url": "https://science.nasa.gov/learn/basics-of-space-flight/chapter3-3/"
+    },
+    {
+      "title": "NASA Basics of Space Flight, Chapter 4: Trajectories",
+      "url": "https://science.nasa.gov/learn/basics-of-space-flight/chapter4-1/"
+    }
+  ],
+  "tokenUsage": null,
+  "tokenUsageReason": "No runtime-provided token counters are exposed in this worker environment. Restricted session history and credentials were not read.",
+  "tokenSelfEstimate": {
+    "label": "Source-size token-equivalent estimate only; not measured token usage or total inference usage",
+    "scope": "Authored runtime source files only; excludes prompts, reasoning, tool I/O, and tests",
+    "characters": 104047,
+    "range": [
+      20809,
+      34682
+    ],
+    "basis": "A rough 3–5 characters per code token heuristic.",
+    "uncertainty": "High; this is not suitable for inferring actual API cost."
+  },
+  "apiCost": null,
+  "apiCostReason": "Measured token usage and billing data are unavailable.",
+  "sourceBytes": [
+    {
+      "file": "main.js",
+      "bytes": 33120
+    },
+    {
+      "file": "physics.js",
+      "bytes": 6237
+    },
+    {
+      "file": "missions.js",
+      "bytes": 13886
+    },
+    {
+      "file": "renderer.js",
+      "bytes": 12270
+    },
+    {
+      "file": "style.css",
+      "bytes": 29795
+    },
+    {
+      "file": "index.html",
+      "bytes": 9016
+    }
+  ],
+  "rerunInstructions": "See README.md; all commands and test reports are retained in this directory."
+}

@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-10-02T09:41:17.372331+00:00",
+  "baseCommit": "18717400df2160bb2836639a639be2a8d7863ea0",
+  "frozenSource": "All six runtime source files and original worker report match worker output byte-for-byte.",
+  "tests": {
+    "syntax": "4 modules passed",
+    "numerical": {
+      "passed": 27,
+      "failed": 0
+    },
+    "mockedDomCanvas": {
+      "passed": 15,
+      "failed": 0
+    },
+    "mockedDomNoCanvas": {
+      "passed": 15,
+      "failed": 0
+    },
+    "isolatedBuild": "passed",
+    "repository": {
+      "command": "npm run check",
+      "passed": 53,
+      "failed": 0
+    },
+    "inlineRuntime": "CSP, no module entry or external stylesheet; passed"
+  },
+  "artifact": {
+    "path": "public/experiments/orbital-mechanics/astra-ultra-game/index.html",
+    "bytes": 93899,
+    "sha256": "850f6834fe11acd7b44c37ed00ec512725619954eadbf2ee5079d70fe5c89dd5"
+  },
+  "browser": "Not run during packaging. No visual or actual browser-interaction claim.",
+  "scope": "Only Astra Ultra game extension. No standard orbital matrix run is included."
+}
