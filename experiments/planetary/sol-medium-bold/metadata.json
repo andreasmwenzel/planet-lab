@@ -1,0 +1,122 @@
+{
+  "id": "sol-medium-bold",
+  "experimentId": "planetary",
+  "title": "Sol 6.1 · medium · bold",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/planetary/sol-medium-bold/index.html",
+  "axes": {
+    "model": "Sol 6.1",
+    "effort": "medium",
+    "promptApproach": "bold"
+  },
+  "summary": "An acid-yellow and pink cosmic dance floor with an animated Three.js solar system, eight selectable planets, custom procedural stripes and star field, playful planet descriptions, orbit and zoom controls, pause/resume, adjustable simulation tempo, reset, responsive HTML controls, and a readable WebGL-unavailable fallback.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation with requested model and effort explicitly configured. Same public brief, output constraints, and syntax/bundle repair allowance. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6.1-sol",
+    "effort": "medium",
+    "runId": "sol-medium-bold",
+    "startedAt": "2026-10-02T06:55:12Z",
+    "completedAt": "2026-10-02T07:01:17.463Z",
+    "durationSeconds": 365,
+    "durationScope": "Observed wall-clock time from task launch to verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; cloud browser does not provide usable WebGL2."
+    },
+    "sourceHashes": {
+      "index.html": "2243220872e961c018a21f27a655fe29d7266984f5e8e11c55c3f41aef4c263d",
+      "main.js": "224b746b1689399956319881ea6995ed3a65d2429d662e4281952b26ddd6f450",
+      "prompt.txt": "e16e31e541d628babce4e9bfbd54ea100b957a346f37a6a5c390e2f4175c1354"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an original interactive 3D planetary-system toy from scratch. Use the supplied Three.js dependency and a self-contained frontend with no backend, accounts, analytics, runtime network calls, or paid assets. Include an animated planetary scene, camera orbit and zoom, pause/resume, simulation-speed control, reset, and planet selection with clearly labelled information. Make it usable at desktop and phone sizes, with keyboard-accessible HTML controls and visible focus. Clearly label stylized motion/scales; do not imply scientific precision. Make reasonable design choices and implement the experience.\n\nGive this a bold, imaginative creative direction. Make it a memorable interactive cosmic playground through expressive composition, distinctive typography, vivid but intentional color, and playful transitions. Take aesthetic risks while keeping planets, labels, and controls readable and required interactions dependable.\n\nScaffold and output requirements:\n- Build the implementation fresh. Do not inspect the baseline, other variants, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only inside the supplied run directory. Create index.html and main.js there. The HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. Local CSS may be imported from main.js. Use installed three and, if useful, its add-ons via standard imports. A single fully inline HTML file is also allowed.\n- Available environment: Three.js 0.186.1, Vite 7.3.6, Node 24. No extra dependencies, CDN assets, remote fonts, runtime network calls, or backend. Do not modify package files or shared app files.\n- The common build harness bundles JavaScript and CSS into one HTML document. The viewer uses an iframe sandbox with allow-scripts and an opaque origin; do not access parent/top or rely on localStorage, cookies, cross-frame communication, or origin-specific APIs.\n- Validate JavaScript syntax and perform a local Vite bundle check with write:false. You may repair your own implementation and rerun these checks. Use the same test-and-repair allowance: implementation, syntax and local-bundle checks, then repairs needed to pass those checks. Browser localhost access is unavailable in this environment; do not claim browser checks or bypass that restriction.\n- Include a short worker-report.json with your title, description, implementation start/end UTC timestamps, exact tests and outcomes, repairs made, and known limitations. Set tokenUsage and cost to null unless the runtime supplies actual measured values. Do not estimate tokens, cost, or quality scores.\n- Provide a graceful, clearly labelled fallback if WebGL is unavailable, keeping the page readable and explaining the limitation rather than failing to a blank canvas.\n"
+      }
+    ],
+    "note": "Complete public generation brief and shared scaffold requirements, read verbatim by each fresh generation task. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax and isolated bundle checks passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "No usable WebGL2 in the available cloud browser; rendered 3D appearance and interaction have not been verified."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 569015,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 365,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 559170,
+    "cssBytes": 0,
+    "checkedAt": "2026-10-02T07:01:17.463Z",
+    "runtimeBytes": 569015
+  },
+  "generationReport": {
+    "runId": "sol-medium-bold",
+    "title": "Orbit Disco",
+    "description": "An acid-yellow and pink cosmic dance floor with an animated Three.js solar system, eight selectable planets, custom procedural stripes and star field, playful planet descriptions, orbit and zoom controls, pause/resume, adjustable simulation tempo, reset, responsive HTML controls, and a readable WebGL-unavailable fallback.",
+    "implementationStartUtc": "2026-10-02T06:55:36Z",
+    "implementationEndUtc": "2026-10-02T06:59:55Z",
+    "files": [
+      "experiments/planetary/sol-medium-bold/index.html",
+      "experiments/planetary/sol-medium-bold/main.js",
+      "experiments/planetary/sol-medium-bold/worker-report.json"
+    ],
+    "tests": [
+      {
+        "command": "node --check experiments/planetary/sol-medium-bold/main.js",
+        "outcome": "Passed; exit code 0."
+      },
+      {
+        "command": "node --input-type=module -e \"import { build } from 'vite'; await build({root:'experiments/planetary/sol-medium-bold', configFile:false, build:{write:false}});\"",
+        "outcome": "Passed; exit code 0. Vite 7.3.6 transformed 7 modules and completed the in-memory production bundle in 1.30 seconds."
+      }
+    ],
+    "repairsMade": [],
+    "knownLimitations": [
+      "Browser and visual interaction checks were not performed; localhost browser access was unavailable as specified.",
+      "All planetary scales, colors, distances and motion are explicitly stylized; displayed playground years are simulation seconds, not scientific data.",
+      "WebGL availability depends on the viewing browser. If creation fails or the context is lost, the page displays an explanatory fallback and planet information remains accessible.",
+      "Reduced-motion preference starts the simulation paused; users may explicitly start it."
+    ],
+    "tokenUsage": null,
+    "cost": null
+  }
+}

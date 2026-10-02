@@ -1,0 +1,31 @@
+{
+  "runId": "sol-medium-bold",
+  "title": "Orbit Disco",
+  "description": "An acid-yellow and pink cosmic dance floor with an animated Three.js solar system, eight selectable planets, custom procedural stripes and star field, playful planet descriptions, orbit and zoom controls, pause/resume, adjustable simulation tempo, reset, responsive HTML controls, and a readable WebGL-unavailable fallback.",
+  "implementationStartUtc": "2026-10-02T06:55:36Z",
+  "implementationEndUtc": "2026-10-02T06:59:55Z",
+  "files": [
+    "experiments/planetary/sol-medium-bold/index.html",
+    "experiments/planetary/sol-medium-bold/main.js",
+    "experiments/planetary/sol-medium-bold/worker-report.json"
+  ],
+  "tests": [
+    {
+      "command": "node --check experiments/planetary/sol-medium-bold/main.js",
+      "outcome": "Passed; exit code 0."
+    },
+    {
+      "command": "node --input-type=module -e \"import { build } from 'vite'; await build({root:'experiments/planetary/sol-medium-bold', configFile:false, build:{write:false}});\"",
+      "outcome": "Passed; exit code 0. Vite 7.3.6 transformed 7 modules and completed the in-memory production bundle in 1.30 seconds."
+    }
+  ],
+  "repairsMade": [],
+  "knownLimitations": [
+    "Browser and visual interaction checks were not performed; localhost browser access was unavailable as specified.",
+    "All planetary scales, colors, distances and motion are explicitly stylized; displayed playground years are simulation seconds, not scientific data.",
+    "WebGL availability depends on the viewing browser. If creation fails or the context is lost, the page displays an explanatory fallback and planet information remains accessible.",
+    "Reduced-motion preference starts the simulation paused; users may explicitly start it."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}
