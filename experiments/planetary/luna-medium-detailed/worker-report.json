@@ -1,0 +1,26 @@
+{
+  "title": "ORRERY — Worlds in motion",
+  "description": "A responsive, interactive Three.js planetary-system toy with selectable planet profiles, orbit-and-zoom camera controls, pause/resume, speed adjustment, reset, reduced-motion accommodation, and a labeled WebGL fallback. Its visual scale and motion are explicitly illustrative.",
+  "implementationStartUtc": "2026-10-02T06:32:27Z",
+  "implementationEndUtc": "2026-10-02T06:35:50Z",
+  "tests": [
+    {
+      "command": "node --check main.js",
+      "outcome": "passed"
+    },
+    {
+      "command": "node --input-type=module -e 'import { build } from \"vite\"; await build({root:process.cwd(),configFile:false,logLevel:\"info\",build:{write:false,rollupOptions:{input:\"index.html\"}}}); console.log(\"VITE_BUNDLE_OK\")'",
+      "outcome": "passed; Vite 7.3.6 transformed 7 modules and built successfully with write:false"
+    }
+  ],
+  "repairsMade": [
+    "The initial local bundle check exposed a missing closing parenthesis in the scene veil's CSS gradient; corrected the gradient and removed an empty CSS import, then reran syntax and bundle checks successfully.",
+    "Set distinct initial orbital phases and made reset restore those phases so the planets do not begin or reset into a single line."
+  ],
+  "knownLimitations": [
+    "Browser/visual interaction checks were not run because browser localhost access is unavailable in this environment.",
+    "Planet sizes, distances, orbital rates, and displayed overview values are simplified illustrative choices and not a precision scientific model."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}
