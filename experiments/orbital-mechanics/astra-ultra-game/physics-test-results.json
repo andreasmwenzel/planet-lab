@@ -1,0 +1,200 @@
+{
+  "suite": "Actual implementation numerical and game tests",
+  "passed": 27,
+  "failed": 0,
+  "tests": [
+    {
+      "name": "Circular quarter-orbit agrees with analytic position and velocity",
+      "status": "passed"
+    },
+    {
+      "name": "One and one hundred full circular orbits close",
+      "status": "passed"
+    },
+    {
+      "name": "Elliptical apsides and Kepler period match vis-viva",
+      "status": "passed"
+    },
+    {
+      "name": "Energy and angular momentum are conserved across 30,000 seconds",
+      "status": "passed"
+    },
+    {
+      "name": "Backward propagation reverses an elliptic coast",
+      "status": "passed"
+    },
+    {
+      "name": "Step partition does not change the flight",
+      "status": "passed"
+    },
+    {
+      "name": "Hyperbolic escape preserves positive energy",
+      "status": "passed"
+    },
+    {
+      "name": "Near-parabolic propagation is continuous on both sides of escape speed",
+      "status": "passed"
+    },
+    {
+      "name": "Stumpff functions have correct limits and remain continuous near zero",
+      "status": "passed"
+    },
+    {
+      "name": "Radial and transverse impulse axes are orthogonal and use m/s",
+      "status": "passed"
+    },
+    {
+      "name": "Clockwise orbit burns preserve the prograde convention",
+      "status": "passed"
+    },
+    {
+      "name": "Radial zero-angular-momentum orbits have finite apsides",
+      "status": "passed"
+    },
+    {
+      "name": "Hohmann transfer matches endpoint radii and final circular speed",
+      "status": "passed"
+    },
+    {
+      "name": "Closest-approach search recovers the phased rendezvous",
+      "status": "passed"
+    },
+    {
+      "name": "Atmospheric recall catches ordinary surface approach",
+      "status": "passed"
+    },
+    {
+      "name": "Apsidal event check catches a grazing boundary between time samples",
+      "status": "passed"
+    },
+    {
+      "name": "Budget, NaN, negative delay, and excessive impulse are rejected without mutation",
+      "status": "passed"
+    },
+    {
+      "name": "Expired delivery window closes the flight without spending fuel",
+      "status": "passed"
+    },
+    {
+      "name": "Sandbox time and delta-v remain unlimited",
+      "status": "passed"
+    },
+    {
+      "name": "Campaign 01: A little higher is solvable by the actual advisor and game engine",
+      "status": "passed"
+    },
+    {
+      "name": "Campaign 02: The high road is solvable by the actual advisor and game engine",
+      "status": "passed"
+    },
+    {
+      "name": "Campaign 03: The long arc is solvable by the actual advisor and game engine",
+      "status": "passed"
+    },
+    {
+      "name": "Campaign 04: Meet me halfway is solvable by the actual advisor and game engine",
+      "status": "passed"
+    },
+    {
+      "name": "Campaign 05: The way home is solvable by the actual advisor and game engine",
+      "status": "passed"
+    },
+    {
+      "name": "Campaign 06: Beyond the blue is solvable by the actual advisor and game engine",
+      "status": "passed"
+    },
+    {
+      "name": "Sixty-four seeded open-dispatch routes are solvable within budget",
+      "status": "passed"
+    },
+    {
+      "name": "Generated route seeds are repeatable and do not mutate global state",
+      "status": "passed"
+    }
+  ],
+  "metrics": {
+    "circularQuarterPositionErrorKm": 5.230909593113388e-12,
+    "circular100PeriodErrorKm": 3.3510529452451417e-10,
+    "ellipticalApoapsisRadiusErrorKm": 3.637978807091713e-12,
+    "maxRelativeEnergyError": 4.166207964521918e-11,
+    "maxRelativeAngularMomentumError": 2.6957084858871357e-13,
+    "timeReversalStateError": 1.8046595765570564e-9,
+    "partitionPositionErrorKm": 6.75240154925091e-7,
+    "hyperbolicEnergyError": 1.6274714909059185e-10,
+    "parabolicContinuityKm": 0.00009856181732431159,
+    "hohmannDeltaVMps": 600.0856223685433,
+    "hohmannTransferTimeSeconds": 3148.9850705084177,
+    "closestApproachDistanceKm": 5.2583555370725805e-9,
+    "closestApproachTimingErrorSeconds": 1.7904767446452752e-8,
+    "seededRoutes": 64,
+    "maxSeededBudgetFraction": 0.8329318005669212
+  },
+  "campaign": [
+    {
+      "id": "first",
+      "deltaVMps": 211.0859793705444,
+      "burns": 1,
+      "timeSeconds": 0,
+      "seals": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "circular",
+      "deltaVMps": 416.3579052206474,
+      "burns": 2,
+      "timeSeconds": 3021.6946008430223,
+      "seals": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "long",
+      "deltaVMps": 1473.2816064635758,
+      "burns": 2,
+      "timeSeconds": 6193.516874832345,
+      "seals": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "relay",
+      "deltaVMps": 600.0856223685407,
+      "burns": 2,
+      "timeSeconds": 3148.9850705084177,
+      "seals": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "home",
+      "deltaVMps": 1926.288889839399,
+      "burns": 1,
+      "timeSeconds": 9668.42520526754,
+      "seals": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "escape",
+      "deltaVMps": 3214.896014685966,
+      "burns": 1,
+      "timeSeconds": 2560,
+      "seals": [
+        true,
+        true,
+        true
+      ]
+    }
+  ]
+}

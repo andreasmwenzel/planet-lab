@@ -54,6 +54,7 @@ function picker(exp, route) {
  }).join('')}</tr>`).join('')}</tbody></table></section>`).join('')}</div>
  <details class="filter-disclosure" ${activeFilters ? 'open' : ''}><summary>Filter available builds${activeFilters ? ` · ${filtered.length} matching` : ''}</summary><div class="filter-bar">${Object.entries(axisLabels).map(([axis, label]) => `<label><span>${label}</span><select data-axis="${axis}" aria-label="Filter by ${label.toLowerCase()}"><option value="">All ${axis === 'model' ? 'models' : axis === 'effort' ? 'efforts' : 'approaches'}</option>${axisOptions(runs, axis, filters).map(option => `<option value="${e(option.value)}" ${filters[axis] === option.value ? 'selected' : ''} ${!option.available ? 'disabled' : ''}>${e(option.value)}${!option.available ? ' · no match' : ''}</option>`).join('')}</select></label>`).join('')}<button class="clear-filters" id="clear-filters" ${activeFilters ? '' : 'disabled'}>Clear filters</button></div></details>
  ${runs.filter(run => run.kind === 'baseline').map(run => `<button class="baseline-choice ${selected?.id === run.id ? 'selected' : ''}" data-run="${e(run.id)}" aria-pressed="${selected?.id === run.id}"><span>Original demo</span><strong>${e(run.title)}</strong></button>`).join('')}
+ ${runs.some(run => run.kind === 'extension') ? `<section class="extension-builds" aria-label="Additional builds"><h3>Additional builds</h3>${runs.filter(run => run.kind === 'extension').map(run => `<button class="baseline-choice ${selected?.id === run.id ? 'selected' : ''}" data-run="${e(run.id)}" aria-pressed="${selected?.id === run.id}"><span>${e(run.axes.model)} ${e(run.axes.effort)} · ${e(run.axes.promptApproach)}</span><strong>${e(run.title)}</strong></button>`).join('')}</section>` : ''}
  ${route.variant && !requested ? '<p class="notice" role="status">That build isn’t available.</p>' : ''}
  ${!selected ? `<div class="empty-state" role="status"><h3>${runs.length ? 'No matching build' : 'No published builds yet'}</h3>${activeFilters ? '<button class="solid-button" id="empty-clear">Clear filters</button>' : ''}</div>` : ''}`;
  document.querySelectorAll('[data-axis]').forEach(select => select.addEventListener('change', () => {
@@ -65,7 +66,7 @@ function picker(exp, route) {
  document.querySelector('#empty-clear')?.addEventListener('click', clear);
  document.querySelectorAll('[data-run]').forEach(button => button.addEventListener('click', () => {
    const run = runs.find(run => run.id === button.dataset.run);
-   location.hash = hrefFor(exp, run.id, filtered.includes(run) ? filters : {});
+   location.hash = hrefFor(exp, run.id, filtered.includes(run) ? filters : {}, run.kind === 'extension' ? 'simulator' : route.view);
  }));
  if (priorFocus) {
    const target = [...document.querySelectorAll('#picker button, #picker select')].find(element => priorFocus.run ? element.dataset.run === priorFocus.run : priorFocus.axis ? element.dataset.axis === priorFocus.axis : element.id === priorFocus.id);

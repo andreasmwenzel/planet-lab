@@ -1,0 +1,66 @@
+{
+  "status": "passed",
+  "vite": "7.3.6",
+  "node": "v24.19.0",
+  "configuration": {
+    "configFile": false,
+    "publicDir": false,
+    "base": "./",
+    "write": false,
+    "modulePreload": false,
+    "target": "es2022"
+  },
+  "checks": [
+    "Exact required module entry",
+    "Source inspection found no runtime fetch, XHR, WebSocket, storage, cookies, frame communication, or remote CSS assets",
+    "Single JavaScript chunk with no imports or dynamic imports",
+    "CSS and HTML build outputs present",
+    "write:false left all source-directory entries unchanged"
+  ],
+  "outputs": [
+    {
+      "file": "assets/index-Dat30goL.js",
+      "type": "chunk",
+      "bytes": 54822
+    },
+    {
+      "file": "assets/index-BzqP4fqT.css",
+      "type": "asset",
+      "bytes": 29758
+    },
+    {
+      "file": "index.html",
+      "type": "asset",
+      "bytes": 9073
+    }
+  ],
+  "sourceBytes": [
+    {
+      "file": "main.js",
+      "bytes": 33120
+    },
+    {
+      "file": "physics.js",
+      "bytes": 6237
+    },
+    {
+      "file": "missions.js",
+      "bytes": 13886
+    },
+    {
+      "file": "renderer.js",
+      "bytes": 12270
+    },
+    {
+      "file": "style.css",
+      "bytes": 29795
+    },
+    {
+      "file": "index.html",
+      "bytes": 9016
+    }
+  ],
+  "limitations": [
+    "No browser execution. This is an isolated build and static/runtime API smoke validation."
+  ]
+}

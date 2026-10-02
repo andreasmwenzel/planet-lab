@@ -1,0 +1,71 @@
+{
+  "suite": "DOM smoke with unavailable Canvas2D",
+  "passed": 15,
+  "failed": 0,
+  "canvasDrawCalls": 0,
+  "tests": [
+    {
+      "name": "Boot creates a paused orientation dialog and valid flight readouts",
+      "status": "passed"
+    },
+    {
+      "name": "Dialog close restores the flight without starting time",
+      "status": "passed"
+    },
+    {
+      "name": "Direct numeric control previews and executes a budgeted maneuver",
+      "status": "passed"
+    },
+    {
+      "name": "Rewind restores fuel, orbit, mission readiness, and control state",
+      "status": "passed"
+    },
+    {
+      "name": "Keyboard burn and rewind work while a button has focus",
+      "status": "passed"
+    },
+    {
+      "name": "Over-budget preview blocks the execute control",
+      "status": "passed"
+    },
+    {
+      "name": "Every campaign route completes through UI event handlers and earns three seals",
+      "status": "passed"
+    },
+    {
+      "name": "Manifest, generated routes, and fresh-flight reset are wired",
+      "status": "passed"
+    },
+    {
+      "name": "Route-code selection reproduces the same dispatch and advances the next suggestion",
+      "status": "passed"
+    },
+    {
+      "name": "Pause and time-warp controls advance only the chosen simulation time",
+      "status": "passed"
+    },
+    {
+      "name": "Future maneuver departure, clearing, and apsis controls are wired",
+      "status": "passed"
+    },
+    {
+      "name": "Atmospheric recall, failure dialog, and rewind work through UI",
+      "status": "passed"
+    },
+    {
+      "name": "Manual section switches, escape-to-close, and flight recorder work",
+      "status": "passed"
+    },
+    {
+      "name": "Render loop tolerates desktop and narrow canvas sizes with finite drawing coordinates",
+      "status": "passed"
+    },
+    {
+      "name": "Hiding the tab pauses the simulation",
+      "status": "passed"
+    }
+  ],
+  "limitations": [
+    "Mock DOM and Canvas API only. No browser, CSS layout, pointer gesture, screen reader, audio, or pixel-level visual validation."
+  ]
+}

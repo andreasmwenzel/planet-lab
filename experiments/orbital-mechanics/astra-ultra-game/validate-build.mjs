@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {readFile,readdir,writeFile,stat} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import {build} from 'vite';
+const root=fileURLToPath(new URL('.',import.meta.url));
+const html=await readFile(new URL('./index.html',import.meta.url),'utf8');
+assert.equal((html.match(/<script type="module" src="\.\/main\.js"><\/script>/g)||[]).length,1,'Exact module entry is present once');
+assert.equal((html.match(/<script\b/g)||[]).length,1,'One runtime entry');
+const sources=await Promise.all(['main.js','physics.js','missions.js','renderer.js','style.css','index.html'].map(f=>readFile(new URL('./'+f,import.meta.url),'utf8')));
+for(const pattern of [/\bfetch\s*\(/,/\bXMLHttpRequest\b/,/\bWebSocket\b/,/\blocalStorage\b/,/\bsessionStorage\b/,/\bdocument\.cookie\b/,/\b(?:window\.)?(?:parent|top)\.(?:postMessage|location)/,/\bpostMessage\s*\(/,/url\(\s*['"]?https?:/])assert.ok(!sources.some(s=>pattern.test(s)),`Forbidden runtime pattern ${pattern}`);
+const before=(await readdir(root)).sort();
+const result=await build({root,configFile:false,publicDir:false,base:'./',logLevel:'silent',build:{write:false,emptyOutDir:false,target:'es2022',modulePreload:false,minify:'esbuild',rollupOptions:{input:fileURLToPath(new URL('./index.html',import.meta.url))}}});
+const output=(Array.isArray(result)?result:[result]).flatMap(r=>r.output);
+assert.deepEqual((await readdir(root)).sort(),before,'Isolated Vite write:false left the directory unchanged');
+const scripts=output.filter(o=>o.type==='chunk');assert.equal(scripts.length,1,'Runtime is a single bundle');assert.deepEqual(scripts[0].imports,[]);assert.deepEqual(scripts[0].dynamicImports,[]);
+assert.ok(output.some(o=>o.fileName.endsWith('.css')));assert.ok(output.some(o=>o.fileName==='index.html'));
+const report={status:'passed',vite:'7.3.6',node:process.version,configuration:{configFile:false,publicDir:false,base:'./',write:false,modulePreload:false,target:'es2022'},checks:['Exact required module entry','Source inspection found no runtime fetch, XHR, WebSocket, storage, cookies, frame communication, or remote CSS assets','Single JavaScript chunk with no imports or dynamic imports','CSS and HTML build outputs present','write:false left all source-directory entries unchanged'],outputs:output.map(o=>({file:o.fileName,type:o.type,bytes:Buffer.byteLength(o.type==='chunk'?o.code:o.source)})),sourceBytes:sources.map((s,i)=>({file:['main.js','physics.js','missions.js','renderer.js','style.css','index.html'][i],bytes:Buffer.byteLength(s)})),limitations:['No browser execution. This is an isolated build and static/runtime API smoke validation.']};
+await writeFile(new URL('./build-validation.json',import.meta.url),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));

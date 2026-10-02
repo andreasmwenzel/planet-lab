@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b1118" />
+  <meta name="description" content="Kepler Dispatch: an orbital courier game. Plan real two-body maneuvers, manage delta-v, and deliver six unusual parcels." />
+  <title>Kepler Dispatch — an orbital courier game</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <a class="brand" href="#" id="brand" aria-label="Kepler Dispatch mission control"><span class="brand-symbol" aria-hidden="true"><i></i><b></b></span><span>KEPLER<span class="brand-sub">DISPATCH</span></span></a>
+    <span class="top-divider"></span>
+    <button class="contract-switch" id="contractsButton"><span class="tiny">FLIGHT MANIFEST</span><span id="manifestTitle">01 / A little higher <span>⌄</span></span></button>
+    <div class="top-spacer"></div>
+    <div class="seal-count" title="Dispatch seals earned this session"><span aria-hidden="true">✦</span><b id="sealCount">0</b><small>/ 18</small></div>
+    <button class="icon-button" id="soundButton" aria-label="Enable sound" title="Sound off">♫<span class="sound-dot"></span></button>
+    <button class="help-button" id="helpButton">Flight manual <span>?</span></button>
+  </header>
+  <main class="workspace">
+    <section class="map-panel" aria-label="Orbital flight map">
+      <canvas id="map" tabindex="0" aria-label="Live orbital map. Use the flight computer to plan burns. Drag the gold maneuver handle or use numeric controls. Scroll to zoom." role="img"></canvas>
+      <div id="canvasFallback" class="canvas-fallback" hidden>Your browser can’t display the orbital map. All flight controls, physics and mission readouts remain available.</div>
+      <div class="map-heading">
+        <div class="eyebrow"><span class="live-dot"></span><span id="mapStatus">FLIGHT COMPUTER ONLINE</span><span class="map-coordinate">ECI / 2D</span></div>
+        <h1 id="missionName">A little higher</h1>
+        <p id="cargoName">MANIFEST 001 <span>•</span> A box of firsts</p>
+      </div>
+      <div class="map-tools">
+        <button id="zoomIn" aria-label="Zoom in" title="Zoom in">+</button>
+        <button id="zoomOut" aria-label="Zoom out" title="Zoom out">−</button>
+        <button id="fitButton" aria-label="Fit orbit to view" title="Fit current and planned orbits">⌖</button>
+        <button id="gridButton" aria-label="Hide distance grid" aria-pressed="true" title="Toggle grid">▦</button>
+      </div>
+      <div class="map-notice" id="mapNotice" aria-live="polite"><span>◈</span><div><b>Ready at departure</b><small>Plan your first burn in the flight computer.</small></div></div>
+      <div class="map-telemetry">
+        <div><span>ALTITUDE</span><strong id="altitude">400<small>km</small></strong></div>
+        <div><span>ORBITAL SPEED</span><strong id="velocity">7.673<small>km/s</small></strong></div>
+        <div class="telemetry-small"><span>ECCENTRICITY</span><strong id="eccentricity">0.000</strong></div>
+      </div>
+      <div class="map-legend"><span><i class="legend-current"></i>Current orbit</span><span><i class="legend-target"></i>Destination</span><span><i class="legend-plan"></i>After burn</span></div>
+      <div class="map-scale" id="mapScale">2,000 km</div>
+      <div class="transport">
+        <button id="playButton" class="play-button" aria-label="Resume simulation"><span id="playIcon">▶</span></button>
+        <div class="clock-readout"><span>MISSION ELAPSED</span><b id="missionTime">00:00:00</b></div>
+        <div class="speed-controls" role="group" aria-label="Simulation speed"><button data-speed="1">1×</button><button data-speed="60">60×</button><button data-speed="300" class="active" aria-pressed="true">300×</button><button data-speed="1200">1200×</button></div>
+        <span class="transport-spacer"></span>
+        <button class="coast-button" id="coastApo" title="Coast to next apoapsis">To Ap <span>↗</span></button>
+        <button class="coast-button" id="coastPeri" title="Coast to next periapsis">To Pe <span>↘</span></button>
+        <button class="rewind-button" id="undoButton" disabled title="Rewind to before the last burn (R)" aria-label="Rewind last burn">↶</button>
+      </div>
+    </section>
+    <aside class="flight-panel" aria-label="Flight computer">
+      <section class="contract-panel">
+        <div class="section-heading"><span class="eyebrow" id="contractTag">FLIGHT SCHOOL</span><span class="contract-number" id="contractNumber">01</span></div>
+        <p id="missionBrief" class="mission-brief"></p>
+        <div id="objectives" class="objectives"></div>
+        <button id="deliverButton" class="deliver-button" disabled>Certify orbit <span>↗</span></button>
+        <div class="fuel-heading"><span>DELTA-V RESERVE</span><strong id="fuelRemaining">280 <small>m/s</small></strong></div>
+        <div class="fuel-bar" aria-hidden="true"><i id="fuelFill"></i><i id="fuelPreview"></i></div>
+        <div class="fuel-sub"><span id="fuelUsed">0 m/s used</span><span id="burnCount">0 burns</span></div>
+        <div id="parTargets" class="par-targets"></div>
+      </section>
+      <section class="maneuver-panel">
+        <div class="section-heading"><h2><span class="node-icon">✳</span> Maneuver planner</h2><button id="clearPlan" class="text-button">Clear</button></div>
+        <div class="departure-line"><label for="delayNumber">BURN IN</label><div><input id="delayNumber" type="number" min="0" max="1440" step="0.1" value="0" aria-label="Minutes until maneuver"/><span>min</span></div></div>
+        <input id="delaySlider" class="delay-slider" type="range" min="0" max="360" step="0.1" value="0" aria-label="Minutes until maneuver slider" />
+        <div class="node-presets"><button id="nodeNow" class="active">Now</button><button id="nodeApo">At apoapsis</button><button id="nodePeri">At periapsis</button></div>
+        <div class="burn-axis"><div class="axis-header"><label for="tangentNumber"><i>↗</i> Tangential <small>+T</small></label><div><input id="tangentNumber" type="number" min="-12000" max="12000" step="1" value="0" aria-label="Tangential delta-v in meters per second"/><span>m/s</span></div></div><input id="tangentSlider" type="range" min="-500" max="500" step="1" value="0" aria-label="Tangential delta-v slider"/><div class="axis-ends"><span>retrograde</span><span>prograde</span></div></div>
+        <div class="burn-axis radial-axis"><div class="axis-header"><label for="radialNumber"><i>↑</i> Radial <small>+R</small></label><div><input id="radialNumber" type="number" min="-12000" max="12000" step="1" value="0" aria-label="Radial delta-v in meters per second"/><span>m/s</span></div></div><input id="radialSlider" type="range" min="-1000" max="1000" step="1" value="0" aria-label="Radial delta-v slider"/><div class="axis-ends"><span>inward</span><span>outward</span></div></div>
+        <div class="prediction"><div class="prediction-heading"><span>AFTER MANEUVER</span><span id="planCost">Δv 0 m/s</span></div><div class="prediction-values"><div><span>Periapsis</span><b id="previewPeri">400 <small>km</small></b></div><div><span>Apoapsis</span><b id="previewApo">400 <small>km</small></b></div></div><div class="energy-line"><span id="previewType">Circular orbit</span><span id="previewEnergy">C₃ −58.87</span></div><div id="encounterPreview" class="encounter-preview" hidden></div></div>
+        <p id="planWarning" class="plan-warning" role="status" hidden></p>
+        <button id="executeButton" class="execute-button" disabled><span>Execute burn</span><span class="key-hint">B</span></button>
+        <p class="planner-footnote">Impulse model · coasting uses no fuel</p>
+      </section>
+      <section class="advisor-panel"><button id="advisorToggle" aria-expanded="false"><span><i>✧</i> Pilot’s notebook</span><span id="advisorChevron">+</span></button><div id="advisorContent" hidden><h3 id="advisorTitle"></h3><p id="advisorText"></p><button id="advisorButton" class="advisor-button"></button></div></section>
+      <button id="recorderButton" class="recorder-button"><span>≋ &nbsp; Flight recorder</span><span id="recorderCount">1 entry ↗</span></button>
+    </aside>
+  </main>
+  <footer class="bottom-bar"><span><i></i> TWO-BODY FLIGHT MODEL</span><span class="desktop-hints">SPACE pause &nbsp; B burn &nbsp; R rewind</span><button id="modelButton">Assumptions & controls ↗</button></footer>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<div id="modalBackdrop" class="modal-backdrop" hidden><section id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1"></section></div>
+<noscript><div class="noscript">Kepler Dispatch needs JavaScript to simulate orbital motion. Enable it and reload to fly.</div></noscript>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

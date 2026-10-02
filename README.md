@@ -80,3 +80,7 @@ Each runtime is bundled as inline JS/CSS with local assets, uses an opaque-origi
 The repository stays private. Building writes local artifacts only. Hosting is managed separately through the authorized Vercel integration; no deployment or CI workflow is installed here. The lockfile is preserved.
 
 `npm run check` runs the available unit tests and production build. Live browser QA of the shell should be performed on an authorized deployment; localhost browser access in the creation environment was blocked. Never label rendered 3D behavior verified based only on a build or iframe document load.
+
+## Additional orbital game
+
+`/#/results/orbital-mechanics/astra-ultra-game` opens **Kepler Dispatch**, the independently generated Astra Ultra game. It also appears under **Additional builds** in the orbital experiment. This optional extension is outside the standard 24 conditions and their comparison charts. Its runtime source is preserved; the exact game brief, source hashes, numerical tests, mocked interaction tests, build validator, and original worker report are retained in `experiments/orbital-mechanics/astra-ultra-game/`. Token usage and cost are unavailable. See that directory's README for reproducible tests and model limitations.

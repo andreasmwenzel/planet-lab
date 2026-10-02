@@ -1,0 +1,103 @@
+{
+  "id": "astra-ultra-game",
+  "experimentId": "orbital-mechanics",
+  "title": "Kepler Dispatch",
+  "status": "available",
+  "kind": "extension",
+  "runtime": "/experiments/orbital-mechanics/astra-ultra-game/index.html",
+  "axes": {
+    "model": "Astra",
+    "effort": "ultra",
+    "promptApproach": "game"
+  },
+  "summary": "A finished orbital courier game with six authored contracts, realistic two-body maneuver planning, rendezvous, a flight advisor, fuel and time medals, rewinds, a seeded dispatch board, and unlimited free flight.",
+  "provenance": {
+    "label": "Additional Astra Ultra game",
+    "note": "Independently generated with gpt-6-astra and ultra effort explicitly configured. No delegation or inspection of other builds. Optional game extension, outside the standard 24-condition matrix. Shared orbital packaging constraints. Runtime source preserved byte-for-byte.",
+    "modelId": "gpt-6-astra",
+    "effort": "ultra",
+    "runId": "astra-ultra-game",
+    "startedAt": "2026-10-02T08:50:30Z",
+    "completedAt": "2026-10-02T09:34:52Z",
+    "durationSeconds": 2662,
+    "durationScope": "Worker-reported wall-clock implementation duration, including tools and validation; not model latency.",
+    "tokenUsage": null,
+    "cost": null,
+    "sourceHashes": {
+      "index.html": "d08485a42e4e3fb14f1f7b18a593ad6504d81f5614f79fbc0d4675f781b11932",
+      "main.js": "d89a90e89f4478fc9337812baa0dcf789298be4d76c9a6076aa892c53ccb0cd1",
+      "physics.js": "40efb3ce7e5c3e4827c582f2178400359148d04503cc5f360a0f0033b7bf5e04",
+      "missions.js": "2c4c5eb6ddc37ab9f042d340e551e034432bee002b78218cdd2e025c3259bf1b",
+      "renderer.js": "44729685e909ca1d7071566fab48fa51c5e1299f957f8a52436bd825192087a4",
+      "style.css": "d61a595e85589053e4effa9577e770e95f99e03faecf89da2bee6224bcc8697e",
+      "prompt.txt": "8f29c7a94812f8bfe55fb51c27a75b6ac71ca02eca3f29723d7540b2bfb43c89",
+      "physics-tests.mjs": "f0d71a59ff549e1435f6f2b522aa010e1f8661f2c7766783eba069dd022da5bb",
+      "ui-smoke-tests.mjs": "a5091f9d2c2cdc512182b5785a5ecb44ece41e4dce857bbcc4dce7972d287221",
+      "validate-build.mjs": "c9697b5f261328b941c482a49c327b87839b0245648b87d1170dbcc6acbf7a82",
+      "worker-report.json": "8457711ff2111db78bcb9b8b8c5beb51564e53bd8971b78668f6e23f966fd5d8"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an in-browser orbital mechanics simulator, conceived as a finished orbital mechanics GAME. Deliver a finished, usable product, not a demo page or marketing landing page. Choose your own distinctive game concept, architecture, interactions and visual direction. Use actual orbital mechanics and clearly state assumptions and limitations. The user explicitly requested an Astra Ultra section on this orbital mechanics game idea, and said it can land later because it may run a while. Take the depth needed to build a genuinely complete and enjoyable game with meaningful objectives, learning, feedback and replayability.\n\nWork only in /workspace/scratch/bb2a48021f5a/planet-lab/experiments/orbital-mechanics/astra-ultra-game (create it). Implement from scratch; do not inspect other runs, prior experiment, or preexisting simulator implementation. Do not delegate generation. Create index.html and optional main.js/local modules/CSS. If using main.js include exactly <script type=\"module\" src=\"./main.js\"></script>. Vanilla JS, installed Three.js 0.186.1 optional, Vite 7.3.6 and Node 24 are available. No new dependencies, runtime network calls, remote assets/fonts, backend, accounts, analytics or live data. Don't modify package or shared files. Runtime is bundled into inline HTML and hosted in an iframe sandbox allow-scripts with opaque origin: no parent/top/frame communication/persistent storage/cookies. WebGL must degrade gracefully. Validate syntax, isolated Vite build write:false and quantitative numerical tests against actual implementation physics functions, retaining rerunnable tests. Browser localhost unavailable; do not claim browser checks or bypass restrictions. Include worker-report.json with product title, description, start/end UTC times, exact tests/results/repairs, assumptions/limitations/unknowns. Include runtime-provided token counters if exposed, otherwise tokenUsage null with reason; never read restricted session history or credentials. User requested estimates, so you may separately report a clearly labeled self-estimate only if defensible, describing basis and uncertainty; never equate it with measured tokens or actual API cost. No arbitrary tiny token cap. No publishing; parent will integrate separately from 24-run batch."
+      }
+    ],
+    "note": "Exact public generation brief and scaffold supplied to the independently configured Astra Ultra task. Private coordination instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "build-checks-passed-browser-unverified",
+      "passed": 57,
+      "total": 57,
+      "scope": "27 numerical/game checks; 15 mocked DOM/Canvas scenarios; the same 15 without Canvas",
+      "note": "Retained tests rerun successfully at integration. UI harness is a mocked DOM, not browser execution. Syntax, isolated Vite build, and shared inline packaging also verified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "No browser execution, CSS layout, pointer/touch, assistive-technology, or audio verification is claimed in this generation record."
+    },
+    "measurements": [
+      {
+        "label": "Observed implementation duration",
+        "value": 2662,
+        "unit": "seconds"
+      },
+      {
+        "label": "Runtime bundle",
+        "value": 93899,
+        "unit": "bytes"
+      }
+    ],
+    "notes": [
+      "Optional extension, not one of the standard 24 conditions.",
+      "Measured token usage and API cost are unavailable. Source-size estimates in the raw worker report are not usage or billing.",
+      "Planar Newtonian two-body motion around a stationary spherical Earth; mu 398600.4418 km^3/s^2 and radius 6371 km.",
+      "Internal units are kilometers, seconds, and km/s; UI impulses use m/s. Transverse and radial axes are perpendicular; transverse is not velocity-aligned away from apsides.",
+      "Burns are instantaneous impulses against an abstract delta-v budget. No thrust duration, propellant mass, rocket equation, or spacecraft attitude dynamics.",
+      "No atmosphere/drag, J2, Sun/Moon perturbations, Earth rotation, inclination, relativistic corrections, launch, landing, or reentry.",
+      "The flight is recalled at the 100 km atmospheric safety boundary. Event checks occur at no more than 20 simulated seconds, plus an apsidal crossing guard.",
+      "Orbital-shape contracts certify osculating apsides without requiring physical arrival at the far point. Escape requires reaching the release altitude outbound.",
+      "Station capture uses a forgiving 50 km and 60 m/s gameplay envelope. Real docking is much more demanding.",
+      "Orbit distances have one linear scale; spacecraft and station symbols are enlarged. Canvas 2D replaces any need for WebGL.",
+      "Progress is memory-only and resets on reload. No backend, accounts, analytics, storage, or runtime network requests.",
+      "This is a learning game, not operational mission planning or navigation software.",
+      "Nearest-pass search is sampled and refined over a bounded future interval of at most four hours, not a global rendezvous optimizer.",
+      "The notebook assumes conventional transfers. After large off-plan maneuvers, manual correction or rewind may be required.",
+      "Safety boundary and goal recognition can occur up to one 20-second event interval after first crossing.",
+      "A no-Canvas browser retains the flight controls and numerical game, but cannot display the orbital map."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "runtimeBytes": 93899,
+    "runtimeSha256": "850f6834fe11acd7b44c37ed00ec512725619954eadbf2ee5079d70fe5c89dd5",
+    "checkedAt": "2026-10-02T09:41:17.372331+00:00"
+  }
+}
