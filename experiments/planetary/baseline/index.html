@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#11232b" />
+    <meta name="description" content="A little universe, a lot of possibility. An interactive, procedural 3D planetary playground built with Three.js." />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='24' fill='%23ffd797'/%3E%3C/svg%3E" />
+    <title>Pocket Cosmos · An orbital playground</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="masthead">
+        <a class="wordmark" href="./" aria-label="Pocket Cosmos home"><span class="brand-orbit" aria-hidden="true">✦</span> pocket cosmos<span class="wordmark-dot">.</span></a>
+        <div class="edition"><span class="status-dot"></span> A SMALL EXPERIMENT IN WONDER <span class="edition-number">№ 001</span></div>
+      </header>
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <div><p class="eyebrow">YOUR VERY OWN CORNER OF THE UNIVERSE</p><h1 id="page-title">Small worlds.<br><em>Big possibilities.</em></h1></div>
+          <p class="intro-copy">Take a little cosmic detour.<br>Spin the system, meet the planets,<br>and send something wonderful flying.</p>
+        </section>
+        <div class="lab-layout">
+          <aside class="explorer" aria-label="Planet explorer">
+            <div class="panel-heading"><span class="eyebrow">FIELD NOTES</span><span class="tiny-star">✳</span></div>
+            <div id="planet-list" class="planet-list" aria-label="Choose a planet"></div>
+            <section class="planet-detail" aria-labelledby="planet-name">
+              <p class="detail-kicker" id="planet-kind"></p>
+              <h2 id="planet-name"></h2>
+              <p id="planet-description"></p>
+              <dl class="planet-stats"><div><dt>PERSONALITY</dt><dd id="planet-mood"></dd></div><div><dt>ORBIT</dt><dd id="planet-period"></dd></div></dl>
+              <button id="focus" class="focus-button">Take a closer look <span aria-hidden="true">↗</span></button>
+            </section>
+            <div class="sidebar-foot"><span aria-hidden="true">↳</span><p>Entirely made-up worlds.<br>Real-time rendered delight.</p></div>
+          </aside>
+          <section class="observatory" aria-label="Interactive 3D solar system">
+            <div class="scene-top"><div class="live-badge"><span class="status-dot"></span><span id="motion-state">LIVE ORBIT</span></div><span class="scene-coordinates">SECTOR 01 / POCKET SYSTEM</span></div>
+            <div id="viewport" tabindex="0" aria-label="3D planetary scene. Drag to orbit, scroll or pinch to zoom. Select planets using the adjacent buttons."><div id="labels" aria-hidden="true"></div></div>
+            <div id="fallback" hidden role="alert"><span>✦</span><h2>A little technical eclipse</h2><p>This experiment needs WebGL 2. Try a current browser with hardware acceleration enabled.</p></div>
+            <div class="scene-bottom"><p><span aria-hidden="true">⤢</span> DRAG TO ORBIT <span class="hint-divider">/</span> SCROLL TO ZOOM</p><button id="labels-toggle" class="scene-toggle" aria-pressed="true">Labels <span aria-hidden="true">●</span></button></div>
+          </section>
+        </div>
+        <section class="control-bar" aria-label="Simulation controls">
+          <div class="transport"><button id="pause" class="round-button" aria-label="Pause orbits" aria-pressed="false"><span id="pause-icon" aria-hidden="true">Ⅱ</span></button><button id="reset" class="round-button reset" aria-label="Reset system and camera" title="Reset system (R)">↺</button><div class="time-caption"><strong>Make time your own</strong><span>PAUSE. PLAY. WANDER.</span></div></div>
+          <div class="speed-control"><label for="speed">ORBIT SPEED <output id="speed-value" for="speed">1×</output></label><input id="speed" type="range" min="0.25" max="3" step="0.25" value="1" aria-label="Orbit speed" /></div>
+          <button id="comet" class="comet-button"><span aria-hidden="true">☄</span> Launch a comet <span aria-hidden="true">↗</span></button>
+        </section>
+        <footer><span>BUILT FOR CURIOUS MINDS & IDLE MOMENTS</span><p><kbd>P</kbd> pause <kbd>C</kbd> comet <kbd>R</kbd> reset <span class="footer-star" aria-hidden="true">✦</span> No two moments alike</p></footer>
+      </main>
+      <div id="toast" role="status" aria-live="polite"></div>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
