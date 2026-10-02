@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "A playful, procedural Three.js solar system you can hold in your browser.",
+  "description": "An AI exploration journal with playable, traceable creative experiments.",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
-    "build": "vite build",
+    "dev": "npm run build:runtimes && vite --host 127.0.0.1",
+    "build": "npm run build:runtimes && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "test": "node --test",
-    "check": "npm test && npm run build"
+    "check": "npm test && npm run build",
+    "build:runtimes": "node scripts/build-runtimes.mjs"
   },
   "engines": {
     "node": ">=22.12.0"
