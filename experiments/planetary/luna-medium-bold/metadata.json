@@ -1,0 +1,126 @@
+{
+  "id": "luna-medium-bold",
+  "experimentId": "planetary",
+  "title": "Luna · medium · bold",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/planetary/luna-medium-bold/index.html",
+  "axes": {
+    "model": "Luna",
+    "effort": "medium",
+    "promptApproach": "bold"
+  },
+  "summary": "An original responsive planetary playground with animated Three.js worlds, direct scene selection, camera orbit and zoom, pause/resume, time warp, reset, and a readable WebGL-unavailable fallback.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation with requested model and effort explicitly configured. Same public brief, output constraints, and syntax/bundle repair allowance. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6-luna",
+    "effort": "medium",
+    "runId": "luna-medium-bold",
+    "startedAt": "2026-10-02T06:33:25Z",
+    "completedAt": "2026-10-02T06:38:19.419Z",
+    "durationSeconds": 294,
+    "durationScope": "Observed wall-clock time from task launch to verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; cloud browser does not provide usable WebGL2."
+    },
+    "sourceHashes": {
+      "index.html": "52159d2b775e2ac1a86dc333d433ed45312213c20333cc19bccdf0a7de78be87",
+      "main.js": "34cb603fe1eca8506a11645d53635ea0df80f752efc1ce639cba2094108e1ef4",
+      "prompt.txt": "e16e31e541d628babce4e9bfbd54ea100b957a346f37a6a5c390e2f4175c1354",
+      "style.css": "e40a304d606baecb6394c99d372e0cb22897491850bf3095b1d8258db1ac59f0"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an original interactive 3D planetary-system toy from scratch. Use the supplied Three.js dependency and a self-contained frontend with no backend, accounts, analytics, runtime network calls, or paid assets. Include an animated planetary scene, camera orbit and zoom, pause/resume, simulation-speed control, reset, and planet selection with clearly labelled information. Make it usable at desktop and phone sizes, with keyboard-accessible HTML controls and visible focus. Clearly label stylized motion/scales; do not imply scientific precision. Make reasonable design choices and implement the experience.\n\nGive this a bold, imaginative creative direction. Make it a memorable interactive cosmic playground through expressive composition, distinctive typography, vivid but intentional color, and playful transitions. Take aesthetic risks while keeping planets, labels, and controls readable and required interactions dependable.\n\nScaffold and output requirements:\n- Build the implementation fresh. Do not inspect the baseline, other variants, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only inside the supplied run directory. Create index.html and main.js there. The HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. Local CSS may be imported from main.js. Use installed three and, if useful, its add-ons via standard imports. A single fully inline HTML file is also allowed.\n- Available environment: Three.js 0.186.1, Vite 7.3.6, Node 24. No extra dependencies, CDN assets, remote fonts, runtime network calls, or backend. Do not modify package files or shared app files.\n- The common build harness bundles JavaScript and CSS into one HTML document. The viewer uses an iframe sandbox with allow-scripts and an opaque origin; do not access parent/top or rely on localStorage, cookies, cross-frame communication, or origin-specific APIs.\n- Validate JavaScript syntax and perform a local Vite bundle check with write:false. You may repair your own implementation and rerun these checks. Use the same test-and-repair allowance: implementation, syntax and local-bundle checks, then repairs needed to pass those checks. Browser localhost access is unavailable in this environment; do not claim browser checks or bypass that restriction.\n- Include a short worker-report.json with your title, description, implementation start/end UTC timestamps, exact tests and outcomes, repairs made, and known limitations. Set tokenUsage and cost to null unless the runtime supplies actual measured values. Do not estimate tokens, cost, or quality scores.\n- Provide a graceful, clearly labelled fallback if WebGL is unavailable, keeping the page readable and explaining the limitation rather than failing to a blank canvas.\n"
+      }
+    ],
+    "note": "Complete public generation brief and shared scaffold requirements, read verbatim by each fresh generation task. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax and isolated bundle checks passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "No usable WebGL2 in the available cloud browser; rendered 3D appearance and interaction have not been verified."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 572394,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 294,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 556494,
+    "cssBytes": 10876,
+    "checkedAt": "2026-10-02T06:38:19.419Z",
+    "runtimeBytes": 572394
+  },
+  "generationReport": {
+    "title": "ORBITAL — Make a cosmic detour",
+    "description": "An original responsive planetary playground with animated Three.js worlds, direct scene selection, camera orbit and zoom, pause/resume, time warp, reset, and a readable WebGL-unavailable fallback.",
+    "implementationStartUtc": "2026-10-02T06:33:45Z",
+    "implementationEndUtc": "2026-10-02T06:37:45Z",
+    "tests": [
+      {
+        "name": "JavaScript syntax",
+        "command": "node --check experiments/planetary/luna-medium-bold/main.js",
+        "outcome": "passed"
+      },
+      {
+        "name": "Local Vite in-memory bundle",
+        "command": "node --input-type=module -e \"import {build} from 'vite'; import path from 'node:path'; const root=path.resolve('experiments/planetary/luna-medium-bold'); const result=await build({configFile:false,root,logLevel:'warn',build:{write:false,emptyOutDir:false,cssCodeSplit:false}}); console.log(Array.isArray(result)?result.map(x=>x.output.length):result.output.length)\"",
+        "outcome": "passed; Vite produced 3 in-memory bundle chunks; build.write was false"
+      },
+      {
+        "name": "HTML module entry contract",
+        "command": "Python count of the exact required module script tag and all script tags in index.html",
+        "outcome": "passed; exact required tag appears once and is the only script tag"
+      }
+    ],
+    "repairsMade": [
+      "Added the missing play-icon element ID referenced by the playback control and aligned its aria-pressed state with the running state.",
+      "Removed an empty CSS import declaration to keep the implementation fully self-contained.",
+      "The first exploratory Vite invocation incorrectly supplied the repository-level index.html as an explicit Rollup input and failed to resolve its /src/main.js. Reran the check using the assigned run directory as Vite root and its default index discovery; the local bundle passed. No application source change was needed for that invocation correction."
+    ],
+    "knownLimitations": [
+      "Browser rendering and interaction could not be tested because localhost browser access is unavailable in this environment.",
+      "Actual WebGL-unavailable behavior is implemented as an error fallback but was not exercised in a browser."
+    ],
+    "tokenUsage": null,
+    "cost": null
+  }
+}
