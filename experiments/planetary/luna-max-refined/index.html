@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#08131b" />
+    <meta name="description" content="A quiet, interactive observatory for a stylized view of our solar system." />
+    <title>Solarium — a planetary observatory</title>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="Solarium, back to top">
+          <span class="brand-mark" aria-hidden="true"><span></span></span>
+          <span class="brand-name">SOLARIUM</span>
+        </a>
+        <div class="topbar-note"><span class="topbar-dot" aria-hidden="true"></span> A SMALL OBSERVATORY <span class="topbar-separator">/</span> NO. 01</div>
+      </header>
+
+      <main id="top">
+        <section class="intro" aria-labelledby="page-title">
+          <div class="intro-copy">
+            <p class="eyebrow">THE NEIGHBOURHOOD, AT A GLANCE</p>
+            <h1 id="page-title">A quieter kind<br class="mobile-break" /> of <em>orbit.</em></h1>
+          </div>
+          <p class="intro-note">Eight worlds, one star, and a little room to wander. Drag to turn the field; choose a planet to bring its story into focus.</p>
+        </section>
+
+        <section class="observatory-grid" aria-label="Interactive solar system observatory">
+          <div class="scene-shell" id="sceneShell">
+            <canvas id="planetCanvas" role="img" aria-label="Stylized interactive 3D solar system. Drag to orbit the view and scroll to zoom. Choose a planet from the list to read about it."></canvas>
+            <div class="scene-topline" aria-hidden="true">
+              <span class="scene-index"><span class="scene-index-mark"></span> SOL / LOCAL GROUP</span>
+              <span class="scene-count">08 BODIES <i>·</i> ORBITS STYLIZED</span>
+            </div>
+            <div class="scene-footline" aria-hidden="true">
+              <span class="scale-mark"><i></i><i></i><i></i> A MODEL, NOT A MAP</span>
+              <span class="gesture-hint"><span class="gesture-icon">↔</span> DRAG TO ORBIT <b>·</b> SCROLL TO ZOOM</span>
+            </div>
+            <div class="body-label" id="bodyLabel" aria-hidden="true"><span class="body-label-rule"></span><span id="bodyLabelText">EARTH</span></div>
+
+            <div class="fallback-view" id="fallbackView" hidden>
+              <div class="fallback-message">
+                <p class="eyebrow">STILL FIELD / 2D</p>
+                <h2>WebGL is unavailable</h2>
+                <p>This browser can’t draw the 3D scene right now. The orbital diagram is static, but you can still explore each planet’s notes below.</p>
+              </div>
+              <div class="fallback-diagram" aria-hidden="true">
+                <div class="diagram-orbit orbit-8"></div><div class="diagram-orbit orbit-7"></div><div class="diagram-orbit orbit-6"></div><div class="diagram-orbit orbit-5"></div><div class="diagram-orbit orbit-4"></div><div class="diagram-orbit orbit-3"></div><div class="diagram-orbit orbit-2"></div><div class="diagram-orbit orbit-1"></div>
+                <div class="diagram-sun"></div>
+                <i class="diagram-body d-mercury"></i><i class="diagram-body d-venus"></i><i class="diagram-body d-earth"></i><i class="diagram-body d-mars"></i><i class="diagram-body d-jupiter"></i><i class="diagram-body d-saturn"></i><i class="diagram-body d-uranus"></i><i class="diagram-body d-neptune"></i>
+                <span class="diagram-caption">ORBITAL LAYOUT · NOT TO SCALE</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="observatory-desk" aria-label="Planet notes and controls">
+            <div class="desk-heading">
+              <span class="desk-overline"><span class="tiny-star" aria-hidden="true">✳</span> PLANET INDEX</span>
+              <span class="desk-coordinate">01—08</span>
+            </div>
+
+            <article class="planet-card" aria-live="polite" aria-atomic="true">
+              <div class="planet-card-top">
+                <p class="planet-kicker" id="planetKicker">TERRESTRIAL · 03</p>
+                <span class="planet-index-large" id="planetIndexLarge">03</span>
+              </div>
+              <h2 id="planetName">Earth</h2>
+              <p class="planet-summary" id="planetSummary">A blue world of oceans, weather, and one known living biosphere.</p>
+              <div class="planet-fact">
+                <span class="fact-label" id="factLabel">ORBITAL PERIOD</span>
+                <span class="fact-value" id="factValue">365 days</span>
+              </div>
+              <p class="selection-hint"><span class="hint-arrow">↗</span> SELECT A WORLD TO EXPLORE</p>
+            </article>
+
+            <nav class="planet-index" id="planetIndex" aria-label="Select a planet">
+              <button class="planet-tab" type="button" data-planet="0" aria-pressed="false" aria-label="Select Mercury">
+                <span class="tab-number">01</span><span class="tab-swatch mercury-swatch" aria-hidden="true"></span><span class="tab-name">Mercury</span>
+              </button>
+              <button class="planet-tab" type="button" data-planet="1" aria-pressed="false" aria-label="Select Venus">
+                <span class="tab-number">02</span><span class="tab-swatch venus-swatch" aria-hidden="true"></span><span class="tab-name">Venus</span>
+              </button>
+              <button class="planet-tab is-selected" type="button" data-planet="2" aria-pressed="true" aria-label="Select Earth">
+                <span class="tab-number">03</span><span class="tab-swatch earth-swatch" aria-hidden="true"></span><span class="tab-name">Earth</span>
+              </button>
+              <button class="planet-tab" type="button" data-planet="3" aria-pressed="false" aria-label="Select Mars">
+                <span class="tab-number">04</span><span class="tab-swatch mars-swatch" aria-hidden="true"></span><span class="tab-name">Mars</span>
+              </button>
+              <button class="planet-tab" type="button" data-planet="4" aria-pressed="false" aria-label="Select Jupiter">
+                <span class="tab-number">05</span><span class="tab-swatch jupiter-swatch" aria-hidden="true"></span><span class="tab-name">Jupiter</span>
+              </button>
+              <button class="planet-tab" type="button" data-planet="5" aria-pressed="false" aria-label="Select Saturn">
+                <span class="tab-number">06</span><span class="tab-swatch saturn-swatch" aria-hidden="true"></span><span class="tab-name">Saturn</span>
+              </button>
+              <button class="planet-tab" type="button" data-planet="6" aria-pressed="false" aria-label="Select Uranus">
+                <span class="tab-number">07</span><span class="tab-swatch uranus-swatch" aria-hidden="true"></span><span class="tab-name">Uranus</span>
+              </button>
+              <button class="planet-tab" type="button" data-planet="7" aria-pressed="false" aria-label="Select Neptune">
+                <span class="tab-number">08</span><span class="tab-swatch neptune-swatch" aria-hidden="true"></span><span class="tab-name">Neptune</span>
+              </button>
+            </nav>
+
+            <div class="control-deck" aria-label="Simulation controls">
+              <div class="control-buttons">
+                <button class="control-button pause-button" id="pauseButton" type="button" aria-pressed="false">
+                  <span class="control-icon pause-icon" aria-hidden="true"><i></i><i></i></span>
+                  <span id="pauseLabel">Pause motion</span>
+                </button>
+                <button class="control-button reset-button" id="resetButton" type="button" aria-label="Reset simulation and camera">
+                  <span class="reset-icon" aria-hidden="true">↺</span><span>Reset</span>
+                </button>
+              </div>
+              <label class="speed-control" for="speedRange">
+                <span class="speed-head"><span>SIMULATION SPEED</span><output id="speedOutput" for="speedRange">1.0×</output></span>
+                <input id="speedRange" type="range" min="0.25" max="2.5" step="0.25" value="1" aria-label="Simulation speed" />
+                <span class="range-labels" aria-hidden="true"><span>LEISURELY</span><span>QUICK</span></span>
+              </label>
+            </div>
+          </aside>
+        </section>
+
+        <footer class="page-footer">
+          <span>THE SOLARIUM FIELD GUIDE <i>·</i> 2025</span>
+          <span>Motion is accelerated; paths and relative sizes are stylized for viewing.</span>
+        </footer>
+      </main>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
