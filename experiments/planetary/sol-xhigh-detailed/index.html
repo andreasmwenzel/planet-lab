@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#080e18" />
+  <title>Orrery — an orbital playground</title>
+</head>
+<body>
+  <div class="app">
+    <header class="masthead">
+      <a class="brand" href="#main" aria-label="Orrery, jump to the simulation">
+        <span class="brand-symbol" aria-hidden="true"><i></i></span>
+        <span>orrery<span class="brand-dot">.</span></span>
+      </a>
+      <div class="masthead-caption">A small universe. Yours to explore.</div>
+      <span class="edition">ORBITAL PLAYGROUND <span>01</span></span>
+    </header>
+
+    <main id="main" class="workspace">
+      <section class="scene-panel" aria-label="Interactive planetary system">
+        <div class="scene-header">
+          <div><span class="eyebrow">OUR CORNER OF THE COSMOS</span><h1>The solar system</h1></div>
+          <div class="scene-status"><span class="status-dot"></span><span id="motion-status">In motion</span></div>
+        </div>
+        <div id="viewport" class="viewport" aria-label="3D scene. Drag to orbit; scroll or pinch to zoom. Select a planet by clicking it." tabindex="0">
+          <div id="planet-labels" class="planet-labels" aria-label="Planet labels"></div>
+        </div>
+        <div id="fallback" class="fallback" hidden role="status">
+          <span class="fallback-symbol" aria-hidden="true">✦</span>
+          <h2>The 3D sky is unavailable</h2>
+          <p>This browser couldn't start WebGL, which powers the planetary scene. You can still select a world below and explore its reference facts.</p>
+          <p class="fallback-note">Try a WebGL-enabled browser or enable hardware acceleration to see the animated system.</p>
+        </div>
+        <div class="view-options" aria-label="Scene display options">
+          <label><input type="checkbox" id="show-orbits" checked /><span>Orbit paths</span></label>
+          <label><input type="checkbox" id="show-labels" checked /><span>Names</span></label>
+        </div>
+        <div class="scene-bottom">
+          <div class="camera-hint"><span aria-hidden="true">↔</span><span class="desktop-hint">Drag to orbit · Scroll to zoom</span><span class="touch-hint">Drag to orbit · Pinch to zoom</span></div>
+          <div class="zoom-controls" aria-label="Camera controls">
+            <button id="zoom-out" type="button" aria-label="Zoom out" title="Zoom out">−</button>
+            <button id="overview" type="button" title="Return to the whole system" aria-label="Show the whole system"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7V3h4M13 3h4v4M17 13v4h-4M7 17H3v-4"/></svg></button>
+            <button id="zoom-in" type="button" aria-label="Zoom in" title="Zoom in">+</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="inspector" aria-labelledby="planet-title">
+        <div class="inspector-top"><span class="eyebrow">WORLD IN FOCUS</span><span id="planet-number">03 / 08</span></div>
+        <div class="planet-portrait" id="planet-portrait" aria-hidden="true"><div class="portrait-orbit"></div><div class="portrait-world" id="portrait-world"></div><div class="portrait-ring"></div></div>
+        <div class="planet-heading"><div><p id="planet-kind" class="planet-kind">TERRESTRIAL PLANET</p><h2 id="planet-title">Earth</h2></div><span class="selection-marker" aria-hidden="true">↗</span></div>
+        <p id="planet-description" class="planet-description">An ocean-covered world with a thin atmosphere. The only home for life we know.</p>
+        <div class="facts-label">REFERENCE FACTS <span>rounded</span></div>
+        <dl class="planet-facts">
+          <div><dt>Year length</dt><dd id="planet-year">365 days</dd></div>
+          <div><dt>Diameter</dt><dd id="planet-diameter">12,740 km</dd></div>
+          <div><dt>Distance from Sun</dt><dd id="planet-distance">1.00 AU</dd></div>
+        </dl>
+        <button id="focus-planet" class="focus-button" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="4"/><path d="M10 1v3M10 16v3M1 10h3M16 10h3"/></svg><span id="focus-text">Follow Earth</span><span aria-hidden="true">↗</span></button>
+        <p class="inspector-note">Follow a planet for a closer look. Drag the scene to find your own angle.</p>
+      </aside>
+    </main>
+
+    <section class="world-picker" aria-label="Choose a planet">
+      <div class="picker-intro"><span class="eyebrow">PICK A WORLD</span><span>Eight places to get lost</span></div>
+      <div id="planet-buttons" class="planet-buttons"></div>
+    </section>
+
+    <footer class="control-bar">
+      <div class="transport">
+        <button id="play-toggle" class="play-button" type="button" aria-label="Pause simulation" aria-pressed="false"><svg id="pause-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 4v12M14 4v12"/></svg><svg id="play-icon" viewBox="0 0 20 20" aria-hidden="true" hidden><path d="m6 3 11 7-11 7Z"/></svg><span id="play-text">Pause</span></button>
+        <div class="speed-control"><label for="speed">Orbit speed <output for="speed" id="speed-value">1.0×</output></label><input id="speed" type="range" min="0.1" max="3" step="0.1" value="1" aria-valuetext="1 times normal speed" /></div>
+        <button id="reset" class="reset-button" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8a7 7 0 1 1 1 7M3 3v5h5"/></svg>Reset</button>
+      </div>
+      <p class="scale-note"><span aria-hidden="true">✦</span><span>A playful model, not a scale model<br><small>Sizes, spacing & motion are stylized</small></span></p>
+    </footer>
+    <div id="announcement" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+  </div>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

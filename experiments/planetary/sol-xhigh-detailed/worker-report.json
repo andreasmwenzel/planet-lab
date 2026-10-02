@@ -1,0 +1,35 @@
+{
+  "run": "sol-xhigh-detailed",
+  "title": "Orrery — an orbital playground",
+  "description": "An original, self-contained Three.js solar-system toy with a cinematic star field, locally generated planet textures, a luminous Sun, eight orbiting planets, Saturn's rings, and Earth's Moon. Includes direct scene selection, accessible planet buttons, a reference-fact inspector, smooth planet-follow camera, orbit and zoom controls, pause/resume, speed adjustment, reset, orbit-path and name toggles, responsive layouts, reduced-motion support, and a clearly labelled WebGL fallback.",
+  "implementationStartUTC": "2026-10-02T06:58:35Z",
+  "implementationEndUTC": "2026-10-02T07:11:40Z",
+  "files": [
+    "experiments/planetary/sol-xhigh-detailed/index.html",
+    "experiments/planetary/sol-xhigh-detailed/main.js",
+    "experiments/planetary/sol-xhigh-detailed/style.css",
+    "experiments/planetary/sol-xhigh-detailed/worker-report.json"
+  ],
+  "tests": [
+    {
+      "name": "JavaScript syntax",
+      "command": "node --check experiments/planetary/sol-xhigh-detailed/main.js",
+      "outcome": "Passed with exit code 0, both before and after the SVG visibility repair."
+    },
+    {
+      "name": "Local Vite bundle with write:false",
+      "command": "node --input-type=module; import { build } from 'vite'; await build({root: process.cwd() + '/experiments/planetary/sol-xhigh-detailed', configFile:false, logLevel:'info', build:{write:false,rollupOptions:{input:process.cwd() + '/experiments/planetary/sol-xhigh-detailed/index.html'}}});",
+      "outcome": "Passed with exit code 0, both before and after the repair. Final Vite 7.3.6 build transformed 7 modules in 2.42 seconds and produced in-memory assets/index-C1O1KBvL.js, assets/index-C7k6LXXv.css, and index.html. No build output was written."
+    }
+  ],
+  "repairsMade": [
+    "Changed playback SVG icon visibility to toggle the hidden attribute explicitly, avoiding reliance on an HTML-only hidden property. Reran both prescribed checks successfully."
+  ],
+  "knownLimitations": [
+    "Browser localhost access was unavailable; no browser, WebGL runtime, visual, or device checks were performed or claimed.",
+    "Planet sizes, orbital distances, inclination, surface artwork, and motion are deliberately stylized. Reference facts are rounded and clearly distinguished from the toy's geometry.",
+    "If WebGL initialization fails or its context is lost, the scene controls are disabled and the labelled fallback remains readable. Planet selection and reference information remain usable. Context restoration requires reloading."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}

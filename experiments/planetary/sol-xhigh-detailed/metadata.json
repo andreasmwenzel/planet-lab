@@ -1,0 +1,127 @@
+{
+  "id": "sol-xhigh-detailed",
+  "experimentId": "planetary",
+  "title": "Sol 6.1 · xhigh · detailed",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/planetary/sol-xhigh-detailed/index.html",
+  "axes": {
+    "model": "Sol 6.1",
+    "effort": "xhigh",
+    "promptApproach": "detailed"
+  },
+  "summary": "An original, self-contained Three.js solar-system toy with a cinematic star field, locally generated planet textures, a luminous Sun, eight orbiting planets, Saturn's rings, and Earth's Moon. Includes direct scene selection, accessible planet buttons, a reference-fact inspector, smooth planet-follow camera, orbit and zoom controls, pause/resume, speed adjustment, reset, orbit-path and name toggles, responsive layouts, reduced-motion support, and a clearly labelled WebGL fallback.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation with requested model and effort explicitly configured. Same public brief, output constraints, and syntax/bundle repair allowance. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6.1-sol",
+    "effort": "xhigh",
+    "runId": "sol-xhigh-detailed",
+    "startedAt": "2026-10-02T06:57:41Z",
+    "completedAt": "2026-10-02T07:12:30.297Z",
+    "durationSeconds": 889,
+    "durationScope": "Observed wall-clock time from task launch to verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; cloud browser does not provide usable WebGL2."
+    },
+    "sourceHashes": {
+      "index.html": "95b60e906d1c383bd9efd4b3baa06a5ad504c1af1a5cf93cac301c00eea83df2",
+      "main.js": "1d00efb18863c68daaaf72037acb1f1eb53ae15b91512bd6ac57b3bd7cf1e716",
+      "prompt.txt": "a75595ba5b6f66afa04d1c125ad43d2a73d175d713c623dacb897fa88d0f2005",
+      "style.css": "970b08db4f9b0fa95a01dd05fd08e136971b02902b65f15a6424871a145987bb"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an original interactive 3D planetary-system toy from scratch. Use the supplied Three.js dependency and a self-contained frontend with no backend, accounts, analytics, runtime network calls, or paid assets. Include an animated planetary scene, camera orbit and zoom, pause/resume, simulation-speed control, reset, and planet selection with clearly labelled information. Make it usable at desktop and phone sizes, with keyboard-accessible HTML controls and visible focus. Clearly label stylized motion/scales; do not imply scientific precision. Make reasonable design choices and implement the experience.\n\nTreat this as a complete product brief. Give the scene the strongest visual emphasis. Make primary controls easy to discover and show their current state. Planet selection should have a clear selected state and readable information panel. Group related controls consistently and keep the scene visible when panels are open. Use deliberate typography, spacing, contrast, and responsive layout. Polish required interactions rather than adding unrelated features.\n\nScaffold and output requirements:\n- Build the implementation fresh. Do not inspect the baseline, other variants, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only inside the supplied run directory. Create index.html and main.js there. The HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. Local CSS may be imported from main.js. Use installed three and, if useful, its add-ons via standard imports. A single fully inline HTML file is also allowed.\n- Available environment: Three.js 0.186.1, Vite 7.3.6, Node 24. No extra dependencies, CDN assets, remote fonts, runtime network calls, or backend. Do not modify package files or shared app files.\n- The common build harness bundles JavaScript and CSS into one HTML document. The viewer uses an iframe sandbox with allow-scripts and an opaque origin; do not access parent/top or rely on localStorage, cookies, cross-frame communication, or origin-specific APIs.\n- Validate JavaScript syntax and perform a local Vite bundle check with write:false. You may repair your own implementation and rerun these checks. Use the same test-and-repair allowance: implementation, syntax and local-bundle checks, then repairs needed to pass those checks. Browser localhost access is unavailable in this environment; do not claim browser checks or bypass that restriction.\n- Include a short worker-report.json with your title, description, implementation start/end UTC timestamps, exact tests and outcomes, repairs made, and known limitations. Set tokenUsage and cost to null unless the runtime supplies actual measured values. Do not estimate tokens, cost, or quality scores.\n- Provide a graceful, clearly labelled fallback if WebGL is unavailable, keeping the page readable and explaining the limitation rather than failing to a blank canvas.\n"
+      }
+    ],
+    "note": "Complete public generation brief and shared scaffold requirements, read verbatim by each fresh generation task. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax and isolated bundle checks passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "No usable WebGL2 in the available cloud browser; rendered 3D appearance and interaction have not been verified."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 598400,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 889,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 576287,
+    "cssBytes": 16017,
+    "checkedAt": "2026-10-02T07:12:30.297Z",
+    "runtimeBytes": 598400
+  },
+  "generationReport": {
+    "run": "sol-xhigh-detailed",
+    "title": "Orrery — an orbital playground",
+    "description": "An original, self-contained Three.js solar-system toy with a cinematic star field, locally generated planet textures, a luminous Sun, eight orbiting planets, Saturn's rings, and Earth's Moon. Includes direct scene selection, accessible planet buttons, a reference-fact inspector, smooth planet-follow camera, orbit and zoom controls, pause/resume, speed adjustment, reset, orbit-path and name toggles, responsive layouts, reduced-motion support, and a clearly labelled WebGL fallback.",
+    "implementationStartUTC": "2026-10-02T06:58:35Z",
+    "implementationEndUTC": "2026-10-02T07:11:40Z",
+    "files": [
+      "experiments/planetary/sol-xhigh-detailed/index.html",
+      "experiments/planetary/sol-xhigh-detailed/main.js",
+      "experiments/planetary/sol-xhigh-detailed/style.css",
+      "experiments/planetary/sol-xhigh-detailed/worker-report.json"
+    ],
+    "tests": [
+      {
+        "name": "JavaScript syntax",
+        "command": "node --check experiments/planetary/sol-xhigh-detailed/main.js",
+        "outcome": "Passed with exit code 0, both before and after the SVG visibility repair."
+      },
+      {
+        "name": "Local Vite bundle with write:false",
+        "command": "node --input-type=module; import { build } from 'vite'; await build({root: process.cwd() + '/experiments/planetary/sol-xhigh-detailed', configFile:false, logLevel:'info', build:{write:false,rollupOptions:{input:process.cwd() + '/experiments/planetary/sol-xhigh-detailed/index.html'}}});",
+        "outcome": "Passed with exit code 0, both before and after the repair. Final Vite 7.3.6 build transformed 7 modules in 2.42 seconds and produced in-memory assets/index-C1O1KBvL.js, assets/index-C7k6LXXv.css, and index.html. No build output was written."
+      }
+    ],
+    "repairsMade": [
+      "Changed playback SVG icon visibility to toggle the hidden attribute explicitly, avoiding reliance on an HTML-only hidden property. Reran both prescribed checks successfully."
+    ],
+    "knownLimitations": [
+      "Browser localhost access was unavailable; no browser, WebGL runtime, visual, or device checks were performed or claimed.",
+      "Planet sizes, orbital distances, inclination, surface artwork, and motion are deliberately stylized. Reference facts are rounded and clearly distinguished from the toy's geometry.",
+      "If WebGL initialization fails or its context is lost, the scene controls are disabled and the labelled fallback remains readable. Planet selection and reference information remain usable. Context restoration requires reloading."
+    ],
+    "tokenUsage": null,
+    "cost": null
+  }
+}
