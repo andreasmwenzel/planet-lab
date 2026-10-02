@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090d18" />
+  <title>ORRERY — a small universe</title>
+</head>
+<body>
+  <div id="app">
+    <main class="stage" aria-label="Interactive planetary system">
+      <div id="universe" aria-hidden="true"></div>
+      <div class="grain" aria-hidden="true"></div>
+      <header class="topbar">
+        <a class="brand" href="#home" aria-label="Orrery home"><span class="brand-mark">✳</span><span>ORRERY <small>FIELD STUDY 01</small></span></a>
+        <div class="top-note"><span class="live-dot"></span> A POCKET-SIZED COSMOS <span class="top-divider">/</span> <span id="clock">DAY 001</span></div>
+        <button id="help-button" class="icon-button" aria-label="Show interaction guide" title="Interaction guide">?</button>
+      </header>
+
+      <section class="intro" aria-live="polite">
+        <p class="eyebrow"><span class="eyebrow-line"></span><span id="planet-index">01 / 08</span> &nbsp;—&nbsp; PLANET DOSSIER</p>
+        <h1 id="planet-name">Mercury</h1>
+        <p id="planet-tagline" class="tagline">A swift, cratered world in the Sun’s first embrace.</p>
+        <div class="planet-facts">
+          <div><span class="fact-label">TYPE</span><strong id="planet-type">TERRESTRIAL</strong></div>
+          <div><span class="fact-label">YEAR</span><strong id="planet-year">88 EARTH DAYS</strong></div>
+          <div><span class="fact-label">KNOWN FOR</span><strong id="planet-feature">IRON-CORE HEART</strong></div>
+        </div>
+        <p class="disclaimer">A stylized motion study · distances and sizes are not to scale</p>
+      </section>
+
+      <div class="scene-caption"><span class="caption-rule"></span><span>THE INNER &amp; OUTER WORLDS</span><span class="caption-coords">SOL SYSTEM · 01 AU—30 AU</span></div>
+
+      <section class="control-dock" aria-label="Simulation controls">
+        <div class="transport">
+          <button id="play-toggle" class="play-button" aria-label="Pause simulation"><span id="play-icon">Ⅱ</span></button>
+          <div class="transport-copy"><span id="play-label">SIMULATION RUNNING</span><span id="day-counter">SOL 0001</span></div>
+          <span class="dock-separator"></span>
+          <button id="reset-button" class="reset-button" aria-label="Reset simulation" title="Reset simulation"><span>↺</span> RESET</button>
+        </div>
+        <div class="speed-control"><label for="speed">TIME FLOW</label><div class="speed-row"><span class="speed-min">¼×</span><input id="speed" aria-label="Simulation speed" type="range" min="0.25" max="3" step="0.25" value="1"><span class="speed-max">3×</span><output id="speed-value" for="speed">1×</output></div></div>
+        <div class="camera-hint"><span class="mouse-glyph">⤢</span><span>DRAG TO ORBIT<br>SCROLL TO ZOOM</span></div>
+      </section>
+
+      <nav class="planet-rail" aria-label="Choose a planet">
+        <div class="rail-heading"><span>SELECT A WORLD</span><span class="rail-key">← →</span></div>
+        <div id="planet-list" class="planet-list"></div>
+      </nav>
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+      <div id="webgl-fallback" class="fallback" role="status" hidden><div class="fallback-icon">◌</div><strong>THIS WINDOW CAN’T RENDER 3D</strong><p>Your browser or device has WebGL turned off. The planet guide and controls are still here; try enabling hardware acceleration to explore the moving scene.</p></div>
+      <div class="bottom-meta"><span>ORRERY / AN OPEN-ENDED MODEL</span><span>MADE FOR CURIOUS EYES</span></div>
+    </main>
+  </div>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

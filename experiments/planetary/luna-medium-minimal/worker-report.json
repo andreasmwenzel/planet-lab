@@ -1,0 +1,33 @@
+{
+  "title": "ORRERY — a small universe",
+  "description": "An atmospheric, keyboard-accessible planetary-system toy with a procedural Three.js scene, planet dossiers, play/pause, simulation speed, reset, and drag-orbit/scroll-zoom controls. All scene textures and stars are generated locally.",
+  "implementationStartUtc": "2026-10-02T06:32:14Z",
+  "implementationEndUtc": "2026-10-02T06:35:33Z",
+  "tests": [
+    {
+      "name": "JavaScript syntax",
+      "command": "node --check experiments/planetary/luna-medium-minimal/main.js",
+      "outcome": "passed"
+    },
+    {
+      "name": "Local Vite bundle (write:false, harness-equivalent configuration)",
+      "command": "Vite build API with configFile:false, run directory as root, lib entry main.js, inlineDynamicImports:true, minify:true, write:false",
+      "outcome": "passed; outputs were runtime.iife.js (chunk) and runtime.css (asset); no non-CSS assets"
+    },
+    {
+      "name": "Required module script marker",
+      "command": "Checked index.html for exact <script type=\"module\" src=\"./main.js\"></script> marker",
+      "outcome": "passed"
+    }
+  ],
+  "repairsMade": [
+    "Removed an empty CSS @import so the page has no unnecessary external-resource reference."
+  ],
+  "knownLimitations": [
+    "Stylized orbital motion, distances, and sizes are not scientifically to scale.",
+    "Interactive 3D rendering requires WebGL; a labelled fallback remains visible if renderer initialization fails.",
+    "Browser verification was not performed because local browser access is unavailable in this environment."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}
