@@ -3,7 +3,7 @@ import { experiments, rubric } from './content/experiments.js';
 import { chartsHtml } from './charts.js';
 import { reviews, reviewDownloads } from './content/evaluations.js';
 import { comparisonHtml, reviewFindingsHtml, evidenceHtml } from './report.js';
-import { availableRuns, filterRuns, axisOptions, parseRoute, experimentHref, selectRun, plannedRunCount, safeRuntimePath, escapeHtml as e, editorialScore, implementationScore, evaluationFor } from './lab.js';
+import { availableRuns, filterRuns, axisOptions, parseRoute, experimentHref, resultHref, resultRun, selectRun, plannedRunCount, safeRuntimePath, escapeHtml as e, editorialScore, implementationScore, evaluationFor } from './lab.js';
 
 const main = document.querySelector('main');
 const axisLabels = { model: 'Model', effort: 'Reasoning effort', promptApproach: 'Prompt approach' };
@@ -18,7 +18,7 @@ function post(exp) {
  const controlled = availableRuns(exp).filter(run => run.kind === 'controlled').length, total = plannedRunCount(exp.plan);
  return `<article class="experiment-post full-post">
  <header class="post-header"><div class="post-intro"><div class="post-meta"><span>Experiment ${e(String(Number(exp.number)).padStart(2, '0'))}</span><span>${e(exp.category)}</span><time datetime="${e(exp.date)}">${e(exp.displayDate)}</time></div><h1>${exp.headline.map((line, index) => index ? `<br><span>${e(line)}</span>` : e(line)).join('')}</h1></div><div class="post-deck"><p>${e(exp.description)}</p><p class="progress-copy"><strong>${controlled} of ${total} builds available</strong></p></div></header>
- <nav class="view-switch" aria-label="Experiment view"><button data-view="simulator">Simulator</button><button data-view="charts">Charts</button></nav>
+ <nav class="view-switch" aria-label="Experiment view"><button data-view="simulator">Simulator</button><button data-view="charts">Charts</button><a id="open-result" target="_blank" rel="noopener noreferrer" hidden>Open result in new tab</a></nav>
  <section class="observation-desk" aria-label="${e(exp.title)}"><div class="artifact-column"><div id="viewer-container"></div></div><aside class="selector-column" aria-label="Compare creations"><div id="picker"></div></aside></section>
  ${comparisonHtml(exp, reviews[exp.id], reviewDownloads[exp.id])}
  <section class="run-record" aria-labelledby="record-title"><div class="record-section-heading"><h2 id="record-title">Build record</h2></div><div id="run-record"></div></section>
@@ -26,12 +26,16 @@ function post(exp) {
 }
 
 function about() {
- return `<article class="about-page"><h1>What this is</h1><p>A fun attempt at testing AI models by making things. Andreas and dotson, his AI assistant, pick an idea, try it with different models and prompts, and put the results here to explore.</p><p>You can play with each build, compare the recorded times and reviews, and read the exact prompts. It’s a small collection of experiments, with the rough edges left in.</p></article>`;
+ return `<article class="about-page"><h1>What this is</h1><p>A fun attempt at testing AI models by making things. The <a href="https://github.com/andreasmwenzel/planet-lab">Planet Lab repository</a> keeps the code behind the ideas, models, prompts, and results collected here.</p><p>You can play with each build, compare the recorded times and reviews, and read the exact prompts. It’s a small collection of experiments, with the rough edges left in.</p></article>`;
 }
 
 function picker(exp, route) {
  const plan = exp.plan, total = plannedRunCount(plan);
  const runs = availableRuns(exp), filters = route.filters || {}, filtered = filterRuns(runs, filters), selected = selectRun(runs, route.variant, filters);
+ const resultLink = document.querySelector('#open-result');
+ resultLink.hidden = !selected;
+ if (selected) resultLink.href = resultHref(exp.id, selected.id);
+ else resultLink.removeAttribute('href');
  document.querySelectorAll('[data-view]').forEach(button => {
    button.setAttribute('aria-pressed', String(button.dataset.view === (route.view || 'simulator')));
    button.onclick = () => { location.hash = hrefFor(exp, selected?.id, filters, button.dataset.view, route.metric); };
@@ -119,9 +123,9 @@ async function viewer(run) {
  controller?.abort(); controller = new AbortController(); const signal = controller.signal; loadedRuntime = `${run.experimentId}/${run.id}`;
  document.body.classList.remove('viewer-expanded');
  const container = document.querySelector('#viewer-container');
- container.innerHTML = `<div class="runtime-shell"><div class="runtime-toolbar"><div><strong>${e(run.kind === 'baseline' ? run.title : `${run.axes.model} / ${run.axes.effort} / ${run.axes.promptApproach}`)}</strong></div><div class="runtime-actions"><button id="restart-runtime" aria-label="Restart this creation">Restart</button><button id="expand-runtime" aria-expanded="false">Expand</button></div></div><div class="runtime-stage"><div class="runtime-loading" role="status"><h3>Loading…</h3></div></div>${needsWebGL && !supportsWebGL2 ? '<div class="capability-note"><strong>3D isn’t available in this browser.</strong><span>Use a browser with working WebGL 2 to play.</span></div>' : ''}</div>`;
+ container.innerHTML = `<div class="runtime-shell"><div class="runtime-toolbar"><div><strong>${e(run.kind === 'baseline' ? run.title : `${run.axes.model} / ${run.axes.effort} / ${run.axes.promptApproach}`)}</strong></div><div class="runtime-actions"><button id="restart-runtime" aria-label="Restart this creation">Restart</button>${currentRoute.page === 'result' ? `<a href="${experimentHref(run.experimentId, run.id)}">Back to experiment</a>` : '<button id="expand-runtime" aria-expanded="false">Expand</button>'}</div></div><div class="runtime-stage"><div class="runtime-loading" role="status"><h3>Loading…</h3></div></div>${needsWebGL && !supportsWebGL2 ? '<div class="capability-note"><strong>3D isn’t available in this browser.</strong><span>Use a browser with working WebGL 2 to play.</span></div>' : ''}</div>`;
  document.querySelector('#restart-runtime').onclick = () => viewer(run);
- document.querySelector('#expand-runtime').onclick = () => expand();
+ document.querySelector('#expand-runtime')?.addEventListener('click', () => expand());
  try {
    if (!safeRuntimePath(run.runtime)) throw Error('Invalid artifact path.');
    const response = await fetch(run.runtime, { signal, cache: 'no-cache' });
@@ -156,13 +160,20 @@ function expand(force) {
 function render() {
  const route = parseRoute(location.hash), previous = currentRoute;
  currentRoute = route;
- const exp = route.page === 'experiment' ? experiments.find(exp => exp.id === route.id) : null;
+ const exp = ['experiment', 'result'].includes(route.page) ? experiments.find(exp => exp.id === route.id) : null;
  document.querySelectorAll('[data-nav]').forEach(link => { if ((route.page === 'about' ? 'about' : 'home') === link.dataset.nav) link.setAttribute('aria-current', 'page'); else link.removeAttribute('aria-current'); });
- if (exp && previous?.page === route.page && currentExperiment?.id === exp.id) { picker(exp, route); return; }
+ if (route.page === 'experiment' && exp && previous?.page === route.page && currentExperiment?.id === exp.id) { picker(exp, route); return; }
  if (document.body.classList.contains('viewer-expanded')) expand(false);
  controller?.abort(); loadedRuntime = null; currentExperiment = exp;
+ document.body.classList.toggle('standalone-result', route.page === 'result');
  if (route.page === 'home') { document.title = 'Experiments — Planet Lab'; main.innerHTML = journalIndex(); }
- else if (exp) { document.title = `${exp.title} — Planet Lab`; main.innerHTML = post(exp); picker(exp, route); }
+ else if (exp && route.page === 'experiment') { document.title = `${exp.title} — Planet Lab`; main.innerHTML = post(exp); picker(exp, route); }
+ else if (route.page === 'result' && resultRun(exp, route.variant)) {
+   const run = resultRun(exp, route.variant);
+   document.title = `${run.title} — Planet Lab`;
+   main.innerHTML = '<section class="result-page" aria-label="Standalone result"><div id="viewer-container"></div></section>';
+   viewer(run);
+ }
  else if (route.page === 'about') { document.title = 'What this is — Planet Lab'; main.innerHTML = about(); }
  else { document.title = 'Page not found — Planet Lab'; main.innerHTML = '<section class="not-found"><h1>Page not found</h1><p>That experiment or page doesn’t exist.</p><a class="solid-button" href="#/">Back to experiments →</a></section>'; }
  window.scrollTo({ top: 0, behavior: 'instant' }); if (renderCount++) main.focus({ preventScroll: true });

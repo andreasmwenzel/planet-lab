@@ -24,6 +24,8 @@ export function parseRoute(hash) {
     const params = new URLSearchParams(search);
     return { page: 'home', variant: params.get('variant'), filters: Object.fromEntries(axisKeys.map(axis => [axis, params.get(axis) || ''])) };
   }
+  const result = pathname.match(/^\/results\/([a-z0-9-]+)\/([a-z0-9-]+)$/);
+  if (result) return { page: 'result', id: result[1], variant: result[2] };
   const match = pathname.match(/^\/experiments\/([a-z0-9-]+)$/);
   if (match) {
     const params = new URLSearchParams(search);
@@ -87,4 +89,13 @@ export function selectRun(runs, variant, filters = {}) {
 
 export function plannedRunCount(plan) {
   return plan.models.reduce((sum, model) => sum + model.efforts.length * plan.approaches.length, 0);
+}
+
+export function resultHref(experimentId, runId) {
+  return `#/results/${encodeURIComponent(experimentId)}/${encodeURIComponent(runId)}`;
+}
+
+// A standalone URL must never silently display a different or pending build.
+export function resultRun(experiment, variant) {
+  return experiment && availableRuns(experiment).find(run => run.id === variant);
 }

@@ -94,7 +94,8 @@ test('Charts disposes the active artifact; unchanged Simulator selection retains
 test('What this is is two short paragraphs, with no standalone Method navigation', () => {
  const about = main.slice(main.indexOf('function about('),main.indexOf('function picker('));
  assert.equal((about.match(/<p>/g)||[]).length,2);
- assert.match(about,/Andreas and dotson/);
+ assert.match(about,/href="https:\/\/github.com\/andreasmwenzel\/planet-lab"/);
+ assert.doesNotMatch(about,/Andreas/);
  assert.match(html,/href="#\/about"/);
  assert.doesNotMatch(html,/Method|#\/method/);
 });
