@@ -150,3 +150,9 @@ test('analytics is included once in the journal shell, never in the runtime bund
   assert.doesNotMatch(bundler, /@vercel\/analytics|src\/analytics/);
   assert.match(bundler, /connect-src 'none'/);
 });
+
+test('standalone routes group under known experiments without exposing run identifiers', () => {
+ assert.equal(analyticsPath('#/results/planetary/luna-medium-minimal'), '/experiments/planetary');
+ assert.equal(analyticsPath('#/results/orbital-mechanics/luna-medium-minimal'), '/experiments/orbital-mechanics');
+ assert.equal(analyticsPath('#/results/private-name/private-run'), '/not-found');
+});

@@ -10,7 +10,7 @@ export function analyticsPath(hash) {
   const route = parseRoute(hash);
   if (route.page === 'home') return '/';
   if (route.page === 'about') return '/about';
-  if (route.page === 'experiment' && publicPaths.has(`/experiments/${route.id}`)) {
+  if (['experiment', 'result'].includes(route.page) && publicPaths.has(`/experiments/${route.id}`)) {
     return `/experiments/${route.id}`;
   }
   return '/not-found';

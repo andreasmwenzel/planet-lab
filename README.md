@@ -38,7 +38,10 @@ After deployment, visit the index and a post, confirm the Vercel analytics scrip
 - `/#/experiments/orbital-mechanics`: second experiment
 - `/#/experiments/planetary?variant=luna-medium-minimal&view=charts&metric=time`: charts for the selected build
 - Chart metrics are `time`, `implementation`, and `api`
-- `/experiments/planetary/<variant-id>/index.html`: standalone built runtime
+- `/#/results/<experiment-id>/<variant-id>`: shareable standalone result, opened with “Open result in new tab” from either post view
+- `/experiments/planetary/<variant-id>/index.html`: generated runtime asset (the result route wraps it in the isolated viewer)
+
+Standalone result routes display only the exact available build requested, with Restart and Back to experiment controls. They reuse the same opaque-origin sandbox and CSP validation; no raw runtime is opened as a top-level page. Unknown or pending results show a recovery link.
 
 Hash routes work with ordinary static hosting without rewrite rules. Unknown routes have a recovery link. Model/effort/prompt filters persist in the URL, and browser Back/Forward restores them. The viewer keeps the currently running artifact while filters change if it remains selected; selecting another creation or restarting resets it. Charts and Simulator share the selected build and filters. View and chart metric persist in the URL; Charts removes the iframe so no hidden simulation keeps running.
 
