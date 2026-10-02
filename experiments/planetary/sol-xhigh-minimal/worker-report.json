@@ -1,0 +1,52 @@
+{
+  "runId": "sol-xhigh-minimal",
+  "title": "Orbit Lab — A little universe",
+  "description": "An original, self-contained 3D solar-system playground with eight procedurally textured worlds, representative moons and rings, labeled planet selection, close-up tracking, camera orbit and zoom, pause/resume, speed control, reset, two overview angles, orbit/label toggles, keyboard controls, responsive layouts, reduced-motion support, and a readable WebGL fallback.",
+  "implementationStartUTC": "2026-10-02T06:59:26Z",
+  "implementationEndUTC": "2026-10-02T07:14:16Z",
+  "files": [
+    "experiments/planetary/sol-xhigh-minimal/index.html",
+    "experiments/planetary/sol-xhigh-minimal/main.js",
+    "experiments/planetary/sol-xhigh-minimal/style.css",
+    "experiments/planetary/sol-xhigh-minimal/worker-report.json"
+  ],
+  "tests": [
+    {
+      "name": "JavaScript syntax",
+      "command": "node --check experiments/planetary/sol-xhigh-minimal/main.js",
+      "outcome": "passed",
+      "exitCode": 0
+    },
+    {
+      "name": "Local Vite production bundle",
+      "command": "node --input-type=module; import { build } from 'vite'; await build({ root: 'experiments/planetary/sol-xhigh-minimal', configFile: false, logLevel: 'info', build: { write: false, minify: true, rollupOptions: { input: 'experiments/planetary/sol-xhigh-minimal/index.html' } } });",
+      "outcome": "passed",
+      "exitCode": 0,
+      "write": false,
+      "viteVersion": "7.3.6",
+      "modulesTransformed": 7,
+      "outputs": [
+        {
+          "fileName": "assets/index-C2rfGoBo.js",
+          "bytes": 575475
+        },
+        {
+          "fileName": "assets/index-DvKgYMdh.css",
+          "bytes": 19762
+        },
+        {
+          "fileName": "index.html",
+          "bytes": 6836
+        }
+      ]
+    }
+  ],
+  "repairsMade": [],
+  "knownLimitations": [
+    "Browser localhost access was unavailable, so no browser, visual, or interaction checks were performed.",
+    "Planet sizes, spacing, axial tilts, orbit times, and moon motion are artistic choices rather than a physics simulation; the interface explicitly labels this.",
+    "A lost WebGL context switches to the readable fallback; reloading is required to attempt restoring 3D rendering."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}

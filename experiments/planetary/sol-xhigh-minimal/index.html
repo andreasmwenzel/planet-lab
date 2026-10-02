@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#10171c" />
+    <title>Orbit Lab — A little universe</title>
+  </head>
+  <body>
+    <div class="app">
+      <header class="masthead">
+        <a class="brand" href="#planet-list" aria-label="Orbit Lab, go to planet picker">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="5"/><ellipse cx="16" cy="16" rx="14" ry="7" transform="rotate(-35 16 16)"/></svg>
+          <span>ORBIT LAB</span>
+        </a>
+        <span class="masthead-note">A solar system, at your pace</span>
+        <button class="help-button" id="help" aria-label="Open controls and help"><span aria-hidden="true">?</span> <span class="help-word">How to explore</span></button>
+      </header>
+
+      <main class="workspace">
+        <aside class="navigation" aria-label="Choose a planet">
+          <div class="intro">
+            <p class="eyebrow">A SMALL SPACE TO GET LOST</p>
+            <h1>A little<br/><em>universe.</em></h1>
+            <p class="intro-copy">Eight worlds. One star.<br/>An invitation to wander.</p>
+          </div>
+          <div class="picker-heading"><span>CHOOSE A WORLD</span><span>01—08</span></div>
+          <div class="planet-list" id="planet-list"></div>
+          <p class="scale-note"><span aria-hidden="true">✳</span> Big imaginations, small orbits.<br/>Sizes, distances, and motion are stylized.</p>
+        </aside>
+
+        <section class="cosmos" id="cosmos" aria-label="Interactive three-dimensional solar system">
+          <div class="scene-topline">
+            <span class="scene-tag"><i></i> <span id="scene-state">IN MOTION</span></span>
+            <span class="scale-tag">ILLUSTRATIVE · NOT TO SCALE</span>
+          </div>
+          <div id="scene" class="scene"></div>
+          <div id="labels" class="world-labels" aria-label="Planets in the scene"></div>
+          <div class="webgl-fallback" id="fallback" hidden>
+            <div class="fallback-art" aria-hidden="true"><span></span><i></i><b></b></div>
+            <p class="eyebrow">THE WORLDS ARE STILL HERE</p>
+            <h2>3D view unavailable</h2>
+            <p>This browser couldn’t start WebGL, the graphics technology used for this scene. You can still choose planets and read their field notes.</p>
+            <p class="fallback-small">For the moving 3D view, try a browser or device with WebGL and hardware acceleration enabled.</p>
+          </div>
+          <div class="scene-bottomline">
+            <p class="gesture-note">Drag to orbit <span>·</span> Scroll or pinch to zoom</p>
+            <div class="view-switch" role="group" aria-label="Camera view">
+              <button id="angled-view" class="active" aria-pressed="true">Angled</button>
+              <button id="top-view" aria-pressed="false">Top down</button>
+            </div>
+          </div>
+        </section>
+
+        <aside class="inspector" aria-labelledby="world-name">
+          <div class="inspector-heading"><span class="eyebrow">FIELD NOTES</span><span id="world-index">03 / 08</span></div>
+          <div class="planet-portrait" id="portrait" aria-hidden="true"><div></div></div>
+          <p class="world-kind" id="world-kind">ROCKY PLANET</p>
+          <h2 id="world-name">Earth</h2>
+          <p class="world-subtitle" id="world-subtitle">Our blue marble</p>
+          <p class="world-description" id="world-description">Choose a world to discover its place in our little solar system.</p>
+          <dl class="world-facts">
+            <div><dt>Orbit lane</dt><dd id="fact-lane">03 of 08</dd></div>
+            <div><dt>Toy orbit at 1×</dt><dd id="fact-orbit">48 seconds</dd></div>
+            <div><dt>Moons shown</dt><dd id="fact-moons">1</dd></div>
+          </dl>
+          <button class="visit-button" id="visit"><span id="visit-text">Explore up close</span><span id="visit-arrow" aria-hidden="true">↗</span></button>
+          <p class="inspector-footnote">An orbital playground, not a scientific model. Orbit times are compressed; moons are representative.</p>
+        </aside>
+      </main>
+
+      <footer class="control-deck" aria-label="Simulation controls">
+        <button id="play" class="play-button" aria-label="Pause simulation"><span id="play-icon" aria-hidden="true">Ⅱ</span><span id="play-text">Pause</span></button>
+        <div class="time-block"><span class="eyebrow">TOY TIME</span><output id="elapsed" aria-label="Elapsed toy time">00:00</output></div>
+        <div class="speed-control"><div><label for="speed">ORBIT SPEED</label><output id="speed-value" for="speed">1×</output></div><input id="speed" type="range" min="0.25" max="8" value="1" step="0.25" aria-label="Simulation speed" aria-valuetext="1 times normal speed"/><div class="range-labels" aria-hidden="true"><span>¼×</span><span>8×</span></div></div>
+        <div class="scene-toggles"><label><input type="checkbox" id="orbits" checked/><span>Orbit paths</span></label><label><input type="checkbox" id="show-labels" checked/><span>World labels</span></label></div>
+        <button id="reset" class="reset-button"><span aria-hidden="true">↺</span> Reset all</button>
+      </footer>
+    </div>
+
+    <dialog id="help-dialog" aria-labelledby="help-title">
+      <div class="dialog-top"><p class="eyebrow">WELCOME, EXPLORER</p><button id="close-help" aria-label="Close help">×</button></div>
+      <h2 id="help-title">Make some space.</h2>
+      <p>Pick a world from the list, its label, or the 3D scene. “Explore up close” brings you alongside it. You can return to the whole system at any time.</p>
+      <dl class="help-shortcuts"><div><dt>Drag / one finger</dt><dd>Orbit the camera</dd></div><div><dt>Scroll / pinch</dt><dd>Zoom in and out</dd></div><div><dt>Arrow keys</dt><dd>Orbit when the scene is focused</dd></div><div><dt>+ / −</dt><dd>Zoom when the scene is focused</dd></div><div><dt>Space</dt><dd>Pause or resume</dd></div><div><dt>R / Escape</dt><dd>Reset / return to overview</dd></div></dl>
+      <p class="help-note">Focus the 3D scene with Tab for camera keys. The speed slider and every other control also work with a keyboard. Reduced-motion preferences start the toy paused.</p>
+      <p class="help-note">All sizes, spacing, orbit speeds, and axial tilts are artistic choices. This is a playful interpretation of the solar system, with a few representative moons.</p>
+      <button id="done-help" class="dialog-done">Let’s explore <span aria-hidden="true">↗</span></button>
+    </dialog>
+    <p class="sr-only" id="announcement" role="status" aria-live="polite"></p>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
