@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0c1014"><title>Stillpoint — A planetary observatory</title></head>
+<body>
+<div id="app">
+<header class="masthead"><a class="identity" href="#main"><span class="brand-mark" aria-hidden="true">◉</span><span>STILLPOINT<span class="identity-sub">A PLANETARY OBSERVATORY</span></span></a><span class="edition">SOLAR STUDY <span>01 / 08</span></span></header>
+<main id="main">
+<section class="observatory" aria-label="Interactive planetary system">
+<div class="scene-heading"><span class="eyebrow">THE SOLAR SYSTEM</span><h1>A little perspective.</h1><p>Eight worlds. One quiet orbit.</p></div>
+<div id="viewport"><div id="fallback" hidden><span class="eyebrow">3D VIEW UNAVAILABLE</span><h2>The observatory needs WebGL.</h2><p>Your browser could not start the 3D view. You can still explore each planet’s information below. Try a browser with hardware acceleration enabled.</p></div></div>
+<div id="planet-label" aria-hidden="true"><span></span></div>
+<div class="view-tools"><span class="view-hint">DRAG TO ORBIT · SCROLL TO ZOOM</span><div class="camera-controls"><button id="view" title="Switch camera view" aria-label="Switch to overhead camera view">Overhead</button><button id="zoom-in" title="Zoom in" aria-label="Zoom in">+</button><button id="zoom-out" title="Zoom out" aria-label="Zoom out">−</button></div></div>
+<div class="scene-caption"><span class="status-dot"></span><span id="motion-status">ORBITS IN MOTION</span><span class="scale-note">Artistic scales & motion</span></div>
+</section>
+<aside class="catalogue" aria-label="Planet explorer"><div class="section-label"><span>EXPLORE THE WORLDS</span><span>01—08</span></div><nav id="planet-list" aria-label="Select a planet"></nav><section class="planet-info" aria-live="polite" aria-atomic="true"><div class="info-top"><span id="planet-type" class="eyebrow"></span><span id="planet-number"></span></div><h2 id="planet-name"></h2><p id="planet-description"></p><dl><div><dt>Diameter</dt><dd id="planet-diameter"></dd></div><div><dt>Year length</dt><dd id="planet-year"></dd></div><div><dt>Distance from Sun</dt><dd id="planet-distance"></dd></div></dl><p class="info-note">Rounded reference facts. The scene’s sizes, distances and orbital speeds are stylized for exploration.</p></section></aside>
+</main>
+<footer class="transport"><div class="playback"><button id="pause" aria-label="Pause simulation"><span id="play-symbol" aria-hidden="true">Ⅱ</span><span id="play-text">Pause</span></button><button id="reset">↺ <span>Reset</span></button></div><div class="speed-control"><label for="speed">TIME FLOW</label><input id="speed" type="range" min="0.2" max="4" step="0.1" value="1"><output id="speed-value" for="speed">1.0×</output></div><div class="footer-note">An invitation to look up.</div></footer>
+</div>
+<script type="module" src="./main.js"></script>
+</body></html>
