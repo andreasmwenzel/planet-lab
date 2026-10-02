@@ -1,0 +1,149 @@
+{
+  "id": "astra-xhigh-detailed",
+  "experimentId": "planetary",
+  "title": "Astra · xhigh · detailed",
+  "status": "available",
+  "kind": "controlled",
+  "runtime": "/experiments/planetary/astra-xhigh-detailed/index.html",
+  "axes": {
+    "model": "Astra",
+    "effort": "xhigh",
+    "promptApproach": "detailed"
+  },
+  "summary": "An original dark, editorial-style planetary playground with eight procedurally textured worlds, a glowing Sun, orbit paths, selectable field notes, close-up camera tracking, responsive controls, and a readable WebGL fallback.",
+  "provenance": {
+    "label": "Controlled generation",
+    "note": "Independent from-scratch generation with requested model and effort explicitly configured. Same public brief, output constraints, and syntax/bundle repair allowance. No provider token or cost counters were exposed. This is one sample per condition, not a general model benchmark.",
+    "modelId": "gpt-6-astra",
+    "effort": "xhigh",
+    "runId": "astra-xhigh-detailed",
+    "startedAt": "2026-10-02T07:28:06Z",
+    "completedAt": "2026-10-02T07:41:33.658Z",
+    "durationSeconds": 808,
+    "durationScope": "Observed wall-clock time from task launch to verified runtime bundle, including tool use and coordination; not a model-latency measurement.",
+    "tokenUsage": null,
+    "cost": null,
+    "environment": {
+      "three": "0.186.1",
+      "vite": "7.3.6",
+      "node": "24",
+      "network": "No runtime network calls",
+      "browser": "No local browser QA; cloud browser does not provide usable WebGL2."
+    },
+    "sourceHashes": {
+      "index.html": "87a327f872729d84d8e7fb7c738d9b9ef797ef27ee3e3fecbe12bb6e54153752",
+      "main.js": "e8c0f9448756313e95c09a4cc7bd33e2ee6d25b4b36a67a7831caf352e80f081",
+      "prompt.txt": "a75595ba5b6f66afa04d1c125ad43d2a73d175d713c623dacb897fa88d0f2005",
+      "style.css": "882da5de89ef43003d428bf6e7032988e6e828d64c01616986e462b6b1896d51"
+    }
+  },
+  "prompt": {
+    "status": "complete",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Build an original interactive 3D planetary-system toy from scratch. Use the supplied Three.js dependency and a self-contained frontend with no backend, accounts, analytics, runtime network calls, or paid assets. Include an animated planetary scene, camera orbit and zoom, pause/resume, simulation-speed control, reset, and planet selection with clearly labelled information. Make it usable at desktop and phone sizes, with keyboard-accessible HTML controls and visible focus. Clearly label stylized motion/scales; do not imply scientific precision. Make reasonable design choices and implement the experience.\n\nTreat this as a complete product brief. Give the scene the strongest visual emphasis. Make primary controls easy to discover and show their current state. Planet selection should have a clear selected state and readable information panel. Group related controls consistently and keep the scene visible when panels are open. Use deliberate typography, spacing, contrast, and responsive layout. Polish required interactions rather than adding unrelated features.\n\nScaffold and output requirements:\n- Build the implementation fresh. Do not inspect the baseline, other variants, or any pre-existing simulator implementation. Do not delegate generation to another model.\n- Work only inside the supplied run directory. Create index.html and main.js there. The HTML must contain exactly <script type=\"module\" src=\"./main.js\"></script>. Local CSS may be imported from main.js. Use installed three and, if useful, its add-ons via standard imports. A single fully inline HTML file is also allowed.\n- Available environment: Three.js 0.186.1, Vite 7.3.6, Node 24. No extra dependencies, CDN assets, remote fonts, runtime network calls, or backend. Do not modify package files or shared app files.\n- The common build harness bundles JavaScript and CSS into one HTML document. The viewer uses an iframe sandbox with allow-scripts and an opaque origin; do not access parent/top or rely on localStorage, cookies, cross-frame communication, or origin-specific APIs.\n- Validate JavaScript syntax and perform a local Vite bundle check with write:false. You may repair your own implementation and rerun these checks. Use the same test-and-repair allowance: implementation, syntax and local-bundle checks, then repairs needed to pass those checks. Browser localhost access is unavailable in this environment; do not claim browser checks or bypass that restriction.\n- Include a short worker-report.json with your title, description, implementation start/end UTC timestamps, exact tests and outcomes, repairs made, and known limitations. Set tokenUsage and cost to null unless the runtime supplies actual measured values. Do not estimate tokens, cost, or quality scores.\n- Provide a graceful, clearly labelled fallback if WebGL is unavailable, keeping the page readable and explaining the limitation rather than failing to a blank canvas.\n"
+      }
+    ],
+    "note": "Complete public generation brief and shared scaffold requirements, read verbatim by each fresh generation task. Run identifier and output directory are harness parameters; safety/report-routing instructions are excluded."
+  },
+  "evaluation": {
+    "status": "unscored",
+    "functional": {
+      "status": "not-verified",
+      "passed": null,
+      "total": null,
+      "scope": "Browser acceptance checks",
+      "note": "Syntax and isolated bundle checks passed; browser interaction checks remain unverified."
+    },
+    "editorial": null,
+    "browser": {
+      "status": "not-verified",
+      "note": "No usable WebGL2 in the available cloud browser; rendered 3D appearance and interaction have not been verified."
+    },
+    "measurements": [
+      {
+        "label": "Runtime bundle",
+        "value": 595847,
+        "unit": "bytes",
+        "source": "Measured UTF-8 artifact size"
+      },
+      {
+        "label": "Observed wall-clock duration",
+        "value": 808,
+        "unit": "seconds",
+        "source": "Task-launch timestamp to artifact bundle completion; includes tools and coordination"
+      }
+    ],
+    "notes": [
+      "One independently generated sample for this model/effort/prompt condition.",
+      "Token usage and cost are unavailable, not estimated."
+    ]
+  },
+  "build": {
+    "syntax": "passed",
+    "bundle": "passed",
+    "inlineAssets": "passed",
+    "javascriptBytes": 573366,
+    "cssBytes": 16321,
+    "checkedAt": "2026-10-02T07:41:33.658Z",
+    "runtimeBytes": 595847
+  },
+  "generationReport": {
+    "runId": "astra-xhigh-detailed",
+    "title": "Planet Lab — Space, at your pace",
+    "description": "An original dark, editorial-style planetary playground with eight procedurally textured worlds, a glowing Sun, orbit paths, selectable field notes, close-up camera tracking, responsive controls, and a readable WebGL fallback.",
+    "requestedModel": "gpt-6-astra",
+    "requestedReasoningEffort": "xhigh",
+    "implementationStartUTC": "2026-10-02T07:28:58Z",
+    "implementationEndUTC": "2026-10-02T07:41:11Z",
+    "files": [
+      "/workspace/scratch/bb2a48021f5a/planet-lab/experiments/planetary/astra-xhigh-detailed/index.html",
+      "/workspace/scratch/bb2a48021f5a/planet-lab/experiments/planetary/astra-xhigh-detailed/main.js",
+      "/workspace/scratch/bb2a48021f5a/planet-lab/experiments/planetary/astra-xhigh-detailed/style.css",
+      "/workspace/scratch/bb2a48021f5a/planet-lab/experiments/planetary/astra-xhigh-detailed/worker-report.json"
+    ],
+    "tests": [
+      {
+        "name": "JavaScript syntax",
+        "command": "node --check experiments/planetary/astra-xhigh-detailed/main.js",
+        "workingDirectory": "/workspace/scratch/bb2a48021f5a/planet-lab",
+        "outcome": "passed",
+        "exitCode": 0,
+        "details": "Node accepted the ES module without syntax errors."
+      },
+      {
+        "name": "Local Vite bundle, in memory",
+        "command": "node --input-type=module - <<'NODE'\nimport { build } from 'vite';\nconst result = await build({\n  configFile: false,\n  root: '/workspace/scratch/bb2a48021f5a/planet-lab/experiments/planetary/astra-xhigh-detailed',\n  logLevel: 'warn',\n  build: { write: false, minify: true, assetsInlineLimit: Infinity }\n});\nconst bundles = Array.isArray(result) ? result : [result];\nfor (const bundle of bundles) {\n  console.log(JSON.stringify({status:'passed', write:false, outputs:bundle.output.map(file=>({fileName:file.fileName,type:file.type,bytes:file.type==='chunk'?Buffer.byteLength(file.code):Buffer.byteLength(file.source)}))}));\n}\nNODE",
+        "workingDirectory": "/workspace/scratch/bb2a48021f5a/planet-lab",
+        "outcome": "passed",
+        "exitCode": 0,
+        "write": false,
+        "outputs": [
+          {
+            "fileName": "assets/index-BueIlDJq.js",
+            "bytes": 574264
+          },
+          {
+            "fileName": "assets/index-sUKlkUiO.css",
+            "bytes": 16321
+          },
+          {
+            "fileName": "index.html",
+            "bytes": 5994
+          }
+        ],
+        "details": "Vite resolved Three.js, OrbitControls, and local CSS and bundled successfully. No bundle files were written."
+      }
+    ],
+    "repairsMade": [],
+    "knownLimitations": [
+      "Browser localhost access was unavailable; no browser rendering, interaction, mobile-device, or visual checks were performed.",
+      "Orbital motion, planet sizes, distances, and generated surface art are intentionally stylized and are labelled as such in the interface.",
+      "This is an orbital toy, not a physical simulation or a scientifically accurate ephemeris.",
+      "WebGL startup failure or context loss displays a labelled fallback with working planet information; reloading is needed to attempt 3D initialization again."
+    ],
+    "tokenUsage": null,
+    "cost": null
+  }
+}
