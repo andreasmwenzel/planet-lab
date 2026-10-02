@@ -1,0 +1,39 @@
+{
+  "runId": "sol-xhigh-bold",
+  "title": "Orbit Arcade",
+  "description": "A bold lilac, acid-yellow, and tangerine cosmic playground: a procedural-textured Three.js solar system with eight selectable planet postcards, animated stylized orbits, orbit/zoom controls, pause/resume, adjustable time, reset, overhead view, and close-up tracking.",
+  "requestedModel": "gpt-6.1-sol",
+  "requestedReasoningEffort": "xhigh",
+  "implementationStartUTC": "2026-10-02T07:08:38Z",
+  "implementationEndUTC": "2026-10-02T07:21:03Z",
+  "files": [
+    "experiments/planetary/sol-xhigh-bold/index.html",
+    "experiments/planetary/sol-xhigh-bold/main.js",
+    "experiments/planetary/sol-xhigh-bold/style.css",
+    "experiments/planetary/sol-xhigh-bold/worker-report.json"
+  ],
+  "tests": [
+    {
+      "name": "JavaScript syntax",
+      "command": "node --check experiments/planetary/sol-xhigh-bold/main.js",
+      "outcome": "Passed before and after the source repair; exit code 0."
+    },
+    {
+      "name": "Local Vite production bundle with no output writes",
+      "command": "node --input-type=module - <<'EOF'\nimport { build } from 'vite';\nconst root = '/workspace/scratch/bb2a48021f5a/planet-lab/experiments/planetary/sol-xhigh-bold';\nconst result = await build({root,configFile:false,logLevel:'info',build:{write:false,outDir:'unused-build',emptyOutDir:false,rollupOptions:{input:root+'/index.html'}}});\nconst outputs = Array.isArray(result) ? result.flatMap(x=>x.output) : result.output;\nconsole.log('BUNDLE CHECK:', outputs.map(x=>`${x.fileName} (${(x.code || x.source || '').length} chars)`).join(', '));\nEOF",
+      "outcome": "Passed before and after the source repair; exit code 0. Final Vite 7.3.6 bundle transformed 7 modules and returned index.html (5816 characters), JavaScript (580803 characters), and CSS (18853 characters) in memory. No bundle files were written."
+    }
+  ],
+  "repairsMade": [
+    "Corrected the custom Sun shader's include directives to start on separate lines; inline directives would not be resolved as GLSL preprocessor directives. Reran both prescribed checks successfully.",
+    "Removed a redundant optional lookup for a nonexistent profile-card ID; the actual profile-card class lookup is retained."
+  ],
+  "knownLimitations": [
+    "Browser localhost access was unavailable as specified. No browser, screenshot, GPU shader compilation, or live interaction checks were performed or claimed.",
+    "Planet sizes, orbital distances, motion rates, textures, and colors are expressive stylizations, clearly labelled in the interface. Approximate orbital years are reference facts rather than simulation timing.",
+    "WebGL-unavailable and context-loss states show an explanatory fallback and retain HTML planet-profile selection; recovery from context loss requires a page reload.",
+    "Reduced-motion preferences start the simulation paused and suppress interface transitions; users can explicitly resume."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}

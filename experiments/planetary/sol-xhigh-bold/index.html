@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#b9b0ff" />
+  <title>Orbit Arcade — a pocket cosmic playground</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="masthead">
+      <a class="brand" href="#playground" aria-label="Orbit Arcade playground"><span class="brand-mark" aria-hidden="true">✳</span><span>ORBIT<br>ARCADE</span></a>
+      <div class="masthead-note"><span class="little-star" aria-hidden="true">✦</span> A SMALL PLAYGROUND<br>FOR VERY BIG THINGS</div>
+      <span class="issue-tag">EST. 4.6 BILLION YEARS AGO</span>
+    </header>
+
+    <main id="playground">
+      <section class="intro" aria-labelledby="page-title">
+        <div><p class="eyebrow">INTERPLANETARY GOOD TIMES / VOL. 01</p><h1 id="page-title">Make some <em>space.</em><span aria-hidden="true">↗</span></h1></div>
+        <p class="intro-copy">Eight planets. One very bright star.<br>A whole lot of room to play.</p>
+      </section>
+
+      <div class="playground-grid">
+        <section class="universe-card" aria-label="Interactive solar system">
+          <div class="stage" id="stage">
+            <div class="stage-top"><div><span class="on-air"><span></span><span id="live-label">IN ORBIT</span></span><p>THE SOLAR SYSTEM,<br>WITH A LITTLE EXTRA PERSONALITY.</p></div><span class="stage-stamp" aria-hidden="true">YOU<br>ARE<br>HERE ↙</span></div>
+            <canvas id="universe" tabindex="0" aria-label="Stylized 3D solar system. Drag to orbit the camera, scroll or pinch to zoom. Use the camera buttons for keyboard control." aria-describedby="scene-instructions"></canvas>
+            <div class="fallback" id="fallback" hidden role="status"><span aria-hidden="true">✳</span><h2>This universe needs WebGL</h2><p>Your browser couldn't open the 3D view. You can still explore all eight planet profiles below. Try a browser with WebGL enabled to orbit and zoom.</p></div>
+            <div class="selection-label" id="selection-label" aria-hidden="true"><span></span><b>EARTH</b></div>
+            <div class="camera-tools" aria-label="Camera controls">
+              <button id="orbit-left" title="Orbit camera left" aria-label="Orbit camera left">↶</button><button id="orbit-right" title="Orbit camera right" aria-label="Orbit camera right">↷</button><span></span><button id="zoom-in" title="Zoom in" aria-label="Zoom in">＋</button><button id="zoom-out" title="Zoom out" aria-label="Zoom out">−</button>
+            </div>
+            <div class="stage-bottom"><p id="scene-instructions"><span aria-hidden="true">↔</span> DRAG TO EXPLORE <span class="separator">/</span> SCROLL OR PINCH TO ZOOM</p><button id="view-toggle" aria-pressed="false"><span aria-hidden="true">◉</span> TOP VIEW</button></div>
+            <div class="stage-scale">A STYLIZED SOLAR SYSTEM · SIZE, DISTANCE & MOTION ARE NOT TO SCALE</div>
+          </div>
+
+          <div class="transport-bar" aria-label="Simulation controls">
+            <button class="play-button" id="play-toggle" aria-pressed="false"><span class="play-symbol" aria-hidden="true">Ⅱ</span><span class="play-text">PAUSE</span></button>
+            <div class="speed-control"><div><label for="speed">TIME FLIES</label><output id="speed-value" for="speed">1×</output></div><input id="speed" type="range" min="0.25" max="5" step="0.25" value="1" aria-label="Simulation speed"><div class="range-labels"><span>TAKE IT EASY</span><span>GO COSMIC</span></div></div>
+            <button id="reset" class="reset-button"><span aria-hidden="true">↺</span><span>START<br>OVER</span></button>
+          </div>
+        </section>
+
+        <aside class="profile-card" aria-labelledby="planet-name">
+          <div class="profile-top"><span>PLANET SPOTLIGHT</span><span id="planet-index">03 / 08</span></div>
+          <div class="profile-art" id="profile-art"><div class="art-orbit" aria-hidden="true"></div><div class="profile-planet" id="profile-planet" aria-hidden="true"></div><span class="art-spark spark-one" aria-hidden="true">✦</span><span class="art-spark spark-two" aria-hidden="true">+</span><div id="planet-tagline" class="planet-tagline">HOME SWEET HOME</div></div>
+          <div class="profile-copy" aria-live="polite" aria-atomic="true"><p class="eyebrow" id="planet-type">ROCKY PLANET / THIRD FROM THE SUN</p><h2 id="planet-name">Earth<span aria-hidden="true">↗</span></h2><p class="planet-description" id="planet-description">Our little blue oasis. Oceans, clouds, and the only life we've found so far. Pretty good place to start.</p><div class="planet-facts"><div><span>ORBITAL YEAR</span><strong id="planet-year">365 days</strong></div><div><span>THE VIBE</span><strong id="planet-vibe">Mostly blue</strong></div></div><p class="fact-note">Orbital years are approximate real-world references. Everything moving here is playful and stylized.</p></div>
+          <button id="focus-planet" class="focus-button">GET A LITTLE CLOSER<span aria-hidden="true">↗</span></button>
+          <button id="show-all" class="show-all">↖ BACK TO THE WHOLE UNIVERSE</button>
+        </aside>
+      </div>
+
+      <section class="planet-picker" aria-labelledby="picker-title"><div class="picker-heading"><h2 id="picker-title">Meet the neighbors.</h2><span>CHOOSE A PLANET ↓</span></div><div id="planet-buttons" class="planet-buttons" aria-label="Select a planet"></div></section>
+      <footer><span><span aria-hidden="true">✳</span> BIG UNIVERSE. ZERO PRESSURE.</span><p>No astronaut training required.</p><span class="footer-number">01 — 08 / SOL</span></footer>
+    </main>
+  </div>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
