@@ -1,0 +1,32 @@
+{
+  "run": "sol-medium-refined",
+  "title": "Stillpoint — A planetary observatory",
+  "description": "An original contemplative 3D solar-system toy with eight textured planets, restrained orbital lines, procedural stars, a glowing Sun, Saturn's rings, an accessible planet catalogue and reference facts. Includes orbit/zoom, camera presets, pause/resume, speed adjustment, reset, responsive layouts and a labelled WebGL fallback.",
+  "implementationStartUTC": "2026-10-02T06:56:27Z",
+  "implementationEndUTC": "2026-10-02T07:00:43Z",
+  "files": [
+    "experiments/planetary/sol-medium-refined/index.html",
+    "experiments/planetary/sol-medium-refined/main.js",
+    "experiments/planetary/sol-medium-refined/style.css",
+    "experiments/planetary/sol-medium-refined/worker-report.json"
+  ],
+  "tests": [
+    {
+      "command": "node --check experiments/planetary/sol-medium-refined/main.js",
+      "outcome": "Passed; exit code 0."
+    },
+    {
+      "command": "node --input-type=module -e \"import {build} from 'vite'; const result=await build({root:'experiments/planetary/sol-medium-refined',configFile:false,build:{write:false}}); console.log('LOCAL_BUNDLE_PASS',result.output.map(o=>o.fileName).join(', '));\"",
+      "outcome": "Passed; Vite 7.3.6 transformed 7 modules and bundled index.html, JavaScript and CSS in memory with write:false; exit code 0."
+    }
+  ],
+  "repairsMade": [],
+  "knownLimitations": [
+    "Browser and visual interaction checks were not run because localhost browser access is unavailable in this environment.",
+    "Planet sizes, distances, orbital speeds, and surface patterns are deliberately artistic; rounded information-panel facts are for general reference.",
+    "The 3D scene requires WebGL. Without it the readable planet catalogue and facts remain available, with a clearly labelled explanation.",
+    "On narrow screens, some outer orbits may extend beyond the starting view; zoom-out and camera orbit controls support exploration."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}
