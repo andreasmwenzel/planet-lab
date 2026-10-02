@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080a19" />
+    <title>ORBITAL — tiny worlds, big feelings</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="masthead">
+        <a class="wordmark" href="#home" aria-label="Orbital home">ORB<span>i</span>TAL<span class="mark">✳</span></a>
+        <div class="edition"><span class="live-dot"></span> POCKET PLANETARIUM <span class="edition-divider">/</span> FIELD STUDY 07</div>
+        <button class="soundless" id="help" aria-label="Show interaction tips">?</button>
+      </header>
+
+      <main id="home">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow"><span>✳</span> A LITTLE UNIVERSE, YOURS TO WANDER</p>
+            <h1 id="hero-title">Make a<br /><em>cosmic</em> detour<span class="period">.</span></h1>
+            <p class="intro">Seven strange little worlds are doing their thing. Give them a spin, pick a favorite, stay a while.</p>
+            <div class="hero-meta"><span>01 — 07</span><span class="meta-line"></span><span>STYLIZED SOLAR SYSTEM</span></div>
+          </div>
+          <div class="scene-shell" id="scene-shell" aria-label="Interactive 3D planetary system">
+            <div class="scene-topline"><span><i class="status-pip"></i> LIVE MODEL</span><span>DRAG TO ORBIT <b>↗</b></span></div>
+            <div id="scene" role="img" aria-label="Animated stylized planetary system. Use the planet buttons below to select a world."></div>
+            <div class="scene-caption"><span class="caption-cross">✳</span><span>THE SOLAR<br />NEIGHBORHOOD</span><span class="caption-number">A / 07</span></div>
+            <div class="loading" id="loading" aria-live="polite">Waking up the cosmos…</div>
+            <div class="fallback" id="fallback" hidden role="status"><span class="fallback-icon">✳</span><b>THE VIEWPORT IS TAKING A NAP</b><p>WebGL isn’t available in this browser, so the 3D ride can’t start. The planet guide and controls are still here to explore.</p></div>
+          </div>
+        </section>
+
+        <section class="explorer" aria-label="Planet explorer">
+          <div class="planet-rail">
+            <div class="rail-heading"><span>CHOOSE A WORLD</span><span class="rail-count">07 OBJECTS</span></div>
+            <div class="planet-buttons" id="planet-buttons" role="group" aria-label="Select a planet"></div>
+          </div>
+          <article class="planet-card" aria-live="polite" aria-atomic="true">
+            <div class="planet-card-head"><span class="eyebrow" id="planet-kicker">THE STAR</span><span class="planet-index" id="planet-index">01 / 07</span></div>
+            <div class="planet-info">
+              <div class="planet-glyph" id="planet-glyph" aria-hidden="true">✳</div>
+              <div><h2 id="planet-name">Sol</h2><p id="planet-description">The whole bright reason this neighborhood stays together.</p></div>
+            </div>
+            <div class="planet-stats"><div><span>ORBIT</span><b id="planet-orbit">0 AU</b></div><div><span>YEAR</span><b id="planet-year">—</b></div><div><span>VIBE</span><b id="planet-vibe">Radiant</b></div></div>
+          </article>
+        </section>
+
+        <section class="control-deck" aria-label="Simulation controls">
+          <div class="transport"><button class="play-button" id="play" aria-pressed="true"><span class="play-icon" id="play-icon">Ⅱ</span><span id="play-label">PAUSE</span></button><button class="reset-button" id="reset" aria-label="Reset view and simulation">↺ <span>RESET VIEW</span></button></div>
+          <div class="speed-control"><label for="speed">TIME WARP <strong id="speed-value">1×</strong></label><input id="speed" type="range" min="0" max="3" step="0.25" value="1" aria-label="Simulation speed" /><div class="range-labels"><span>STILL</span><span>ZOOMIES</span></div></div>
+          <p class="model-note"><span>✳</span> Motion and scale are stylized<br />for curious humans, not navigation</p>
+        </section>
+      </main>
+      <footer><span>ORBITAL FIELD NOTES <b>·</b> MADE FOR DAYDREAMING</span><span>NO WRONG WAY TO EXPLORE <b>↗</b></span></footer>
+      <dialog id="tips"><div class="dialog-head"><span>HOW TO WANDER</span><button id="close-tips" aria-label="Close tips">×</button></div><p>Drag to orbit around the system. Scroll or pinch to zoom. Choose any world below to meet it. The motion and distances are playful, not to scale.</p><button class="dialog-done" id="done-tips">GOT IT ↗</button></dialog>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+{
+  "title": "ORBITAL — Make a cosmic detour",
+  "description": "An original responsive planetary playground with animated Three.js worlds, direct scene selection, camera orbit and zoom, pause/resume, time warp, reset, and a readable WebGL-unavailable fallback.",
+  "implementationStartUtc": "2026-10-02T06:33:45Z",
+  "implementationEndUtc": "2026-10-02T06:37:45Z",
+  "tests": [
+    {
+      "name": "JavaScript syntax",
+      "command": "node --check experiments/planetary/luna-medium-bold/main.js",
+      "outcome": "passed"
+    },
+    {
+      "name": "Local Vite in-memory bundle",
+      "command": "node --input-type=module -e \"import {build} from 'vite'; import path from 'node:path'; const root=path.resolve('experiments/planetary/luna-medium-bold'); const result=await build({configFile:false,root,logLevel:'warn',build:{write:false,emptyOutDir:false,cssCodeSplit:false}}); console.log(Array.isArray(result)?result.map(x=>x.output.length):result.output.length)\"",
+      "outcome": "passed; Vite produced 3 in-memory bundle chunks; build.write was false"
+    },
+    {
+      "name": "HTML module entry contract",
+      "command": "Python count of the exact required module script tag and all script tags in index.html",
+      "outcome": "passed; exact required tag appears once and is the only script tag"
+    }
+  ],
+  "repairsMade": [
+    "Added the missing play-icon element ID referenced by the playback control and aligned its aria-pressed state with the running state.",
+    "Removed an empty CSS import declaration to keep the implementation fully self-contained.",
+    "The first exploratory Vite invocation incorrectly supplied the repository-level index.html as an explicit Rollup input and failed to resolve its /src/main.js. Reran the check using the assigned run directory as Vite root and its default index discovery; the local bundle passed. No application source change was needed for that invocation correction."
+  ],
+  "knownLimitations": [
+    "Browser rendering and interaction could not be tested because localhost browser access is unavailable in this environment.",
+    "Actual WebGL-unavailable behavior is implemented as an error fallback but was not exercised in a browser."
+  ],
+  "tokenUsage": null,
+  "cost": null
+}
